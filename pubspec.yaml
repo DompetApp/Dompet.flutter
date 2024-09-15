@@ -54,11 +54,11 @@ dependencies:
   get: ^4.6.6
 
 flutter_launcher_icons:
+  image_path: "assets/dompet_large.png"
   adaptive_icon_background: "#ffffff"
   background_color_ios: "#ffffff"
-  image_path: "assets/dompet.png"
   remove_alpha_ios: true
-  android: true
+  android: false
   ios: true
 
 dev_dependencies:
