@@ -1,6 +1,15 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": [
-    "config:recommended"
-  ]
+    "config:base",
+    "group:allNonMajor",
+    ":semanticCommitTypeAll(chore)"
+  ],
+  "schedule": [
+    "at 10:00 am on friday"
+  ],
+  "npm": {
+    "commitMessageTopic": "{{prettyDepType}} {{depName}}"
+  },
+  "rangeStrategy": "bump"
 }
