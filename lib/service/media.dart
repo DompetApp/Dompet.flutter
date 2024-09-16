@@ -2,12 +2,14 @@ import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 
 class MediaQueryController extends GetxService {
+  late Rx<Orientation> orientation = Orientation.portrait.obs;
   late Rx<EdgeInsets> viewPadding = EdgeInsets.zero.obs;
   late Rx<EdgeInsets> viewInsets = EdgeInsets.zero.obs;
   late Rx<EdgeInsets> padding = EdgeInsets.zero.obs;
+  late Rx<double> height = Size.zero.height.obs;
+  late Rx<double> width = Size.zero.width.obs;
   late Rx<double> bottomBar = 56.0.obs;
   late Rx<double> topBar = 56.0.obs;
-  late Rx<Size> size = Size.zero.obs;
 
   void update({
     double? topBar = 56,
@@ -23,10 +25,12 @@ class MediaQueryController extends GetxService {
     }
 
     if (mediaQuery != null) {
-      size.value = mediaQuery.size;
-      padding.value = mediaQuery.padding;
+      width.value = mediaQuery.size.width;
+      height.value = mediaQuery.size.height;
       viewInsets.value = mediaQuery.viewInsets;
+      orientation.value = mediaQuery.orientation;
       viewPadding.value = mediaQuery.viewPadding;
+      padding.value = mediaQuery.padding;
     }
   }
 }

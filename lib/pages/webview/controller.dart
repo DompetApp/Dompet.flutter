@@ -93,8 +93,6 @@ class PageWebviewController extends GetxController {
 
   // loadUrl
   Future<void> loadUrl() async {
-    await loadScripts();
-
     final url = webviewMeta.url.value;
     final html = webviewMeta.html.value;
     final fromUrl = webviewMeta.fromUrl.value;
@@ -102,11 +100,8 @@ class PageWebviewController extends GetxController {
     final checkUrl = webviewMeta.checkUrl.value;
     final checkHttps = webviewMeta.checkHttps.value;
 
-    if (initialUrl == null && initialData == null && fromUrl) {
-      initialUrl = URLRequest(url: WebUri.uri(Uri.parse(url)));
-    }
-
     if (initialUrl == null && initialData == null && fromHtml) {
+      await loadScripts();
       initialData = InAppWebViewInitialData(data: html);
     }
 
@@ -120,6 +115,11 @@ class PageWebviewController extends GetxController {
       final data = await rootBundle.loadString(errorHttpsHtml);
       initialData = InAppWebViewInitialData(data: data);
       injectUrl = true;
+    }
+
+    if (initialUrl == null && initialData == null && fromUrl) {
+      await loadScripts();
+      initialUrl = URLRequest(url: WebUri.uri(Uri.parse(url)));
     }
 
     update(['webview']);
@@ -157,6 +157,10 @@ class PageWebviewController extends GetxController {
 
   // writeScripts
   Future<void> writeScripts() async {
+    if (injectUrl == true) {
+      return;
+    }
+
     if (webviewController != null) {
       try {
         const id = "_inject__control-app-img";
@@ -207,6 +211,10 @@ class PageWebviewController extends GetxController {
 
   // popuping
   Future<void> popuping(bool? popup) async {
+    if (mediaQueryController.orientation.value == Orientation.landscape) {
+      return;
+    }
+
     if (popup != null) {
       webviewMeta.popup.value = popup;
     }

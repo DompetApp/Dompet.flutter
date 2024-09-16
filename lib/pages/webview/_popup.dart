@@ -1,4 +1,5 @@
 import 'dart:math';
+import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'package:dompet/pages/webview/controller.dart';
@@ -21,10 +22,10 @@ class PageWebviewPopup extends StatefulWidget {
 
 class PageWebviewPopupState extends State<PageWebviewPopup>
     with SingleTickerProviderStateMixin {
-  late final mediaSize = mediaQuery.size;
   late final controller = widget.controller;
-  late final mediaPadding = mediaQuery.padding;
-  late final mediaQuery = controller.mediaQueryController;
+  late final mediaHeight = mediaQueryController.height;
+  late final mediaPadding = mediaQueryController.padding;
+  late final mediaQueryController = controller.mediaQueryController;
 
   late AnimationController animationController;
   late Animation<double> animation;
@@ -79,18 +80,24 @@ class PageWebviewPopupState extends State<PageWebviewPopup>
       left: 0,
       right: 0,
       bottom: 0,
-      child: Stack(
-        fit: StackFit.expand,
-        children: [
-          opacityLayer(),
-          controlPanel(),
-        ],
-      ),
+      child: Obx(() {
+        if (mediaHeight.value <= 350.dp) {
+          return const SizedBox.shrink();
+        }
+
+        return Stack(
+          fit: StackFit.expand,
+          children: [
+            opacityLayer(context),
+            controlPanel(context),
+          ],
+        );
+      }),
     );
   }
 
   // layer
-  Widget opacityLayer() {
+  Widget opacityLayer(BuildContext context) {
     return Opacity(
       opacity: animation.value,
       child: GestureDetector(
@@ -104,7 +111,7 @@ class PageWebviewPopupState extends State<PageWebviewPopup>
   }
 
   // panel
-  Widget controlPanel() {
+  Widget controlPanel(BuildContext context) {
     final panelList = [
       'backHome',
       'refreshPage',
@@ -115,7 +122,7 @@ class PageWebviewPopupState extends State<PageWebviewPopup>
     return Positioned(
       left: 0,
       right: 0,
-      bottom: (animation.value - 1) * 500,
+      bottom: (animation.value - 1) * 420,
       child: Container(
         decoration: BoxDecoration(
           borderRadius: BorderRadius.all(
@@ -157,7 +164,7 @@ class PageWebviewPopupState extends State<PageWebviewPopup>
               ),
               Container(
                 constraints: BoxConstraints(
-                  minHeight: 136.dp,
+                  minHeight: min(128.dp, 30.vh),
                 ),
                 child: GridView.builder(
                   shrinkWrap: true,
@@ -240,7 +247,6 @@ class PageWebviewPopupState extends State<PageWebviewPopup>
     return GestureDetector(
       child: SizedBox(
         width: 60.dp,
-        height: 100.dp,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.center,
@@ -285,14 +291,14 @@ class PageWebviewPopupState extends State<PageWebviewPopup>
         ),
       ),
       onTap: () {
-        closedCallback = panelCallback(type);
+        closedCallback = callback(type);
         animationController.reverse();
       },
     );
   }
 
   // callback
-  Function? panelCallback(String type) {
+  Function? callback(String type) {
     switch (type) {
       case 'backHome':
         return () async {

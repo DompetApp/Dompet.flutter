@@ -121,28 +121,11 @@ class PageWebviewScaffoldState extends State<PageWebviewScaffold> {
                   await writeScripts();
                   await loading(false);
                 },
-                onWebViewCreated: (webviewController) async {
-                  controller.webviewController = webviewController;
-                  controller.webChannelController.createScriptHandlers(
-                    controller,
-                  );
-                },
-                onReceivedError: (webviewController, request, error) async {
-                  loading(false);
-                },
                 onTitleChanged: (webviewController, title) async {
                   titling(title);
                 },
-                onProgressChanged: (webviewController, progress) async {
-                  if (progress == 100) {
-                    loading(false);
-                  }
-                },
-                onPermissionRequest: (webviewController, request) async {
-                  return PermissionResponse(
-                    resources: request.resources,
-                    action: PermissionResponseAction.GRANT,
-                  );
+                onReceivedError: (webviewController, request, error) async {
+                  loading(false);
                 },
                 shouldOverrideUrlLoading: (webviewController, action) async {
                   final url = action.request.url;
@@ -169,6 +152,23 @@ class PageWebviewScaffoldState extends State<PageWebviewScaffold> {
                   final canGoBack = await webviewController.canGoBack();
                   final canBack = await GetRouter.canBack();
                   leading(canGoBack || canBack);
+                },
+                onPermissionRequest: (webviewController, request) async {
+                  return PermissionResponse(
+                    resources: request.resources,
+                    action: PermissionResponseAction.GRANT,
+                  );
+                },
+                onProgressChanged: (webviewController, progress) async {
+                  if (progress == 100) {
+                    loading(false);
+                  }
+                },
+                onWebViewCreated: (webviewController) async {
+                  controller.webviewController = webviewController;
+                  controller.webChannelController.createScriptHandlers(
+                    controller,
+                  );
                 },
               );
             },
