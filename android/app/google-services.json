@@ -1,0 +1,54 @@
+{
+  "project_info": {
+    "project_number": "1035616477079",
+    "project_id": "dompet-fd703",
+    "storage_bucket": "dompet-fd703.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1035616477079:android:f1e3cec551204d88abeed2",
+        "android_client_info": {
+          "package_name": "com.example.dompet"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1035616477079-2n0p11ae33a7if1btmk9cpr825er2fpt.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.dompet",
+            "certificate_hash": "fa8227b2c4e795539981af648e9d842c08c4af6b"
+          }
+        },
+        {
+          "client_id": "1035616477079-dnk1ohfudiitenkqbsp5rhk5efo9a6h9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBjw_e_da8NlnuE93g5TJabZ5oJs5VGmuI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1035616477079-dnk1ohfudiitenkqbsp5rhk5efo9a6h9.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "1035616477079-pg59p09hkv19faj5vru9o164v33d9k57.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.dompet"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
