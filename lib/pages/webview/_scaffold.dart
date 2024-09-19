@@ -2,6 +2,7 @@ import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'package:dompet/pages/webview/controller.dart';
+import 'package:dompet/extension/bool.dart';
 import 'package:dompet/routes/router.dart';
 
 class PageWebviewScaffold extends StatefulWidget {
@@ -107,8 +108,8 @@ class PageWebviewScaffoldState extends State<PageWebviewScaffold> {
               final initialScripts = controller.initialScripts;
               final initialSettings = controller.inAppWebViewSettings;
 
-              if (initialUrl == null && initialData == null) {
-                return Container();
+              if (!initialUrl.bv && !initialData.bv) {
+                return const SizedBox.shrink();
               }
 
               return InAppWebView(
@@ -130,7 +131,7 @@ class PageWebviewScaffoldState extends State<PageWebviewScaffold> {
                 shouldOverrideUrlLoading: (webviewController, action) async {
                   final url = action.request.url;
 
-                  if (url == null || url.toString() == "") {
+                  if (!url.bv) {
                     return NavigationActionPolicy.CANCEL;
                   }
 
@@ -142,7 +143,7 @@ class PageWebviewScaffoldState extends State<PageWebviewScaffold> {
                     "about",
                     "chrome",
                     "javascript",
-                  ].contains(url.scheme)) {
+                  ].contains(url!.scheme)) {
                     return NavigationActionPolicy.CANCEL;
                   }
 

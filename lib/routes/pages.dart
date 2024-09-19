@@ -15,15 +15,13 @@ import 'package:dompet/pages/notification/index.dart';
 class AuthMiddleware extends GetMiddleware {
   @override
   RouteSettings? redirect(String? route) {
-    final authorized = [GetRoutes.login, GetRoutes.register, GetRoutes.webview];
-    final signing = [GetRoutes.login, GetRoutes.register];
-    final login = Get.find<StoreController>().login;
+    final logined = Get.find<StoreController>().logined;
 
-    if (!login.value && !authorized.contains(route)) {
+    if (!logined.value && !GetRoutes.defaults.contains(route)) {
       return const RouteSettings(name: '/login');
     }
 
-    if (login.value && signing.contains(route)) {
+    if (logined.value && GetRoutes.defaults.contains(route)) {
       return const RouteSettings(name: '/home');
     }
 
@@ -43,18 +41,38 @@ class GetRoutes {
   static const settings = '/settings';
   static const notification = '/notification';
 
+  static List<String> get defaults {
+    return [
+      GetRoutes.login,
+      GetRoutes.register,
+    ];
+  }
+
+  static List<String> get list {
+    return [
+      GetRoutes.login,
+      GetRoutes.card,
+      GetRoutes.login,
+      GetRoutes.stats,
+      GetRoutes.profile,
+      GetRoutes.webview,
+      GetRoutes.register,
+      GetRoutes.transfer,
+      GetRoutes.settings,
+      GetRoutes.notification,
+    ];
+  }
+
   static List<GetPage> pages() {
     return [
       GetPage(
         name: home,
         page: () => const PageHome(),
-        transition: Transition.noTransition,
         middlewares: [AuthMiddleware()],
       ),
       GetPage(
         name: card,
         page: () => const PageCard(),
-        transition: Transition.noTransition,
         middlewares: [AuthMiddleware()],
       ),
       GetPage(
@@ -66,43 +84,36 @@ class GetRoutes {
       GetPage(
         name: stats,
         page: () => const PageStats(),
-        transition: Transition.noTransition,
         middlewares: [AuthMiddleware()],
       ),
       GetPage(
         name: profile,
         page: () => const PageProfile(),
-        transition: Transition.noTransition,
         middlewares: [AuthMiddleware()],
       ),
       GetPage(
         name: webview,
         page: () => PageWebview(),
-        transition: Transition.noTransition,
         middlewares: [AuthMiddleware()],
       ),
       GetPage(
         name: register,
         page: () => const PageRegister(),
-        transition: Transition.noTransition,
         middlewares: [AuthMiddleware()],
       ),
       GetPage(
         name: transfer,
         page: () => const PageTransfer(),
-        transition: Transition.noTransition,
         middlewares: [AuthMiddleware()],
       ),
       GetPage(
         name: settings,
         page: () => const PageSettings(),
-        transition: Transition.noTransition,
         middlewares: [AuthMiddleware()],
       ),
       GetPage(
         name: notification,
         page: () => const PageNotification(),
-        transition: Transition.noTransition,
         middlewares: [AuthMiddleware()],
       ),
     ];

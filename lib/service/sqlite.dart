@@ -1,5 +1,6 @@
 import 'package:get/get.dart';
 import 'package:dompet/configure/sqflite.dart';
+import 'package:dompet/extension/bool.dart';
 import 'package:dompet/database/user.dart';
 import 'package:dompet/database/app.dart';
 import 'package:dompet/service/bind.dart';
@@ -14,28 +15,28 @@ class SqliteController extends GetxService {
   @override
   void onInit() async {
     super.onInit();
+    await initAppDatabase();
+  }
 
+  // 创建/关闭/销毁 App Database
+  Future<void> initAppDatabase() async {
     if (AppDatabaser.isClosed) {
       await openAppDatabase();
     }
 
     if (AppDatabaser.isCreated) {
-      nowUser = (await AppDatabaser.findRecentUser());
-      storeController.storeUser(nowUser);
-      await openUserDatabase();
+      await initUserDatabase();
     }
   }
 
-  // 创建/关闭/销毁 App Database
-  Future<dynamic> openAppDatabase() async {
+  Future<void> openAppDatabase() async {
     if (AppDatabaser.isCreated) {
       return;
     }
 
-    await Sqfliter.openDatabase(
+    AppDatabaser.db = await Sqfliter.openDatabase(
       appDBName,
       version: 1,
-      readOnly: false,
       singleInstance: true,
       onCreate: (db, v1) async {
         return AppDatabaser.create(db);
@@ -43,29 +44,35 @@ class SqliteController extends GetxService {
     );
   }
 
-  Future<dynamic> closeAppDatabase() async {
+  Future<void> closeAppDatabase() async {
     AppDatabaser.close();
   }
 
-  Future<dynamic> deleteAppDatabase() async {
+  Future<void> deleteAppDatabase() async {
     await closeAppDatabase();
     await Sqfliter.deleteDatabase(appDBName);
   }
 
   // 创建/关闭/销毁 User Database
-  Future<dynamic> openUserDatabase() async {
-    if (nowUser?.key == '') {
+  Future<void> initUserDatabase() async {
+    nowUser = (await AppDatabaser.findRecentUser());
+    storeController.createUser(nowUser);
+    await openUserDatabase();
+  }
+
+  Future<void> openUserDatabase() async {
+    if (nowUser == null) {
       return;
     }
 
-    if (nowUser?.key == null) {
+    if (!nowUser!.uid.bv) {
       return;
     }
 
-    await Sqfliter.openDatabase(
+    UserDatabaser.db = await Sqfliter.openDatabase(
       appDBName,
       version: 1,
-      subName: nowUser!.key,
+      subName: nowUser!.uid,
       readOnly: false,
       singleInstance: true,
       onCreate: (db, v1) async {
@@ -74,38 +81,38 @@ class SqliteController extends GetxService {
     );
   }
 
-  Future<dynamic> closeUserDatabase() async {
+  Future<void> closeUserDatabase() async {
     UserDatabaser.close();
     nowUser = null;
   }
 
-  Future<dynamic> deleteUserDatabase() async {
-    if (nowUser?.key == '') {
+  Future<void> deleteUserDatabase() async {
+    if (nowUser == null) {
       return;
     }
 
-    if (nowUser?.key == null) {
+    if (!nowUser!.uid.bv) {
       return;
     }
 
-    final key = nowUser!.key;
+    final uid = nowUser!.uid;
     await closeUserDatabase();
-    await Sqfliter.deleteDatabase(userDBName, subName: key);
-    await AppDatabaser.deleteUser(key);
+    await Sqfliter.deleteDatabase(userDBName, subName: uid);
+    await AppDatabaser.deleteUser(uid);
   }
 
   // 关闭/删除/清理 所有 Database
-  Future<dynamic> closeAllDatabases() async {
+  Future<void> closeAllDatabases() async {
     await closeUserDatabase();
     await closeAppDatabase();
   }
 
-  Future<dynamic> deleteAllDatabases() async {
+  Future<void> deleteAllDatabases() async {
     await deleteUserDatabase();
     await deleteAppDatabase();
   }
 
-  Future<dynamic> clearAllDatabases() async {
+  Future<void> clearAllDatabases() async {
     await deleteAllDatabases();
     await Sqfliter.clearDatabase();
   }

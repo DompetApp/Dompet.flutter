@@ -1,27 +1,28 @@
 import 'package:sqflite/sqflite.dart';
+import 'package:dompet/extension/bool.dart';
 
 class UserDatabaser {
   static Database? db;
-  static bool isClosed = true;
-  static bool isCreated = false;
+  static get isClosed => !db.bv;
+  static get isCreated => db.bv;
 
   static Future<void> close() async {
     await db?.close();
     UserDatabaser.db = null;
-    UserDatabaser.isClosed = true;
-    UserDatabaser.isCreated = false;
   }
 
   static Future<void> create(Database? db) async {
-    if (db != null) {
+    if (db.bv) {
       UserDatabaser.db = db;
-      UserDatabaser.isClosed = false;
-      UserDatabaser.isCreated = true;
 
-      return db.execute(
+      return db!.execute(
         '''
         CREATE TABLE AppMessage (
           id INTEGER PRIMARY KEY AUTOINCREMENT,
+          payer TEXT,
+          title TEXT NOT NULL,
+          message TEXT NOT NULL,
+          timestamp INTEGER NOT NULL
         )
         ''',
       );

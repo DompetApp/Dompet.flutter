@@ -11,6 +11,11 @@ plugins {
 dependencies {
   // Import the Firebase
   implementation platform('com.google.firebase:firebase-bom:33.3.0')
+
+  // TODO: Add the dependencies for Firebase products you want to use
+  // When using the BoM, don't specify versions in Firebase dependencies
+  implementation 'com.google.android.gms:play-services-auth'
+  implementation 'com.google.firebase:firebase-auth'
 }
 
 def localProperties = new Properties()

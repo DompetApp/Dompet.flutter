@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:crypto/crypto.dart';
 import 'package:convert/convert.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:dompet/pages/webview/controller.dart';
 import 'package:dompet/pages/webview/index.dart';
 import 'package:dompet/models/webview.dart';
@@ -322,7 +323,7 @@ class GetRouter {
       arguments = await Webview.format(arguments);
     }
 
-    if (interceptor == null || await interceptor()) {
+    if (await interceptor?.call() != false) {
       return Get.to<T>(
         page,
         id: id,
@@ -339,6 +340,7 @@ class GetRouter {
         arguments: arguments,
       );
     }
+
     return Future.error(GetRouteError.interceptor);
   }
 
@@ -362,7 +364,7 @@ class GetRouter {
       arguments = await Webview.format(arguments);
     }
 
-    if (interceptor == null || await interceptor()) {
+    if (await interceptor?.call() != false) {
       return Get.off<T>(
         page,
         id: id,
@@ -403,7 +405,7 @@ class GetRouter {
       arguments = await Webview.format(arguments);
     }
 
-    if (interceptor == null || await interceptor()) {
+    if (await interceptor?.call() != false) {
       return Get.offAll<T>(
         page,
         id: id,
@@ -436,7 +438,7 @@ class GetRouter {
       arguments = await Webview.format(arguments);
     }
 
-    if (interceptor == null || await interceptor()) {
+    if (await interceptor?.call() != false) {
       return Get.offNamed<T>(
         page,
         id: id,
@@ -461,7 +463,7 @@ class GetRouter {
       arguments = await Webview.format(arguments);
     }
 
-    if (interceptor == null || await interceptor()) {
+    if (await interceptor?.call() != false) {
       return Get.offNamedUntil<T>(
         page,
         predicate,
@@ -486,7 +488,7 @@ class GetRouter {
       arguments = await Webview.format(arguments);
     }
 
-    if (interceptor == null || await interceptor()) {
+    if (await interceptor?.call() != false) {
       return Get.offAndToNamed<T>(
         page,
         id: id,
@@ -511,7 +513,7 @@ class GetRouter {
       arguments = await Webview.format(arguments);
     }
 
-    if (interceptor == null || await interceptor()) {
+    if (await interceptor?.call() != false) {
       return Get.offAllNamed<T>(
         page,
         id: id,
@@ -536,7 +538,7 @@ class GetRouter {
       arguments = await Webview.format(arguments);
     }
 
-    if (interceptor == null || await interceptor()) {
+    if (await interceptor?.call() != false) {
       return Get.toNamed<T>(
         page,
         id: id,
@@ -566,7 +568,7 @@ class GetRouter {
     bool closeOverlays = false,
     Future<bool> Function()? interceptor,
   }) async {
-    if (interceptor == null || await interceptor()) {
+    if (await interceptor?.call() != false) {
       if (canPop == true && !await canBack(id: id)) {
         return Future.error(GetRouteError.route);
       }
@@ -586,7 +588,7 @@ class GetRouter {
     int? id,
     Future<bool> Function()? interceptor,
   }) async {
-    if (interceptor == null || await interceptor()) {
+    if (await interceptor?.call() != false) {
       return Get.until(
         predicate,
         id: id,
@@ -601,7 +603,7 @@ class GetRouter {
     int? id,
     Future<bool> Function()? interceptor,
   }) async {
-    if (interceptor == null || await interceptor()) {
+    if (await interceptor?.call() != false) {
       return Get.close(
         times,
         id,
@@ -609,6 +611,32 @@ class GetRouter {
     }
 
     return Future.error(GetRouteError.interceptor);
+  }
+
+  static Future<void> exit({
+    bool? animated,
+  }) async {
+    return SystemNavigator.pop(animated: animated);
+  }
+
+  static Future<void> login({
+    String? page,
+  }) async {
+    if (GetRoutes.defaults.contains(Get.currentRoute)) {
+      final redirect = page ?? GetRoutes.home;
+      final isGetRoute = GetRoutes.list.contains(page);
+      offAllNamed(isGetRoute ? redirect : GetRoutes.home);
+    }
+  }
+
+  static Future<void> logout({
+    String? page,
+  }) async {
+    if (!GetRoutes.defaults.contains(Get.currentRoute)) {
+      final redirect = page ?? GetRoutes.login;
+      final isGetRoute = GetRoutes.defaults.contains(page);
+      offAllNamed(isGetRoute ? redirect : GetRoutes.login);
+    }
   }
 }
 

@@ -1,34 +1,30 @@
+import 'dart:typed_data';
 import 'package:intl/intl.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:dompet/models/user.dart';
+import 'package:dompet/extension/bool.dart';
 
 class AppDatabaser {
   static Database? db;
-  static bool isClosed = true;
-  static bool isCreated = false;
+  static get isClosed => !db.bv;
+  static get isCreated => db.bv;
 
   static Future<void> close() async {
     await db?.close();
     AppDatabaser.db = null;
-    AppDatabaser.isClosed = true;
-    AppDatabaser.isCreated = false;
   }
 
   static Future<void> create(Database? db) async {
     if (db != null) {
       AppDatabaser.db = db;
-      AppDatabaser.isClosed = false;
-      AppDatabaser.isCreated = true;
 
       return db.execute(
         '''
         CREATE TABLE AppUser (
-          id INTEGER PRIMARY KEY AUTOINCREMENT,
-          key TEXT NOT NULL,
+          uid TEXT PRIMARY KEY NOT NULL,
           name TEXT,
           email TEXT,
           avatar BLOB,
-          password TEXT NOT NULL,
           activate TEXT NOT NULL DEFAULT 'Y',
           create_date TEXT NOT NULL
         )
@@ -37,92 +33,131 @@ class AppDatabaser {
     }
   }
 
-  static Future<void> creatUser(User user) async {
-    if (user.key != '') {
-      final dater = DateFormat('yyyy-MM-dd HH:mm:ss');
-
-      return db!.transaction((txn) async {
-        await txn.rawUpdate(
-          'update AppUser set activate = "N" where activate == "Y"',
-        );
-
-        final result = await txn.rawQuery(
-          'select count(*) from AppUser where key == ${user.key}',
-        );
-
-        if (result.isNotEmpty) {
-          await txn.rawUpdate(
-            'update AppUser set create_date = ?, activate = ? where key == ?',
-            [dater.format(DateTime.now()), 'Y', user.key],
-          );
-        }
-
-        if (!result.isNotEmpty) {
-          await txn.rawInsert(
-            'insert into AppUser(key, name, email, avatar, password, create_date, activate) VALUES(?, ?, ?, ?, ?, ?, ?)',
-            [
-              user.key,
-              user.name,
-              user.email,
-              user.avatar,
-              user.password,
-              dater.format(DateTime.now()),
-              user.activate,
-            ],
-          );
-        }
-      });
+  static Future<void> deleteUser(String? uid) async {
+    if (!uid.bv) {
+      return;
     }
-  }
 
-  static Future<void> updateUser(User user) async {
-    if (user.key != '') {
-      final dater = DateFormat('yyyy-MM-dd HH:mm:ss');
-
-      return db!.transaction((txn) async {
-        final result = await txn.rawQuery(
-          'select count(*) from AppUser where key == ${user.key}',
-        );
-
-        if (result.isNotEmpty) {
-          await txn.rawUpdate(
-            'update AppUser set name = ?, email = ?, avatar = ?, password = ?, create_date = ?, activate = ? where key == ?',
-            [
-              user.name,
-              user.email,
-              user.avatar,
-              user.password,
-              dater.format(DateTime.now()),
-              user.activate,
-              user.key,
-            ],
-          );
-        }
-      });
-    }
-  }
-
-  static Future<void> deleteUser(String key) async {
     return db!.transaction((txn) async {
-      txn.rawDelete('Delete from AppUser where key == $key');
+      txn.rawDelete('Delete from AppUser where uid == "$uid"');
     });
   }
 
-  static Future<User?> queryUser(String key) async {
+  static Future<String?> creatUser(User? user) async {
+    if (user == null) {
+      return null;
+    }
+
+    if (!user.uid.bv || !user.email.bv) {
+      return null;
+    }
+
+    final dater = DateFormat('yyyy-MM-dd HH:mm:ss');
+
+    return db!.transaction<String?>((txn) async {
+      await txn.rawUpdate(
+        'update AppUser set activate = "N" where activate == "Y"',
+      );
+
+      final list = await txn.rawQuery(
+        'select uid, name, avatar from AppUser where email == ?',
+        [user.email],
+      );
+
+      if (list.isNotEmpty) {
+        final uid = list[0]['uid'];
+        final name = (list[0]['name'] ?? '') as String;
+        final avatar = list[0]['avatar'] as Uint8List?;
+        final isChangeName = !name.bv && user.name.bv;
+        final isChangeAvatar = !avatar.bv && user.avatar.bv;
+
+        await txn.rawUpdate(
+          'update AppUser set name = ?, avatar = ?, create_date = ?, activate = ? where uid == ?',
+          [
+            isChangeName ? user.name : name,
+            isChangeAvatar ? user.avatar : avatar,
+            dater.format(DateTime.now()),
+            'Y',
+            uid,
+          ],
+        );
+
+        return uid as String;
+      }
+
+      if (list.isEmpty) {
+        await txn.rawInsert(
+          'insert into AppUser(uid, name, email, avatar, create_date, activate) VALUES(?, ?, ?, ?, ?, ?)',
+          [
+            user.uid,
+            user.name,
+            user.email,
+            user.avatar,
+            dater.format(DateTime.now()),
+            'Y',
+          ],
+        );
+
+        return user.uid;
+      }
+
+      return null;
+    });
+  }
+
+  static Future<String?> updateUser(User? user) async {
+    if (user == null) {
+      return null;
+    }
+
+    if (!user.uid.bv || !user.email.bv) {
+      return null;
+    }
+
+    final dater = DateFormat('yyyy-MM-dd HH:mm:ss');
+
+    return db!.transaction<String?>((txn) async {
+      final result = await txn.rawQuery(
+        'select count(*) from AppUser where uid == "${user.uid}"',
+      );
+
+      if (result.isNotEmpty) {
+        await txn.rawUpdate(
+          'update AppUser set name = ?, email = ?, avatar = ?, create_date = ?, activate = ? where uid == ?',
+          [
+            user.name,
+            user.email,
+            user.avatar,
+            dater.format(DateTime.now()),
+            user.activate,
+            user.uid,
+          ],
+        );
+
+        return user.uid;
+      }
+
+      return null;
+    });
+  }
+
+  static Future<User?> queryUser(String? uid) async {
+    if (!uid.bv) {
+      return null;
+    }
+
     return db?.transaction<User?>((txn) async {
       final result = await txn.rawQuery(
         '''
         select 
-          id,
-          key,
+          uid,
           name,
           email,
           avatar,
-          password,
           activate,
           create_date
         from AppUser 
-        where key = $key
+        where uid = "$uid"
         ''',
       );
 
@@ -138,13 +173,11 @@ class AppDatabaser {
     return db?.transaction<User?>((txn) async {
       final result = await txn.rawQuery(
         '''
-        select 
-          id,
-          key,
+        select
+          uid,
           name,
           email,
           avatar,
-          password,
           activate,
           create_date
         from AppUser 

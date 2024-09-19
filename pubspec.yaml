@@ -102,7 +102,12 @@ flutter:
     - lib/assets/scripts/flutter.min.js
     - lib/assets/scripts/webview.min.js
 
-    - lib/assets/images/dompet.png
+    - lib/assets/images/auth/back.png
+    - lib/assets/images/auth/email.png
+    - lib/assets/images/auth/google.png
+    - lib/assets/images/auth/github.png
+    - lib/assets/images/auth/profile.png
+    - lib/assets/images/auth/password.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

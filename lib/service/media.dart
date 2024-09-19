@@ -2,6 +2,7 @@ import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 
 class MediaQueryController extends GetxService {
+  late Rx<TextScaler> textScaler = const TextScaler.linear(1.0).obs;
   late Rx<Orientation> orientation = Orientation.portrait.obs;
   late Rx<EdgeInsets> viewPadding = EdgeInsets.zero.obs;
   late Rx<EdgeInsets> viewInsets = EdgeInsets.zero.obs;
@@ -30,6 +31,7 @@ class MediaQueryController extends GetxService {
       viewInsets.value = mediaQuery.viewInsets;
       orientation.value = mediaQuery.orientation;
       viewPadding.value = mediaQuery.viewPadding;
+      textScaler.value = mediaQuery.textScaler;
       padding.value = mediaQuery.padding;
     }
   }

@@ -20,16 +20,34 @@
 	<string>$(FLUTTER_BUILD_NAME)</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
+  <key>CFBundleURLTypes</key>
+  <array>
+    <dict>
+      <key>CFBundleTypeRole</key>
+      <string>Editor</string>
+      <key>CFBundleURLSchemes</key>
+      <array>
+        <string>com.googleusercontent.apps.1035616477079-pg59p09hkv19faj5vru9o164v33d9k57</string>
+      </array>
+    </dict>
+  </array>
 	<key>CFBundleVersion</key>
 	<string>$(FLUTTER_BUILD_NUMBER)</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+  <key>NSAppTransportSecurity</key>
+  <dict>
+    <key>NSAllowsArbitraryLoadsInWebContent</key>
+    <true/>
+  </dict>
   <key>NSCameraUsageDescription</key>
   <string>Flutter requires access to camera.</string>
+  <key>NSLocalNetworkUsageDescription</key>
+  <string>Flutter App requires access to your local network to find and connect to nearby devices.</string>
   <key>NSMicrophoneUsageDescription</key>
-  <string>Flutter requires access to microphone.</string>
+  <string>Flutter App requires access to microphone.</string>
   <key>NSPhotoLibraryUsageDescription</key>
-  <string>Flutter needs access to photo library to select pictures</string>
+  <string>Flutter App needs access to photo library to select pictures</string>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>

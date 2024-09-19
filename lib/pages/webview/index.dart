@@ -13,7 +13,9 @@ class PageWebview extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Get.put(controller, tag: webviewMeta.key);
+    if (!Get.isRegistered<PageWebviewController>(tag: webviewMeta.key)) {
+      Get.put(controller, tag: webviewMeta.key);
+    }
 
     return Theme(
       data: lightTheme,
