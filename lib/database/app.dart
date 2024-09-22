@@ -6,9 +6,9 @@ import 'package:dompet/extension/bool.dart';
 
 class AppDatabaser {
   static Database? db;
-  static get isClosed => !db.bv;
   static get isCreated => db.bv;
 
+  // init
   static Future<void> close() async {
     await db?.close();
     AppDatabaser.db = null;
@@ -33,6 +33,20 @@ class AppDatabaser {
     }
   }
 
+  // User
+  static Future<void> closeUser(String? uid) async {
+    if (!uid.bv) {
+      return;
+    }
+
+    return db!.transaction((txn) async {
+      await txn.rawUpdate(
+        'update AppUser activate = ? where uid == ?',
+        ['N', uid],
+      );
+    });
+  }
+
   static Future<void> deleteUser(String? uid) async {
     if (!uid.bv) {
       return;
@@ -43,7 +57,7 @@ class AppDatabaser {
     });
   }
 
-  static Future<String?> creatUser(User? user) async {
+  static Future<User?> createUser(User? user) async {
     if (user == null) {
       return null;
     }
@@ -52,9 +66,10 @@ class AppDatabaser {
       return null;
     }
 
-    final dater = DateFormat('yyyy-MM-dd HH:mm:ss');
+    const format = 'yyyy-MM-dd HH:mm:ss';
+    final formatter = DateFormat(format);
 
-    return db!.transaction<String?>((txn) async {
+    return db!.transaction<User?>((txn) async {
       await txn.rawUpdate(
         'update AppUser set activate = "N" where activate == "Y"',
       );
@@ -76,13 +91,13 @@ class AppDatabaser {
           [
             isChangeName ? user.name : name,
             isChangeAvatar ? user.avatar : avatar,
-            dater.format(DateTime.now()),
+            formatter.format(DateTime.now()),
             'Y',
             uid,
           ],
         );
 
-        return uid as String;
+        return user;
       }
 
       if (list.isEmpty) {
@@ -93,19 +108,19 @@ class AppDatabaser {
             user.name,
             user.email,
             user.avatar,
-            dater.format(DateTime.now()),
+            formatter.format(DateTime.now()),
             'Y',
           ],
         );
 
-        return user.uid;
+        return user;
       }
 
       return null;
     });
   }
 
-  static Future<String?> updateUser(User? user) async {
+  static Future<User?> updateUser(User? user) async {
     if (user == null) {
       return null;
     }
@@ -114,9 +129,10 @@ class AppDatabaser {
       return null;
     }
 
-    final dater = DateFormat('yyyy-MM-dd HH:mm:ss');
+    const format = 'yyyy-MM-dd HH:mm:ss';
+    final formatter = DateFormat(format);
 
-    return db!.transaction<String?>((txn) async {
+    return db!.transaction<User?>((txn) async {
       final result = await txn.rawQuery(
         'select count(*) from AppUser where uid == "${user.uid}"',
       );
@@ -128,48 +144,20 @@ class AppDatabaser {
             user.name,
             user.email,
             user.avatar,
-            dater.format(DateTime.now()),
+            formatter.format(DateTime.now()),
             user.activate,
             user.uid,
           ],
         );
 
-        return user.uid;
+        return user;
       }
 
       return null;
     });
   }
 
-  static Future<User?> queryUser(String? uid) async {
-    if (!uid.bv) {
-      return null;
-    }
-
-    return db?.transaction<User?>((txn) async {
-      final result = await txn.rawQuery(
-        '''
-        select 
-          uid,
-          name,
-          email,
-          avatar,
-          activate,
-          create_date
-        from AppUser 
-        where uid = "$uid"
-        ''',
-      );
-
-      if (result.isNotEmpty) {
-        return User.from(result[0]);
-      }
-
-      return null;
-    });
-  }
-
-  static Future<User?> findRecentUser() async {
+  static Future<User?> recentUser() async {
     return db?.transaction<User?>((txn) async {
       final result = await txn.rawQuery(
         '''

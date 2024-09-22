@@ -19,9 +19,9 @@ class RxUser {
 
   User get value {
     return User(
+      avatar: avatar.value,
       createDate: createDate.value,
       activate: activate.value,
-      avatar: avatar.value,
       email: email.value,
       name: name.value,
       uid: uid.value,
@@ -38,30 +38,20 @@ class RxUser {
         uid: map['uid'],
         name: map['name'],
         email: map['email'],
-        avatar: map['avatar'],
         activate: map['activate'],
         createDate: map['createDateid'],
+        avatar: map['avatar'],
       ),
     );
   }
 
-  RxUser change(User? user) {
-    createDate.value = user?.createDate ?? '';
-    activate.value = user?.activate ?? '';
-    avatar.value = user?.avatar;
-    email.value = user?.email ?? '';
-    name.value = user?.name ?? '';
-    uid.value = user?.uid ?? '';
-    return this;
-  }
-
-  RxUser clear() {
-    createDate.value = '';
-    activate.value = 'N';
-    avatar.value = null;
-    email.value = '';
-    name.value = '';
-    uid.value = '';
+  RxUser change(User user) {
+    avatar.value = user.avatar;
+    createDate.value = user.createDate;
+    activate.value = user.activate;
+    email.value = user.email;
+    name.value = user.name;
+    uid.value = user.uid;
     return this;
   }
 
@@ -69,17 +59,26 @@ class RxUser {
     String? uid,
     String? name,
     String? email,
-    String? password,
     String? activate,
     String? createDate,
     Uint8List? avatar,
   }) {
+    this.avatar.value = avatar ?? this.avatar.value;
     this.createDate.value = createDate ?? this.createDate.value;
     this.activate.value = activate ?? this.activate.value;
-    this.avatar.value = avatar ?? this.avatar.value;
     this.email.value = email ?? this.email.value;
     this.name.value = name ?? this.name.value;
     this.uid.value = uid ?? this.uid.value;
+    return this;
+  }
+
+  RxUser clear() {
+    avatar.value = null;
+    createDate.value = '';
+    activate.value = 'N';
+    email.value = '';
+    name.value = '';
+    uid.value = '';
     return this;
   }
 }
@@ -96,9 +95,9 @@ class User {
     this.uid = '',
     this.name = '',
     this.email = '',
-    this.avatar,
     this.activate = 'N',
     this.createDate = '',
+    this.avatar,
   });
 
   factory User.from(Map<String, dynamic> map) {
@@ -106,9 +105,9 @@ class User {
       uid: map['uid'] ?? '',
       name: map['name'] ?? '',
       email: map['email'] ?? '',
-      avatar: map['avatar'],
       activate: map['activate'] ?? '',
       createDate: map['createDateid'] ?? '',
+      avatar: map['avatar'],
     );
   }
 
@@ -117,29 +116,19 @@ class User {
       uid: map['uid'] ?? uid,
       name: map['name'] ?? name,
       email: map['email'] ?? email,
-      avatar: map['avatar'] ?? avatar,
       activate: map['activate'] ?? activate,
       createDate: map['createDateid'] ?? createDate,
+      avatar: map['avatar'] ?? avatar,
     );
   }
 
-  User change(User? user) {
-    createDate = user?.createDate ?? '';
-    activate = user?.activate ?? 'N';
-    avatar = user?.avatar;
-    email = user?.email ?? '';
-    name = user?.name ?? '';
-    uid = user?.uid ?? '';
-    return this;
-  }
-
-  User clear() {
-    createDate = '';
-    activate = 'N';
-    avatar = null;
-    email = '';
-    name = '';
-    uid = '';
+  User change(User user) {
+    avatar = user.avatar;
+    createDate = user.createDate;
+    activate = user.activate;
+    email = user.email;
+    name = user.name;
+    uid = user.uid;
     return this;
   }
 
@@ -147,17 +136,26 @@ class User {
     String? uid,
     String? name,
     String? email,
-    String? password,
     String? activate,
     String? createDate,
     Uint8List? avatar,
   }) {
+    this.avatar = avatar ?? this.avatar;
     this.createDate = createDate ?? this.createDate;
     this.activate = activate ?? this.activate;
-    this.avatar = avatar ?? this.avatar;
     this.email = email ?? this.email;
     this.name = name ?? this.name;
     this.uid = uid ?? this.uid;
+    return this;
+  }
+
+  User clear() {
+    avatar = null;
+    createDate = '';
+    activate = 'N';
+    email = '';
+    name = '';
+    uid = '';
     return this;
   }
 }

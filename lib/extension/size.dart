@@ -2,9 +2,9 @@ import 'package:get/get.dart';
 import 'package:dompet/service/media.dart';
 
 extension SizeExtension on num {
-  static const double preset = 375.0;
-  static final Rx<double> width = Get.find<MediaQueryController>().width;
-  static final Rx<double> height = Get.find<MediaQueryController>().height;
+  static const preset = 375.0;
+  static final width = Get.find<MediaQueryController>().width;
+  static final height = Get.find<MediaQueryController>().height;
 
   double get vw {
     return this * width.value / 100;

@@ -2,16 +2,24 @@ import 'dart:async';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:dompet/extension/bool.dart';
+import 'package:dompet/models/message.dart';
+import 'package:dompet/models/order.dart';
+import 'package:dompet/models/card.dart';
 import 'package:dompet/models/user.dart';
 
 class StoreController extends GetxService {
-  late final user = RxUser.init();
   late final ready = Completer<bool>().obs;
-  late final weeks = 7 * 24 * 60 * 60 * 1000;
   late final today = DateTime.now().millisecondsSinceEpoch;
   late final storage = GetStorage('dompet.store', null, {'expired': 0});
   late final logined = (storage.read('logined') == true).obs;
   late final expired = storage.read('expired') as int?;
+
+  Future<bool> get future => ready.value.future;
+
+  late final messages = RxMessages.init();
+  late final orders = RxOrders.init();
+  late final user = RxUser.init();
+  late final card = RxCard.init();
 
   @override
   onInit() async {
@@ -22,34 +30,67 @@ class StoreController extends GetxService {
     }
   }
 
-  Future<bool> get future => ready.value.future;
-
-  Future<void> createUser(User? any) async {
-    if (any == null) {
-      deleteUser();
-      return;
-    }
+  Future<bool> login() async {
+    final date = DateTime.now();
+    final time = date.millisecondsSinceEpoch;
+    await storage.write('expired', time + 604800000);
+    await storage.write('logined', true);
 
     if (ready.value.isCompleted) {
       ready.value = Completer();
     }
 
-    user.change(any);
-    storage.write('expired', DateTime.now().millisecondsSinceEpoch + weeks);
-    storage.write('logined', true);
     ready.value.complete(true);
     logined.value = true;
+
+    return future;
   }
 
-  Future<void> deleteUser() async {
+  Future<bool> logout() async {
+    await storage.write('expired', DateTime.now().millisecondsSinceEpoch);
+    await storage.write('logined', false);
+
     if (ready.value.isCompleted) {
       ready.value = Completer();
     }
 
-    user.clear();
-    storage.write('expired', DateTime.now().millisecondsSinceEpoch);
-    storage.write('logined', false);
     ready.value.complete(false);
     logined.value = false;
+
+    return future;
+  }
+
+  // store
+  Future<void> storeMessages(List<Message> list) async {
+    messages.change(list);
+  }
+
+  Future<void> storeOrders(List<Order> list) async {
+    orders.change(list);
+  }
+
+  Future<void> storeCard(Card card) async {
+    this.card.change(card);
+  }
+
+  Future<void> storeUser(User user) async {
+    this.user.change(user);
+  }
+
+  // clear
+  Future<void> clearMessage() async {
+    messages.clear();
+  }
+
+  Future<void> clearOrder() async {
+    orders.clear();
+  }
+
+  Future<void> clearCard() async {
+    card.clear();
+  }
+
+  Future<void> clearUser() async {
+    user.clear();
   }
 }

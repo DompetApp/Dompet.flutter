@@ -7,7 +7,7 @@ import 'package:dompet/configure/path_provider.dart';
 class Sqfliter {
   static const defaultPath = 'sqflite/dompet';
 
-  static Future<dynamic> clearDatabase() async {
+  static Future<void> clearDatabase() async {
     final sqfliteRoot = await PathProvider.getApplicationSupportDirectory();
     final sqflitePath = join(sqfliteRoot.path, defaultPath);
     final sqfliteDir = Directory(sqflitePath);
@@ -41,7 +41,7 @@ class Sqfliter {
     }
   }
 
-  static Future<dynamic> deleteDatabase(
+  static Future<void> deleteDatabase(
     String dbName, {
     String? subName,
   }) async {

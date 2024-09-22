@@ -6,9 +6,7 @@ import 'package:firebase_auth/firebase_auth.dart' hide User;
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:dompet/configure/fluttertoast.dart';
 import 'package:dompet/extension/bool.dart';
-import 'package:dompet/routes/router.dart';
 import 'package:dompet/service/bind.dart';
-import 'package:dompet/database/app.dart';
 import 'package:dompet/models/user.dart';
 
 class PageRegisterController extends GetxController {
@@ -18,16 +16,16 @@ class PageRegisterController extends GetxController {
   late final passwordController2 = TextEditingController().obs;
   late final mediaQueryController = Get.find<MediaQueryController>();
   late final sqliteController = Get.find<SqliteController>();
-  late final storeController = Get.find<StoreController>();
+  late final eventController = Get.find<EventController>();
 
   late final signUpWithUserAccount = instance.createUserWithEmailAndPassword;
   late final signInWithCredential = instance.signInWithCredential;
   late final signInWithProvider = instance.signInWithProvider;
+  late final instance = FirebaseAuth.instance;
 
   late final mediaPadding = mediaQueryController.padding;
   late final mediaHeight = mediaQueryController.height;
   late final mediaWidth = mediaQueryController.width;
-  late final instance = FirebaseAuth.instance;
 
   FocusNode passwordFocusNode2 = FocusNode();
   FocusNode passwordFocusNode1 = FocusNode();
@@ -161,7 +159,7 @@ class PageRegisterController extends GetxController {
       return;
     }
 
-    final uid = await AppDatabaser.creatUser(
+    final user = await eventController.createUser(
       User(
         uid: credential.user!.uid,
         email: credential.user!.email!,
@@ -170,19 +168,9 @@ class PageRegisterController extends GetxController {
       ),
     );
 
-    final user = await AppDatabaser.queryUser(uid);
-
-    if (user == null) {
-      Toaster.error(message: 'Failed to register user!');
-      return;
-    }
-
-    await sqliteController.initUserDatabase();
-    await storeController.future;
-
-    loading.value = false;
-
-    GetRouter.login();
+    return user == null
+        ? Toaster.error(message: 'Failed to register user!')
+        : eventController.login();
   }
 
   Future<Uint8List?> fetchImageAsUint8List(String? imageUrl) async {

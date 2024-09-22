@@ -7,10 +7,10 @@ import 'package:dompet/service/bind.dart';
 import 'package:dompet/models/user.dart';
 
 class SqliteController extends GetxService {
-  late final storeController = Get.find<StoreController>();
+  late final eventController = Get.find<EventController>();
   late final userDBName = 'dompet.user.db';
   late final appDBName = 'dompet.app.db';
-  late User? nowUser;
+  late User? appUser;
 
   @override
   void onInit() async {
@@ -20,12 +20,16 @@ class SqliteController extends GetxService {
 
   // 创建/关闭/销毁 App Database
   Future<void> initAppDatabase() async {
-    if (AppDatabaser.isClosed) {
+    if (!AppDatabaser.isCreated) {
       await openAppDatabase();
     }
 
     if (AppDatabaser.isCreated) {
-      await initUserDatabase();
+      appUser = await AppDatabaser.recentUser();
+    }
+
+    if (appUser != null) {
+      eventController.login();
     }
   }
 
@@ -55,24 +59,23 @@ class SqliteController extends GetxService {
 
   // 创建/关闭/销毁 User Database
   Future<void> initUserDatabase() async {
-    nowUser = (await AppDatabaser.findRecentUser());
-    storeController.createUser(nowUser);
-    await openUserDatabase();
+    appUser ??= await AppDatabaser.recentUser();
+    return openUserDatabase();
   }
 
   Future<void> openUserDatabase() async {
-    if (nowUser == null) {
+    if (appUser == null) {
       return;
     }
 
-    if (!nowUser!.uid.bv) {
+    if (!appUser!.uid.bv) {
       return;
     }
 
     UserDatabaser.db = await Sqfliter.openDatabase(
       appDBName,
       version: 1,
-      subName: nowUser!.uid,
+      subName: appUser!.uid,
       readOnly: false,
       singleInstance: true,
       onCreate: (db, v1) async {
@@ -82,23 +85,24 @@ class SqliteController extends GetxService {
   }
 
   Future<void> closeUserDatabase() async {
-    UserDatabaser.close();
-    nowUser = null;
+    await AppDatabaser.closeUser(appUser?.uid);
+    await UserDatabaser.close();
+    appUser = null;
   }
 
   Future<void> deleteUserDatabase() async {
-    if (nowUser == null) {
+    if (appUser == null) {
       return;
     }
 
-    if (!nowUser!.uid.bv) {
+    if (!appUser!.uid.bv) {
       return;
     }
 
-    final uid = nowUser!.uid;
+    final uid = appUser!.uid;
     await closeUserDatabase();
     await Sqfliter.deleteDatabase(userDBName, subName: uid);
-    await AppDatabaser.deleteUser(uid);
+    await AppDatabaser.deleteUser(appUser!.uid);
   }
 
   // 关闭/删除/清理 所有 Database

@@ -8,7 +8,7 @@ import 'package:dompet/pages/stats/index.dart';
 import 'package:dompet/pages/profile/index.dart';
 import 'package:dompet/pages/webview/index.dart';
 import 'package:dompet/pages/register/index.dart';
-import 'package:dompet/pages/transfer/index.dart';
+import 'package:dompet/pages/operater/index.dart';
 import 'package:dompet/pages/settings/index.dart';
 import 'package:dompet/pages/notification/index.dart';
 
@@ -37,7 +37,7 @@ class GetRoutes {
   static const profile = '/profile';
   static const webview = '/webview';
   static const register = '/register';
-  static const transfer = '/transfer';
+  static const operater = '/operater';
   static const settings = '/settings';
   static const notification = '/notification';
 
@@ -57,7 +57,7 @@ class GetRoutes {
       GetRoutes.profile,
       GetRoutes.webview,
       GetRoutes.register,
-      GetRoutes.transfer,
+      GetRoutes.operater,
       GetRoutes.settings,
       GetRoutes.notification,
     ];
@@ -78,7 +78,6 @@ class GetRoutes {
       GetPage(
         name: login,
         page: () => const PageLogin(),
-        transition: Transition.noTransition,
         middlewares: [AuthMiddleware()],
       ),
       GetPage(
@@ -102,8 +101,8 @@ class GetRoutes {
         middlewares: [AuthMiddleware()],
       ),
       GetPage(
-        name: transfer,
-        page: () => const PageTransfer(),
+        name: operater,
+        page: () => const PageOperater(),
         middlewares: [AuthMiddleware()],
       ),
       GetPage(

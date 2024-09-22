@@ -1,7 +1,7 @@
 class ChannelResult {
   final String status;
   final String? message;
-  final dynamic result;
+  final Object? result;
 
   ChannelResult({
     required this.status,
@@ -9,7 +9,7 @@ class ChannelResult {
     this.result,
   });
 
-  Map<String, dynamic> toJson() {
+  Map<String, Object?> toJson() {
     return {
       'status': status,
       'message': message,
