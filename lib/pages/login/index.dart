@@ -57,7 +57,7 @@ class PageLogin extends GetView<PageLoginController> {
           offstage: !controller.loading.value,
           child: Container(
             constraints: const BoxConstraints.expand(),
-            color: const Color(0xffffffff).withOpacity(0.75),
+            color: const Color(0xffffffff).withOpacity(0.8),
             child: const Center(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -105,7 +105,7 @@ class PageLogin extends GetView<PageLoginController> {
       child: Column(
         children: [
           Text(
-            'Welcome back',
+            'Welcome back'.tr,
             textAlign: TextAlign.center,
             style: TextStyle(
               fontSize: 640.max * 24.sr,
@@ -116,7 +116,7 @@ class PageLogin extends GetView<PageLoginController> {
             ),
           ),
           Text(
-            'Digital Wallet',
+            'Digital Wallet'.tr,
             textAlign: TextAlign.center,
             style: TextStyle(
               fontSize: 640.max * 24.sr,
@@ -146,10 +146,10 @@ class PageLogin extends GetView<PageLoginController> {
             bottom: 640.max * 1.5.sr,
           ),
           child: Text(
-            'Sign in with',
+            'Sign in with'.tr,
             textAlign: TextAlign.center,
             style: TextStyle(
-              fontSize: 640.max * 13.sr,
+              fontSize: 640.max * 14.sr,
               fontFamily: 'PingFang-Bold',
               color: const Color(0xffbdbdbd),
               fontWeight: FontWeight.w500,
@@ -310,7 +310,7 @@ class PageLogin extends GetView<PageLoginController> {
             textAlignVertical: TextAlignVertical.center,
             decoration: InputDecoration(
               filled: true,
-              hintText: 'Email',
+              hintText: 'Email'.tr,
               prefixIcon: Container(
                 width: 640.max * 64.sr,
                 alignment: Alignment.center,
@@ -375,7 +375,7 @@ class PageLogin extends GetView<PageLoginController> {
             textAlignVertical: TextAlignVertical.center,
             decoration: InputDecoration(
               filled: true,
-              hintText: 'Password',
+              hintText: 'Password'.tr,
               prefixIcon: Container(
                 width: 640.max * 64.sr,
                 alignment: Alignment.center,
@@ -440,7 +440,7 @@ class PageLogin extends GetView<PageLoginController> {
                 borderRadius: BorderRadius.circular(640.max * 15.sr),
               ),
               child: Text(
-                'Login',
+                'Login'.tr,
                 style: TextStyle(
                   letterSpacing: 1.2,
                   color: Colors.white,
@@ -456,7 +456,7 @@ class PageLogin extends GetView<PageLoginController> {
             text: TextSpan(
               children: [
                 TextSpan(
-                  text: "Don't have an account yet? ",
+                  text: "Don't have an account yet？".tr,
                   style: TextStyle(
                     fontSize: 640.max * 14.sr,
                     fontWeight: FontWeight.w500,
@@ -464,7 +464,7 @@ class PageLogin extends GetView<PageLoginController> {
                   ),
                 ),
                 TextSpan(
-                  text: 'Register',
+                  text: 'Register'.tr,
                   style: TextStyle(
                     fontSize: 640.max * 14.sr,
                     fontWeight: FontWeight.w600,

@@ -79,7 +79,7 @@ class SqliteController extends GetxService {
       readOnly: false,
       singleInstance: true,
       onCreate: (db, v1) async {
-        UserDatabaser.create(db);
+        return UserDatabaser.create(db);
       },
     );
   }

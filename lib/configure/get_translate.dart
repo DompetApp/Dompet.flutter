@@ -9,13 +9,16 @@ class JsonTranslations extends Translations {
   final Map<String, Map<String, String>> _keys = {};
 
   Future<void> init() async {
-    final enUsJson = await rootBundle.loadString('lib/assets/langs/en_US.json');
-    final zhCnJson = await rootBundle.loadString('lib/assets/langs/zh_CN.json');
+    const zh = 'lib/assets/langs/zh_CN.json';
+    const us = 'lib/assets/langs/en_US.json';
 
-    final enUsMap = Map<String, String>.from(jsonDecode(enUsJson));
-    final zhCnMap = Map<String, String>.from(jsonDecode(zhCnJson));
+    final zhCn = await rootBundle.loadString(zh);
+    final enUs = await rootBundle.loadString(us);
 
-    _keys['en_US'] = enUsMap;
+    final zhCnMap = Map<String, String>.from(jsonDecode(zhCn));
+    final enUsMap = Map<String, String>.from(jsonDecode(enUs));
+
     _keys['zh_CN'] = zhCnMap;
+    _keys['en_US'] = enUsMap;
   }
 }

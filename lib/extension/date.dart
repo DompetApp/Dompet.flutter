@@ -8,7 +8,8 @@ import 'package:dompet/service/locale.dart';
 String parse(Object? val, Function resolver, Locale locale) {
   if (val is String) {
     try {
-      final formater = resolver(locale) as DateFormat;
+      final language = '${locale.languageCode}_${locale.countryCode}';
+      final formater = resolver(language) as DateFormat;
       final datetime = DateTime.parse(val);
       return formater.format(datetime);
     } catch (e) {

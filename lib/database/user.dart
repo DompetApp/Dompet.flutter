@@ -79,28 +79,28 @@ class UserDatabaser {
         Order(
           icon: 'emma',
           name: 'Emma',
-          type: 'transfer',
+          type: 'Transfer',
           date: formatter.format(DateTime(year, 6, 17, 11, 11)),
           money: 10000.0,
         ),
         Order(
           icon: 'me',
           name: 'Me',
-          type: 'top up',
+          type: 'Top up',
           date: formatter.format(DateTime(year, 9, 2, 17, 3)),
           money: 50000.0,
         ),
         Order(
           icon: 'netflix',
           name: 'Netflix',
-          type: 'payment',
+          type: 'Payment',
           date: formatter.format(DateTime(year, 9, 11, 13, 7)),
           money: -2000.0,
         ),
         Order(
           icon: 'paypal',
-          name: 'Paypal',
-          type: 'transfer',
+          name: 'PayPal',
+          type: 'Transfer',
           date: formatter.format(DateTime(year, 9, 21, 8, 8)),
           money: -1500.0,
         ),
@@ -109,28 +109,28 @@ class UserDatabaser {
         Order(
           icon: 'emma',
           name: 'Emma',
-          type: 'payment',
+          type: 'Payment',
           date: formatter.format(DateTime(year - 1, 3, 8, 8, 11)),
           money: -20000.0,
         ),
         Order(
-          icon: 'payPal',
+          icon: 'paypal',
           name: 'PayPal',
-          type: 'payment',
+          type: 'Payment',
           date: formatter.format(DateTime(year - 1, 4, 7, 15, 14)),
           money: -15000.0,
         ),
         Order(
           icon: 'me',
           name: 'Me',
-          type: 'top up',
+          type: 'Top up',
           date: formatter.format(DateTime(year - 1, 6, 6, 17, 19)),
           money: 20000.0,
         ),
         Order(
           icon: 'david',
           name: 'David',
-          type: 'transfer',
+          type: 'Transfer',
           date: formatter.format(DateTime(year - 1, 8, 8, 20, 21)),
           money: -40000.0,
         ),
@@ -139,28 +139,28 @@ class UserDatabaser {
         Order(
           icon: 'netflix',
           name: 'Netflix',
-          type: 'payment',
+          type: 'Payment',
           date: formatter.format(DateTime(year - 2, 5, 30, 14, 25)),
           money: -3000.0,
         ),
         Order(
           icon: 'emma',
           name: 'Emma',
-          type: 'top up',
+          type: 'Top up',
           date: formatter.format(DateTime(year - 2, 7, 11, 9, 1)),
           money: 55000.0,
         ),
         Order(
           icon: 'paypal',
-          name: 'Paypal',
-          type: 'payment',
+          name: 'PayPal',
+          type: 'Payment',
           date: formatter.format(DateTime(year - 2, 7, 19, 13, 7)),
           money: -700.0,
         ),
         Order(
           icon: 'david',
           name: 'David',
-          type: 'transfer',
+          type: 'Transfer',
           date: formatter.format(DateTime(year - 2, 9, 3, 9, 57)),
           money: 27000.0,
         ),
@@ -169,28 +169,28 @@ class UserDatabaser {
         Order(
           icon: 'emma',
           name: 'Emma',
-          type: 'transfer',
+          type: 'Transfer',
           date: formatter.format(DateTime(year - 3, 6, 1, 9, 37)),
           money: -40000.0,
         ),
         Order(
           icon: 'paypal',
-          name: 'Paypal',
-          type: 'payment',
+          name: 'PayPal',
+          type: 'Payment',
           date: formatter.format(DateTime(year - 3, 6, 20, 11, 11)),
           money: -5000.0,
         ),
         Order(
           icon: 'me',
           name: 'Me',
-          type: 'top up',
+          type: 'Top up',
           date: formatter.format(DateTime(year - 3, 9, 9, 19, 17)),
           money: 3000.0,
         ),
         Order(
           icon: 'david',
           name: 'David',
-          type: 'transfer',
+          type: 'Transfer',
           date: formatter.format(DateTime(year - 3, 10, 17, 15, 11)),
           money: 2500.0,
         ),
@@ -199,28 +199,28 @@ class UserDatabaser {
         Order(
           icon: 'me',
           name: 'Me',
-          type: 'top up',
+          type: 'Top up',
           date: formatter.format(DateTime(year - 4, 9, 21, 5, 10)),
           money: 200000.0,
         ),
         Order(
           icon: 'netflix',
           name: 'Netflix',
-          type: 'payment',
+          type: 'Payment',
           date: formatter.format(DateTime(year - 4, 10, 9, 17, 12)),
           money: -1800.0,
         ),
         Order(
-          icon: 'payPal',
+          icon: 'paypal',
           name: 'PayPal',
-          type: 'transfer',
+          type: 'Transfer',
           date: formatter.format(DateTime(year - 4, 11, 1, 8, 36)),
           money: -12000.0,
         ),
         Order(
           icon: 'david',
           name: 'David',
-          type: 'transfer',
+          type: 'Transfer',
           date: formatter.format(DateTime(year - 4, 12, 22, 15, 22)),
           money: -20000.0,
         ),
@@ -229,25 +229,25 @@ class UserDatabaser {
       await UserDatabaser.createUserMessage([
         // year-0
         Message(
-          type: 'transfer',
+          type: 'Transfer',
           desc: 'You received a transfer from Emma',
           date: formatter.format(DateTime(year, 6, 17, 11, 11)),
           money: 10000.0,
         ),
         Message(
-          type: 'top up',
+          type: 'Top up',
           desc: 'You top-up some money',
           date: formatter.format(DateTime(year, 9, 2, 17, 3)),
           money: 50000.0,
         ),
         Message(
-          type: 'payment',
+          type: 'Payment',
           desc: 'You paid money to top up Netflix',
           date: formatter.format(DateTime(year, 9, 11, 13, 7)),
           money: -2000.0,
         ),
         Message(
-          type: 'transfer',
+          type: 'Transfer',
           desc: 'You transferred money to PayPal',
           date: formatter.format(DateTime(year, 9, 21, 8, 8)),
           money: -1500.0,
@@ -255,25 +255,25 @@ class UserDatabaser {
 
         // year-1
         Message(
-          type: 'payment',
+          type: 'Payment',
           desc: 'You paid money to Emma',
           date: formatter.format(DateTime(year - 1, 3, 8, 8, 11)),
           money: -20000.0,
         ),
         Message(
-          type: 'payment',
+          type: 'Payment',
           desc: 'You paid money to PayPal',
           date: formatter.format(DateTime(year - 1, 4, 7, 15, 14)),
           money: -15000.0,
         ),
         Message(
-          type: 'top up',
+          type: 'Top up',
           desc: 'You top-up some money',
           date: formatter.format(DateTime(year - 1, 6, 6, 17, 19)),
           money: 20000.0,
         ),
         Message(
-          type: 'transfer',
+          type: 'Transfer',
           desc: 'You transfer money to David',
           date: formatter.format(DateTime(year - 1, 8, 8, 20, 21)),
           money: -40000.0,
@@ -281,25 +281,25 @@ class UserDatabaser {
 
         // year-2
         Message(
-          type: 'payment',
+          type: 'Payment',
           desc: 'You paid money to Netflix',
           date: formatter.format(DateTime(year - 2, 5, 30, 14, 25)),
           money: -3000.0,
         ),
         Message(
-          type: 'top up',
+          type: 'Top up',
           desc: 'You received a top-up from Emma',
           date: formatter.format(DateTime(year - 2, 7, 11, 9, 1)),
           money: 55000.0,
         ),
         Message(
-          type: 'payment',
-          desc: 'You paid money to Paypal',
+          type: 'Payment',
+          desc: 'You paid money to PayPal',
           date: formatter.format(DateTime(year - 2, 7, 19, 13, 7)),
           money: -700.0,
         ),
         Message(
-          type: 'transfer',
+          type: 'Transfer',
           desc: 'You received a transfer from David',
           date: formatter.format(DateTime(year - 2, 9, 3, 9, 57)),
           money: 27000.0,
@@ -307,25 +307,25 @@ class UserDatabaser {
 
         // year-3
         Message(
-          type: 'transfer',
+          type: 'Transfer',
           desc: 'You transfer money to Emma',
           date: formatter.format(DateTime(year - 3, 6, 1, 9, 37)),
           money: -40000.0,
         ),
         Message(
-          type: 'payment',
-          desc: 'You paid money to Paypal',
+          type: 'Payment',
+          desc: 'You paid money to PayPal',
           date: formatter.format(DateTime(year - 3, 6, 20, 11, 11)),
           money: -5000.0,
         ),
         Message(
-          type: 'top up',
+          type: 'Top up',
           desc: 'You top-up some money',
           date: formatter.format(DateTime(year - 3, 9, 9, 19, 17)),
           money: 3000.0,
         ),
         Message(
-          type: 'transfer',
+          type: 'Transfer',
           desc: 'You received a transfer from David',
           date: formatter.format(DateTime(year - 3, 10, 17, 15, 11)),
           money: 2500.0,
@@ -333,25 +333,25 @@ class UserDatabaser {
 
         // year-4
         Message(
-          type: 'top up',
+          type: 'Top up',
           desc: 'You top-up some money',
           date: formatter.format(DateTime(year - 4, 9, 21, 5, 10)),
           money: 200000.0,
         ),
         Message(
-          type: 'payment',
+          type: 'Payment',
           desc: 'You paid money to Netflix',
           date: formatter.format(DateTime(year - 4, 10, 9, 17, 12)),
           money: -1800.0,
         ),
         Message(
-          type: 'transfer',
+          type: 'Transfer',
           desc: 'You transferred money to PayPal',
           date: formatter.format(DateTime(year - 4, 11, 1, 8, 36)),
           money: -12000.0,
         ),
         Message(
-          type: 'transfer',
+          type: 'Transfer',
           desc: 'You transferred money to David',
           date: formatter.format(DateTime(year - 4, 12, 22, 15, 22)),
           money: -166200.0,
@@ -424,7 +424,8 @@ class UserDatabaser {
           bank_name,
           expiry_date,
           status
-        from UserCard 
+        from UserCard
+        order by datetime(expiry_date) desc
         ''',
       );
 
@@ -481,6 +482,7 @@ class UserDatabaser {
           date,
           money
         from UserOrder
+        order by datetime(date) desc
         ''',
       );
 
@@ -533,6 +535,7 @@ class UserDatabaser {
           date,
           money
         from UserMessage
+        order by datetime(date) desc
         ''',
       );
 

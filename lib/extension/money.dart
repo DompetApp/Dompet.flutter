@@ -1,13 +1,16 @@
-import 'package:get/get.dart';
 import 'package:intl/intl.dart';
-import 'package:dompet/service/media.dart';
 
 extension MoneyExtension on num {
-  static const preset = 375.0;
-  static final width = Get.find<MediaQueryController>().width;
-  static final height = Get.find<MediaQueryController>().height;
+  // ignore: non_constant_identifier_names
+  String get USD {
+    return 'USD. ${NumberFormat("#,##0.00").format(this)}';
+  }
 
   String get usd {
-    return NumberFormat("#,##0.00").format(this);
+    if (this >= 0) {
+      return '\$${NumberFormat("#,##0").format(this)}';
+    }
+
+    return '-\$${NumberFormat("#,##0").format(-this)}';
   }
 }

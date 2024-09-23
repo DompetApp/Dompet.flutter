@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:intl/date_symbol_data_local.dart';
 import 'package:dompet/configure/get_translate.dart';
 import 'package:dompet/service/bind.dart';
 import 'package:dompet/routes/pages.dart';
@@ -18,6 +19,8 @@ final routeObserver = RouteObserver<ModalRoute<void>>();
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
+  await initializeDateFormatting('en_US');
+  await initializeDateFormatting('zh_CN');
   await GetStorage.init('dompet.store');
   await Firebase.initializeApp();
   await translations.init();
@@ -55,9 +58,11 @@ class MyAppState extends State<MyApp> with WidgetsBindingObserver {
       Get.put(MediaQueryController()).update(
         mediaQuery: MediaQuery.of(context),
       );
-    });
 
-    Get.put(LocaleController()).update(Get.locale ?? enUSLocale);
+      Get.put(LocaleController()).update(
+        Get.locale ?? enUSLocale,
+      );
+    });
   }
 
   @override

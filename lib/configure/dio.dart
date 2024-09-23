@@ -1,3 +1,4 @@
+import 'package:get/get.dart';
 import 'package:dio/dio.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:dompet/configure/fluttertoast.dart';
@@ -52,11 +53,11 @@ class DioManager {
             case DioExceptionType.sendTimeout:
             case DioExceptionType.receiveTimeout:
             case DioExceptionType.connectionTimeout:
-              Toaster.error(message: 'Network timeout!');
+              Toaster.error(message: 'Network timeout!'.tr);
               break;
 
             default:
-              Toaster.error(message: 'System abnormality!');
+              Toaster.error(message: 'System abnormality!'.tr);
           }
 
           return handler.next(e);

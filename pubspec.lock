@@ -271,13 +271,14 @@ packages:
     source: hosted
     version: "1.1.1"
   flutter_inappwebview_ios:
-    dependency: transitive
+    dependency: "direct overridden"
     description:
-      name: flutter_inappwebview_ios
-      sha256: f363577208b97b10b319cd0c428555cd8493e88b468019a8c5635a0e4312bd0f
-      url: "https://pub.flutter-io.cn"
-    source: hosted
-    version: "1.0.13"
+      path: flutter_inappwebview_ios
+      ref: master
+      resolved-ref: "18136c24fb75f338a0c3115202e64a51e201259b"
+      url: "https://github.com/pichillilorenzo/flutter_inappwebview.git"
+    source: git
+    version: "1.1.0"
   flutter_inappwebview_macos:
     dependency: transitive
     description:
@@ -307,10 +308,10 @@ packages:
     description:
       path: "."
       ref: HEAD
-      resolved-ref: "006cb1ed53f969bf11816cde5b16dd520e1ee40e"
+      resolved-ref: "4999e95ecd6b9eae046be0e4c58b2f0a8e094ba6"
       url: "https://github.com/fluttercommunity/flutter_launcher_icons.git"
     source: git
-    version: "0.13.1"
+    version: "0.14.0"
   flutter_lints:
     dependency: "direct dev"
     description:

@@ -64,6 +64,13 @@ flutter_launcher_icons:
   android: false
   ios: true
 
+dependency_overrides:
+  flutter_inappwebview_ios:
+    git:
+      ref: master
+      url: https://github.com/pichillilorenzo/flutter_inappwebview.git
+      path: flutter_inappwebview_ios
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -88,26 +95,13 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   assets:
-    - lib/assets/webview/app.png
-    - lib/assets/webview/home.png
-    - lib/assets/webview/clear.png
-    - lib/assets/webview/debug.png
-    - lib/assets/webview/refresh.png
-    - lib/assets/webview/errorUrl.html
-    - lib/assets/webview/errorHttps.html
-
-    - lib/assets/scripts/meta.min.js
-    - lib/assets/scripts/vdebug.min.js
-    - lib/assets/scripts/vconsole.min.js
-    - lib/assets/scripts/flutter.min.js
-    - lib/assets/scripts/webview.min.js
-
-    - lib/assets/images/auth/back.png
-    - lib/assets/images/auth/email.png
-    - lib/assets/images/auth/google.png
-    - lib/assets/images/auth/github.png
-    - lib/assets/images/auth/profile.png
-    - lib/assets/images/auth/password.png
+    - lib/assets/images/tabbar/
+    - lib/assets/images/payer/
+    - lib/assets/images/home/
+    - lib/assets/images/auth/
+    - lib/assets/webview/
+    - lib/assets/scripts/
+    - lib/assets/langs/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
@@ -124,10 +118,6 @@ flutter:
     - family: PingFang
       fonts:
         - asset: lib/assets/fonts/PingFang.ttf
-
-    - family: PingFang Bold
-      fonts:
-        - asset: lib/assets/fonts/PingFang-Bold.ttf
 
   #
   # For details regarding fonts from package dependencies,

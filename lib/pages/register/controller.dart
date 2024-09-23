@@ -105,23 +105,23 @@ class PageRegisterController extends GetxController {
       final password2 = passwordController2.value.text;
 
       if (password2.trim() != password1.trim()) {
-        message = 'The confirm password is incorrect!';
+        message = 'The confirm password is incorrect!'.tr;
         passwordError2.value = true;
       }
 
       if (password1.trim().length < 6) {
-        message = 'The password is less than 6 characters long!';
+        message = 'The password is less than 6 characters long!'.tr;
         passwordError1.value = true;
         passwordError2.value = true;
       }
 
       if (name.trim() == "") {
-        message = 'The username is empty';
+        message = 'The username is empty!'.tr;
         nameError.value = true;
       }
 
       if (email.trim() == '') {
-        message = 'The email is empty!';
+        message = 'The email is empty!'.tr;
         emailError.value = true;
       }
 
@@ -150,7 +150,7 @@ class PageRegisterController extends GetxController {
 
   Future<void> storeCredentialUser(UserCredential credential) async {
     if (credential.user == null) {
-      Toaster.error(message: 'The credential user is empty!');
+      Toaster.error(message: 'The credential user is empty!'.tr);
       return;
     }
 
@@ -169,7 +169,7 @@ class PageRegisterController extends GetxController {
     );
 
     return user == null
-        ? Toaster.error(message: 'Failed to register user!')
+        ? Toaster.error(message: 'Failed to register user!'.tr)
         : eventController.login();
   }
 

@@ -96,7 +96,7 @@ class PageRegister extends GetView<PageRegisterController> {
           offstage: !controller.loading.value,
           child: Container(
             constraints: const BoxConstraints.expand(),
-            color: const Color(0xffffffff).withOpacity(0.75),
+            color: const Color(0xffffffff).withOpacity(0.8),
             child: const Center(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -147,7 +147,7 @@ class PageRegister extends GetView<PageRegisterController> {
             : 640.max * 60.sr,
       ),
       child: Text(
-        'Experience the convenience of handed trading',
+        'Experience the convenience of handed trading'.tr,
         textAlign: TextAlign.center,
         style: TextStyle(
           fontSize: 640.max * 24.sr,
@@ -175,7 +175,7 @@ class PageRegister extends GetView<PageRegisterController> {
             bottom: 640.max * 1.5.sr,
           ),
           child: Text(
-            'Sign up with',
+            'Sign up with'.tr,
             textAlign: TextAlign.center,
             style: TextStyle(
               fontSize: 640.max * 13.sr,
@@ -345,7 +345,7 @@ class PageRegister extends GetView<PageRegisterController> {
             textAlignVertical: TextAlignVertical.center,
             decoration: InputDecoration(
               filled: true,
-              hintText: 'Email',
+              hintText: 'Email'.tr,
               prefixIcon: Container(
                 width: 640.max * 64.sr,
                 alignment: Alignment.center,
@@ -409,7 +409,7 @@ class PageRegister extends GetView<PageRegisterController> {
             textAlignVertical: TextAlignVertical.center,
             decoration: InputDecoration(
               filled: true,
-              hintText: 'Username',
+              hintText: 'Username'.tr,
               prefixIcon: Container(
                 width: 640.max * 64.sr,
                 alignment: Alignment.center,
@@ -475,7 +475,7 @@ class PageRegister extends GetView<PageRegisterController> {
             textAlignVertical: TextAlignVertical.center,
             decoration: InputDecoration(
               filled: true,
-              hintText: 'Password',
+              hintText: 'Password'.tr,
               prefixIcon: Container(
                 width: 640.max * 64.sr,
                 alignment: Alignment.center,
@@ -542,7 +542,7 @@ class PageRegister extends GetView<PageRegisterController> {
             textAlignVertical: TextAlignVertical.center,
             decoration: InputDecoration(
               filled: true,
-              hintText: 'Confirm Password',
+              hintText: 'Confirm Password'.tr,
               prefixIcon: Container(
                 width: 640.max * 64.sr,
                 alignment: Alignment.center,
@@ -609,7 +609,7 @@ class PageRegister extends GetView<PageRegisterController> {
                 borderRadius: BorderRadius.circular(640.max * 15.sr),
               ),
               child: Text(
-                'Register',
+                'Register'.tr,
                 style: TextStyle(
                   letterSpacing: 1.2,
                   color: Colors.white,
@@ -625,7 +625,7 @@ class PageRegister extends GetView<PageRegisterController> {
             text: TextSpan(
               children: [
                 TextSpan(
-                  text: 'You have account? ',
+                  text: 'You have account？'.tr,
                   style: TextStyle(
                     fontSize: 640.max * 14.sr,
                     fontWeight: FontWeight.w500,
@@ -633,7 +633,7 @@ class PageRegister extends GetView<PageRegisterController> {
                   ),
                 ),
                 TextSpan(
-                  text: 'Login',
+                  text: 'Login'.tr,
                   style: TextStyle(
                     fontSize: 640.max * 14.sr,
                     fontWeight: FontWeight.w600,

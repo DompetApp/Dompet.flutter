@@ -95,12 +95,12 @@ class PageLoginController extends GetxController {
       final password = passwordController.value.text;
 
       if (password.trim() == '') {
-        message = 'The password address is empty!';
+        message = 'The password is empty!'.tr;
         emailError.value = true;
       }
 
       if (email.trim() == '') {
-        message = 'The email is empty!';
+        message = 'The email is empty!'.tr;
         emailError.value = true;
       }
 
@@ -129,12 +129,12 @@ class PageLoginController extends GetxController {
 
   Future<void> storeCredentialUser(UserCredential credential) async {
     if (credential.user == null) {
-      Toaster.error(message: 'The credential user is empty!');
+      Toaster.error(message: 'The credential user is empty!'.tr);
       return;
     }
 
     if (!credential.user!.email.bv) {
-      Toaster.error(message: 'The credential user email address is empty!');
+      Toaster.error(message: 'The credential user email address is empty!'.tr);
       return;
     }
 
@@ -148,7 +148,7 @@ class PageLoginController extends GetxController {
     );
 
     return user == null
-        ? Toaster.error(message: 'Failed to login user!')
+        ? Toaster.error(message: 'Failed to login user!'.tr)
         : eventController.login();
   }
 
