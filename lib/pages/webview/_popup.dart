@@ -24,7 +24,7 @@ class PageWebviewPopupState extends State<PageWebviewPopup>
     with SingleTickerProviderStateMixin {
   late final controller = widget.controller;
   late final mediaHeight = mediaQueryController.height;
-  late final mediaPadding = mediaQueryController.padding;
+  late final mediaPadding = mediaQueryController.viewPadding;
   late final mediaQueryController = controller.mediaQueryController;
 
   late AnimationController animationController;

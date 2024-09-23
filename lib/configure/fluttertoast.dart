@@ -18,7 +18,7 @@ class Toaster {
 
     final fToast = FToast();
     final mediaQuery = Get.find<MediaQueryController>();
-    final mediaPadding = mediaQuery.padding;
+    final mediaPadding = mediaQuery.viewPadding;
 
     fToast.init(Get.context!);
 
@@ -105,7 +105,7 @@ class Toaster {
 
     final fToast = FToast();
     final mediaQuery = Get.find<MediaQueryController>();
-    final mediaPadding = mediaQuery.padding;
+    final mediaPadding = mediaQuery.viewPadding;
 
     fToast.init(Get.context!);
 

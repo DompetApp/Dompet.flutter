@@ -21,7 +21,7 @@ class PageLoginController extends GetxController {
   late final signInWithProvider = instance.signInWithProvider;
   late final instance = FirebaseAuth.instance;
 
-  late final mediaPadding = mediaQueryController.padding;
+  late final mediaPadding = mediaQueryController.viewPadding;
   late final mediaHeight = mediaQueryController.height;
   late final mediaWidth = mediaQueryController.width;
 
