@@ -15,26 +15,42 @@ extension SizeExtension on num {
   }
 
   double get vmin {
-    return width.value > height.value ? height.value / 100 : width.value / 100;
+    return width.value > height.value
+        ? this * height.value / 100
+        : this * width.value / 100;
   }
 
   double get vmax {
-    return width.value > height.value ? width.value / 100 : height.value / 100;
+    return width.value > height.value
+        ? this * width.value / 100
+        : this * height.value / 100;
   }
 
-  double get max {
+  double get wmax {
     return this < width.value ? this / 1 : width.value;
   }
 
-  double get min {
+  double get wmin {
     return this > width.value ? this / 1 : width.value;
+  }
+
+  double get hmax {
+    return this < height.value ? this / 1 : height.value;
+  }
+
+  double get hmin {
+    return this > height.value ? this / 1 : height.value;
+  }
+
+  double get wdp {
+    return this * width.value.sr;
+  }
+
+  double get hdp {
+    return this * height.value.sr;
   }
 
   double get sr {
     return this / preset;
-  }
-
-  double get dp {
-    return width.value.sr;
   }
 }

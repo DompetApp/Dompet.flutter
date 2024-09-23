@@ -20,12 +20,12 @@ class PageHome extends GetView<PageHomeController> {
     return Scaffold(
       body: Obx(() {
         final mediaPadding = controller.mediaPadding.value;
-        final mediaBottom = max(mediaPadding.bottom, 640.max * 30.sr);
+        final mediaBottom = max(mediaPadding.bottom, 640.wmax * 30.sr);
 
         return Align(
           alignment: Alignment.topCenter,
           child: SizedBox(
-            width: 640.max,
+            width: 640.wmax,
             height: 100.vh,
             child: Stack(
               fit: StackFit.expand,
@@ -35,14 +35,14 @@ class PageHome extends GetView<PageHomeController> {
                     top: 0,
                     left: 0,
                     right: 0,
-                    bottom: mediaBottom + 640.max * 92.sr,
+                    bottom: mediaBottom + 640.wmax * 92.sr,
                   ),
                   physics: const ClampingScrollPhysics(),
                   controller: controller.scrollController,
                   children: [
                     buildBankCard(context),
                     buildTransactions(context),
-                    SizedBox(height: 640.max * 15.sr),
+                    SizedBox(height: 640.wmax * 15.sr),
                   ],
                 ),
                 buildHeader(context),
@@ -76,12 +76,12 @@ class PageHome extends GetView<PageHomeController> {
         top: 0,
         left: 0,
         child: Container(
-          width: 640.max,
-          height: 640.max * 122.sr,
+          width: 640.wmax,
+          height: 640.wmax * 122.sr,
           padding: EdgeInsets.only(
-            top: 640.max * 66.sr,
-            left: 640.max * 32.sr,
-            right: 640.max * 32.sr,
+            top: 640.wmax * 66.sr,
+            left: 640.wmax * 32.sr,
+            right: 640.wmax * 32.sr,
           ),
           decoration: BoxDecoration(
             color: Colors.white,
@@ -113,28 +113,28 @@ class PageHome extends GetView<PageHomeController> {
     final balance = bankCard.balance;
 
     return Container(
-      width: 640.max,
-      padding: EdgeInsets.only(top: 640.max * 122.sr),
+      width: 640.wmax,
+      padding: EdgeInsets.only(top: 640.wmax * 122.sr),
       child: Column(
         children: [
           Container(
             padding: EdgeInsets.only(
-              left: 640.max * 32.sr,
-              right: 640.max * 32.sr,
+              left: 640.wmax * 32.sr,
+              right: 640.wmax * 32.sr,
             ),
             margin: EdgeInsets.only(
-              top: 640.max * 42.sr,
+              top: 640.wmax * 42.sr,
             ),
             child: GestureDetector(
               behavior: HitTestBehavior.opaque,
               onTap: () => GetRouter.toNamed(GetRoutes.card),
               child: Container(
-                width: 640.max * 310.sr,
-                height: 640.max * 140.sr,
+                width: 640.wmax * 310.sr,
+                height: 640.wmax * 140.sr,
                 padding: EdgeInsets.only(
-                  top: 640.max * 32.sr,
-                  left: 640.max * 38.sr,
-                  right: 640.max * 35.sr,
+                  top: 640.wmax * 32.sr,
+                  left: 640.wmax * 38.sr,
+                  right: 640.wmax * 35.sr,
                 ),
                 decoration: const BoxDecoration(
                   image: DecorationImage(
@@ -149,7 +149,7 @@ class PageHome extends GetView<PageHomeController> {
                     Text(
                       'Balance'.tr,
                       style: TextStyle(
-                        fontSize: 640.max * 16.sr,
+                        fontSize: 640.wmax * 16.sr,
                         fontWeight: FontWeight.bold,
                         color: Colors.white,
                         height: 1.2,
@@ -158,19 +158,19 @@ class PageHome extends GetView<PageHomeController> {
                     Text(
                       balance.value.USD,
                       style: TextStyle(
-                        fontSize: 640.max * 20.sr,
+                        fontSize: 640.wmax * 20.sr,
                         fontWeight: FontWeight.bold,
                         color: const Color(0xffdfdfdf),
                         height: 1.4,
                       ),
                     ),
                     Container(
-                      margin: EdgeInsets.only(top: 640.max * 10.sr),
+                      margin: EdgeInsets.only(top: 640.wmax * 10.sr),
                       alignment: Alignment.centerRight,
                       child: Text(
                         'Citibank'.tr,
                         style: TextStyle(
-                          fontSize: 640.max * 22.sr,
+                          fontSize: 640.wmax * 22.sr,
                           fontWeight: FontWeight.bold,
                           color: const Color(0xfff0f0f0),
                           height: 1.6,
@@ -184,11 +184,11 @@ class PageHome extends GetView<PageHomeController> {
           ),
           Container(
             padding: EdgeInsets.only(
-              left: 640.max * 52.sr,
-              right: 640.max * 52.sr,
+              left: 640.wmax * 52.sr,
+              right: 640.wmax * 52.sr,
             ),
             margin: EdgeInsets.only(
-              top: 640.max * 36.sr,
+              top: 640.wmax * 36.sr,
             ),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -201,17 +201,17 @@ class PageHome extends GetView<PageHomeController> {
                     arguments: 'Transfer',
                   ),
                   child: SizedBox(
-                    width: 640.max * 80.sr,
-                    height: 640.max * 80.sr,
+                    width: 640.wmax * 80.sr,
+                    height: 640.wmax * 80.sr,
                     child: Column(
                       children: [
                         Container(
-                          width: 640.max * 48.sr,
-                          height: 640.max * 48.sr,
+                          width: 640.wmax * 48.sr,
+                          height: 640.wmax * 48.sr,
                           alignment: Alignment.center,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(
-                              640.max * 20.sr,
+                              640.wmax * 20.sr,
                             ),
                             boxShadow: [
                               BoxShadow(
@@ -225,18 +225,18 @@ class PageHome extends GetView<PageHomeController> {
                           ),
                           child: Image.asset(
                             'lib/assets/images/home/transfer.png',
-                            width: 640.max * 28.sr,
-                            height: 640.max * 28.sr,
+                            width: 640.wmax * 28.sr,
+                            height: 640.wmax * 28.sr,
                             fit: BoxFit.fill,
                           ),
                         ),
                         SizedBox(
-                          height: 640.max * 16.sr,
+                          height: 640.wmax * 16.sr,
                         ),
                         Text(
                           'Transfer'.tr,
                           style: TextStyle(
-                            fontSize: 640.max * 13.sr,
+                            fontSize: 640.wmax * 13.sr,
                             color: const Color(0xff8438FF),
                             fontWeight: FontWeight.w500,
                             height: 1.2,
@@ -253,17 +253,17 @@ class PageHome extends GetView<PageHomeController> {
                     arguments: 'Payment',
                   ),
                   child: SizedBox(
-                    width: 640.max * 80.sr,
-                    height: 640.max * 80.sr,
+                    width: 640.wmax * 80.sr,
+                    height: 640.wmax * 80.sr,
                     child: Column(
                       children: [
                         Container(
-                          width: 640.max * 48.sr,
-                          height: 640.max * 48.sr,
+                          width: 640.wmax * 48.sr,
+                          height: 640.wmax * 48.sr,
                           alignment: Alignment.center,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(
-                              640.max * 20.sr,
+                              640.wmax * 20.sr,
                             ),
                             boxShadow: [
                               BoxShadow(
@@ -277,18 +277,18 @@ class PageHome extends GetView<PageHomeController> {
                           ),
                           child: Image.asset(
                             'lib/assets/images/home/payment.png',
-                            width: 640.max * 28.sr,
-                            height: 640.max * 28.sr,
+                            width: 640.wmax * 28.sr,
+                            height: 640.wmax * 28.sr,
                             fit: BoxFit.fill,
                           ),
                         ),
                         SizedBox(
-                          height: 640.max * 16.sr,
+                          height: 640.wmax * 16.sr,
                         ),
                         Text(
                           'Payment'.tr,
                           style: TextStyle(
-                            fontSize: 640.max * 13.sr,
+                            fontSize: 640.wmax * 13.sr,
                             color: const Color(0xff8438FF),
                             fontWeight: FontWeight.w500,
                             height: 1.2,
@@ -305,17 +305,17 @@ class PageHome extends GetView<PageHomeController> {
                     arguments: 'Top up',
                   ),
                   child: SizedBox(
-                    width: 640.max * 80.sr,
-                    height: 640.max * 80.sr,
+                    width: 640.wmax * 80.sr,
+                    height: 640.wmax * 80.sr,
                     child: Column(
                       children: [
                         Container(
-                          width: 640.max * 48.sr,
-                          height: 640.max * 48.sr,
+                          width: 640.wmax * 48.sr,
+                          height: 640.wmax * 48.sr,
                           alignment: Alignment.center,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(
-                              640.max * 20.sr,
+                              640.wmax * 20.sr,
                             ),
                             boxShadow: [
                               BoxShadow(
@@ -329,18 +329,18 @@ class PageHome extends GetView<PageHomeController> {
                           ),
                           child: Image.asset(
                             'lib/assets/images/home/topup.png',
-                            width: 640.max * 28.sr,
-                            height: 640.max * 28.sr,
+                            width: 640.wmax * 28.sr,
+                            height: 640.wmax * 28.sr,
                             fit: BoxFit.fill,
                           ),
                         ),
                         SizedBox(
-                          height: 640.max * 16.sr,
+                          height: 640.wmax * 16.sr,
                         ),
                         Text(
                           'Top up'.tr,
                           style: TextStyle(
-                            fontSize: 640.max * 13.sr,
+                            fontSize: 640.wmax * 13.sr,
                             color: const Color(0xff8438FF),
                             fontWeight: FontWeight.w500,
                             height: 1.2,
@@ -368,39 +368,39 @@ class PageHome extends GetView<PageHomeController> {
       if (icon == 'me' && userAvatar != null) {
         return Image.memory(
           userAvatar,
-          width: 640.max * 39.sr,
-          height: 640.max * 39.sr,
+          width: 640.wmax * 39.sr,
+          height: 640.wmax * 39.sr,
           fit: BoxFit.fill,
         );
       }
 
       return Image.asset(
         'lib/assets/images/payer/$icon.png',
-        width: 640.max * 39.sr,
-        height: 640.max * 39.sr,
+        width: 640.wmax * 39.sr,
+        height: 640.wmax * 39.sr,
         fit: BoxFit.fill,
       );
     }
 
     return Container(
       padding: EdgeInsets.only(
-        left: 640.max * 32.sr,
-        right: 640.max * 32.sr,
+        left: 640.wmax * 32.sr,
+        right: 640.wmax * 32.sr,
       ),
       margin: EdgeInsets.only(
-        top: 640.max * 42.sr,
+        top: 640.wmax * 42.sr,
       ),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Container(
-            width: 640.max,
-            height: 640.max * 21.sr,
+            width: 640.wmax,
+            height: 640.wmax * 21.sr,
             margin: EdgeInsets.only(
-              left: 640.max * 2.sr,
-              right: 640.max * 2.sr,
-              bottom: 640.max * 25.sr,
+              left: 640.wmax * 2.sr,
+              right: 640.wmax * 2.sr,
+              bottom: 640.wmax * 25.sr,
             ),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -409,7 +409,7 @@ class PageHome extends GetView<PageHomeController> {
                 Text(
                   'Transactions'.tr,
                   style: TextStyle(
-                    fontSize: 640.max * 18.sr,
+                    fontSize: 640.wmax * 18.sr,
                     fontWeight: FontWeight.w600,
                     color: const Color(0xff130138),
                     letterSpacing: -0.35,
@@ -422,7 +422,7 @@ class PageHome extends GetView<PageHomeController> {
                   child: Text(
                     'View All'.tr,
                     style: TextStyle(
-                      fontSize: 640.max * 13.sr,
+                      fontSize: 640.wmax * 13.sr,
                       fontWeight: FontWeight.w500,
                       color: const Color(0xff8438ff),
                       height: 1,
@@ -441,25 +441,25 @@ class PageHome extends GetView<PageHomeController> {
               final order = rawOrders[index];
 
               return SizedBox(
-                height: 640.max * 39.sr,
+                height: 640.wmax * 39.sr,
                 child: Row(
                   children: [
                     buildIconAvatar(order.icon),
-                    SizedBox(width: 640.max * 15.sr),
+                    SizedBox(width: 640.wmax * 15.sr),
                     Expanded(
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.start,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           SizedBox(
-                            height: 640.max * 19.sr,
+                            height: 640.wmax * 19.sr,
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 Text(
                                   order.name.tr,
                                   style: TextStyle(
-                                    fontSize: 640.max * 16.sr,
+                                    fontSize: 640.wmax * 16.sr,
                                     fontWeight: FontWeight.w600,
                                     color: const Color(0xff000000),
                                   ),
@@ -467,7 +467,7 @@ class PageHome extends GetView<PageHomeController> {
                                 Text(
                                   order.money.usd,
                                   style: TextStyle(
-                                    fontSize: 640.max * 16.sr,
+                                    fontSize: 640.wmax * 16.sr,
                                     fontWeight: FontWeight.w600,
                                     color: const Color(0xff363853),
                                     letterSpacing: -0.6,
@@ -477,17 +477,17 @@ class PageHome extends GetView<PageHomeController> {
                             ),
                           ),
                           SizedBox(
-                            height: 640.max * 2.sr,
+                            height: 640.wmax * 2.sr,
                           ),
                           SizedBox(
-                            height: 640.max * 18.sr,
+                            height: 640.wmax * 18.sr,
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 Text(
                                   order.type.tr,
                                   style: TextStyle(
-                                    fontSize: 640.max * 14.sr,
+                                    fontSize: 640.wmax * 14.sr,
                                     fontWeight: FontWeight.w500,
                                     color: const Color(0xff909399),
                                   ),
@@ -495,7 +495,7 @@ class PageHome extends GetView<PageHomeController> {
                                 Text(
                                   order.date.yMMMd(),
                                   style: TextStyle(
-                                    fontSize: 640.max * 12.sr,
+                                    fontSize: 640.wmax * 12.sr,
                                     fontWeight: FontWeight.w500,
                                     color: const Color(0xffababab),
                                   ),
@@ -511,7 +511,7 @@ class PageHome extends GetView<PageHomeController> {
               );
             },
             separatorBuilder: (BuildContext context, int index) {
-              return SizedBox(height: 640.max * 21.sr);
+              return SizedBox(height: 640.wmax * 21.sr);
             },
           ),
         ],
@@ -531,8 +531,8 @@ class PageHome extends GetView<PageHomeController> {
         duration: const Duration(milliseconds: 810),
         onEnd: () => isAnimating.value = false,
         child: SizedBox(
-          width: 640.max * (1 - 64.sr),
-          height: 640.max * 56.sr,
+          width: 640.wmax * (1 - 64.sr),
+          height: 640.wmax * 56.sr,
           child: Row(
             children: [
               Expanded(
@@ -544,19 +544,19 @@ class PageHome extends GetView<PageHomeController> {
                       Text(
                         'Digital Wallet'.tr,
                         style: TextStyle(
-                          fontSize: 640.max * 24.sr,
+                          fontSize: 640.wmax * 24.sr,
                           fontWeight: FontWeight.bold,
                           color: const Color(0xff130138),
                           height: 1,
                         ),
                       ),
                       SizedBox(
-                        height: 640.max * 5.sr,
+                        height: 640.wmax * 5.sr,
                       ),
                       Text(
                         'activated'.tr,
                         style: TextStyle(
-                          fontSize: 640.max * 16.sr,
+                          fontSize: 640.wmax * 16.sr,
                           fontWeight: FontWeight.normal,
                           color: const Color(0xffbdbdbd),
                           height: 1,
@@ -585,16 +585,16 @@ class PageHome extends GetView<PageHomeController> {
     if (avatar.value.bv) {
       return Image.memory(
         loginUser.avatar.value!,
-        width: 640.max * 44.sr,
-        height: 640.max * 44.sr,
+        width: 640.wmax * 44.sr,
+        height: 640.wmax * 44.sr,
         fit: BoxFit.fill,
       );
     }
 
     return Image.asset(
       'lib/assets/images/home/avatar.png',
-      width: 640.max * 44.sr,
-      height: 640.max * 44.sr,
+      width: 640.wmax * 44.sr,
+      height: 640.wmax * 44.sr,
       fit: BoxFit.fill,
     );
   }
@@ -611,11 +611,11 @@ class PageHome extends GetView<PageHomeController> {
         duration: const Duration(milliseconds: 810),
         onEnd: () => isAnimating.value = false,
         child: Container(
-          width: 640.max * (1 - 64.sr),
-          height: 640.max * 56.sr,
+          width: 640.wmax * (1 - 64.sr),
+          height: 640.wmax * 56.sr,
           padding: EdgeInsets.only(
-            left: 640.max * 14.sr,
-            right: 640.max * 14.sr,
+            left: 640.wmax * 14.sr,
+            right: 640.wmax * 14.sr,
           ),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -630,20 +630,20 @@ class PageHome extends GetView<PageHomeController> {
                 child: Column(
                   children: [
                     Container(
-                      width: 640.max * 80.sr,
-                      height: 640.max * 28.sr,
+                      width: 640.wmax * 80.sr,
+                      height: 640.wmax * 28.sr,
                       alignment: Alignment.topCenter,
                       child: Image.asset(
                         'lib/assets/images/home/transfer.png',
-                        width: 640.max * 28.sr,
-                        height: 640.max * 28.sr,
+                        width: 640.wmax * 28.sr,
+                        height: 640.wmax * 28.sr,
                         fit: BoxFit.fill,
                       ),
                     ),
                     Text(
                       'Transfer'.tr,
                       style: TextStyle(
-                        fontSize: 640.max * 13.sr,
+                        fontSize: 640.wmax * 13.sr,
                         color: const Color(0xff2f1155),
                         fontWeight: FontWeight.w600,
                         height: 1.6,
@@ -661,20 +661,20 @@ class PageHome extends GetView<PageHomeController> {
                 child: Column(
                   children: [
                     Container(
-                      width: 640.max * 80.sr,
-                      height: 640.max * 28.sr,
+                      width: 640.wmax * 80.sr,
+                      height: 640.wmax * 28.sr,
                       alignment: Alignment.topCenter,
                       child: Image.asset(
                         'lib/assets/images/home/payment.png',
-                        width: 640.max * 28.sr,
-                        height: 640.max * 28.sr,
+                        width: 640.wmax * 28.sr,
+                        height: 640.wmax * 28.sr,
                         fit: BoxFit.fill,
                       ),
                     ),
                     Text(
                       'Payment'.tr,
                       style: TextStyle(
-                        fontSize: 640.max * 13.sr,
+                        fontSize: 640.wmax * 13.sr,
                         color: const Color(0xff2f1155),
                         fontWeight: FontWeight.w600,
                         height: 1.6,
@@ -692,20 +692,20 @@ class PageHome extends GetView<PageHomeController> {
                 child: Column(
                   children: [
                     Container(
-                      width: 640.max * 80.sr,
-                      height: 640.max * 28.sr,
+                      width: 640.wmax * 80.sr,
+                      height: 640.wmax * 28.sr,
                       alignment: Alignment.topCenter,
                       child: Image.asset(
                         'lib/assets/images/home/topup.png',
-                        width: 640.max * 28.sr,
-                        height: 640.max * 28.sr,
+                        width: 640.wmax * 28.sr,
+                        height: 640.wmax * 28.sr,
                         fit: BoxFit.fill,
                       ),
                     ),
                     Text(
                       'Top up'.tr,
                       style: TextStyle(
-                        fontSize: 640.max * 13.sr,
+                        fontSize: 640.wmax * 13.sr,
                         color: const Color(0xff2f1155),
                         fontWeight: FontWeight.w600,
                         height: 1.6,
@@ -723,20 +723,20 @@ class PageHome extends GetView<PageHomeController> {
 
   Widget buildBottomTabbar(BuildContext context) {
     final mediaPadding = controller.mediaPadding.value;
-    final mediaBottom = max(mediaPadding.bottom, 640.max * 30.sr);
+    final mediaBottom = max(mediaPadding.bottom, 640.wmax * 30.sr);
 
     return Positioned(
       left: 0,
       bottom: 0,
       child: Container(
-        width: 640.max,
+        width: 640.wmax,
         color: Colors.white.withOpacity(0.88),
-        height: mediaBottom + 640.max * 92.sr,
+        height: mediaBottom + 640.wmax * 92.sr,
         alignment: Alignment.topCenter,
         padding: EdgeInsets.only(
-          top: 640.max * 10.sr,
-          left: 640.max * 24.sr,
-          right: 640.max * 24.sr,
+          top: 640.wmax * 10.sr,
+          left: 640.wmax * 24.sr,
+          right: 640.wmax * 24.sr,
           bottom: mediaBottom,
         ),
         child: Stack(
@@ -745,17 +745,17 @@ class PageHome extends GetView<PageHomeController> {
             Align(
               alignment: Alignment.topLeft,
               child: Container(
-                height: 640.max * 78.sr,
+                height: 640.wmax * 78.sr,
                 padding: EdgeInsets.only(
-                  top: 640.max * 25.sr,
-                  left: 640.max * 40.sr,
-                  right: 640.max * 40.sr,
-                  bottom: 640.max * 25.sr,
+                  top: 640.wmax * 25.sr,
+                  left: 640.wmax * 40.sr,
+                  right: 640.wmax * 40.sr,
+                  bottom: 640.wmax * 25.sr,
                 ),
                 decoration: BoxDecoration(
                   color: const Color(0xff2f1155),
                   borderRadius: BorderRadius.circular(
-                    640.max * 30.sr,
+                    640.wmax * 30.sr,
                   ),
                   boxShadow: [
                     BoxShadow(
@@ -775,8 +775,8 @@ class PageHome extends GetView<PageHomeController> {
                       onTap: () {},
                       child: Image.asset(
                         'lib/assets/images/tabbar/home_select.png',
-                        width: 640.max * 28.sr,
-                        height: 640.max * 28.sr,
+                        width: 640.wmax * 28.sr,
+                        height: 640.wmax * 28.sr,
                         fit: BoxFit.fill,
                       ),
                     ),
@@ -785,8 +785,8 @@ class PageHome extends GetView<PageHomeController> {
                       onTap: () {},
                       child: Image.asset(
                         'lib/assets/images/tabbar/chart.png',
-                        width: 640.max * 28.sr,
-                        height: 640.max * 28.sr,
+                        width: 640.wmax * 28.sr,
+                        height: 640.wmax * 28.sr,
                         fit: BoxFit.fill,
                       ),
                     ),
@@ -795,8 +795,8 @@ class PageHome extends GetView<PageHomeController> {
                       onTap: () {},
                       child: Image.asset(
                         'lib/assets/images/tabbar/notification.png',
-                        width: 640.max * 28.sr,
-                        height: 640.max * 28.sr,
+                        width: 640.wmax * 28.sr,
+                        height: 640.wmax * 28.sr,
                         fit: BoxFit.fill,
                       ),
                     ),
@@ -805,8 +805,8 @@ class PageHome extends GetView<PageHomeController> {
                       onTap: () {},
                       child: Image.asset(
                         'lib/assets/images/tabbar/settings.png',
-                        width: 640.max * 28.sr,
-                        height: 640.max * 28.sr,
+                        width: 640.wmax * 28.sr,
+                        height: 640.wmax * 28.sr,
                         fit: BoxFit.fill,
                       ),
                     ),
@@ -815,12 +815,12 @@ class PageHome extends GetView<PageHomeController> {
               ),
             ),
             Positioned(
-              top: 640.max * 30.sr,
-              left: 640.max * 24.sr,
+              top: 640.wmax * 30.sr,
+              left: 640.wmax * 24.sr,
               child: Image.asset(
                 'lib/assets/images/tabbar/bg.png',
-                width: 640.max * 280.sr,
-                height: 640.max * 52.sr,
+                width: 640.wmax * 280.sr,
+                height: 640.wmax * 52.sr,
                 fit: BoxFit.fill,
               ),
             ),

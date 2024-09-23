@@ -30,13 +30,13 @@ class Toaster {
       child: Container(
         alignment: Alignment.topCenter,
         padding: EdgeInsets.only(
-          top: 640.max * 10.sr,
-          left: 640.max * 20.sr,
-          right: 640.max * 15.sr,
-          bottom: 640.max * 10.sr,
+          top: 640.wmax * 10.sr,
+          left: 640.wmax * 20.sr,
+          right: 640.wmax * 15.sr,
+          bottom: 640.wmax * 10.sr,
         ),
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(640.max * 32.sr),
+          borderRadius: BorderRadius.circular(640.wmax * 32.sr),
           color: Colors.redAccent,
         ),
         child: Row(
@@ -47,12 +47,12 @@ class Toaster {
                 behavior: HitTestBehavior.opaque,
                 child: Container(
                   alignment: Alignment.center,
-                  padding: EdgeInsets.only(left: 640.max * 10.sr),
+                  padding: EdgeInsets.only(left: 640.wmax * 10.sr),
                   child: IntrinsicWidth(
                     child: Text(
                       message!,
                       style: TextStyle(
-                        fontSize: 640.max * 14.sr,
+                        fontSize: 640.wmax * 14.sr,
                         fontWeight: FontWeight.w600,
                         color: Colors.white,
                         height: 1.3,
@@ -69,11 +69,11 @@ class Toaster {
               ),
             ),
             SizedBox(
-              width: 640.max * 24.sr,
-              height: 640.max * 24.sr,
+              width: 640.wmax * 24.sr,
+              height: 640.wmax * 24.sr,
               child: IconButton(
                 color: Colors.white,
-                iconSize: 640.max * 24.sr,
+                iconSize: 640.wmax * 24.sr,
                 padding: const EdgeInsets.all(0),
                 icon: const Icon(Icons.close),
                 onPressed: () => fToast.removeCustomToast(),
@@ -85,9 +85,9 @@ class Toaster {
       toastDuration: const Duration(seconds: 3),
       positionedToastBuilder: (context, child) {
         return Positioned(
-          top: max(640.max * 15.sr, mediaPadding.value.top),
-          left: 640.max * 24.sr,
-          right: 640.max * 24.sr,
+          top: max(640.wmax * 15.sr, mediaPadding.value.top),
+          left: 640.wmax * 24.sr,
+          right: 640.wmax * 24.sr,
           child: child,
         );
       },
@@ -117,13 +117,13 @@ class Toaster {
       child: Container(
         alignment: Alignment.topCenter,
         padding: EdgeInsets.only(
-          top: 640.max * 10.sr,
-          left: 640.max * 20.sr,
-          right: 640.max * 15.sr,
-          bottom: 640.max * 10.sr,
+          top: 640.wmax * 10.sr,
+          left: 640.wmax * 20.sr,
+          right: 640.wmax * 15.sr,
+          bottom: 640.wmax * 10.sr,
         ),
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(640.max * 32.sr),
+          borderRadius: BorderRadius.circular(640.wmax * 32.sr),
           color: const Color(0xff52c41b),
         ),
         child: Row(
@@ -134,12 +134,12 @@ class Toaster {
                 behavior: HitTestBehavior.opaque,
                 child: Container(
                   alignment: Alignment.center,
-                  padding: EdgeInsets.only(left: 640.max * 10.sr),
+                  padding: EdgeInsets.only(left: 640.wmax * 10.sr),
                   child: IntrinsicWidth(
                     child: Text(
                       message!,
                       style: TextStyle(
-                        fontSize: 640.max * 14.sr,
+                        fontSize: 640.wmax * 14.sr,
                         fontWeight: FontWeight.w600,
                         color: Colors.white,
                         height: 1.3,
@@ -156,11 +156,11 @@ class Toaster {
               ),
             ),
             SizedBox(
-              width: 640.max * 24.sr,
-              height: 640.max * 24.sr,
+              width: 640.wmax * 24.sr,
+              height: 640.wmax * 24.sr,
               child: IconButton(
                 color: Colors.white,
-                iconSize: 640.max * 24.sr,
+                iconSize: 640.wmax * 24.sr,
                 padding: const EdgeInsets.all(0),
                 icon: const Icon(Icons.check),
                 onPressed: () => fToast.removeCustomToast(),
@@ -172,9 +172,9 @@ class Toaster {
       toastDuration: const Duration(seconds: 3),
       positionedToastBuilder: (context, child) {
         return Positioned(
-          top: max(640.max * 15.sr, mediaPadding.value.top),
-          left: 640.max * 24.sr,
-          right: 640.max * 24.sr,
+          top: max(640.wmax * 15.sr, mediaPadding.value.top),
+          left: 640.wmax * 24.sr,
+          right: 640.wmax * 24.sr,
           child: child,
         );
       },

@@ -81,7 +81,7 @@ class PageWebviewPopupState extends State<PageWebviewPopup>
       right: 0,
       bottom: 0,
       child: Obx(() {
-        if (mediaHeight.value <= 350.dp) {
+        if (mediaHeight.value <= 350.wdp) {
           return const SizedBox.shrink();
         }
 
@@ -126,12 +126,12 @@ class PageWebviewPopupState extends State<PageWebviewPopup>
       child: Container(
         decoration: BoxDecoration(
           borderRadius: BorderRadius.all(
-            Radius.circular(15.dp),
+            Radius.circular(15.wdp),
           ),
           color: const Color(0xffebebeb),
         ),
         child: Padding(
-          padding: EdgeInsets.all(15.dp),
+          padding: EdgeInsets.all(15.wdp),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -142,8 +142,8 @@ class PageWebviewPopupState extends State<PageWebviewPopup>
                 children: [
                   Padding(
                     padding: EdgeInsets.only(
-                      left: 8.dp,
-                      right: 8.dp,
+                      left: 8.wdp,
+                      right: 8.wdp,
                     ),
                     child: Text(
                       'Settings',
@@ -151,7 +151,7 @@ class PageWebviewPopupState extends State<PageWebviewPopup>
                         color: const Color(0xff303133),
                         decoration: TextDecoration.none,
                         fontWeight: FontWeight.bold,
-                        fontSize: 16.dp,
+                        fontSize: 16.wdp,
                       ),
                     ),
                   ),
@@ -159,12 +159,12 @@ class PageWebviewPopupState extends State<PageWebviewPopup>
               ),
               Container(
                 height: .5,
-                margin: EdgeInsets.symmetric(vertical: 15.dp),
+                margin: EdgeInsets.symmetric(vertical: 15.wdp),
                 color: const Color(0xffcfcfcf),
               ),
               Container(
                 constraints: BoxConstraints(
-                  minHeight: min(128.dp, 30.vh),
+                  minHeight: min(128.wdp, 30.vh),
                 ),
                 child: GridView.builder(
                   shrinkWrap: true,
@@ -172,7 +172,7 @@ class PageWebviewPopupState extends State<PageWebviewPopup>
                   itemCount: panelList.length,
                   physics: const NeverScrollableScrollPhysics(),
                   gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
-                    maxCrossAxisExtent: 65.dp,
+                    maxCrossAxisExtent: 65.wdp,
                     childAspectRatio: 0.65,
                     crossAxisSpacing: 12,
                     mainAxisSpacing: 12,
@@ -184,7 +184,7 @@ class PageWebviewPopupState extends State<PageWebviewPopup>
               ),
               Container(
                 height: .5,
-                margin: EdgeInsets.symmetric(vertical: 15.dp),
+                margin: EdgeInsets.symmetric(vertical: 15.wdp),
                 color: const Color(0xffcfcfcf),
               ),
               GestureDetector(
@@ -203,7 +203,7 @@ class PageWebviewPopupState extends State<PageWebviewPopup>
                         color: const Color(0xff646e93),
                         decoration: TextDecoration.none,
                         fontWeight: FontWeight.bold,
-                        fontSize: 16.dp,
+                        fontSize: 16.wdp,
                       ),
                     ),
                   ),
@@ -246,39 +246,39 @@ class PageWebviewPopupState extends State<PageWebviewPopup>
 
     return GestureDetector(
       child: SizedBox(
-        width: 60.dp,
+        width: 60.wdp,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Container(
-              width: 54.dp,
-              height: 54.dp,
+              width: 54.wdp,
+              height: 54.wdp,
               alignment: Alignment.center,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.all(
-                  Radius.circular(15.dp),
+                  Radius.circular(15.wdp),
                 ),
                 color: const Color(0xffffffff),
               ),
               child: Image(
-                width: 30.dp,
-                height: 30.dp,
+                width: 30.wdp,
+                height: 30.wdp,
                 fit: BoxFit.fill,
                 image: AssetImage(image),
               ),
             ),
             Padding(
               padding: EdgeInsets.only(
-                top: 7.dp,
-                left: 4.dp,
-                right: 4.dp,
+                top: 7.wdp,
+                left: 4.wdp,
+                right: 4.wdp,
               ),
               child: Text(
                 title,
                 style: TextStyle(
-                  height: 1.2.dp,
-                  fontSize: 11.dp,
+                  height: 1.2.wdp,
+                  fontSize: 11.wdp,
                   fontWeight: FontWeight.w600,
                   overflow: TextOverflow.ellipsis,
                   decoration: TextDecoration.none,

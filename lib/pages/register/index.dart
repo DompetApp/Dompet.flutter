@@ -27,7 +27,7 @@ class PageRegister extends GetView<PageRegisterController> {
               Align(
                 alignment: Alignment.topCenter,
                 child: SizedBox(
-                  width: 640.max,
+                  width: 640.wmax,
                   height: 100.vh,
                   child: ListView(
                     shrinkWrap: false,
@@ -64,11 +64,11 @@ class PageRegister extends GetView<PageRegisterController> {
       child: Align(
         alignment: Alignment.topCenter,
         child: Container(
-          width: 680.max,
-          height: 640.max * 36.sr,
+          width: 680.wmax,
+          height: 640.wmax * 36.sr,
           margin: EdgeInsets.only(
-            top: max(top, 640.max * 20.sr),
-            left: 640.max * 20.sr,
+            top: max(top, 640.wmax * 20.sr),
+            left: 640.wmax * 20.sr,
           ),
           child: Row(
             children: [
@@ -77,8 +77,8 @@ class PageRegister extends GetView<PageRegisterController> {
                 onTap: () => GetRouter.back(),
                 child: Image(
                   image: const AssetImage('lib/assets/images/auth/back.png'),
-                  width: 640.max * 36.sr,
-                  height: 640.max * 36.sr,
+                  width: 640.wmax * 36.sr,
+                  height: 640.wmax * 36.sr,
                   fit: BoxFit.fill,
                 ),
               ),
@@ -139,18 +139,18 @@ class PageRegister extends GetView<PageRegisterController> {
     return Container(
       alignment: Alignment.center,
       padding: EdgeInsets.only(
-        bottom: 640.max * 32.sr,
-        right: 640.max * 48.sr,
-        left: 640.max * 48.sr,
+        bottom: 640.wmax * 32.sr,
+        right: 640.wmax * 48.sr,
+        left: 640.wmax * 48.sr,
         top: orientation.value == Orientation.portrait
-            ? 640.max * 95.sr
-            : 640.max * 60.sr,
+            ? 640.wmax * 95.sr
+            : 640.wmax * 60.sr,
       ),
       child: Text(
         'Experience the convenience of handed trading'.tr,
         textAlign: TextAlign.center,
         style: TextStyle(
-          fontSize: 640.max * 24.sr,
+          fontSize: 640.wmax * 24.sr,
           fontFamily: 'PingFang-Bold',
           color: const Color(0xff2f1155),
           fontWeight: FontWeight.w700,
@@ -169,16 +169,16 @@ class PageRegister extends GetView<PageRegisterController> {
         Container(
           alignment: Alignment.center,
           padding: EdgeInsets.only(
-            top: 640.max * 1.5.sr,
-            left: 640.max * 45.sr,
-            right: 640.max * 45.sr,
-            bottom: 640.max * 1.5.sr,
+            top: 640.wmax * 1.5.sr,
+            left: 640.wmax * 45.sr,
+            right: 640.wmax * 45.sr,
+            bottom: 640.wmax * 1.5.sr,
           ),
           child: Text(
             'Sign up with'.tr,
             textAlign: TextAlign.center,
             style: TextStyle(
-              fontSize: 640.max * 13.sr,
+              fontSize: 640.wmax * 13.sr,
               fontFamily: 'PingFang-Bold',
               color: const Color(0xffbdbdbd),
               fontWeight: FontWeight.w500,
@@ -189,27 +189,27 @@ class PageRegister extends GetView<PageRegisterController> {
         Container(
           alignment: Alignment.center,
           padding: EdgeInsets.only(
-            top: 640.max * 22.sr,
-            left: 640.max * 28.sr,
-            right: 640.max * 28.sr,
-            bottom: 640.max * 38.sr,
+            top: 640.wmax * 22.sr,
+            left: 640.wmax * 28.sr,
+            right: 640.wmax * 28.sr,
+            bottom: 640.wmax * 38.sr,
           ),
           child: Wrap(
-            spacing: 640.max * 20.sr,
-            runSpacing: 640.max * 15.sr,
+            spacing: 640.wmax * 20.sr,
+            runSpacing: 640.wmax * 15.sr,
             children: [
               GestureDetector(
                 behavior: HitTestBehavior.opaque,
                 child: IntrinsicWidth(
                   child: Container(
                     padding: EdgeInsets.symmetric(
-                      vertical: 640.max * 18.sr,
-                      horizontal: 640.max * 20.sr,
+                      vertical: 640.wmax * 18.sr,
+                      horizontal: 640.wmax * 20.sr,
                     ),
                     decoration: BoxDecoration(
                       color: Colors.white,
                       borderRadius: BorderRadius.circular(
-                        640.max * 15.sr,
+                        640.wmax * 15.sr,
                       ),
                       boxShadow: [
                         BoxShadow(
@@ -227,15 +227,15 @@ class PageRegister extends GetView<PageRegisterController> {
                           image: const AssetImage(
                             'lib/assets/images/auth/google.png',
                           ),
-                          width: 640.max * 24.sr,
-                          height: 640.max * 24.sr,
+                          width: 640.wmax * 24.sr,
+                          height: 640.wmax * 24.sr,
                           fit: BoxFit.fill,
                         ),
-                        SizedBox(width: 640.max * 6.sr),
+                        SizedBox(width: 640.wmax * 6.sr),
                         Text(
                           'Google',
                           style: TextStyle(
-                            fontSize: 640.max * 16.sr,
+                            fontSize: 640.wmax * 16.sr,
                             fontWeight: FontWeight.w500,
                             color: const Color(0xffbdbdbd),
                           ),
@@ -253,13 +253,13 @@ class PageRegister extends GetView<PageRegisterController> {
                 child: IntrinsicWidth(
                   child: Container(
                     padding: EdgeInsets.symmetric(
-                      vertical: 640.max * 18.sr,
-                      horizontal: 640.max * 20.sr,
+                      vertical: 640.wmax * 18.sr,
+                      horizontal: 640.wmax * 20.sr,
                     ),
                     decoration: BoxDecoration(
                       color: const Color(0xff4368c7),
                       borderRadius: BorderRadius.circular(
-                        640.max * 15.sr,
+                        640.wmax * 15.sr,
                       ),
                       boxShadow: [
                         BoxShadow(
@@ -277,15 +277,15 @@ class PageRegister extends GetView<PageRegisterController> {
                           image: const AssetImage(
                             'lib/assets/images/auth/github.png',
                           ),
-                          width: 640.max * 24.sr,
-                          height: 640.max * 24.sr,
+                          width: 640.wmax * 24.sr,
+                          height: 640.wmax * 24.sr,
                           fit: BoxFit.fill,
                         ),
-                        SizedBox(width: 640.max * 6.sr),
+                        SizedBox(width: 640.wmax * 6.sr),
                         Text(
                           'Github',
                           style: TextStyle(
-                            fontSize: 640.max * 16.sr,
+                            fontSize: 640.wmax * 16.sr,
                             fontWeight: FontWeight.w500,
                             color: Colors.white,
                           ),
@@ -322,13 +322,13 @@ class PageRegister extends GetView<PageRegisterController> {
     return Column(
       children: [
         Container(
-          width: 640.max * 310.sr,
-          height: 640.max * 54.sr,
+          width: 640.wmax * 310.sr,
+          height: 640.wmax * 54.sr,
           alignment: Alignment.center,
-          margin: EdgeInsets.only(bottom: 640.max * 18.sr),
+          margin: EdgeInsets.only(bottom: 640.wmax * 18.sr),
           decoration: BoxDecoration(
             color: const Color(0xfff2f2f2),
-            borderRadius: BorderRadius.circular(640.max * 15.sr),
+            borderRadius: BorderRadius.circular(640.wmax * 15.sr),
             border: Border.all(
               width: 1,
               color: emailError.value
@@ -339,22 +339,22 @@ class PageRegister extends GetView<PageRegisterController> {
           child: TextField(
             focusNode: emailFocusNode,
             controller: emailController,
-            cursorWidth: 640.max * 1.8.sr,
-            cursorHeight: 640.max * 18.sr,
+            cursorWidth: 640.wmax * 1.8.sr,
+            cursorHeight: 640.wmax * 18.sr,
             keyboardType: TextInputType.text,
             textAlignVertical: TextAlignVertical.center,
             decoration: InputDecoration(
               filled: true,
               hintText: 'Email'.tr,
               prefixIcon: Container(
-                width: 640.max * 64.sr,
+                width: 640.wmax * 64.sr,
                 alignment: Alignment.center,
                 child: Image(
                   image: const AssetImage(
                     'lib/assets/images/auth/email.png',
                   ),
-                  width: 640.max * 24.sr,
-                  height: 640.max * 24.sr,
+                  width: 640.wmax * 24.sr,
+                  height: 640.wmax * 24.sr,
                   fit: BoxFit.fill,
                 ),
               ),
@@ -364,7 +364,7 @@ class PageRegister extends GetView<PageRegisterController> {
               fillColor: Colors.transparent,
               hintStyle: TextStyle(
                 letterSpacing: 1.5,
-                fontSize: 640.max * 16.sr,
+                fontSize: 640.wmax * 16.sr,
                 fontFamily: 'PingFang SC',
                 fontWeight: FontWeight.w500,
                 color: const Color(0xff909399),
@@ -372,7 +372,7 @@ class PageRegister extends GetView<PageRegisterController> {
             ),
             style: TextStyle(
               letterSpacing: 1.5,
-              fontSize: 640.max * 16.sr,
+              fontSize: 640.wmax * 16.sr,
               fontFamily: 'PingFang SC',
               fontWeight: FontWeight.w500,
               color: const Color(0xff606266),
@@ -386,13 +386,13 @@ class PageRegister extends GetView<PageRegisterController> {
           ),
         ),
         Container(
-          width: 640.max * 310.sr,
-          height: 640.max * 54.sr,
+          width: 640.wmax * 310.sr,
+          height: 640.wmax * 54.sr,
           alignment: Alignment.center,
-          margin: EdgeInsets.only(bottom: 640.max * 18.sr),
+          margin: EdgeInsets.only(bottom: 640.wmax * 18.sr),
           decoration: BoxDecoration(
             color: const Color(0xfff2f2f2),
-            borderRadius: BorderRadius.circular(640.max * 15.sr),
+            borderRadius: BorderRadius.circular(640.wmax * 15.sr),
             border: Border.all(
               width: 1,
               color: nameError.value
@@ -403,22 +403,22 @@ class PageRegister extends GetView<PageRegisterController> {
           child: TextField(
             focusNode: nameFocusNode,
             controller: nameController,
-            cursorWidth: 640.max * 1.8.sr,
-            cursorHeight: 640.max * 18.sr,
+            cursorWidth: 640.wmax * 1.8.sr,
+            cursorHeight: 640.wmax * 18.sr,
             keyboardType: TextInputType.text,
             textAlignVertical: TextAlignVertical.center,
             decoration: InputDecoration(
               filled: true,
               hintText: 'Username'.tr,
               prefixIcon: Container(
-                width: 640.max * 64.sr,
+                width: 640.wmax * 64.sr,
                 alignment: Alignment.center,
                 child: Image(
                   image: const AssetImage(
                     'lib/assets/images/auth/profile.png',
                   ),
-                  width: 640.max * 24.sr,
-                  height: 640.max * 24.sr,
+                  width: 640.wmax * 24.sr,
+                  height: 640.wmax * 24.sr,
                   fit: BoxFit.fill,
                 ),
               ),
@@ -428,7 +428,7 @@ class PageRegister extends GetView<PageRegisterController> {
               fillColor: Colors.transparent,
               hintStyle: TextStyle(
                 letterSpacing: 1.5,
-                fontSize: 640.max * 16.sr,
+                fontSize: 640.wmax * 16.sr,
                 fontFamily: 'PingFang SC',
                 fontWeight: FontWeight.w500,
                 color: const Color(0xff909399),
@@ -436,7 +436,7 @@ class PageRegister extends GetView<PageRegisterController> {
             ),
             style: TextStyle(
               letterSpacing: 1.5,
-              fontSize: 640.max * 16.sr,
+              fontSize: 640.wmax * 16.sr,
               fontFamily: 'PingFang SC',
               fontWeight: FontWeight.w500,
               color: const Color(0xff606266),
@@ -451,13 +451,13 @@ class PageRegister extends GetView<PageRegisterController> {
           ),
         ),
         Container(
-          width: 640.max * 310.sr,
-          height: 640.max * 54.sr,
+          width: 640.wmax * 310.sr,
+          height: 640.wmax * 54.sr,
           alignment: Alignment.center,
-          margin: EdgeInsets.only(bottom: 640.max * 18.sr),
+          margin: EdgeInsets.only(bottom: 640.wmax * 18.sr),
           decoration: BoxDecoration(
             color: const Color(0xfff2f2f2),
-            borderRadius: BorderRadius.circular(640.max * 15.sr),
+            borderRadius: BorderRadius.circular(640.wmax * 15.sr),
             border: Border.all(
               width: 1,
               color: passwordError1.value
@@ -469,22 +469,22 @@ class PageRegister extends GetView<PageRegisterController> {
             obscureText: true,
             focusNode: passwordFocusNode1,
             controller: passwordController1,
-            cursorWidth: 640.max * 1.8.sr,
-            cursorHeight: 640.max * 18.sr,
+            cursorWidth: 640.wmax * 1.8.sr,
+            cursorHeight: 640.wmax * 18.sr,
             keyboardType: TextInputType.text,
             textAlignVertical: TextAlignVertical.center,
             decoration: InputDecoration(
               filled: true,
               hintText: 'Password'.tr,
               prefixIcon: Container(
-                width: 640.max * 64.sr,
+                width: 640.wmax * 64.sr,
                 alignment: Alignment.center,
                 child: Image(
                   image: const AssetImage(
                     'lib/assets/images/auth/password.png',
                   ),
-                  width: 640.max * 24.sr,
-                  height: 640.max * 24.sr,
+                  width: 640.wmax * 24.sr,
+                  height: 640.wmax * 24.sr,
                   fit: BoxFit.fill,
                 ),
               ),
@@ -494,7 +494,7 @@ class PageRegister extends GetView<PageRegisterController> {
               fillColor: Colors.transparent,
               hintStyle: TextStyle(
                 letterSpacing: 1.5,
-                fontSize: 640.max * 16.sr,
+                fontSize: 640.wmax * 16.sr,
                 fontFamily: 'PingFang SC',
                 fontWeight: FontWeight.w500,
                 color: const Color(0xff909399),
@@ -502,7 +502,7 @@ class PageRegister extends GetView<PageRegisterController> {
             ),
             style: TextStyle(
               letterSpacing: 1.5,
-              fontSize: 640.max * 16.sr,
+              fontSize: 640.wmax * 16.sr,
               fontFamily: 'PingFang SC',
               fontWeight: FontWeight.w500,
               color: const Color(0xff606266),
@@ -518,13 +518,13 @@ class PageRegister extends GetView<PageRegisterController> {
           ),
         ),
         Container(
-          width: 640.max * 310.sr,
-          height: 640.max * 54.sr,
+          width: 640.wmax * 310.sr,
+          height: 640.wmax * 54.sr,
           alignment: Alignment.center,
-          margin: EdgeInsets.only(bottom: 640.max * 18.sr),
+          margin: EdgeInsets.only(bottom: 640.wmax * 18.sr),
           decoration: BoxDecoration(
             color: const Color(0xfff2f2f2),
-            borderRadius: BorderRadius.circular(640.max * 15.sr),
+            borderRadius: BorderRadius.circular(640.wmax * 15.sr),
             border: Border.all(
               width: 1,
               color: passwordError2.value
@@ -536,22 +536,22 @@ class PageRegister extends GetView<PageRegisterController> {
             obscureText: true,
             focusNode: passwordFocusNode2,
             controller: passwordController2,
-            cursorWidth: 640.max * 1.8.sr,
-            cursorHeight: 640.max * 18.sr,
+            cursorWidth: 640.wmax * 1.8.sr,
+            cursorHeight: 640.wmax * 18.sr,
             keyboardType: TextInputType.text,
             textAlignVertical: TextAlignVertical.center,
             decoration: InputDecoration(
               filled: true,
               hintText: 'Confirm Password'.tr,
               prefixIcon: Container(
-                width: 640.max * 64.sr,
+                width: 640.wmax * 64.sr,
                 alignment: Alignment.center,
                 child: Image(
                   image: const AssetImage(
                     'lib/assets/images/auth/password.png',
                   ),
-                  width: 640.max * 24.sr,
-                  height: 640.max * 24.sr,
+                  width: 640.wmax * 24.sr,
+                  height: 640.wmax * 24.sr,
                   fit: BoxFit.fill,
                 ),
               ),
@@ -561,7 +561,7 @@ class PageRegister extends GetView<PageRegisterController> {
               fillColor: Colors.transparent,
               hintStyle: TextStyle(
                 letterSpacing: 1.5,
-                fontSize: 640.max * 16.sr,
+                fontSize: 640.wmax * 16.sr,
                 fontFamily: 'PingFang SC',
                 fontWeight: FontWeight.w500,
                 color: const Color(0xff909399),
@@ -569,7 +569,7 @@ class PageRegister extends GetView<PageRegisterController> {
             ),
             style: TextStyle(
               letterSpacing: 1.5,
-              fontSize: 640.max * 16.sr,
+              fontSize: 640.wmax * 16.sr,
               fontFamily: 'PingFang SC',
               fontWeight: FontWeight.w500,
               color: const Color(0xff606266),
@@ -592,8 +592,8 @@ class PageRegister extends GetView<PageRegisterController> {
 
     return Container(
       width: 100.vw,
-      height: 640.max * 100.sr + mediaPadding.value.bottom,
-      margin: EdgeInsets.only(top: 640.max * 36.sr),
+      height: 640.wmax * 100.sr + mediaPadding.value.bottom,
+      margin: EdgeInsets.only(top: 640.wmax * 36.sr),
       alignment: Alignment.center,
       child: Column(
         children: [
@@ -601,33 +601,33 @@ class PageRegister extends GetView<PageRegisterController> {
             behavior: HitTestBehavior.opaque,
             onTap: () => signUpWithAccount(),
             child: Container(
-              width: 640.max * 200.sr,
-              height: 640.max * 64.sr,
+              width: 640.wmax * 200.sr,
+              height: 640.wmax * 64.sr,
               alignment: Alignment.center,
               decoration: BoxDecoration(
                 color: const Color(0xff5b259f),
-                borderRadius: BorderRadius.circular(640.max * 15.sr),
+                borderRadius: BorderRadius.circular(640.wmax * 15.sr),
               ),
               child: Text(
                 'Register'.tr,
                 style: TextStyle(
                   letterSpacing: 1.2,
                   color: Colors.white,
-                  fontSize: 640.max * 18.sr,
+                  fontSize: 640.wmax * 18.sr,
                   fontWeight: FontWeight.bold,
                   fontFamily: 'PingFang',
                 ),
               ),
             ),
           ),
-          SizedBox(height: 640.max * 12.sr),
+          SizedBox(height: 640.wmax * 12.sr),
           RichText(
             text: TextSpan(
               children: [
                 TextSpan(
                   text: 'You have account？'.tr,
                   style: TextStyle(
-                    fontSize: 640.max * 14.sr,
+                    fontSize: 640.wmax * 14.sr,
                     fontWeight: FontWeight.w500,
                     color: const Color(0xffbdbdbd),
                   ),
@@ -635,7 +635,7 @@ class PageRegister extends GetView<PageRegisterController> {
                 TextSpan(
                   text: 'Login'.tr,
                   style: TextStyle(
-                    fontSize: 640.max * 14.sr,
+                    fontSize: 640.wmax * 14.sr,
                     fontWeight: FontWeight.w600,
                     color: const Color(0xff81c2ff),
                   ),
