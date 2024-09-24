@@ -1,40 +1,56 @@
 import 'dart:async';
 import 'package:get/get.dart';
+import 'package:flutter/material.dart' hide Card;
 import 'package:get_storage/get_storage.dart';
-import 'package:dompet/extension/bool.dart';
 import 'package:dompet/models/message.dart';
+import 'package:dompet/service/bind.dart';
 import 'package:dompet/models/order.dart';
 import 'package:dompet/models/card.dart';
 import 'package:dompet/models/user.dart';
 
 class StoreController extends GetxService {
-  late final ready = Completer<bool>().obs;
+  late final storager = GetStorage('dompet.store', null, {'expired': 0});
+  late final logined = (storager.read<bool>('logined') == true).obs;
+  late final expired = (storager.read<int>('expired') ?? 0).obs;
   late final today = DateTime.now().millisecondsSinceEpoch;
-  late final storage = GetStorage('dompet.store', null, {'expired': 0});
-  late final logined = (storage.read('logined') == true).obs;
-  late final expired = storage.read('expired') as int?;
+  late final ready = Completer<bool>().obs;
 
   Future<bool> get future => ready.value.future;
 
+  late final locale = (null as Locale?).obs;
   late final messages = RxMessages.init();
   late final orders = RxOrders.init();
   late final user = RxUser.init();
   late final card = RxCard.init();
 
   @override
-  onInit() async {
+  onInit() {
     super.onInit();
+    init();
+  }
+
+  Future<void> init() async {
+    final language = storager.read<String>('locale');
+    final languages = language?.split('_') ?? [];
+
+    if (languages.length == 2) {
+      locale.value = Locale(languages[0], languages[1]);
+    }
+
+    if (languages.length == 1) {
+      locale.value = Locale(languages[0]);
+    }
 
     if (logined.value) {
-      logined.value = expired.bv && (today < expired!);
+      logined.value = today < expired.value;
     }
   }
 
   Future<bool> login() async {
     final date = DateTime.now();
-    final time = date.millisecondsSinceEpoch;
-    await storage.write('expired', time + 604800000);
-    await storage.write('logined', true);
+    final time = date.millisecondsSinceEpoch + 604800000;
+    await storager.write('expired', time);
+    await storager.write('logined', true);
 
     if (ready.value.isCompleted) {
       ready.value = Completer();
@@ -42,13 +58,16 @@ class StoreController extends GetxService {
 
     ready.value.complete(true);
     logined.value = true;
+    expired.value = time;
 
     return future;
   }
 
   Future<bool> logout() async {
-    await storage.write('expired', DateTime.now().millisecondsSinceEpoch);
-    await storage.write('logined', false);
+    final date = DateTime.now();
+    final time = date.millisecondsSinceEpoch;
+    await storager.write('logined', false);
+    await storager.write('expired', time);
 
     if (ready.value.isCompleted) {
       ready.value = Completer();
@@ -56,11 +75,27 @@ class StoreController extends GetxService {
 
     ready.value.complete(false);
     logined.value = false;
+    expired.value = time;
 
     return future;
   }
 
   // store
+  Future<void> storeLocale(Locale? locale) async {
+    this.locale.value = locale;
+
+    if (locale != null) await storager.write('locale', locale.toString());
+    if (locale == null) await storager.remove('locale');
+
+    if (!Get.isRegistered<LocaleController>()) {
+      Get.put(LocaleController());
+    }
+
+    Get.find<LocaleController>().update(
+      locale ?? Get.deviceLocale,
+    );
+  }
+
   Future<void> storeMessages(List<Message> list) async {
     messages.change(list);
   }

@@ -98,6 +98,13 @@ class MyAppState extends State<MyApp> with WidgetsBindingObserver {
 
   @override
   Widget build(BuildContext context) {
+    if (!Get.isRegistered<StoreController>()) {
+      Get.put(StoreController());
+    }
+
+    final storeLocale = Get.find<StoreController>().locale;
+    final applyLocale = storeLocale.value ?? Get.deviceLocale;
+
     return GetMaterialApp(
       builder: (context, child) {
         return Obx(() {
@@ -115,13 +122,13 @@ class MyAppState extends State<MyApp> with WidgetsBindingObserver {
       debugShowCheckedModeBanner: false,
       navigatorObservers: [routeObserver],
       defaultTransition: Transition.rightToLeft,
-      initialBinding: AllBinding(),
       fallbackLocale: enUSLocale,
+      initialBinding: AllBinding(),
       initialRoute: GetRoutes.login,
       navigatorKey: navigatorKey,
       translations: translations,
       getPages: GetRoutes.pages(),
-      locale: Get.deviceLocale,
+      locale: applyLocale,
       theme: lightTheme,
       title: 'Dompet',
     );

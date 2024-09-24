@@ -13,22 +13,10 @@ class LocaleController extends GetxService {
       return;
     }
 
-    final countryCode = locale.countryCode;
-    final languageCode = locale.languageCode;
-
-    if (languageCode == enUs.languageCode && countryCode == enUs.countryCode) {
-      this.locale.value = enUs;
-      return;
-    }
-
-    if (languageCode == zhCn.languageCode && countryCode == zhCn.countryCode) {
-      this.locale.value = zhCn;
-      return;
-    }
-
-    if (languageCode == zhCn.languageCode) {
+    if (locale.languageCode == zhCn.languageCode) {
       this.locale.value = zhCn;
       Get.updateLocale(zhCn);
+      return;
     }
 
     this.locale.value = enUs;
