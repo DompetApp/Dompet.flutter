@@ -12,6 +12,9 @@ class MediaQueryController extends GetxService {
   late Rx<double> bottomBar = 56.0.obs;
   late Rx<double> topBar = 56.0.obs;
 
+  final double minScale = 0.85;
+  final double maxScale = 1.05;
+
   void update({
     double? topBar = 56,
     double? bottomBar = 56,
@@ -26,13 +29,17 @@ class MediaQueryController extends GetxService {
     }
 
     if (mediaQuery != null) {
+      padding.value = mediaQuery.padding;
       width.value = mediaQuery.size.width;
       height.value = mediaQuery.size.height;
       viewInsets.value = mediaQuery.viewInsets;
       orientation.value = mediaQuery.orientation;
       viewPadding.value = mediaQuery.viewPadding;
-      textScaler.value = mediaQuery.textScaler;
-      padding.value = mediaQuery.padding;
+
+      textScaler.value = mediaQuery.textScaler.clamp(
+        minScaleFactor: minScale,
+        maxScaleFactor: maxScale,
+      );
     }
   }
 }

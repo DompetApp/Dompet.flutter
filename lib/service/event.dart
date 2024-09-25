@@ -48,7 +48,9 @@ class EventController extends GetxService {
   }
 
   Future<User?> updateUser(User user) async {
-    return AppDatabaser.updateUser(user);
+    final newUser = await AppDatabaser.updateUser(user);
+    await storeController.storeUser(newUser);
+    return newUser;
   }
 
   Future<User?> createUser(User user) async {
@@ -61,11 +63,9 @@ class EventController extends GetxService {
   }
 
   Future<Card?> updateUserCard(Card card) async {
-    return UserDatabaser.updateUserCard(card);
-  }
-
-  Future<Card?> createUserCard(Card card) async {
-    return UserDatabaser.createUserCard(card);
+    final newCard = await UserDatabaser.updateUserCard(card);
+    await storeController.storeCard(newCard);
+    return newCard;
   }
 
   // UserOrder
@@ -74,7 +74,9 @@ class EventController extends GetxService {
   }
 
   Future<List<Order>> createUserOrder(Object orders) async {
-    return UserDatabaser.createUserOrder(orders);
+    final newOrders = await UserDatabaser.createUserOrder(orders);
+    await storeController.storeOrders(newOrders);
+    return newOrders;
   }
 
   // UserMessage
@@ -82,7 +84,15 @@ class EventController extends GetxService {
     return UserDatabaser.queryUserMessages();
   }
 
+  Future<List<Message>> readUserMessage(Message message) async {
+    final newMessages = await UserDatabaser.readUserMessage(message);
+    await storeController.storeMessages(newMessages);
+    return newMessages;
+  }
+
   Future<List<Message>> createUserMessage(Object message) async {
-    return UserDatabaser.createUserMessage(message);
+    final newMessages = await UserDatabaser.createUserMessage(message);
+    await storeController.storeMessages(newMessages);
+    return newMessages;
   }
 }

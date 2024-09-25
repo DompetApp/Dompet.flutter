@@ -3,29 +3,29 @@ import 'package:get/get.dart';
 class RxCard {
   Rx<int> id;
   Rx<String> cardNo;
-  Rx<double> balance;
   Rx<String> cardType;
   Rx<String> bankName;
   Rx<String> expiryDate;
+  Rx<double> balance;
   Rx<String> status;
 
   RxCard(Card card)
       : id = card.id.obs,
         cardNo = card.cardNo.obs,
-        balance = card.balance.obs,
         cardType = card.cardType.obs,
         bankName = card.bankName.obs,
         expiryDate = card.expiryDate.obs,
+        balance = card.balance.obs,
         status = card.status.obs;
 
   Card get value {
     return Card(
       id: id.value,
       cardNo: cardNo.value,
-      balance: balance.value,
       cardType: cardType.value,
       bankName: bankName.value,
       expiryDate: expiryDate.value,
+      balance: balance.value,
       status: status.value,
     );
   }
@@ -38,11 +38,11 @@ class RxCard {
     return RxCard(
       Card(
         id: map['id'],
-        cardNo: map['cardNo'],
+        cardNo: map['card_no'] ?? map['cardNo'],
+        cardType: map['card_type'] ?? map['cardType'],
+        bankName: map['bank_name'] ?? map['bankName'],
+        expiryDate: map['expiry_date'] ?? map['expiryDate'],
         balance: map['balance'],
-        cardType: map['cardType'],
-        bankName: map['bankName'],
-        expiryDate: map['expiryDate'],
         status: map['status'],
       ),
     );
@@ -52,11 +52,11 @@ class RxCard {
     return RxCard(
       Card(
         id: map['id'] ?? id,
-        cardNo: map['cardNo'] ?? cardNo,
+        cardNo: map['card_no'] ?? map['cardNo'] ?? cardNo,
+        cardType: map['card_type'] ?? map['cardType'] ?? cardType,
+        bankName: map['bank_name'] ?? map['bankName'] ?? bankName,
+        expiryDate: map['expiry_date'] ?? map['expiryDate'] ?? expiryDate,
         balance: map['balance'] ?? balance,
-        cardType: map['cardType'] ?? cardType,
-        bankName: map['bankName'] ?? bankName,
-        expiryDate: map['expiryDate'] ?? expiryDate,
         status: map['status'] ?? status,
       ),
     );
@@ -64,10 +64,10 @@ class RxCard {
 
   RxCard change(Card card) {
     status.value = card.status;
+    balance.value = card.balance;
     expiryDate.value = card.expiryDate;
     bankName.value = card.bankName;
     cardType.value = card.cardType;
-    balance.value = card.balance;
     cardNo.value = card.cardNo;
     id.value = card.id;
     return this;
@@ -75,10 +75,10 @@ class RxCard {
 
   RxCard clear() {
     status.value = 'N';
+    balance.value = 0.0;
     expiryDate.value = '';
     bankName.value = '';
     cardType.value = '';
-    balance.value = 0.0;
     cardNo.value = '';
     id.value = 0;
     return this;
@@ -87,17 +87,17 @@ class RxCard {
   RxCard patch({
     int? id,
     String? cardNo,
-    double? balance,
     String? cardType,
     String? bankName,
     String? expiryDate,
+    double? balance,
     String? status,
   }) {
     this.status.value = status ?? this.status.value;
+    this.balance.value = balance ?? this.balance.value;
     this.expiryDate.value = expiryDate ?? this.expiryDate.value;
     this.bankName.value = bankName ?? this.bankName.value;
     this.cardType.value = cardType ?? this.cardType.value;
-    this.balance.value = balance ?? this.balance.value;
     this.cardNo.value = cardNo ?? this.cardNo.value;
     this.id.value = id ?? this.id.value;
     return this;
@@ -107,30 +107,30 @@ class RxCard {
 class Card {
   int id;
   String cardNo;
-  double balance;
   String cardType;
   String bankName;
   String expiryDate;
+  double balance;
   String status;
 
   Card({
     this.id = 0,
-    this.balance = 0.0,
     this.cardNo = '',
     this.cardType = '',
     this.bankName = '',
     this.expiryDate = '',
+    this.balance = 0.0,
     this.status = 'Y',
   });
 
   factory Card.from(Map<String, dynamic> map) {
     return Card(
       id: map['id'] ?? 0,
-      cardNo: map['cardNo'] ?? '',
+      cardNo: map['card_no'] ?? map['cardNo'] ?? '',
+      cardType: map['card_type'] ?? map['cardType'] ?? '',
+      bankName: map['bank_name'] ?? map['bankName'] ?? '',
+      expiryDate: map['expiry_date'] ?? map['expiryDate'] ?? '',
       balance: map['balance'] ?? 0.0,
-      cardType: map['cardType'] ?? '',
-      bankName: map['bankName'] ?? '',
-      expiryDate: map['expiryDate'] ?? '',
       status: map['status'] ?? 'Y',
     );
   }
@@ -138,21 +138,21 @@ class Card {
   Card from(Map<String, dynamic> map) {
     return Card(
       id: map['id'] ?? id,
-      cardNo: map['cardNo'] ?? cardNo,
+      cardNo: map['card_no'] ?? map['cardNo'] ?? cardNo,
+      cardType: map['card_type'] ?? map['cardType'] ?? cardType,
+      bankName: map['bank_name'] ?? map['bankName'] ?? bankName,
+      expiryDate: map['expiry_date'] ?? map['expiryDate'] ?? expiryDate,
       balance: map['balance'] ?? balance,
-      cardType: map['cardType'] ?? cardType,
-      bankName: map['bankName'] ?? bankName,
-      expiryDate: map['expiryDate'] ?? expiryDate,
       status: map['status'] ?? status,
     );
   }
 
   Card change(Card card) {
     status = card.status;
+    balance = card.balance;
     expiryDate = card.expiryDate;
     bankName = card.bankName;
     cardType = card.cardType;
-    balance = card.balance;
     cardNo = card.cardNo;
     id = card.id;
     return this;
@@ -161,17 +161,17 @@ class Card {
   Card patch({
     int? id,
     String? cardNo,
-    double? balance,
     String? cardType,
     String? bankName,
     String? expiryDate,
+    double? balance,
     String? status,
   }) {
     this.status = status ?? this.status;
+    this.balance = balance ?? this.balance;
     this.expiryDate = expiryDate ?? this.expiryDate;
     this.bankName = bankName ?? this.bankName;
     this.cardType = cardType ?? this.cardType;
-    this.balance = balance ?? this.balance;
     this.cardNo = cardNo ?? this.cardNo;
     this.id = id ?? this.id;
     return this;
@@ -179,10 +179,10 @@ class Card {
 
   Card clear() {
     status = 'N';
+    balance = 0.0;
     expiryDate = '';
     bankName = '';
     cardType = '';
-    balance = 0.0;
     cardNo = '';
     id = 0;
     return this;

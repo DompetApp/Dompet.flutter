@@ -13,6 +13,7 @@ class RxMessages {
         desc: map['desc'] ?? '',
         date: map['date'] ?? '',
         money: map['money'] ?? 0.0,
+        isRead: map['is_read'] ?? map['isRead'] ?? 'N',
       ),
     );
 
@@ -38,6 +39,7 @@ class Message {
   String desc;
   String date;
   double money;
+  String isRead;
 
   Message({
     this.id = 0,
@@ -45,6 +47,7 @@ class Message {
     required this.desc,
     required this.date,
     required this.money,
+    this.isRead = 'N',
   });
 
   factory Message.from(Map<String, dynamic> map) {
@@ -54,6 +57,7 @@ class Message {
       desc: map['desc'] ?? '',
       date: map['date'] ?? '',
       money: map['money'] ?? 0.0,
+      isRead: map['is_read'] ?? map['isRead'] ?? 'N',
     );
   }
 }

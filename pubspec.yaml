@@ -92,6 +92,7 @@ flutter:
     - lib/assets/images/payer/
     - lib/assets/images/home/
     - lib/assets/images/auth/
+    - lib/assets/images/card/
     - lib/assets/webview/
     - lib/assets/scripts/
     - lib/assets/langs/

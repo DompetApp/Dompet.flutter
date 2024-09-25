@@ -521,15 +521,15 @@ class PageHome extends GetView<PageHomeController> {
 
   Widget buildHeaderTitle(BuildContext context) {
     final showActions = controller.showActions;
-    final isAnimating = controller.isAnimating;
-    final isHideAvatar = !isAnimating.value && showActions.value;
+    final isRunAnimating = controller.isRunAnimating;
+    final isTitleOffstage = controller.isTitleOffstage;
 
     return Offstage(
-      offstage: isHideAvatar,
+      offstage: isTitleOffstage.value,
       child: AnimatedOpacity(
         opacity: showActions.value ? 0.0 : 1.0,
-        duration: const Duration(milliseconds: 810),
-        onEnd: () => isAnimating.value = false,
+        duration: Duration(milliseconds: showActions.value ? 300 : 480),
+        onEnd: () => isRunAnimating.value = false,
         child: SizedBox(
           width: 640.wmax * (1 - 64.sr),
           height: 640.wmax * 56.sr,
@@ -601,15 +601,15 @@ class PageHome extends GetView<PageHomeController> {
 
   Widget buildHeaderActions(BuildContext context) {
     final showActions = controller.showActions;
-    final isAnimating = controller.isAnimating;
-    final isHideActions = !isAnimating.value && !showActions.value;
+    final isRunAnimating = controller.isRunAnimating;
+    final isActionOffstage = controller.isActionOffstage;
 
     return Offstage(
-      offstage: isHideActions,
+      offstage: isActionOffstage.value,
       child: AnimatedOpacity(
         opacity: !showActions.value ? 0.0 : 1.0,
-        duration: const Duration(milliseconds: 810),
-        onEnd: () => isAnimating.value = false,
+        duration: Duration(milliseconds: showActions.value ? 480 : 300),
+        onEnd: () => isRunAnimating.value = false,
         child: Container(
           width: 640.wmax * (1 - 64.sr),
           height: 640.wmax * 56.sr,
@@ -742,6 +742,16 @@ class PageHome extends GetView<PageHomeController> {
         child: Stack(
           fit: StackFit.expand,
           children: [
+            Positioned(
+              top: 640.wmax * 32.sr,
+              left: 640.wmax * 24.sr,
+              child: Image.asset(
+                'lib/assets/images/tabbar/bg.png',
+                width: 640.wmax * 280.sr,
+                height: 640.wmax * 52.sr,
+                fit: BoxFit.fill,
+              ),
+            ),
             Align(
               alignment: Alignment.topLeft,
               child: Container(
@@ -782,7 +792,7 @@ class PageHome extends GetView<PageHomeController> {
                     ),
                     GestureDetector(
                       behavior: HitTestBehavior.opaque,
-                      onTap: () {},
+                      onTap: () => GetRouter.toNamed(GetRoutes.stats),
                       child: Image.asset(
                         'lib/assets/images/tabbar/chart.png',
                         width: 640.wmax * 28.sr,
@@ -792,7 +802,7 @@ class PageHome extends GetView<PageHomeController> {
                     ),
                     GestureDetector(
                       behavior: HitTestBehavior.opaque,
-                      onTap: () {},
+                      onTap: () => GetRouter.toNamed(GetRoutes.notification),
                       child: Image.asset(
                         'lib/assets/images/tabbar/notification.png',
                         width: 640.wmax * 28.sr,
@@ -802,7 +812,7 @@ class PageHome extends GetView<PageHomeController> {
                     ),
                     GestureDetector(
                       behavior: HitTestBehavior.opaque,
-                      onTap: () {},
+                      onTap: () => GetRouter.toNamed(GetRoutes.settings),
                       child: Image.asset(
                         'lib/assets/images/tabbar/settings.png',
                         width: 640.wmax * 28.sr,
@@ -812,16 +822,6 @@ class PageHome extends GetView<PageHomeController> {
                     ),
                   ],
                 ),
-              ),
-            ),
-            Positioned(
-              top: 640.wmax * 30.sr,
-              left: 640.wmax * 24.sr,
-              child: Image.asset(
-                'lib/assets/images/tabbar/bg.png',
-                width: 640.wmax * 280.sr,
-                height: 640.wmax * 52.sr,
-                fit: BoxFit.fill,
               ),
             ),
           ],

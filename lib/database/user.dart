@@ -53,7 +53,8 @@ class UserDatabaser {
           type TEXT NOT NULL,
           desc TEXT NOT NULL,
           date TEXT NOT NULL,
-          money REAL NOT NULL
+          money REAL NOT NULL,
+          is_read TEXT NOT NULL DEFAULT 'N'
         )
         ''',
       );
@@ -67,8 +68,8 @@ class UserDatabaser {
         Card(
           cardNo: '621062xxxxxx8888',
           cardType: 'Debit Card',
-          bankName: 'CitiBank',
-          expiryDate: '2050-12',
+          bankName: 'Citibank',
+          expiryDate: '2058-12-01',
           balance: 206500.00,
           status: 'Y',
         ),
@@ -233,24 +234,28 @@ class UserDatabaser {
           desc: 'You received a transfer from Emma',
           date: formatter.format(DateTime(year, 6, 17, 11, 11)),
           money: 10000.0,
+          isRead: 'Y',
         ),
         Message(
           type: 'Top up',
           desc: 'You top-up some money',
           date: formatter.format(DateTime(year, 9, 2, 17, 3)),
           money: 50000.0,
+          isRead: 'Y',
         ),
         Message(
           type: 'Payment',
           desc: 'You paid money to top up Netflix',
           date: formatter.format(DateTime(year, 9, 11, 13, 7)),
           money: -2000.0,
+          isRead: 'Y',
         ),
         Message(
           type: 'Transfer',
           desc: 'You transferred money to PayPal',
           date: formatter.format(DateTime(year, 9, 21, 8, 8)),
           money: -1500.0,
+          isRead: 'Y',
         ),
 
         // year-1
@@ -259,24 +264,28 @@ class UserDatabaser {
           desc: 'You paid money to Emma',
           date: formatter.format(DateTime(year - 1, 3, 8, 8, 11)),
           money: -20000.0,
+          isRead: 'Y',
         ),
         Message(
           type: 'Payment',
           desc: 'You paid money to PayPal',
           date: formatter.format(DateTime(year - 1, 4, 7, 15, 14)),
           money: -15000.0,
+          isRead: 'Y',
         ),
         Message(
           type: 'Top up',
           desc: 'You top-up some money',
           date: formatter.format(DateTime(year - 1, 6, 6, 17, 19)),
           money: 20000.0,
+          isRead: 'Y',
         ),
         Message(
           type: 'Transfer',
           desc: 'You transfer money to David',
           date: formatter.format(DateTime(year - 1, 8, 8, 20, 21)),
           money: -40000.0,
+          isRead: 'Y',
         ),
 
         // year-2
@@ -285,24 +294,28 @@ class UserDatabaser {
           desc: 'You paid money to Netflix',
           date: formatter.format(DateTime(year - 2, 5, 30, 14, 25)),
           money: -3000.0,
+          isRead: 'Y',
         ),
         Message(
           type: 'Top up',
           desc: 'You received a top-up from Emma',
           date: formatter.format(DateTime(year - 2, 7, 11, 9, 1)),
           money: 55000.0,
+          isRead: 'Y',
         ),
         Message(
           type: 'Payment',
           desc: 'You paid money to PayPal',
           date: formatter.format(DateTime(year - 2, 7, 19, 13, 7)),
           money: -700.0,
+          isRead: 'Y',
         ),
         Message(
           type: 'Transfer',
           desc: 'You received a transfer from David',
           date: formatter.format(DateTime(year - 2, 9, 3, 9, 57)),
           money: 27000.0,
+          isRead: 'Y',
         ),
 
         // year-3
@@ -311,24 +324,28 @@ class UserDatabaser {
           desc: 'You transfer money to Emma',
           date: formatter.format(DateTime(year - 3, 6, 1, 9, 37)),
           money: -40000.0,
+          isRead: 'Y',
         ),
         Message(
           type: 'Payment',
           desc: 'You paid money to PayPal',
           date: formatter.format(DateTime(year - 3, 6, 20, 11, 11)),
           money: -5000.0,
+          isRead: 'Y',
         ),
         Message(
           type: 'Top up',
           desc: 'You top-up some money',
           date: formatter.format(DateTime(year - 3, 9, 9, 19, 17)),
           money: 3000.0,
+          isRead: 'Y',
         ),
         Message(
           type: 'Transfer',
           desc: 'You received a transfer from David',
           date: formatter.format(DateTime(year - 3, 10, 17, 15, 11)),
           money: 2500.0,
+          isRead: 'Y',
         ),
 
         // year-4
@@ -337,12 +354,14 @@ class UserDatabaser {
           desc: 'You top-up some money',
           date: formatter.format(DateTime(year - 4, 9, 21, 5, 10)),
           money: 200000.0,
+          isRead: 'Y',
         ),
         Message(
           type: 'Payment',
           desc: 'You paid money to Netflix',
           date: formatter.format(DateTime(year - 4, 10, 9, 17, 12)),
           money: -1800.0,
+          isRead: 'Y',
         ),
         Message(
           type: 'Transfer',
@@ -362,9 +381,6 @@ class UserDatabaser {
 
   // UserCard
   static Future<Card?> createUserCard(Card card) async {
-    const format = 'yyyy-MM-dd HH:mm:ss';
-    final formatter = DateFormat(format);
-
     return db!.transaction<Card?>((txn) async {
       await txn.rawInsert(
         'insert into UserCard(card_no, balance, card_type, bank_name, expiry_date, status) VALUES(?, ?, ?, ?, ?, ?)',
@@ -373,7 +389,7 @@ class UserDatabaser {
           card.balance,
           card.cardType,
           card.bankName,
-          formatter.format(DateTime.now()),
+          card.expiryDate,
           card.status,
         ],
       );
@@ -492,7 +508,7 @@ class UserDatabaser {
     return list ?? [];
   }
 
-  // UserOrder
+  // UserMessage
   static Future<List<Message>> createUserMessage(Object messages) async {
     if (messages is Message) {
       messages = [messages];
@@ -507,12 +523,13 @@ class UserDatabaser {
       return db!.transaction<List<Message>>((txn) async {
         for (var item in list) {
           await txn.rawInsert(
-            'insert into UserMessage(type, desc, date, money) VALUES(?, ?, ?, ?)',
+            'insert into UserMessage(type, desc, date, money, is_read) VALUES(?, ?, ?, ?, ?)',
             [
               item.type,
               item.desc,
               item.date.isEmpty ? formatter.format(DateTime.now()) : item.date,
               item.money,
+              item.isRead.isNotEmpty ? item.isRead : null,
             ],
           );
         }
@@ -524,6 +541,34 @@ class UserDatabaser {
     return [];
   }
 
+  static Future<List<Message>> readUserMessage(Message message) async {
+    return db!.transaction<List<Message>>((txn) async {
+      await txn.rawUpdate(
+        'update UserMessage set is_read = ? where id == ?',
+        [
+          message.isRead.isNotEmpty ? message.isRead : 'N',
+          message.id,
+        ],
+      );
+
+      final result = await txn.rawQuery(
+        '''
+        select 
+          id,
+          type,
+          desc,
+          date,
+          money,
+          is_read
+        from UserMessage
+        order by datetime(date) desc
+        ''',
+      );
+
+      return result.map((card) => Message.from(card)).toList();
+    });
+  }
+
   static Future<List<Message>> queryUserMessages() async {
     final list = await db?.transaction<List<Message>>((txn) async {
       final result = await txn.rawQuery(
@@ -533,7 +578,8 @@ class UserDatabaser {
           type,
           desc,
           date,
-          money
+          money,
+          is_read
         from UserMessage
         order by datetime(date) desc
         ''',

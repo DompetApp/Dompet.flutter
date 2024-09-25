@@ -17,7 +17,7 @@ class StoreController extends GetxService {
 
   Future<bool> get future => ready.value.future;
 
-  late final locale = (null as Locale?).obs;
+  late final locale = Rx<Locale?>(null);
   late final messages = RxMessages.init();
   late final orders = RxOrders.init();
   late final user = RxUser.init();
@@ -29,6 +29,7 @@ class StoreController extends GetxService {
     init();
   }
 
+  // Auth
   Future<void> init() async {
     final language = storager.read<String>('locale');
     final languages = language?.split('_') ?? [];
@@ -80,7 +81,7 @@ class StoreController extends GetxService {
     return future;
   }
 
-  // store
+  // Store
   Future<void> storeLocale(Locale? locale) async {
     this.locale.value = locale;
 
@@ -104,15 +105,19 @@ class StoreController extends GetxService {
     orders.change(list);
   }
 
-  Future<void> storeCard(Card card) async {
-    this.card.change(card);
+  Future<void> storeCard(Card? card) async {
+    if (card != null) {
+      this.card.change(card);
+    }
   }
 
-  Future<void> storeUser(User user) async {
-    this.user.change(user);
+  Future<void> storeUser(User? user) async {
+    if (user != null) {
+      this.user.change(user);
+    }
   }
 
-  // clear
+  // Clear
   Future<void> clearMessage() async {
     messages.clear();
   }

@@ -15,8 +15,8 @@ class PageRegister extends GetView<PageRegisterController> {
       Get.put(PageRegisterController());
     }
 
-    return Obx(() {
-      return GestureDetector(
+    return Obx(
+      () => GestureDetector(
         onTap: () => FocusScope.of(context).unfocus(),
         behavior: HitTestBehavior.opaque,
         child: Scaffold(
@@ -49,8 +49,8 @@ class PageRegister extends GetView<PageRegisterController> {
           backgroundColor: Colors.white,
           resizeToAvoidBottomInset: true,
         ),
-      );
-    });
+      ),
+    );
   }
 
   Widget buildBack(BuildContext context) {
