@@ -168,7 +168,7 @@ class PageHome extends GetView<PageHomeController> {
                       margin: EdgeInsets.only(top: 640.wmax * 10.sr),
                       alignment: Alignment.centerRight,
                       child: Text(
-                        'Citibank'.tr,
+                        'Citibank',
                         style: TextStyle(
                           fontSize: 640.wmax * 22.sr,
                           fontWeight: FontWeight.bold,

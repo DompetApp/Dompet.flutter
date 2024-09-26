@@ -7,17 +7,18 @@ class MediaQueryController extends GetxService {
   late Rx<EdgeInsets> viewPadding = EdgeInsets.zero.obs;
   late Rx<EdgeInsets> viewInsets = EdgeInsets.zero.obs;
   late Rx<EdgeInsets> padding = EdgeInsets.zero.obs;
+
+  late Rx<double> bottomBar = kBottomNavigationBarHeight.obs;
   late Rx<double> height = Size.zero.height.obs;
   late Rx<double> width = Size.zero.width.obs;
-  late Rx<double> bottomBar = 56.0.obs;
-  late Rx<double> topBar = 56.0.obs;
+  late Rx<double> topBar = kToolbarHeight.obs;
 
   final double minScale = 0.85;
   final double maxScale = 1.05;
 
   void update({
-    double? topBar = 56,
-    double? bottomBar = 56,
+    double? topBar,
+    double? bottomBar,
     MediaQueryData? mediaQuery,
   }) {
     if (topBar != null) {

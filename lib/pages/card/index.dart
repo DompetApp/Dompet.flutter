@@ -16,44 +16,40 @@ class PageCard extends GetView<PageCardController> {
     }
 
     return Obx(
-      () => GestureDetector(
-        onTap: () => FocusScope.of(context).unfocus(),
-        behavior: HitTestBehavior.opaque,
-        child: Scaffold(
-          body: Stack(
-            fit: StackFit.expand,
-            alignment: AlignmentDirectional.topCenter,
-            children: [
-              Align(
-                alignment: Alignment.topCenter,
-                child: SizedBox(
-                  width: 640.wmax,
-                  height: 100.vh,
-                  child: ListView(
-                    shrinkWrap: false,
-                    padding: EdgeInsets.zero,
-                    physics: const ClampingScrollPhysics(),
-                    children: [
-                      buildTitle(context),
-                      buildContent(context),
-                      buildButton(context),
-                    ],
-                  ),
+      () => Scaffold(
+        body: Stack(
+          fit: StackFit.expand,
+          children: [
+            Align(
+              alignment: Alignment.topCenter,
+              child: SizedBox(
+                width: 640.wmax,
+                height: 100.vh,
+                child: ListView(
+                  shrinkWrap: false,
+                  padding: EdgeInsets.zero,
+                  physics: const ClampingScrollPhysics(),
+                  children: [
+                    buildTitle(context),
+                    buildContent(context),
+                    buildButton(context),
+                  ],
                 ),
               ),
-              buildBack(context),
-            ],
-          ),
-          backgroundColor: Colors.white,
-          resizeToAvoidBottomInset: false,
+            ),
+            buildBack(context),
+          ],
         ),
+        backgroundColor: Colors.white,
+        resizeToAvoidBottomInset: false,
       ),
     );
   }
 
   Widget buildBack(BuildContext context) {
-    final mediaPadding = controller.mediaPadding;
-    final top = mediaPadding.value.top;
+    final mediaTopBar = controller.mediaTopBar.value;
+    final mediaPadding = controller.mediaPadding.value;
+    final height = max(640.wmax * 40.sr, mediaTopBar);
 
     return Positioned(
       top: 0,
@@ -63,10 +59,14 @@ class PageCard extends GetView<PageCardController> {
         alignment: Alignment.topCenter,
         child: Container(
           width: 680.wmax,
-          height: 640.wmax * 36.sr,
+          height: height,
           margin: EdgeInsets.only(
-            top: max(top, 640.wmax * 20.sr),
+            top: max(mediaPadding.top, 640.wmax * 20.sr),
             left: 640.wmax * 20.sr,
+          ),
+          padding: EdgeInsets.only(
+            top: (height - 640.wmax * 36.sr) / 2,
+            bottom: (height - 640.wmax * 36.sr) / 2,
           ),
           child: Row(
             children: [

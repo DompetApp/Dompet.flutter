@@ -58,21 +58,21 @@ class PageLogin extends GetView<PageLoginController> {
           child: Container(
             constraints: const BoxConstraints.expand(),
             color: const Color(0xffffffff).withOpacity(0.8),
-            child: const Center(
+            child: Center(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   CircularProgressIndicator(
                     strokeWidth: 3.2,
-                    color: Color(0xff707177),
-                    semanticsValue: 'Requesting...',
+                    color: const Color(0xff707177),
+                    semanticsValue: 'Requesting...'.tr,
                   ),
                   Padding(
-                    padding: EdgeInsets.fromLTRB(30, 20, 30, 80),
+                    padding: const EdgeInsets.fromLTRB(30, 20, 30, 80),
                     child: Text(
-                      'Requesting...',
-                      style: TextStyle(
+                      'Requesting...'.tr,
+                      style: const TextStyle(
                         fontSize: 16,
                         fontWeight: FontWeight.w600,
                         letterSpacing: 1.5,
@@ -80,7 +80,7 @@ class PageLogin extends GetView<PageLoginController> {
                       ),
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     width: double.infinity,
                     height: 80,
                   ),

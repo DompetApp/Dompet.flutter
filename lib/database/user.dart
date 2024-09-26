@@ -76,7 +76,7 @@ class UserDatabaser {
       );
 
       await UserDatabaser.createUserOrder([
-        // year-0
+        // year
         Order(
           icon: 'emma',
           name: 'Emma',
@@ -228,7 +228,7 @@ class UserDatabaser {
       ]);
 
       await UserDatabaser.createUserMessage([
-        // year-0
+        // year
         Message(
           type: 'Transfer',
           desc: 'You received a transfer from Emma',
@@ -245,17 +245,15 @@ class UserDatabaser {
         ),
         Message(
           type: 'Payment',
-          desc: 'You paid money to top up Netflix',
+          desc: 'You paid money to top-up Netflix',
           date: formatter.format(DateTime(year, 9, 11, 13, 7)),
           money: -2000.0,
-          isRead: 'Y',
         ),
         Message(
           type: 'Transfer',
           desc: 'You transferred money to PayPal',
           date: formatter.format(DateTime(year, 9, 21, 8, 8)),
           money: -1500.0,
-          isRead: 'Y',
         ),
 
         // year-1
@@ -282,7 +280,7 @@ class UserDatabaser {
         ),
         Message(
           type: 'Transfer',
-          desc: 'You transfer money to David',
+          desc: 'You transferred money to David',
           date: formatter.format(DateTime(year - 1, 8, 8, 20, 21)),
           money: -40000.0,
           isRead: 'Y',
@@ -321,7 +319,7 @@ class UserDatabaser {
         // year-3
         Message(
           type: 'Transfer',
-          desc: 'You transfer money to Emma',
+          desc: 'You transferred money to Emma',
           date: formatter.format(DateTime(year - 3, 6, 1, 9, 37)),
           money: -40000.0,
           isRead: 'Y',
@@ -368,12 +366,14 @@ class UserDatabaser {
           desc: 'You transferred money to PayPal',
           date: formatter.format(DateTime(year - 4, 11, 1, 8, 36)),
           money: -12000.0,
+          isRead: 'Y',
         ),
         Message(
           type: 'Transfer',
           desc: 'You transferred money to David',
           date: formatter.format(DateTime(year - 4, 12, 22, 15, 22)),
           money: -166200.0,
+          isRead: 'Y',
         ),
       ]);
     }
@@ -545,10 +545,7 @@ class UserDatabaser {
     return db!.transaction<List<Message>>((txn) async {
       await txn.rawUpdate(
         'update UserMessage set is_read = ? where id == ?',
-        [
-          message.isRead.isNotEmpty ? message.isRead : 'N',
-          message.id,
-        ],
+        ['Y', message.id],
       );
 
       final result = await txn.rawQuery(
