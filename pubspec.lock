@@ -5,10 +5,10 @@ packages:
     dependency: transitive
     description:
       name: _flutterfire_internals
-      sha256: "5fdcea390499dd26c808a3c662df5f4208d6bbc0643072eee94f1476249e2818"
+      sha256: "5534e701a2c505fed1f0799e652dd6ae23bd4d2c4cf797220e5ced5764a7c1c2"
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "1.3.43"
+    version: "1.3.44"
   archive:
     dependency: transitive
     description:
@@ -189,34 +189,34 @@ packages:
     dependency: "direct main"
     description:
       name: firebase_auth
-      sha256: "16b0b70e837539b27d4cec059b5169eaf116af9deca896b923e9f84d83af9cc6"
+      sha256: d453acec0d958ba0e25d41a9901b32cb77d1535766903dea7a61b2788c304596
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "5.3.0"
+    version: "5.3.1"
   firebase_auth_platform_interface:
     dependency: transitive
     description:
       name: firebase_auth_platform_interface
-      sha256: f1f32cdba3f5620082c63d18545dd58dde8f5ffc66caa43feb9b9fe57e93d4b6
+      sha256: "78966c2ef774f5bf2a8381a307222867e9ece3509110500f7a138c115926aa65"
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "7.4.6"
+    version: "7.4.7"
   firebase_auth_web:
     dependency: transitive
     description:
       name: firebase_auth_web
-      sha256: "5731d0e51ef7aa93f9c421798b92b6961411c15c18adaff939a3c9f84e8e456b"
+      sha256: "77ad3b252badedd3f08dfa21a4c7fe244be96c6da3a4067f253b13ea5d32424c"
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "5.13.1"
+    version: "5.13.2"
   firebase_core:
     dependency: "direct main"
     description:
       name: firebase_core
-      sha256: c7de9354eb2cd8bfe8059e1112174c9a58beda7051807207306bc48283277cfb
+      sha256: "51dfe2fbf3a984787a2e7b8592f2f05c986bfedd6fdacea3f9e0a7beb334de96"
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "3.5.0"
+    version: "3.6.0"
   firebase_core_platform_interface:
     dependency: transitive
     description:
@@ -250,18 +250,18 @@ packages:
     dependency: "direct main"
     description:
       name: flutter_inappwebview
-      sha256: bdfcf87dd49e1bd036781e308cfde61e258749852ba5e337c6128670b4428fda
+      sha256: f918b6d8ec1e988f72bdbd65b7317dbdf626ce8b7c00dd93c271e030ff66218f
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "6.1.0+1"
+    version: "6.1.1"
   flutter_inappwebview_android:
     dependency: transitive
     description:
       name: flutter_inappwebview_android
-      sha256: "269a7f620103402c579fa353a31372c8525d533ea0b83ccf893f29a948b1fe28"
+      sha256: "94690a226193bb8ee0648c69a1cd8f1e3c6466cfb1b8dd813c1bb1a498343f3b"
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "1.1.0+1"
+    version: "1.1.0+3"
   flutter_inappwebview_internal_annotations:
     dependency: transitive
     description:
@@ -274,42 +274,42 @@ packages:
     dependency: transitive
     description:
       name: flutter_inappwebview_ios
-      sha256: "9b2a9ded585581898692a21e0c501dccab7c6d48b936b9fc1bbdd6d9fe9df3e6"
+      sha256: e13f79a4527629c0cf66b991b34a993e9a5387b8a1806d37e0534d9e18f20835
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "1.1.0+1"
+    version: "1.1.0+2"
   flutter_inappwebview_macos:
     dependency: transitive
     description:
       name: flutter_inappwebview_macos
-      sha256: "3c08e27e1471834037d5015b55560e42ad44e15502646198a0e64d54bcc3ba26"
+      sha256: "6b6d4ebfaaf0559ea65e53969f6011a6fad5eba8bd01346132cf9b6fce6c3780"
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "1.1.0+1"
+    version: "1.1.0+2"
   flutter_inappwebview_platform_interface:
     dependency: transitive
     description:
       name: flutter_inappwebview_platform_interface
-      sha256: "491281ff6c15b205f04e4c11df4af23245a5b2cb1aa70113f6f42a1296836559"
+      sha256: "685b82b62c7704275e10781273bf87b4abfc086a3b83c7ef20ebc679ee551c43"
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "1.1.0"
+    version: "1.1.0+1"
   flutter_inappwebview_web:
     dependency: transitive
     description:
       name: flutter_inappwebview_web
-      sha256: "926523a83e1a3318ef2798a5b2589b70d568ae1de53f9b011794ea90984859ad"
+      sha256: e0f4418493ba55d7f905de530d2abb22281e4e98d867cda3aba90005cf9546d5
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "1.1.0"
+    version: "1.1.0+1"
   flutter_inappwebview_windows:
     dependency: transitive
     description:
       name: flutter_inappwebview_windows
-      sha256: "2c1c13c32835c4a0afa49aabc207cd5cf80967c00bfdfe49259d082182d7c81f"
+      sha256: "583f7b2b050cf0f14f4f4b326f0829c81f0fcae37e408085b9a765ce8f8e6b14"
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "0.1.0"
+    version: "0.2.0"
   flutter_launcher_icons:
     dependency: "direct main"
     description:

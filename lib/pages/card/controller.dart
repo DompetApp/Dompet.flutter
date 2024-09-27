@@ -9,7 +9,6 @@ class PageCardController extends GetxController
 
   late final duration = const Duration(milliseconds: 480);
   late final mediaPadding = mediaQueryController.viewPadding;
-  late final orientation = mediaQueryController.orientation;
   late final mediaTopBar = mediaQueryController.topBar;
   late final bankCard = storeController.card;
 

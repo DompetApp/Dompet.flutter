@@ -437,7 +437,7 @@ class PageCard extends GetView<PageCardController> {
     final mediaPadding = controller.mediaPadding.value;
     final mediaBottom = max(mediaPadding.bottom, 640.wmax * 30.sr);
 
-    Widget withInWell({required Widget child, GestureTapCallback? onTap}) {
+    Widget withInWell({required Widget child, dynamic onTap}) {
       return Material(
         color: Colors.transparent,
         child: InkResponse(

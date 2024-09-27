@@ -24,7 +24,7 @@ class UserDatabaser {
         CREATE TABLE UserCard (
           id INTEGER PRIMARY KEY AUTOINCREMENT,
           card_no TEXT NOT NULL,
-          balance REAL NOT NULL DEFAULT '206500.00',
+          balance REAL NOT NULL DEFAULT '0.0',
           card_type TEXT NOT NULL,
           bank_name TEXT NOT NULL,
           expiry_date TEXT NOT NULL,
@@ -70,7 +70,7 @@ class UserDatabaser {
           cardType: 'Debit Card',
           bankName: 'Citibank',
           expiryDate: '2058-12-01',
-          balance: 206500.00,
+          balance: 0.0,
           status: 'Y',
         ),
       );
@@ -245,7 +245,7 @@ class UserDatabaser {
         ),
         Message(
           type: 'Payment',
-          desc: 'You paid money to top-up Netflix',
+          desc: 'You paid money to Netflix',
           date: formatter.format(DateTime(year, 9, 11, 13, 7)),
           money: -2000.0,
         ),
@@ -466,6 +466,23 @@ class UserDatabaser {
       final formatter = DateFormat(format);
 
       return db!.transaction<List<Order>>((txn) async {
+        final cards = await txn.rawQuery(
+          '''
+          select 
+            id,
+            card_no,
+            balance,
+            card_type,
+            bank_name,
+            expiry_date,
+            status
+          from UserCard
+          order by datetime(expiry_date) desc
+          ''',
+        );
+
+        final card = Card.from(cards[0]);
+
         for (var item in list) {
           await txn.rawInsert(
             'insert into UserOrder(icon, name, type, date, money) VALUES(?, ?, ?, ?, ?)',
@@ -477,9 +494,38 @@ class UserDatabaser {
               item.money,
             ],
           );
+
+          card.balance += item.money;
         }
 
-        return list;
+        await txn.rawUpdate(
+          'update UserCard set card_no = ?, balance = ?, card_type = ?, bank_name = ?, expiry_date = ?, status = ? where id == ?',
+          [
+            card.cardNo,
+            card.balance,
+            card.cardType,
+            card.bankName,
+            formatter.format(DateTime.now()),
+            card.status,
+            card.id,
+          ],
+        );
+
+        final result = await txn.rawQuery(
+          '''
+          select 
+            id,
+            icon,
+            name,
+            type,
+            date,
+            money
+          from UserOrder
+          order by datetime(date) desc
+          ''',
+        );
+
+        return result.map((card) => Order.from(card)).toList();
       });
     }
 
@@ -534,7 +580,21 @@ class UserDatabaser {
           );
         }
 
-        return list;
+        final result = await txn.rawQuery(
+          '''
+            select 
+              id,
+              type,
+              desc,
+              date,
+              money,
+              is_read
+            from UserMessage
+            order by datetime(date) desc
+            ''',
+        );
+
+        return result.map((card) => Message.from(card)).toList();
       });
     }
 
