@@ -161,6 +161,7 @@ class PageRegister extends GetView<PageRegisterController> {
   }
 
   Widget buildThirdAuth(BuildContext context) {
+    final loginTimeout = controller.loginTimeout;
     final signInWithGoogle = controller.signInWithGoogle;
     final signInWithGithub = controller.signInWithGithub;
 
@@ -245,7 +246,10 @@ class PageRegister extends GetView<PageRegisterController> {
                   ),
                 ),
                 onTap: () {
-                  signInWithGoogle();
+                  loginTimeout(
+                    signInWithGoogle(),
+                    Duration(seconds: 30),
+                  );
                 },
               ),
               GestureDetector(
@@ -295,7 +299,10 @@ class PageRegister extends GetView<PageRegisterController> {
                   ),
                 ),
                 onTap: () {
-                  signInWithGithub();
+                  loginTimeout(
+                    signInWithGithub(),
+                    Duration(seconds: 30),
+                  );
                 },
               ),
             ],
@@ -587,6 +594,7 @@ class PageRegister extends GetView<PageRegisterController> {
   }
 
   Widget buildFormButton(BuildContext context) {
+    final loginTimeout = controller.loginTimeout;
     final mediaPadding = controller.mediaPadding;
     final signUpWithAccount = controller.signUpWithAccount;
 
@@ -599,7 +607,6 @@ class PageRegister extends GetView<PageRegisterController> {
         children: [
           GestureDetector(
             behavior: HitTestBehavior.opaque,
-            onTap: () => signUpWithAccount(),
             child: Container(
               width: 640.wmax * 200.sr,
               height: 640.wmax * 64.sr,
@@ -619,6 +626,12 @@ class PageRegister extends GetView<PageRegisterController> {
                 ),
               ),
             ),
+            onTap: () {
+              loginTimeout(
+                signUpWithAccount(),
+                Duration(seconds: 5),
+              );
+            },
           ),
           SizedBox(height: 640.wmax * 12.sr),
           RichText(

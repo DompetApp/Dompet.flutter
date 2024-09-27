@@ -48,7 +48,7 @@ dependencies:
   image_picker: ^1.1.2
   get_storage: ^2.1.1
   fl_chart: ^0.69.0
-  sqflite: ^2.3.3+1
+  sqflite: ^2.3.3+2
   convert: ^3.1.1
   crypto: ^3.0.5
   intl: ^0.19.0

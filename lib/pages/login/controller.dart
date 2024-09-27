@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:typed_data';
 import 'package:get/get.dart';
 import 'package:dio/dio.dart';
@@ -150,6 +151,34 @@ class PageLoginController extends GetxController {
     return user == null
         ? Toaster.error(message: 'Failed to login user!'.tr)
         : eventController.login();
+  }
+
+  Future<void> registerTimeout(Future future, Duration duration) async {
+    try {
+      await future.timeout(duration, onTimeout: () {
+        throw TimeoutException("Registration request timed out!".tr);
+      });
+    } on TimeoutException catch (e) {
+      Toaster.error(message: e.message);
+      loading.value = false;
+    } catch (e) {
+      Toaster.error(message: e.toString());
+      loading.value = false;
+    }
+  }
+
+  Future<void> loginTimeout(Future future, Duration duration) async {
+    try {
+      await future.timeout(duration, onTimeout: () {
+        throw TimeoutException("Login request timed out!".tr);
+      });
+    } on TimeoutException catch (e) {
+      Toaster.error(message: e.message);
+      loading.value = false;
+    } catch (e) {
+      Toaster.error(message: e.toString());
+      loading.value = false;
+    }
   }
 
   Future<Uint8List?> fetchImageAsUint8List(String? imageUrl) async {

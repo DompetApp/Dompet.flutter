@@ -132,6 +132,7 @@ class PageLogin extends GetView<PageLoginController> {
   }
 
   Widget buildThirdAuth(BuildContext context) {
+    final loginTimeout = controller.loginTimeout;
     final signInWithGoogle = controller.signInWithGoogle;
     final signInWithGithub = controller.signInWithGithub;
 
@@ -216,7 +217,10 @@ class PageLogin extends GetView<PageLoginController> {
                   ),
                 ),
                 onTap: () {
-                  signInWithGoogle();
+                  loginTimeout(
+                    signInWithGoogle(),
+                    Duration(seconds: 30),
+                  );
                 },
               ),
               GestureDetector(
@@ -266,7 +270,10 @@ class PageLogin extends GetView<PageLoginController> {
                   ),
                 ),
                 onTap: () {
-                  signInWithGithub();
+                  loginTimeout(
+                    signInWithGithub(),
+                    Duration(seconds: 30),
+                  );
                 },
               ),
             ],
@@ -418,6 +425,7 @@ class PageLogin extends GetView<PageLoginController> {
   }
 
   Widget buildFormButton(BuildContext context) {
+    final loginTimeout = controller.loginTimeout;
     final mediaPadding = controller.mediaPadding;
     final signInWithAccount = controller.signInWithAccount;
 
@@ -430,7 +438,6 @@ class PageLogin extends GetView<PageLoginController> {
         children: [
           GestureDetector(
             behavior: HitTestBehavior.opaque,
-            onTap: () => signInWithAccount(),
             child: Container(
               width: 640.wmax * 200.sr,
               height: 640.wmax * 64.sr,
@@ -450,6 +457,12 @@ class PageLogin extends GetView<PageLoginController> {
                 ),
               ),
             ),
+            onTap: () {
+              loginTimeout(
+                signInWithAccount(),
+                Duration(seconds: 5),
+              );
+            },
           ),
           SizedBox(height: 640.wmax * 12.sr),
           RichText(

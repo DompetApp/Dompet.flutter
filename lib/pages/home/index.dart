@@ -202,7 +202,6 @@ class PageHome extends GetView<PageHomeController> {
                   ),
                   child: SizedBox(
                     width: 640.wmax * 80.sr,
-                    height: 640.wmax * 80.sr,
                     child: Column(
                       children: [
                         Container(
@@ -254,7 +253,6 @@ class PageHome extends GetView<PageHomeController> {
                   ),
                   child: SizedBox(
                     width: 640.wmax * 80.sr,
-                    height: 640.wmax * 80.sr,
                     child: Column(
                       children: [
                         Container(
@@ -306,7 +304,6 @@ class PageHome extends GetView<PageHomeController> {
                   ),
                   child: SizedBox(
                     width: 640.wmax * 80.sr,
-                    height: 640.wmax * 80.sr,
                     child: Column(
                       children: [
                         Container(
