@@ -5,6 +5,17 @@
     "group:allNonMajor",
     ":semanticCommitTypeAll(chore)"
   ],
+  "packageRules": [
+    {
+      "managers": [
+        "gradle"
+      ],
+      "matchPackageNames": [
+        "com.android.application"
+      ],
+      "groupName": null
+    }
+  ],
   "schedule": [
     "at 10:00 am on friday"
   ],
