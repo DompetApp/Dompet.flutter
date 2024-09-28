@@ -146,11 +146,12 @@ class PageWebviewPopupState extends State<PageWebviewPopup>
                       right: 8.wdp,
                     ),
                     child: Text(
-                      'Settings',
+                      'Settings'.tr,
                       style: TextStyle(
                         color: const Color(0xff303133),
                         decoration: TextDecoration.none,
                         fontWeight: FontWeight.bold,
+                        letterSpacing: 1.2,
                         fontSize: 16.wdp,
                       ),
                     ),
@@ -198,11 +199,12 @@ class PageWebviewPopupState extends State<PageWebviewPopup>
                   ),
                   child: Align(
                     child: Text(
-                      'Cancel',
+                      'Cancel'.tr,
                       style: TextStyle(
                         color: const Color(0xff646e93),
                         decoration: TextDecoration.none,
                         fontWeight: FontWeight.bold,
+                        letterSpacing: 1.2,
                         fontSize: 16.wdp,
                       ),
                     ),
@@ -225,22 +227,22 @@ class PageWebviewPopupState extends State<PageWebviewPopup>
     switch (type) {
       case 'backHome':
         image = 'lib/assets/webview/home.png';
-        title = 'home';
+        title = 'back'.tr;
         break;
 
       case 'refreshPage':
         image = 'lib/assets/webview/refresh.png';
-        title = 'refresh';
+        title = 'refresh'.tr;
         break;
 
       case 'clearCache':
         image = 'lib/assets/webview/clear.png';
-        title = 'clear';
+        title = 'clear'.tr;
         break;
 
       case 'openDebug':
         image = 'lib/assets/webview/debug.png';
-        title = 'debug';
+        title = 'debug'.tr;
         break;
     }
 

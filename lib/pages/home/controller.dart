@@ -16,8 +16,14 @@ class PageHomeController extends GetxController {
   Rx<bool> showShadow = false.obs;
   Rx<bool> showActions = false.obs;
   Rx<bool> isRunAnimating = false.obs;
-  Rx<bool> isTitleOffstage = false.obs;
-  Rx<bool> isActionOffstage = true.obs;
+
+  bool get isActionOffstage {
+    return !isRunAnimating.value && !showActions.value;
+  }
+
+  bool get isTitleOffstage {
+    return !isRunAnimating.value && showActions.value;
+  }
 
   @override
   void onInit() async {
@@ -31,9 +37,6 @@ class PageHomeController extends GetxController {
       if (showActions.value != isShowActions) {
         isRunAnimating.value = showActions.value != isShowActions;
       }
-
-      isTitleOffstage.value = !isRunAnimating.value && isShowActions;
-      isActionOffstage.value = !isRunAnimating.value && !isShowActions;
 
       WidgetsBinding.instance.addPostFrameCallback((_) async {
         showActions.value = isShowActions;

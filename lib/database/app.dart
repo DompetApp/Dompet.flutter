@@ -41,7 +41,7 @@ class AppDatabaser {
 
     return db!.transaction((txn) async {
       await txn.rawUpdate(
-        'update AppUser activate = ? where uid == ?',
+        'update AppUser set activate = ? where uid == ?',
         ['N', uid],
       );
     });

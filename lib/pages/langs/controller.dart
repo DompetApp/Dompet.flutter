@@ -4,15 +4,22 @@ import 'package:dompet/extension/size.dart';
 import 'package:dompet/service/bind.dart';
 import 'package:flutter/widgets.dart';
 
-class PageSettingsController extends GetxController {
+class PageLangsController extends GetxController {
   late final scrollController = ScrollController();
-  late final eventController = Get.find<EventController>();
+  late final storeController = Get.find<StoreController>();
+  late final localeController = Get.find<LocaleController>();
   late final mediaQueryController = Get.find<MediaQueryController>();
 
   late final mediaPadding = mediaQueryController.viewPadding;
   late final mediaTopBar = mediaQueryController.topBar;
-  late final logout = eventController.logout;
+  late final localer = storeController.storeLocale;
+  late final locale = storeController.locale;
+  late final zhCn = localeController.zhCn;
+  late final enUs = localeController.enUs;
   late final isShadow = false.obs;
+
+  bool get isZhCn => locale.value == zhCn;
+  bool get isEnUs => locale.value == enUs;
 
   @override
   void onInit() {

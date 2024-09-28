@@ -5,6 +5,7 @@ import 'package:dompet/pages/home/index.dart';
 import 'package:dompet/pages/card/index.dart';
 import 'package:dompet/pages/login/index.dart';
 import 'package:dompet/pages/stats/index.dart';
+import 'package:dompet/pages/langs/index.dart';
 import 'package:dompet/pages/profile/index.dart';
 import 'package:dompet/pages/webview/index.dart';
 import 'package:dompet/pages/register/index.dart';
@@ -34,6 +35,7 @@ class GetRoutes {
   static const card = '/card';
   static const login = '/login';
   static const stats = '/stats';
+  static const langs = '/langs';
   static const profile = '/profile';
   static const webview = '/webview';
   static const register = '/register';
@@ -54,6 +56,7 @@ class GetRoutes {
       GetRoutes.card,
       GetRoutes.login,
       GetRoutes.stats,
+      GetRoutes.langs,
       GetRoutes.profile,
       GetRoutes.webview,
       GetRoutes.register,
@@ -83,6 +86,11 @@ class GetRoutes {
       GetPage(
         name: stats,
         page: () => const PageStats(),
+        middlewares: [AuthMiddleware()],
+      ),
+      GetPage(
+        name: langs,
+        page: () => const PageLangs(),
         middlewares: [AuthMiddleware()],
       ),
       GetPage(

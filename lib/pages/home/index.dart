@@ -522,7 +522,7 @@ class PageHome extends GetView<PageHomeController> {
     final isTitleOffstage = controller.isTitleOffstage;
 
     return Offstage(
-      offstage: isTitleOffstage.value,
+      offstage: isTitleOffstage,
       child: AnimatedOpacity(
         opacity: showActions.value ? 0.0 : 1.0,
         duration: Duration(milliseconds: showActions.value ? 300 : 480),
@@ -602,7 +602,7 @@ class PageHome extends GetView<PageHomeController> {
     final isActionOffstage = controller.isActionOffstage;
 
     return Offstage(
-      offstage: isActionOffstage.value,
+      offstage: isActionOffstage,
       child: AnimatedOpacity(
         opacity: !showActions.value ? 0.0 : 1.0,
         duration: Duration(milliseconds: showActions.value ? 480 : 300),

@@ -22,6 +22,7 @@ class PageNotification extends GetView<PageNotificationController> {
       final scrollController = controller.scrollController;
       final mediaPadding = controller.mediaPadding;
       final mediaTopBar = controller.mediaTopBar;
+      final isShadow = controller.isShadow;
 
       final top = max(
         mediaPadding.value.top,
@@ -51,7 +52,7 @@ class PageNotification extends GetView<PageNotificationController> {
                       flexibleSpace: Obx(() {
                         List<BoxShadow>? boxShadow;
 
-                        if (isScrolled) {
+                        if (isShadow.value) {
                           boxShadow = [
                             BoxShadow(
                               color: const Color(0xff000000).withOpacity(.048),
@@ -87,21 +88,16 @@ class PageNotification extends GetView<PageNotificationController> {
                       ),
                       SliverList(
                         delegate: SliverChildBuilderDelegate(
-                          (content, index) {
+                          (context, index) {
                             return Obx(
-                              () => Container(
-                                constraints: BoxConstraints(
-                                  minHeight: 100.vh - (top + 640.wmax * 142.sr),
-                                ),
-                                child: ListView(
-                                  shrinkWrap: true,
-                                  padding: const EdgeInsets.all(0),
-                                  physics: const NeverScrollableScrollPhysics(),
-                                  children: [
-                                    buidlMessages(context),
-                                    buildSafeArea(context),
-                                  ],
-                                ),
+                              () => ListView(
+                                shrinkWrap: true,
+                                padding: const EdgeInsets.all(0),
+                                physics: const NeverScrollableScrollPhysics(),
+                                children: [
+                                  buidlMessages(context),
+                                  buildSafeArea(context),
+                                ],
                               ),
                             );
                           },
@@ -177,6 +173,7 @@ class PageNotification extends GetView<PageNotificationController> {
           fontSize: 640.wmax * 20.sr,
           fontWeight: FontWeight.bold,
           color: const Color(0xff130138),
+          letterSpacing: 3,
           height: 1,
         ),
       ),
