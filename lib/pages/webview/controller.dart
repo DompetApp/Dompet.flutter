@@ -12,8 +12,9 @@ import 'package:dompet/routes/router.dart';
 import 'package:dompet/service/bind.dart';
 
 class PageWebviewController extends GetxController {
-  late final webChannelController = Get.find<WebviewChannelController>();
+  late final localeController = Get.find<LocaleController>();
   late final mediaQueryController = Get.find<MediaQueryController>();
+  late final webChannelController = Get.find<WebviewChannelController>();
   late final errorHttpsHtml = 'lib/assets/webview/errorHttps.html';
   late final errorUrlHtml = 'lib/assets/webview/errorUrl.html';
   late final vconsoleJs = 'lib/assets/scripts/vconsole.min.js';
@@ -99,6 +100,7 @@ class PageWebviewController extends GetxController {
     final fromHtml = webviewMeta.fromHtml.value;
     final checkUrl = webviewMeta.checkUrl.value;
     final checkHttps = webviewMeta.checkHttps.value;
+    final languageCode = localeController.languageCode;
 
     if (initialUrl == null && initialData == null && fromHtml) {
       await loadScripts();
@@ -119,7 +121,11 @@ class PageWebviewController extends GetxController {
 
     if (initialUrl == null && initialData == null && fromUrl) {
       await loadScripts();
-      initialUrl = URLRequest(url: WebUri.uri(Uri.parse(url)));
+
+      initialUrl = URLRequest(
+        url: WebUri.uri(Uri.parse(url)),
+        headers: {'Accept-Language': languageCode},
+      );
     }
 
     update(['webview']);

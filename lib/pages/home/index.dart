@@ -363,19 +363,23 @@ class PageHome extends GetView<PageHomeController> {
 
     Widget buildIconAvatar(String icon) {
       if (icon == 'me' && userAvatar != null) {
-        return Image.memory(
-          userAvatar,
-          width: 640.wmax * 39.sr,
-          height: 640.wmax * 39.sr,
-          fit: BoxFit.fill,
+        return ClipOval(
+          child: Image.memory(
+            userAvatar,
+            width: 640.wmax * 39.sr,
+            height: 640.wmax * 39.sr,
+            fit: BoxFit.fill,
+          ),
         );
       }
 
-      return Image.asset(
-        'lib/assets/images/payer/$icon.png',
-        width: 640.wmax * 39.sr,
-        height: 640.wmax * 39.sr,
-        fit: BoxFit.fill,
+      return ClipOval(
+        child: Image.asset(
+          'lib/assets/images/payer/$icon.png',
+          width: 640.wmax * 39.sr,
+          height: 640.wmax * 39.sr,
+          fit: BoxFit.fill,
+        ),
       );
     }
 
@@ -551,7 +555,7 @@ class PageHome extends GetView<PageHomeController> {
                         height: 640.wmax * 5.sr,
                       ),
                       Text(
-                        'activated'.tr,
+                        'available'.tr,
                         style: TextStyle(
                           fontSize: 640.wmax * 16.sr,
                           fontWeight: FontWeight.normal,
@@ -580,19 +584,23 @@ class PageHome extends GetView<PageHomeController> {
     final avatar = loginUser.avatar;
 
     if (avatar.value.bv) {
-      return Image.memory(
-        loginUser.avatar.value!,
-        width: 640.wmax * 44.sr,
-        height: 640.wmax * 44.sr,
-        fit: BoxFit.fill,
+      return ClipOval(
+        child: Image.memory(
+          loginUser.avatar.value!,
+          width: 640.wmax * 44.sr,
+          height: 640.wmax * 44.sr,
+          fit: BoxFit.fill,
+        ),
       );
     }
 
-    return Image.asset(
-      'lib/assets/images/home/avatar.png',
-      width: 640.wmax * 44.sr,
-      height: 640.wmax * 44.sr,
-      fit: BoxFit.fill,
+    return ClipOval(
+      child: Image.asset(
+        'lib/assets/images/home/avatar.png',
+        width: 640.wmax * 44.sr,
+        height: 640.wmax * 44.sr,
+        fit: BoxFit.fill,
+      ),
     );
   }
 

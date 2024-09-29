@@ -5,6 +5,7 @@ import 'package:flutter/services.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:intl/date_symbol_data_local.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:dompet/configure/get_translate.dart';
 import 'package:dompet/service/bind.dart';
 import 'package:dompet/routes/pages.dart';
@@ -119,6 +120,15 @@ class MyAppState extends State<MyApp> with WidgetsBindingObserver {
           );
         });
       },
+      supportedLocales: [
+        Locale('en'),
+        Locale('zh'),
+      ],
+      localizationsDelegates: [
+        GlobalWidgetsLocalizations.delegate,
+        GlobalMaterialLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
+      ],
       debugShowCheckedModeBanner: false,
       navigatorObservers: [routeObserver],
       defaultTransition: Transition.rightToLeft,

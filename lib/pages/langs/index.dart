@@ -190,8 +190,8 @@ class PageLangs extends GetView<PageLangsController> {
     return Container(
       padding: EdgeInsets.only(
         top: 640.wmax * 30.sr,
-        left: 640.wmax * 42.sr,
-        right: 640.wmax * 42.sr,
+        left: 640.wmax * 48.sr,
+        right: 640.wmax * 48.sr,
         bottom: 640.wmax * 35.sr,
       ),
       child: Column(
@@ -200,7 +200,7 @@ class PageLangs extends GetView<PageLangsController> {
             behavior: HitTestBehavior.opaque,
             child: Container(
               width: 640.wmax,
-              height: 640.wmax * 72.sr,
+              height: 640.wmax * 64.sr,
               alignment: Alignment.center,
               decoration: BoxDecoration(
                 color: Colors.white,
@@ -209,7 +209,7 @@ class PageLangs extends GetView<PageLangsController> {
                 ),
                 border: Border.all(
                   color: isNull ? Color(0xff8438FF) : Colors.black26,
-                  width: 640.wmax * 1.5.sr,
+                  width: isNull ? 640.wmax * 1.4.sr : 640.wmax * 1.2.sr,
                 ),
               ),
               padding: EdgeInsets.symmetric(
@@ -223,7 +223,7 @@ class PageLangs extends GetView<PageLangsController> {
                 'Follow System Language'.tr,
                 textAlign: TextAlign.center,
                 style: TextStyle(
-                  fontSize: 640.wmax * 17.2.sr,
+                  fontSize: 640.wmax * 16.sr,
                   fontWeight: isNull ? FontWeight.w600 : FontWeight.w400,
                   color: isNull ? Color(0xff8438FF) : Color(0xff808288),
                   height: 1.0,
@@ -240,7 +240,7 @@ class PageLangs extends GetView<PageLangsController> {
             behavior: HitTestBehavior.opaque,
             child: Container(
               width: 640.wmax,
-              height: 640.wmax * 72.sr,
+              height: 640.wmax * 64.sr,
               alignment: Alignment.center,
               decoration: BoxDecoration(
                 color: Colors.white,
@@ -249,7 +249,7 @@ class PageLangs extends GetView<PageLangsController> {
                 ),
                 border: Border.all(
                   color: isZhCn ? Color(0xff8438FF) : Colors.black26,
-                  width: 640.wmax * 1.5.sr,
+                  width: isZhCn ? 640.wmax * 1.4.sr : 640.wmax * 1.2.sr,
                 ),
               ),
               padding: EdgeInsets.symmetric(
@@ -263,7 +263,7 @@ class PageLangs extends GetView<PageLangsController> {
                 'Chinese (zh-CN)'.tr,
                 textAlign: TextAlign.center,
                 style: TextStyle(
-                  fontSize: 640.wmax * 17.2.sr,
+                  fontSize: 640.wmax * 16.sr,
                   fontWeight: isZhCn ? FontWeight.w600 : FontWeight.w400,
                   color: isZhCn ? Color(0xff8438FF) : Color(0xff909399),
                   height: 1.0,
@@ -280,7 +280,7 @@ class PageLangs extends GetView<PageLangsController> {
             behavior: HitTestBehavior.opaque,
             child: Container(
               width: 640.wmax,
-              height: 640.wmax * 72.sr,
+              height: 640.wmax * 64.sr,
               alignment: Alignment.center,
               decoration: BoxDecoration(
                 color: Colors.white,
@@ -289,7 +289,7 @@ class PageLangs extends GetView<PageLangsController> {
                 ),
                 border: Border.all(
                   color: isEnUs ? Color(0xff8438FF) : Colors.black26,
-                  width: 640.wmax * 1.5.sr,
+                  width: isEnUs ? 640.wmax * 1.4.sr : 640.wmax * 1.2.sr,
                 ),
               ),
               padding: EdgeInsets.symmetric(
@@ -303,7 +303,7 @@ class PageLangs extends GetView<PageLangsController> {
                 'English (en-US)'.tr,
                 textAlign: TextAlign.center,
                 style: TextStyle(
-                  fontSize: 640.wmax * 17.2.sr,
+                  fontSize: 640.wmax * 16.sr,
                   fontWeight: isEnUs ? FontWeight.w600 : FontWeight.w400,
                   color: isEnUs ? Color(0xff8438FF) : Color(0xff909399),
                   height: 1.0,

@@ -317,10 +317,10 @@ class PageRegister extends GetView<PageRegisterController> {
     final emailFocusNode = controller.emailFocusNode;
     final passwordFocusNode1 = controller.passwordFocusNode1;
     final passwordFocusNode2 = controller.passwordFocusNode2;
-    final passwordController1 = controller.passwordController1.value;
-    final passwordController2 = controller.passwordController2.value;
-    final emailController = controller.emailController.value;
-    final nameController = controller.nameController.value;
+    final passwordController1 = controller.passwordController1;
+    final passwordController2 = controller.passwordController2;
+    final emailController = controller.emailController;
+    final nameController = controller.nameController;
     final passwordError1 = controller.passwordError1;
     final passwordError2 = controller.passwordError2;
     final emailError = controller.emailError;

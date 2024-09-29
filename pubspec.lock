@@ -315,7 +315,7 @@ packages:
     description:
       path: "."
       ref: HEAD
-      resolved-ref: "2b852d50d87a2577f316c07be15197404ee5df6d"
+      resolved-ref: b6e97ad48fbca0a560ff0111e1187aa9f5a2db65
       url: "https://github.com/fluttercommunity/flutter_launcher_icons.git"
     source: git
     version: "0.14.1"
@@ -327,6 +327,11 @@ packages:
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "5.0.0"
+  flutter_localizations:
+    dependency: "direct main"
+    description: flutter
+    source: sdk
+    version: "0.0.0"
   flutter_plugin_android_lifecycle:
     dependency: transitive
     description:

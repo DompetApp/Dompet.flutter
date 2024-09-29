@@ -286,8 +286,8 @@ class PageLogin extends GetView<PageLoginController> {
   Widget buildFormInput(BuildContext context) {
     final emailFocusNode = controller.emailFocusNode;
     final passwordFocusNode = controller.passwordFocusNode;
-    final passwordController = controller.passwordController.value;
-    final emailController = controller.emailController.value;
+    final passwordController = controller.passwordController;
+    final emailController = controller.emailController;
     final passwordError = controller.passwordError;
     final emailError = controller.emailError;
 

@@ -142,11 +142,13 @@ class PageOperater extends GetView<PageOperaterController> {
 
         if (!isTransfer && icon == 'me') {
           if (avatar.value.bv) {
-            return Image.memory(
-              loginUser.avatar.value!,
-              width: 640.wmax * 20.sr,
-              height: 640.wmax * 20.sr,
-              fit: BoxFit.fill,
+            return ClipOval(
+              child: Image.memory(
+                loginUser.avatar.value!,
+                width: 640.wmax * 20.sr,
+                height: 640.wmax * 20.sr,
+                fit: BoxFit.fill,
+              ),
             );
           }
         }
@@ -155,11 +157,13 @@ class PageOperater extends GetView<PageOperaterController> {
           return SizedBox.shrink();
         }
 
-        return Image.asset(
-          'lib/assets/images/payer/$icon.png',
-          width: 640.wmax * 20.sr,
-          height: 640.wmax * 20.sr,
-          fit: BoxFit.fill,
+        return ClipOval(
+          child: Image.asset(
+            'lib/assets/images/payer/$icon.png',
+            width: 640.wmax * 20.sr,
+            height: 640.wmax * 20.sr,
+            fit: BoxFit.fill,
+          ),
         );
       }
 

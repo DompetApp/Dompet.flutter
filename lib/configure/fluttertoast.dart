@@ -7,7 +7,12 @@ import 'package:dompet/extension/size.dart';
 import 'package:dompet/service/media.dart';
 
 class Toaster {
-  static void error({String? message, Function? onTap, bool? clear}) {
+  static void error({
+    String? message,
+    Duration? duration,
+    Function? onTap,
+    bool? clear,
+  }) {
     if (!message.bv) {
       return;
     }
@@ -82,19 +87,24 @@ class Toaster {
           ],
         ),
       ),
-      toastDuration: const Duration(seconds: 3),
+      toastDuration: duration ?? const Duration(seconds: 3),
       positionedToastBuilder: (context, child) {
         return Positioned(
-          top: max(640.wmax * 15.sr, mediaPadding.value.top),
-          left: 640.wmax * 24.sr,
-          right: 640.wmax * 24.sr,
+          top: max(640.wmax * 54.sr, mediaPadding.value.top),
+          left: 640.wmax * 20.sr,
+          right: 640.wmax * 20.sr,
           child: child,
         );
       },
     );
   }
 
-  static void warning({String? message, Function? onTap, bool? clear}) {
+  static void warning({
+    String? message,
+    Duration? duration,
+    Function? onTap,
+    bool? clear,
+  }) {
     if (!message.bv) {
       return;
     }
@@ -169,19 +179,24 @@ class Toaster {
           ],
         ),
       ),
-      toastDuration: const Duration(seconds: 3),
+      toastDuration: duration ?? const Duration(seconds: 3),
       positionedToastBuilder: (context, child) {
         return Positioned(
-          top: max(640.wmax * 15.sr, mediaPadding.value.top),
-          left: 640.wmax * 24.sr,
-          right: 640.wmax * 24.sr,
+          top: max(640.wmax * 54.sr, mediaPadding.value.top),
+          left: 640.wmax * 20.sr,
+          right: 640.wmax * 20.sr,
           child: child,
         );
       },
     );
   }
 
-  static void success({String? message, Function? onTap, bool? clear}) {
+  static void success({
+    String? message,
+    Duration? duration,
+    Function? onTap,
+    bool? clear,
+  }) {
     if (!message.bv) {
       return;
     }
@@ -256,12 +271,12 @@ class Toaster {
           ],
         ),
       ),
-      toastDuration: const Duration(seconds: 3),
+      toastDuration: duration ?? const Duration(seconds: 3),
       positionedToastBuilder: (context, child) {
         return Positioned(
-          top: max(640.wmax * 15.sr, mediaPadding.value.top),
-          left: 640.wmax * 24.sr,
-          right: 640.wmax * 24.sr,
+          top: max(640.wmax * 54.sr, mediaPadding.value.top),
+          left: 640.wmax * 20.sr,
+          right: 640.wmax * 20.sr,
           child: child,
         );
       },

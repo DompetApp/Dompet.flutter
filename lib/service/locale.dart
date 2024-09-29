@@ -6,6 +6,9 @@ class LocaleController extends GetxService {
   late final zhCn = const Locale('zh', 'CN');
   late final locale = (Get.locale ?? enUs).obs;
 
+  String get languageCode => locale.value.languageCode;
+  String? get countryCode => locale.value.countryCode;
+
   void update(Locale? locale) {
     if (locale == null) {
       this.locale.value = enUs;
