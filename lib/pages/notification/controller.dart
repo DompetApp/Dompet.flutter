@@ -18,6 +18,8 @@ class PageNotificationController extends GetxController {
   late final msgGroups = Rx<List<GroupMessage>>([]);
   late final isShadow = false.obs;
 
+  List<Worker> workers = [];
+
   @override
   void onInit() {
     super.onInit();
@@ -28,8 +30,20 @@ class PageNotificationController extends GetxController {
       isShadow.value = scrollController.position.pixels >= expanded - collapsed;
     });
 
-    ever(rawMessages, (_) => transformer());
+    workers = [
+      ever(rawMessages, (_) => transformer()),
+    ];
+
     transformer();
+  }
+
+  @override
+  void onClose() {
+    super.onClose();
+
+    for (final worker in workers) {
+      worker.dispose();
+    }
   }
 
   void transformer() {

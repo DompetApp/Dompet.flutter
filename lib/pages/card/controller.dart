@@ -17,6 +17,7 @@ class PageCardController extends GetxController
 
   Rx<bool> isAnimating = false.obs;
   Rx<bool> isExpand = false.obs;
+  List<Worker> workers = [];
 
   @override
   void onInit() {
@@ -34,9 +35,20 @@ class PageCardController extends GetxController
       ),
     );
 
-    ever(isExpand, (state) {
-      state ? animationController.forward() : animationController.reverse();
-    });
+    workers = [
+      ever(isExpand, (state) {
+        state ? animationController.forward() : animationController.reverse();
+      }),
+    ];
+  }
+
+  @override
+  void onClose() {
+    super.onClose();
+
+    for (final worker in workers) {
+      worker.dispose();
+    }
   }
 
   @override

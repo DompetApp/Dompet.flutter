@@ -18,6 +18,7 @@ class PageProfileController extends GetxController {
 
   late Rx<bool> readonly = true.obs;
   late FocusNode nameFocusNode = FocusNode();
+  late List<Worker> workers = [];
   late Rx<Uint8List?> avatar;
 
   @override
@@ -28,9 +29,20 @@ class PageProfileController extends GetxController {
     readonly = loginUser.name.value.bv.obs;
     nameController.text = loginUser.name.value;
 
-    ever(loginUser.name, (_) => nameController.text = loginUser.name.value);
-    ever(loginUser.name, (_) => readonly.value = loginUser.name.value.bv);
-    ever(loginUser.avatar, (_) => avatar.value = loginUser.avatar.value);
+    workers = [
+      ever(loginUser.name, (_) => nameController.text = loginUser.name.value),
+      ever(loginUser.name, (_) => readonly.value = loginUser.name.value.bv),
+      ever(loginUser.avatar, (_) => avatar.value = loginUser.avatar.value),
+    ];
+  }
+
+  @override
+  void onClose() {
+    super.onClose();
+
+    for (final worker in workers) {
+      worker.dispose();
+    }
   }
 
   Future<void> changeName() async {

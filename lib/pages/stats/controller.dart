@@ -15,6 +15,7 @@ class PageStatsController extends GetxController {
   late final loginUser = storeController.user;
   late final bankCard = storeController.card;
 
+  List<Worker> workers = [];
   Rx<List<int>> years = Rx([]);
   Rx<List<int>> showings = Rx([]);
   Rx<List<double>> moneys = Rx([]);
@@ -37,11 +38,18 @@ class PageStatsController extends GetxController {
       isShowTopBar.value = isPortrait.value && isMaxRange;
     });
 
-    ever(bankOrders.list, (_) {
-      return transfer();
-    });
+    workers = [ever(bankOrders.list, (_) => transfer())];
 
     transfer();
+  }
+
+  @override
+  void onClose() {
+    super.onClose();
+
+    for (final worker in workers) {
+      worker.dispose();
+    }
   }
 
   void transfer() {
@@ -66,8 +74,16 @@ class PageStatsController extends GetxController {
 
     years.value = groups.map((order) => order.year).toList();
     moneys.value = groups.map((order) => order.money).toList();
-    minMoney.value = moneys.value.reduce((a, b) => a < b ? a : b);
-    maxMoney.value = moneys.value.reduce((a, b) => a > b ? a : b);
-    showings.value = [years.value.length - 1];
+    showings.value = years.value.isNotEmpty ? [years.value.length - 1] : [];
+    minMoney.value = moneys.value.isNotEmpty ? moneys.value.reduce(min) : 0.0;
+    maxMoney.value = moneys.value.isNotEmpty ? moneys.value.reduce(max) : 0.0;
+  }
+
+  double max(double a, double b) {
+    return a > b ? a : b;
+  }
+
+  double min(double a, double b) {
+    return a < b ? a : b;
   }
 }
