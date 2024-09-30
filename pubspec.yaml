@@ -1,5 +1,5 @@
 name: dompet
-description: "A Dompet App by Flutter (Example)"
+description: "A Dompet App by Flutter (Template)"
 # The following line prevents the package from being accidentally published to
 # pub.dev using `flutter pub publish`. This is preferred for private packages.
 publish_to: 'none' # Remove this line if you wish to publish to pub.dev
@@ -42,6 +42,7 @@ dependencies:
   flutter_ringtone_player: ^4.0.0+3
   flutter_inappwebview: ^6.1.2
   cupertino_icons: ^1.0.8
+  auto_size_text: ^3.0.0
   google_sign_in: ^6.2.1
   firebase_core: ^3.6.0
   firebase_auth: ^5.3.1

@@ -42,7 +42,6 @@ class PageHome extends GetView<PageHomeController> {
                   children: [
                     buildBankCard(context),
                     buildTransactions(context),
-                    SizedBox(height: 640.wmax * 15.sr),
                   ],
                 ),
                 buildHeader(context),
@@ -59,6 +58,9 @@ class PageHome extends GetView<PageHomeController> {
 
   Widget buildHeader(BuildContext context) {
     return Obx(() {
+      final mediaPadding = controller.mediaPadding;
+      final mediaTop = mediaPadding.value.top;
+
       List<BoxShadow>? boxShadow;
 
       if (controller.showShadow.value) {
@@ -77,9 +79,9 @@ class PageHome extends GetView<PageHomeController> {
         left: 0,
         child: Container(
           width: 640.wmax,
-          height: 640.wmax * 122.sr,
+          height: max(640.wmax * 88.sr, mediaTop + 640.wmax * 56.sr),
           padding: EdgeInsets.only(
-            top: 640.wmax * 66.sr,
+            top: max(640.wmax * 32.sr, mediaTop),
             left: 640.wmax * 32.sr,
             right: 640.wmax * 32.sr,
           ),
@@ -390,6 +392,7 @@ class PageHome extends GetView<PageHomeController> {
       ),
       margin: EdgeInsets.only(
         top: 640.wmax * 42.sr,
+        bottom: 640.wmax * 15.sr,
       ),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
@@ -417,17 +420,13 @@ class PageHome extends GetView<PageHomeController> {
                     height: 1,
                   ),
                 ),
-                GestureDetector(
-                  behavior: HitTestBehavior.opaque,
-                  onTap: () => GetRouter.toNamed(GetRoutes.stats),
-                  child: Text(
-                    'View All'.tr,
-                    style: TextStyle(
-                      fontSize: 640.wmax * 13.sr,
-                      fontWeight: FontWeight.w500,
-                      color: const Color(0xff8438ff),
-                      height: 1,
-                    ),
+                Text(
+                  'Money'.tr,
+                  style: TextStyle(
+                    fontSize: 640.wmax * 14.sr,
+                    fontWeight: FontWeight.w600,
+                    color: const Color(0xff130138),
+                    height: 1,
                   ),
                 ),
               ],
@@ -638,10 +637,11 @@ class PageHome extends GetView<PageHomeController> {
                       width: 640.wmax * 80.sr,
                       height: 640.wmax * 28.sr,
                       alignment: Alignment.topCenter,
+                      padding: EdgeInsets.only(top: 640.wmax * 2.sr),
                       child: Image.asset(
                         'lib/assets/images/home/transfer.png',
-                        width: 640.wmax * 28.sr,
-                        height: 640.wmax * 28.sr,
+                        width: 640.wmax * 26.sr,
+                        height: 640.wmax * 26.sr,
                         fit: BoxFit.fill,
                       ),
                     ),
@@ -669,10 +669,11 @@ class PageHome extends GetView<PageHomeController> {
                       width: 640.wmax * 80.sr,
                       height: 640.wmax * 28.sr,
                       alignment: Alignment.topCenter,
+                      padding: EdgeInsets.only(top: 640.wmax * 2.sr),
                       child: Image.asset(
                         'lib/assets/images/home/payment.png',
-                        width: 640.wmax * 28.sr,
-                        height: 640.wmax * 28.sr,
+                        width: 640.wmax * 26.sr,
+                        height: 640.wmax * 26.sr,
                         fit: BoxFit.fill,
                       ),
                     ),
@@ -700,10 +701,11 @@ class PageHome extends GetView<PageHomeController> {
                       width: 640.wmax * 80.sr,
                       height: 640.wmax * 28.sr,
                       alignment: Alignment.topCenter,
+                      padding: EdgeInsets.only(top: 640.wmax * 2.sr),
                       child: Image.asset(
                         'lib/assets/images/home/topup.png',
-                        width: 640.wmax * 28.sr,
-                        height: 640.wmax * 28.sr,
+                        width: 640.wmax * 26.sr,
+                        height: 640.wmax * 26.sr,
                         fit: BoxFit.fill,
                       ),
                     ),

@@ -13,4 +13,12 @@ extension MoneyExtension on num {
 
     return '-\$${NumberFormat("#,##0").format(-this)}';
   }
+
+  String get usd2 {
+    if (this >= 0) {
+      return '\$${NumberFormat("#,##0.00").format(this)}';
+    }
+
+    return '-\$${NumberFormat("#,##0.00").format(-this)}';
+  }
 }

@@ -7,13 +7,10 @@
   ],
   "packageRules": [
     {
-      "managers": [
-        "gradle"
-      ],
       "matchPackageNames": [
         "com.android.application"
       ],
-      "groupName": null
+      "enabled": false
     }
   ],
   "schedule": [

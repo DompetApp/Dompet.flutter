@@ -9,6 +9,7 @@ class PageHomeController extends GetxController {
   late final mediaQueryController = Get.find<MediaQueryController>();
 
   late final mediaPadding = mediaQueryController.viewPadding;
+  late final mediaTopBar = mediaQueryController.topBar;
   late final bankOrders = storeController.orders;
   late final loginUser = storeController.user;
   late final bankCard = storeController.card;
@@ -26,7 +27,7 @@ class PageHomeController extends GetxController {
   }
 
   @override
-  void onInit() async {
+  void onInit() {
     super.onInit();
 
     scrollController.addListener(() {

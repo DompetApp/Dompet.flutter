@@ -12,6 +12,8 @@ class MediaQueryController extends GetxService {
   late Rx<double> height = Size.zero.height.obs;
   late Rx<double> width = Size.zero.width.obs;
   late Rx<double> topBar = kToolbarHeight.obs;
+  late Rx<bool> isLandscape = false.obs;
+  late Rx<bool> isPortrait = false.obs;
 
   final double minScale = 0.85;
   final double maxScale = 1.05;
@@ -36,6 +38,9 @@ class MediaQueryController extends GetxService {
       viewInsets.value = mediaQuery.viewInsets;
       orientation.value = mediaQuery.orientation;
       viewPadding.value = mediaQuery.viewPadding;
+
+      isPortrait.value = orientation.value == Orientation.portrait;
+      isLandscape.value = orientation.value == Orientation.landscape;
 
       textScaler.value = mediaQuery.textScaler.clamp(
         minScaleFactor: minScale,

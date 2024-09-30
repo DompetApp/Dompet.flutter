@@ -1,5 +1,6 @@
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:dompet/service/bind.dart';
 import 'package:dompet/pages/home/index.dart';
 import 'package:dompet/pages/card/index.dart';
@@ -18,12 +19,26 @@ class AuthMiddleware extends GetMiddleware {
   RouteSettings? redirect(String? route) {
     final logined = Get.find<StoreController>().logined;
 
-    if (!logined.value && !GetRoutes.defaults.contains(route)) {
-      return const RouteSettings(name: '/login');
+    if (GetRoutes.overturns.contains(route)) {
+      final orientations = [
+        DeviceOrientation.portraitUp,
+        DeviceOrientation.portraitDown,
+        DeviceOrientation.landscapeLeft,
+        DeviceOrientation.landscapeRight,
+      ];
+      SystemChrome.setPreferredOrientations(orientations);
+    }
+
+    if (!GetRoutes.overturns.contains(route)) {
+      SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
     }
 
     if (logined.value && GetRoutes.defaults.contains(route)) {
       return const RouteSettings(name: '/home');
+    }
+
+    if (!logined.value && !GetRoutes.defaults.contains(route)) {
+      return const RouteSettings(name: '/login');
     }
 
     return null;
@@ -42,6 +57,12 @@ class GetRoutes {
   static const operater = '/operater';
   static const settings = '/settings';
   static const notification = '/notification';
+
+  static List<String> get overturns {
+    return [
+      GetRoutes.stats,
+    ];
+  }
 
   static List<String> get defaults {
     return [
