@@ -7,10 +7,10 @@
   ],
   "packageRules": [
     {
-      "matchPackageNames": [
+      "matchPackagePatterns": [
         "com.android.application"
       ],
-      "enabled": false
+      "groupName": "com.android.application"
     }
   ],
   "schedule": [
