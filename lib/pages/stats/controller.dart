@@ -38,7 +38,7 @@ class PageStatsController extends GetxController with RxWatcher {
       isShowTopBar.value = isPortrait.value && isMaxRange;
     });
 
-    rxEver(bankOrders.list, (_) => transfer());
+    rw.ever(bankOrders.list, (_) => transfer());
 
     transfer();
   }
@@ -46,7 +46,7 @@ class PageStatsController extends GetxController with RxWatcher {
   @override
   void onClose() {
     super.onClose();
-    rxOff();
+    rw.close();
   }
 
   void transfer() {

@@ -29,15 +29,15 @@ class PageProfileController extends GetxController with RxWatcher {
     readonly = loginUser.name.value.bv.obs;
     nameController.text = loginUser.name.value;
 
-    rxEver(loginUser.name, (_) => nameController.text = loginUser.name.value);
-    rxEver(loginUser.name, (_) => readonly.value = loginUser.name.value.bv);
-    rxEver(loginUser.avatar, (_) => avatar.value = loginUser.avatar.value);
+    rw.ever(loginUser.name, (_) => nameController.text = loginUser.name.value);
+    rw.ever(loginUser.name, (_) => readonly.value = loginUser.name.value.bv);
+    rw.ever(loginUser.avatar, (_) => avatar.value = loginUser.avatar.value);
   }
 
   @override
   void onClose() {
     super.onClose();
-    rxOff();
+    rw.close();
   }
 
   Future<void> changeName() async {

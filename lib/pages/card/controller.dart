@@ -33,7 +33,7 @@ class PageCardController extends GetxController with RxWatcher, TickerProvider {
       ),
     );
 
-    rxEver(isExpand, (state) {
+    rw.ever(isExpand, (state) {
       if (!state) animationController.reverse();
       if (state) animationController.forward();
     });
@@ -42,7 +42,7 @@ class PageCardController extends GetxController with RxWatcher, TickerProvider {
   @override
   void onClose() {
     super.onClose();
-    rxOff();
+    rw.close();
   }
 
   @override

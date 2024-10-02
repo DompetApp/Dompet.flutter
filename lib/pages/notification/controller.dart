@@ -24,7 +24,7 @@ class PageNotificationController extends GetxController with RxWatcher {
   void onInit() {
     super.onInit();
 
-    rxEver(rawMessages, (_) => transformer());
+    rw.ever(rawMessages, (_) => transformer());
 
     scrollController.addListener(() {
       final expanded = 640.wmax * 152.sr;
@@ -38,7 +38,7 @@ class PageNotificationController extends GetxController with RxWatcher {
   @override
   void onClose() {
     super.onClose();
-    rxOff();
+    rw.close();
   }
 
   void transformer() {
