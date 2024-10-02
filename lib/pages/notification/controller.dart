@@ -2,27 +2,29 @@ import 'dart:math';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:dompet/extension/size.dart';
+import 'package:dompet/mixins/watcher.dart';
 import 'package:dompet/models/message.dart';
 import 'package:dompet/service/bind.dart';
 
-class PageNotificationController extends GetxController {
-  late final scrollController = ScrollController();
-  late final eventController = Get.find<EventController>();
-  late final storeController = Get.find<StoreController>();
+class PageNotificationController extends GetxController with RxWatcher {
   late final mediaQueryController = Get.find<MediaQueryController>();
+  late final storeController = Get.find<StoreController>();
+  late final eventController = Get.find<EventController>();
+  late final scrollController = ScrollController();
 
   late final readUserMessage = eventController.readUserMessage;
   late final mediaPadding = mediaQueryController.viewPadding;
   late final rawMessages = storeController.messages.list;
   late final mediaTopBar = mediaQueryController.topBar;
-  late final msgGroups = Rx<List<GroupMessage>>([]);
-  late final isShadow = false.obs;
 
-  List<Worker> workers = [];
+  Rx<List<GroupMessage>> msgGroups = Rx([]);
+  Rx<bool> isShadow = false.obs;
 
   @override
   void onInit() {
     super.onInit();
+
+    rxEver(rawMessages, (_) => transformer());
 
     scrollController.addListener(() {
       final expanded = 640.wmax * 152.sr;
@@ -30,20 +32,13 @@ class PageNotificationController extends GetxController {
       isShadow.value = scrollController.position.pixels >= expanded - collapsed;
     });
 
-    workers = [
-      ever(rawMessages, (_) => transformer()),
-    ];
-
     transformer();
   }
 
   @override
   void onClose() {
     super.onClose();
-
-    for (final worker in workers) {
-      worker.dispose();
-    }
+    rxOff();
   }
 
   void transformer() {

@@ -1,11 +1,13 @@
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:dompet/service/bind.dart';
+import 'package:dompet/mixins/watcher.dart';
 
-class PageCardController extends GetxController
-    with GetSingleTickerProviderStateMixin {
-  late final storeController = Get.find<StoreController>();
+typedef TickerProvider = GetSingleTickerProviderStateMixin;
+
+class PageCardController extends GetxController with RxWatcher, TickerProvider {
   late final mediaQueryController = Get.find<MediaQueryController>();
+  late final storeController = Get.find<StoreController>();
 
   late final duration = const Duration(milliseconds: 480);
   late final mediaPadding = mediaQueryController.viewPadding;
@@ -17,16 +19,12 @@ class PageCardController extends GetxController
 
   Rx<bool> isAnimating = false.obs;
   Rx<bool> isExpand = false.obs;
-  List<Worker> workers = [];
 
   @override
   void onInit() {
     super.onInit();
 
-    animationController = AnimationController(
-      duration: duration,
-      vsync: this,
-    );
+    animationController = AnimationController(duration: duration, vsync: this);
 
     animationValue = Tween<double>(begin: 0, end: 3.1415926 / 2).animate(
       CurvedAnimation(
@@ -35,20 +33,16 @@ class PageCardController extends GetxController
       ),
     );
 
-    workers = [
-      ever(isExpand, (state) {
-        state ? animationController.forward() : animationController.reverse();
-      }),
-    ];
+    rxEver(isExpand, (state) {
+      if (!state) animationController.reverse();
+      if (state) animationController.forward();
+    });
   }
 
   @override
   void onClose() {
     super.onClose();
-
-    for (final worker in workers) {
-      worker.dispose();
-    }
+    rxOff();
   }
 
   @override

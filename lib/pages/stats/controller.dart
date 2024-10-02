@@ -1,13 +1,14 @@
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
-import 'package:dompet/service/bind.dart';
 import 'package:dompet/extension/size.dart';
+import 'package:dompet/mixins/watcher.dart';
+import 'package:dompet/service/bind.dart';
 import 'package:dompet/models/order.dart';
 
-class PageStatsController extends GetxController {
-  late final scrollController = ScrollController();
-  late final storeController = Get.find<StoreController>();
+class PageStatsController extends GetxController with RxWatcher {
   late final mediaQueryController = Get.find<MediaQueryController>();
+  late final storeController = Get.find<StoreController>();
+  late final scrollController = ScrollController();
 
   late final mediaPadding = mediaQueryController.viewPadding;
   late final isPortrait = mediaQueryController.isPortrait;
@@ -15,7 +16,6 @@ class PageStatsController extends GetxController {
   late final loginUser = storeController.user;
   late final bankCard = storeController.card;
 
-  List<Worker> workers = [];
   Rx<List<int>> years = Rx([]);
   Rx<List<int>> showings = Rx([]);
   Rx<List<double>> moneys = Rx([]);
@@ -38,7 +38,7 @@ class PageStatsController extends GetxController {
       isShowTopBar.value = isPortrait.value && isMaxRange;
     });
 
-    workers = [ever(bankOrders.list, (_) => transfer())];
+    rxEver(bankOrders.list, (_) => transfer());
 
     transfer();
   }
@@ -46,15 +46,15 @@ class PageStatsController extends GetxController {
   @override
   void onClose() {
     super.onClose();
-
-    for (final worker in workers) {
-      worker.dispose();
-    }
+    rxOff();
   }
 
   void transfer() {
     double number = 0.0;
     List<YearOrder> groups = [];
+
+    double max(double a, double b) => a > b ? a : b;
+    double min(double a, double b) => a < b ? a : b;
 
     for (final order in bankOrders.list.value.reversed) {
       final date = DateTime.parse(order.date);
@@ -77,13 +77,5 @@ class PageStatsController extends GetxController {
     showings.value = years.value.isNotEmpty ? [years.value.length - 1] : [];
     minMoney.value = moneys.value.isNotEmpty ? moneys.value.reduce(min) : 0.0;
     maxMoney.value = moneys.value.isNotEmpty ? moneys.value.reduce(max) : 0.0;
-  }
-
-  double max(double a, double b) {
-    return a > b ? a : b;
-  }
-
-  double min(double a, double b) {
-    return a < b ? a : b;
   }
 }

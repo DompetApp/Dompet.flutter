@@ -5,9 +5,9 @@ import 'package:dompet/service/bind.dart';
 import 'package:flutter/widgets.dart';
 
 class PageSettingsController extends GetxController {
-  late final scrollController = ScrollController();
-  late final eventController = Get.find<EventController>();
   late final mediaQueryController = Get.find<MediaQueryController>();
+  late final eventController = Get.find<EventController>();
+  late final scrollController = ScrollController();
 
   late final mediaPadding = mediaQueryController.viewPadding;
   late final mediaTopBar = mediaQueryController.topBar;

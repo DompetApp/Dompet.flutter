@@ -11,11 +11,11 @@ import 'package:dompet/service/bind.dart';
 import 'package:dompet/models/user.dart';
 
 class PageLoginController extends GetxController {
-  late final emailController = TextEditingController();
-  late final passwordController = TextEditingController();
   late final mediaQueryController = Get.find<MediaQueryController>();
   late final sqliteController = Get.find<SqliteController>();
   late final eventController = Get.find<EventController>();
+  late final passwordController = TextEditingController();
+  late final emailController = TextEditingController();
 
   late final signInWithUserAccount = instance.signInWithEmailAndPassword;
   late final signInWithCredential = instance.signInWithCredential;

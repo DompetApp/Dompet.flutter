@@ -4,13 +4,14 @@ import 'package:flutter/material.dart';
 import 'package:dompet/configure/image_picker.dart';
 import 'package:dompet/configure/fluttertoast.dart';
 import 'package:dompet/extension/bool.dart';
+import 'package:dompet/mixins/watcher.dart';
 import 'package:dompet/service/bind.dart';
 
-class PageProfileController extends GetxController {
-  late final nameController = TextEditingController();
-  late final eventController = Get.find<EventController>();
-  late final storeController = Get.find<StoreController>();
+class PageProfileController extends GetxController with RxWatcher {
   late final mediaQueryController = Get.find<MediaQueryController>();
+  late final storeController = Get.find<StoreController>();
+  late final eventController = Get.find<EventController>();
+  late final nameController = TextEditingController();
 
   late final mediaPadding = mediaQueryController.viewPadding;
   late final mediaTopBar = mediaQueryController.topBar;
@@ -18,7 +19,6 @@ class PageProfileController extends GetxController {
 
   late Rx<bool> readonly = true.obs;
   late FocusNode nameFocusNode = FocusNode();
-  late List<Worker> workers = [];
   late Rx<Uint8List?> avatar;
 
   @override
@@ -29,20 +29,15 @@ class PageProfileController extends GetxController {
     readonly = loginUser.name.value.bv.obs;
     nameController.text = loginUser.name.value;
 
-    workers = [
-      ever(loginUser.name, (_) => nameController.text = loginUser.name.value),
-      ever(loginUser.name, (_) => readonly.value = loginUser.name.value.bv),
-      ever(loginUser.avatar, (_) => avatar.value = loginUser.avatar.value),
-    ];
+    rxEver(loginUser.name, (_) => nameController.text = loginUser.name.value);
+    rxEver(loginUser.name, (_) => readonly.value = loginUser.name.value.bv);
+    rxEver(loginUser.avatar, (_) => avatar.value = loginUser.avatar.value);
   }
 
   @override
   void onClose() {
     super.onClose();
-
-    for (final worker in workers) {
-      worker.dispose();
-    }
+    rxOff();
   }
 
   Future<void> changeName() async {

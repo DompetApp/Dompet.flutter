@@ -11,13 +11,13 @@ import 'package:dompet/service/bind.dart';
 import 'package:dompet/models/user.dart';
 
 class PageRegisterController extends GetxController {
-  late final nameController = TextEditingController();
-  late final emailController = TextEditingController();
-  late final passwordController1 = TextEditingController();
-  late final passwordController2 = TextEditingController();
   late final mediaQueryController = Get.find<MediaQueryController>();
   late final sqliteController = Get.find<SqliteController>();
   late final eventController = Get.find<EventController>();
+  late final passwordController2 = TextEditingController();
+  late final passwordController1 = TextEditingController();
+  late final emailController = TextEditingController();
+  late final nameController = TextEditingController();
 
   late final signUpWithUserAccount = instance.createUserWithEmailAndPassword;
   late final signInWithCredential = instance.signInWithCredential;
