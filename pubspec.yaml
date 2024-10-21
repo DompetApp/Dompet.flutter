@@ -19,7 +19,7 @@ publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 version: 1.0.0+1
 
 environment:
-  sdk: '>=3.5.3 <4.0.0'
+  sdk: '>=3.5.4 <4.0.0'
 
 # Dependencies specify other packages that your package needs in order to work.
 # To automatically upgrade your package dependencies to the latest versions
@@ -40,7 +40,7 @@ dependencies:
     git: https://github.com/fluttercommunity/flutter_launcher_icons.git
 
   flutter_ringtone_player: ^4.0.0+3
-  flutter_inappwebview: ^6.1.4
+  flutter_inappwebview: ^6.1.5
   cupertino_icons: ^1.0.8
   auto_size_text: ^3.0.0
   google_sign_in: ^6.2.1
@@ -51,11 +51,11 @@ dependencies:
   image_picker: ^1.1.2
   get_storage: ^2.1.1
   fl_chart: ^0.69.0
-  sqflite: ^2.3.3+2
-  convert: ^3.1.1
-  crypto: ^3.0.5
+  sqflite: ^2.4.0
+  convert: ^3.1.2
+  crypto: ^3.0.6
   intl: ^0.19.0
-  path: ^1.9.0
+  path: ^1.9.1
   dio: ^5.7.0
   get: ^4.6.6
 
