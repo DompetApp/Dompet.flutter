@@ -34,18 +34,6 @@ class DioManager {
           );
         },
         onResponse: (response, handler) {
-          final requestOptions = response.requestOptions;
-          final status = response.statusCode;
-
-          if ([401, 403, '401', '403'].contains(status)) {
-            return handler.reject(
-              DioException(
-                requestOptions: requestOptions,
-                response: response,
-              ),
-            );
-          }
-
           return handler.next(response);
         },
         onError: (DioException e, handler) {
