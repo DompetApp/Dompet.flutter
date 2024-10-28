@@ -7,18 +7,18 @@ private var mainFlutterEngine: FlutterEngine? = null
 private var mainActivity: MainActivity? = null
 
 class MainActivity: FlutterActivity() {
-  override fun configureFlutterEngine(flutterEngine: FlutterEngine) {
-    super.configureFlutterEngine(flutterEngine)
-    mainFlutterEngine = flutterEngine
-    mainActivity = this
-    setMessenger()
-  }
+    override fun configureFlutterEngine(flutterEngine: FlutterEngine) {
+        super.configureFlutterEngine(flutterEngine)
+        mainFlutterEngine = flutterEngine
+        mainActivity = this
+        setMessenger()
+    }
 }
 
 fun getMainActivity () : MainActivity {
-  return mainActivity!!
+    return mainActivity!!
 }
 
 fun getMainFlutterEngine () : FlutterEngine {
-  return mainFlutterEngine!!
+    return mainFlutterEngine!!
 }
