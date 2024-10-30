@@ -1,16 +1,16 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": [
-    "config:base",
+    "config:recommended",
     "group:allNonMajor",
     ":semanticCommitTypeAll(chore)"
   ],
   "packageRules": [
     {
-      "matchPackagePatterns": [
-        "com.android.application"
-      ],
-      "groupName": "com.android.application"
+      "groupName": "com.android.application",
+      "matchPackageNames": [
+        "/com.android.application/"
+      ]
     }
   ],
   "schedule": [
