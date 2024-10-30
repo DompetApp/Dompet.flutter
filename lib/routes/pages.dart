@@ -37,7 +37,7 @@ class AuthMiddleware extends GetMiddleware {
       return const RouteSettings(name: '/home');
     }
 
-    if (!logined.value && !GetRoutes.defaults.contains(route)) {
+    if (!logined.value && GetRoutes.authorize.contains(route)) {
       return const RouteSettings(name: '/login');
     }
 
@@ -64,26 +64,24 @@ class GetRoutes {
     ];
   }
 
-  static List<String> get defaults {
+  static List<String> get authorize {
     return [
-      GetRoutes.login,
-      GetRoutes.register,
-    ];
-  }
-
-  static List<String> get list {
-    return [
-      GetRoutes.login,
+      GetRoutes.home,
       GetRoutes.card,
-      GetRoutes.login,
       GetRoutes.stats,
       GetRoutes.langs,
       GetRoutes.profile,
       GetRoutes.webview,
-      GetRoutes.register,
       GetRoutes.operater,
       GetRoutes.settings,
       GetRoutes.notification,
+    ];
+  }
+
+  static List<String> get defaults {
+    return [
+      GetRoutes.login,
+      GetRoutes.register,
     ];
   }
 

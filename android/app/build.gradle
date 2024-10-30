@@ -10,7 +10,7 @@ plugins {
 
 dependencies {
   // Import the Firebase
-  implementation platform('com.google.firebase:firebase-bom:33.4.0')
+  implementation platform('com.google.firebase:firebase-bom:33.5.1')
 
   // TODO: Add the dependencies for Firebase products you want to use
   // When using the BoM, don't specify versions in Firebase dependencies
@@ -36,10 +36,20 @@ if (flutterVersionName == null) {
     flutterVersionName = "1.0"
 }
 
+def flutterNdkVersion = localProperties.getProperty("flutter.ndkVersion")
+if (flutterNdkVersion == null) {
+    flutterNdkVersion = flutter.ndkVersion
+}
+
+def flutterMinSdk = localProperties.getProperty("flutter.minSdk")
+if (flutterMinSdk == null) {
+    flutterMinSdk = flutter.minSdkVersion
+}
+
 android {
     namespace = "com.example.dompet"
     compileSdk = flutter.compileSdkVersion
-    ndkVersion = flutter.ndkVersion
+    ndkVersion = flutterNdkVersion
 
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
@@ -55,7 +65,7 @@ android {
         applicationId = "com.example.dompet"
         // You can update the following values to match your application needs.
         // For more information, see: https://docs.flutter.dev/deployment/android#reviewing-the-gradle-build-configuration.
-        minSdk = 23 // firebase_auth => 23, (default: flutter.minSdkVersion)
+        minSdk = flutterMinSdk.toInteger() // firebase_auth => 23, (default: flutter.minSdkVersion)
         targetSdk = flutter.targetSdkVersion
         versionCode = flutterVersionCode.toInteger()
         versionName = flutterVersionName

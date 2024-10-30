@@ -30,6 +30,8 @@ class PageHomeController extends GetxController {
   void onInit() {
     super.onInit();
 
+    storeController.visited();
+
     scrollController.addListener(() {
       final scrollTop = scrollController.position.pixels;
       final isShowShadow = scrollTop >= 640.wmax * 42.sr;

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="applicationName">Dompet</string>
+    <string name="shortcut_short_bill">Bill</string>
+    <string name="shortcut_long_bill">My Bill</string>
+</resources>

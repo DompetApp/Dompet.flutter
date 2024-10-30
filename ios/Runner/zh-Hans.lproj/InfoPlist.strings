@@ -1,0 +1,9 @@
+/* 
+  InfoPlist.strings
+  Runner
+*/
+CFBundleDisplayName = "电子钱包";
+NSCameraUsageDescription = "Flutter 应用需要访问相";
+NSLocalNetworkUsageDescription = "Flutter 应用需要访问本地网络以查找和连接附近的设备";
+NSMicrophoneUsageDescription = "Flutter 应用需要访问麦克风";
+NSPhotoLibraryUsageDescription = "Flutter 应用需要访问照片库以选择图片";

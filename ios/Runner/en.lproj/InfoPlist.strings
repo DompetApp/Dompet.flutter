@@ -1,0 +1,9 @@
+/* 
+  InfoPlist.strings
+  Runner
+*/
+CFBundleDisplayName = "Dompet";
+NSCameraUsageDescription = "Flutter App requires access to camer";
+NSLocalNetworkUsageDescription = "Flutter App requires access to your local network to find and connect to nearby devices";
+NSMicrophoneUsageDescription = "Flutter App requires access to microphone";
+NSPhotoLibraryUsageDescription = "Flutter App needs access to photo library to select pictures";

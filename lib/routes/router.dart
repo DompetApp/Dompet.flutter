@@ -624,7 +624,7 @@ class GetRouter {
   }) async {
     if (GetRoutes.defaults.contains(Get.currentRoute)) {
       final redirect = page ?? GetRoutes.home;
-      final isGetRoute = GetRoutes.list.contains(page);
+      final isGetRoute = GetRoutes.authorize.contains(page);
       offAllNamed(isGetRoute ? redirect : GetRoutes.home);
     }
   }

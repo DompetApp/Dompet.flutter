@@ -1,6 +1,5 @@
 package com.example.dompet
 
-import java.lang.Exception
 import io.flutter.plugin.common.MethodChannel
 
 private var messenger: MethodChannel? = null
@@ -19,8 +18,9 @@ fun setMessengerHandler () {
         call, result ->
             when (call.method) {
                 "invokerNativeMethodChannel" -> {
-                  initialized = true
-                  result.success(true)
+                    initialized = true
+                    result.success(true)
+                    openActiveShortcut(getActiveShortcut())
                 }
                 else -> result.notImplemented()
             }
@@ -28,10 +28,7 @@ fun setMessengerHandler () {
 }
 
 fun setMessenger() {
-    messenger = MethodChannel(
-        getMainFlutterEngine().dartExecutor,
-        "app.native/methodChannel"
-    )
+    messenger = MethodChannel(getMainFlutterEngine().dartExecutor, "app.native/methodChannel")
     setMessengerHandler()
 }
 

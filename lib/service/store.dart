@@ -9,13 +9,15 @@ import 'package:dompet/models/card.dart';
 import 'package:dompet/models/user.dart';
 
 class StoreController extends GetxService {
+  Future<bool> get homeFuture => home.value.future;
+  Future<bool> get readyFuture => ready.value.future;
+
   late final storager = GetStorage('dompet.store', null, {'expired': 0});
   late final logined = (storager.read<bool>('logined') == true).obs;
   late final expired = (storager.read<int>('expired') ?? 0).obs;
   late final today = DateTime.now().millisecondsSinceEpoch;
   late final ready = Completer<bool>().obs;
-
-  Future<bool> get future => ready.value.future;
+  late final home = Completer<bool>().obs;
 
   late final locale = Rx<Locale?>(null);
   late final messages = RxMessages.init();
@@ -61,7 +63,7 @@ class StoreController extends GetxService {
     logined.value = true;
     expired.value = time;
 
-    return future;
+    return readyFuture;
   }
 
   Future<bool> logout() async {
@@ -74,11 +76,25 @@ class StoreController extends GetxService {
       ready.value = Completer();
     }
 
+    if (home.value.isCompleted) {
+      home.value = Completer();
+    }
+
     ready.value.complete(false);
     logined.value = false;
     expired.value = time;
 
-    return future;
+    return readyFuture;
+  }
+
+  Future<bool> visited() async {
+    if (home.value.isCompleted) {
+      home.value = Completer();
+    }
+
+    home.value.complete(true);
+
+    return home.value.future;
   }
 
   // Store

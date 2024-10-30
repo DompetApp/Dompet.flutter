@@ -25,6 +25,7 @@ func setMessengerHandler (messenger: FlutterMethodChannel) {
     messenger.setMethodCallHandler {
     (call, result) in
         if "invokerNativeMethodChannel" == call.method {
+            openActiveShortcut(getActiveShortcut())
             initialized = true
             result(true)
             return
@@ -32,5 +33,3 @@ func setMessengerHandler (messenger: FlutterMethodChannel) {
         result(FlutterMethodNotImplemented)
     }
 }
-
-
