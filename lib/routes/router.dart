@@ -251,6 +251,14 @@ class Webview {
     return false;
   }
 
+  static Future<bool> duplicate(dynamic arguments) async {
+    if (arguments is! WebviewMeta) {
+      return true;
+    }
+
+    return !checkKey(arguments);
+  }
+
   static Future<dynamic> format(dynamic arguments) async {
     if (arguments is! WebviewMeta) {
       return Future.error(GetRouteError.webview);
@@ -320,6 +328,7 @@ class GetRouter {
     Future<bool> Function()? interceptor,
   }) async {
     if (page() is PageWebview) {
+      preventDuplicates = await Webview.duplicate(arguments);
       arguments = await Webview.format(arguments);
     }
 
@@ -361,6 +370,7 @@ class GetRouter {
     Future<bool> Function()? interceptor,
   }) async {
     if (page() is PageWebview) {
+      preventDuplicates = await Webview.duplicate(arguments);
       arguments = await Webview.format(arguments);
     }
 
@@ -435,6 +445,7 @@ class GetRouter {
     Future<bool> Function()? interceptor,
   }) async {
     if (page == GetRoutes.webview) {
+      preventDuplicates = await Webview.duplicate(arguments);
       arguments = await Webview.format(arguments);
     }
 
@@ -535,6 +546,7 @@ class GetRouter {
     Future<bool> Function()? interceptor,
   }) async {
     if (page == GetRoutes.webview) {
+      preventDuplicates = await Webview.duplicate(arguments);
       arguments = await Webview.format(arguments);
     }
 
