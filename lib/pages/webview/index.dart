@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:dompet/pages/webview/controller.dart';
 import 'package:dompet/pages/webview/_scaffold.dart';
 import 'package:dompet/pages/webview/_popup.dart';
-import 'package:dompet/themes/light.dart';
+import 'package:dompet/theme/light.dart';
 
 class PageWebview extends StatelessWidget {
   PageWebview({super.key});

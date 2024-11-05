@@ -1,15 +1,18 @@
-import 'package:dio/dio.dart';
+import 'dart:async';
 import 'package:get/get.dart';
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter/foundation.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:dompet/configure/get_translate.dart';
+import 'package:dompet/logger/logger.dart';
 import 'package:dompet/service/bind.dart';
 import 'package:dompet/routes/pages.dart';
-import 'package:dompet/themes/light.dart';
+import 'package:dompet/theme/light.dart';
 
 const pingUrl = 'https://pub.dev/';
 const enUSLocale = Locale('en', 'US');
@@ -18,18 +21,42 @@ final navigatorKey = GlobalKey<NavigatorState>();
 final routeObserver = RouteObserver<ModalRoute<void>>();
 
 void main() async {
+  BindingBase.debugZoneErrorsAreFatal = true;
+
+  runZonedGuarded(() => runner(), (error, stack) {
+    if (error is Exception || error is Error) {
+      logger.error('App ZonedGuarded...', error, stack);
+      return;
+    }
+  });
+}
+
+void runner() async {
   WidgetsFlutterBinding.ensureInitialized();
+
+  FlutterError.onError = (FlutterErrorDetails details) {
+    final stack = details.stack;
+    final exception = details.exception;
+
+    if (exception is Exception || exception is Error) {
+      logger.error('App FlutterError...', exception, stack);
+      return;
+    }
+  };
+
   await SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
   await initializeDateFormatting('en_US');
   await initializeDateFormatting('zh_CN');
   await GetStorage.init('dompet.store');
   await Firebase.initializeApp();
   await translations.init();
+  await logger.init;
+
   runApp(const MyApp());
-  runNet(pingUrl);
+  request(pingUrl);
 }
 
-void runNet(String url) async {
+void request(String url) async {
   try {
     await Dio().get(url);
   } catch (e) {/* e */}
