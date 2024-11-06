@@ -94,7 +94,7 @@ class SafePrettyPrinter extends LogPrinter {
 
     final level = event.level;
     final isError = level == Level.error;
-    final errorStr = event.error?.toString();
+    final errorStr = formatError(event.error);
     final messageStr = formatMessage(event.message);
 
     if (event.stackTrace != null) {
@@ -114,8 +114,8 @@ class SafePrettyPrinter extends LogPrinter {
     return formater(
       stacktrace: stackTraceStr,
       message: messageStr,
-      level: event.level,
       error: errorStr,
+      level: level,
       time: timeStr,
     );
   }
@@ -262,7 +262,7 @@ class SafePrettyPrinter extends LogPrinter {
     return null;
   }
 
-  String formatMessage(dynamic message) {
+  String? formatMessage(dynamic message) {
     final finalMessage = message is Function ? message() : message;
 
     if (finalMessage is Map || finalMessage is Iterable) {
@@ -270,12 +270,28 @@ class SafePrettyPrinter extends LogPrinter {
       return encoder.convert(finalMessage);
     }
 
-    return finalMessage.toString();
+    if (finalMessage != null) {
+      return finalMessage.toString();
+    }
+
+    return null;
+  }
+
+  String? formatError(dynamic error) {
+    if (error == null) {
+      return null;
+    }
+
+    if (error is String) {
+      return error;
+    }
+
+    return error.toString();
   }
 
   List<String> formater({
     required Level level,
-    required String message,
+    required String? message,
     String? time,
     String? error,
     String? stacktrace,
@@ -294,10 +310,10 @@ class SafePrettyPrinter extends LogPrinter {
       border = true;
     }
 
-    if (message.trim().isNotEmpty) {
+    if (message?.isNotEmpty == true) {
       if (border && included) buffer.add(_middleBorder);
 
-      for (var line in message.split('\n')) {
+      for (var line in message!.split('\n')) {
         buffer.add('$verticalLine$line');
       }
 

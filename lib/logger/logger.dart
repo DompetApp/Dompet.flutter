@@ -40,14 +40,16 @@ class SafeLogger extends Logger {
     return _fileSafeOutput.readAsStrings();
   }
 
+  Future<FormData?> readAsFormDatas() async {
+    return _fileSafeOutput.readAsFormDatas();
+  }
+
   Future<FormData?> readAsFormData() async {
     return _fileSafeOutput.readAsFormData();
   }
 
   Future<String?> readAsString() async {
-    return readAsStrings().then((list) {
-      return list?.isNotEmpty == true ? list?.first : null;
-    });
+    return _fileSafeOutput.readAsString();
   }
 
   Future<void> clearHistory() async {

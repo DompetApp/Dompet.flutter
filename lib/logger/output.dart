@@ -10,22 +10,24 @@ import 'package:synchronized/synchronized.dart';
 import 'package:path_provider/path_provider.dart' as path;
 
 class SafeFileOutput extends LogOutput {
-  final Duration duration = const Duration(minutes: 3);
+  final Duration time = const Duration(minutes: 3);
   final String storage = 'app.dompet.flutter/logger';
   final Lock lock = Lock(reentrant: true);
+  final DateFormat dateFormat;
   final Encoding encoding;
   final bool isOverride;
-  final int keepCount;
+  final int count;
 
   Timer? _timer;
   IOSink? _sink;
   String? _name;
 
   SafeFileOutput({
+    this.count = 3,
     this.encoding = utf8,
     this.isOverride = false,
-    this.keepCount = 3,
-  });
+    DateFormat? fileFormatter,
+  }) : dateFormat = fileFormatter ?? DateFormat('yyyyMMdd');
 
   @override
   Future<void> init() async {
@@ -34,34 +36,76 @@ class SafeFileOutput extends LogOutput {
 
   @override
   Future<void> destroy() async {
-    await clearIOSink();
+    return lock.synchronized(() => clearIOSink());
   }
 
   @override
   void output(OutputEvent event) async {
-    try {
-      final isInfo = Level.info == event.level;
-      final isError = Level.error == event.level;
-      final isWarning = Level.warning == event.level;
+    _timer?.cancel();
 
-      if (isInfo != true && isError != true && isWarning != true) {
-        return;
-      }
+    _timer = Timer(time, clearIOSink);
 
-      if (_sink == null || await createIOName() != _name) {
+    return lock.synchronized(() async {
+      try {
+        final isInfo = Level.info == event.level;
+        final isError = Level.error == event.level;
+        final isWarning = Level.warning == event.level;
+
+        if (isInfo != true && isError != true && isWarning != true) {
+          return;
+        }
+
+        if (_sink == null || await createIOName() != _name) {
+          await clearIOSink();
+          await createIOSink();
+        }
+
+        if (_sink == null || _name == null) {
+          await clearIOSink();
+          return;
+        }
+
+        _sink!.writeAll(event.lines, '\n');
+      } catch (e) {
         await clearIOSink();
-        await createIOSink();
       }
+    });
+  }
 
-      if (_sink == null || _name == null) {
-        await clearIOSink();
-        return;
-      }
-
-      _sink!.writeAll(event.lines, '\n');
-    } catch (e) {
-      await clearIOSink();
+  Future<List<File>?> getSortedFiles() async {
+    if (await isEmpty()) {
+      return null;
     }
+
+    if (_sink != null) {
+      await _sink!.flush();
+    }
+
+    final dir = await getDirectory();
+    final list = dir.list().where((f) => f is File);
+    final files = await list.cast<File>().toList();
+
+    if (files.isNotEmpty) {
+      files.sort((aFile, bFile) {
+        List<String> aPaths = aFile.path.split('/');
+        List<String> bPaths = bFile.path.split('/');
+
+        final aName = aPaths.last.replaceAll('.log', '');
+        final bName = bPaths.last.replaceAll('.log', '');
+        final aDate = DateTime.tryParse(aName);
+        final bDate = DateTime.tryParse(bName);
+
+        if (aDate == null || bDate == null) {
+          return aDate != null ? -1 : 1;
+        }
+
+        return bDate.compareTo(aDate);
+      });
+
+      return files;
+    }
+
+    return null;
   }
 
   Future<List<String>?> readAsStrings() async {
@@ -74,47 +118,48 @@ class SafeFileOutput extends LogOutput {
         await _sink!.flush();
       }
 
+      final List<File>? files = await getSortedFiles();
       final List<String> logs = [];
-      final List<File> files = await getSortedFiles();
+
+      if (files == null || files.isEmpty) {
+        return null;
+      }
 
       for (final file in files) {
-        logs.add(await file.readAsString());
+        logs.add(await file.readAsString(encoding: encoding));
       }
 
       return logs;
     });
   }
 
-  Future<List<File>> getSortedFiles() async {
+  Future<FormData?> readAsFormDatas() async {
     return lock.synchronized(() async {
       if (await isEmpty()) {
-        return [];
+        return null;
       }
 
       if (_sink != null) {
         await _sink!.flush();
       }
 
-      final dir = await getDirectory();
-      final list = dir.list().where((f) => f is File);
-      final files = await list.cast<File>().toList();
+      final formData = FormData();
+      final files = await getSortedFiles();
 
-      return files
-        ..sort((aFile, bFile) {
-          List<String> aPaths = aFile.path.split('/');
-          List<String> bPaths = bFile.path.split('/');
+      if (files == null || files.isEmpty) {
+        return null;
+      }
 
-          final aName = aPaths.last.replaceAll('.log', '');
-          final bName = bPaths.last.replaceAll('.log', '');
-          final aDate = DateTime.tryParse(aName);
-          final bDate = DateTime.tryParse(bName);
+      for (final file in files) {
+        final name = basename(file.path);
+        final path = file.path;
 
-          if (aDate == null || bDate == null) {
-            return aDate != null ? -1 : 1;
-          }
+        formData.files.add(
+          MapEntry('files', MultipartFile.fromFileSync(path, filename: name)),
+        );
+      }
 
-          return bDate.compareTo(aDate);
-        });
+      return formData;
     });
   }
 
@@ -124,21 +169,25 @@ class SafeFileOutput extends LogOutput {
         return null;
       }
 
-      final bytes = [];
-      final files = await getSortedFiles();
-
-      for (final file in files) {
-        bytes.add(
-          MultipartFile.fromFileSync(
-            file.path,
-            filename: basename(file.path),
-          ),
-        );
+      if (_sink != null) {
+        await _sink!.flush();
       }
 
-      return FormData.fromMap({
-        "files": bytes,
-      });
+      final formData = FormData();
+      final files = await getSortedFiles();
+
+      if (files == null || files.isEmpty) {
+        return null;
+      }
+
+      final name = basename(files.first.path);
+      final path = files.first.path;
+
+      formData.files.add(
+        MapEntry('file', MultipartFile.fromFileSync(path, filename: name)),
+      );
+
+      return formData;
     });
   }
 
@@ -147,49 +196,61 @@ class SafeFileOutput extends LogOutput {
     return Directory(join(root.path, storage));
   }
 
+  Future<String?> readAsString() async {
+    return lock.synchronized(() async {
+      if (await isEmpty()) {
+        return null;
+      }
+
+      if (_sink != null) {
+        await _sink!.flush();
+      }
+
+      final files = await getSortedFiles();
+
+      if (files == null || files.isEmpty) {
+        return null;
+      }
+
+      return files.first.readAsString(encoding: encoding);
+    });
+  }
+
   Future<String> createIOName() async {
-    return DateFormat('yyyyMMdd').format(DateTime.now());
+    return dateFormat.format(DateTime.now());
   }
 
   Future<void> clearDirectory() async {
-    return lock.synchronized(() async {
-      final dir = await getDirectory();
+    final dir = await getDirectory();
 
-      if (dir.existsSync()) {
-        dir.deleteSync(recursive: true);
-      }
-    });
+    if (dir.existsSync()) {
+      dir.deleteSync(recursive: true);
+    }
   }
 
   Future<void> createIOSink() async {
-    _timer?.cancel();
+    final fileDir = await getDirectory();
+    final fileName = await createIOName();
+    final filePath = join(fileDir.path, '$fileName.log');
+    final fileRefer = File(filePath);
 
-    _timer = Timer(duration, clearIOSink);
+    if (!fileDir.existsSync()) fileDir.createSync(recursive: true);
 
-    return lock.synchronized(() async {
-      final fileDir = await getDirectory();
-      final fileName = await createIOName();
-      final filePath = join(fileDir.path, '$fileName.log');
-      final fileRefer = File(filePath);
+    _sink = fileRefer.openWrite(
+      mode: isOverride ? FileMode.writeOnly : FileMode.writeOnlyAppend,
+      encoding: encoding,
+    );
 
-      if (!fileDir.existsSync()) fileDir.createSync(recursive: true);
-
-      _sink = fileRefer.openWrite(
-        mode: isOverride ? FileMode.writeOnly : FileMode.writeOnlyAppend,
-        encoding: encoding,
-      );
-
-      _name = fileName;
-    });
+    _name = fileName;
   }
 
   Future<void> clearHistory() async {
-    return lock.synchronized(() async {
+    try {
       final files = await getSortedFiles();
-      final limit = files.length > max(keepCount, 1);
-      final array = limit ? files.sublist(keepCount) : null;
+      final limit = files != null && files.length > max(count, 1);
+      final array = limit ? files.sublist(count, files.length) : null;
 
-      if (array == null) {
+      if (array == null || array.isEmpty) {
         return;
       }
 
@@ -200,51 +261,47 @@ class SafeFileOutput extends LogOutput {
           }
         } catch (e) {/* e */}
       }
-    });
+    } catch (e) {/* e */}
   }
 
   Future<void> clearIOSink() async {
-    return lock.synchronized(() async {
-      if (_sink != null) {
-        await _sink!.flush();
-        await _sink!.close();
-      }
+    if (_sink != null) {
+      await _sink!.flush();
+      await _sink!.close();
+    }
 
-      _timer?.cancel();
-      _timer = null;
-      _name = null;
-      _sink = null;
-    });
+    _timer?.cancel();
+    _timer = null;
+    _name = null;
+    _sink = null;
   }
 
   Future<void> clearAll() async {
     return lock.synchronized(() async {
-      await clearIOSink();
-      await clearDirectory();
+      try {
+        await clearIOSink();
+        await clearDirectory();
+      } catch (e) {/* e */}
     });
   }
 
   Future<bool> isEmpty() async {
     try {
       await clearHistory();
+
+      final dir = await getDirectory();
+
+      if (!dir.existsSync()) return true;
+
+      final files = await dir.list().toList();
+
+      for (final file in files) {
+        if (file is File) {
+          return false;
+        }
+      }
     } catch (e) {/* e */}
 
-    return lock.synchronized(() async {
-      try {
-        final dir = await getDirectory();
-
-        if (!dir.existsSync()) return true;
-
-        final files = await dir.list().toList();
-
-        for (final file in files) {
-          if (file is File) {
-            return false;
-          }
-        }
-      } catch (e) {/* e */}
-
-      return true;
-    });
+    return true;
   }
 }

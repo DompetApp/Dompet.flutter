@@ -58,6 +58,7 @@ class DioManager {
               'bodyData': '${error.requestOptions.data ?? ''}',
               'queryParams': '${error.requestOptions.queryParameters}',
               'responseData': '${error.response?.data ?? ''}',
+              'responseError': '${error.message ?? error.error ?? ''}',
             });
           }
 
