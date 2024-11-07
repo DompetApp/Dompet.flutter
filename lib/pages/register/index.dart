@@ -31,7 +31,7 @@ class PageRegister extends GetView<PageRegisterController> {
                   height: 100.vh,
                   child: ListView(
                     shrinkWrap: false,
-                    padding: EdgeInsets.zero,
+                    padding: EdgeInsets.only(bottom: 50.wdp),
                     physics: const ClampingScrollPhysics(),
                     children: [
                       buildMainTitle(context),

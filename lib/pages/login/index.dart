@@ -29,7 +29,7 @@ class PageLogin extends GetView<PageLoginController> {
                   width: 640.wmax,
                   height: 100.vh,
                   child: ListView(
-                    padding: EdgeInsets.zero,
+                    padding: EdgeInsets.only(bottom: 50.wdp),
                     physics: const ClampingScrollPhysics(),
                     children: [
                       buildMainTitle(context),

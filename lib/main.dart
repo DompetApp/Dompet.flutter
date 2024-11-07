@@ -44,7 +44,13 @@ void runner() async {
     }
   };
 
+  SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
+    systemNavigationBarColor: Colors.transparent,
+    statusBarColor: Colors.transparent,
+  ));
+
   await SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
+  await SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
   await initializeDateFormatting('en_US');
   await initializeDateFormatting('zh_CN');
   await GetStorage.init('dompet.store');
@@ -82,15 +88,9 @@ class MyAppState extends State<MyApp> with WidgetsBindingObserver {
 
     WidgetsBinding.instance.addObserver(this);
 
-    WidgetsBinding.instance.addPostFrameCallback((_) async {
-      Get.put(MediaQueryController()).update(
-        mediaQuery: MediaQuery.of(context),
-      );
-
-      Get.put(LocaleController()).update(
-        Get.locale ?? enUSLocale,
-      );
-    });
+    if (!Get.isRegistered<StoreController>()) {
+      Get.put(StoreController());
+    }
   }
 
   @override
@@ -126,12 +126,17 @@ class MyAppState extends State<MyApp> with WidgetsBindingObserver {
 
   @override
   Widget build(BuildContext context) {
-    if (!Get.isRegistered<StoreController>()) {
-      Get.put(StoreController());
-    }
-
+    final mediaQuery = MediaQuery.of(context);
     final storeLocale = Get.find<StoreController>().locale;
     final applyLocale = storeLocale.value ?? Get.deviceLocale;
+
+    if (!Get.isRegistered<MediaQueryController>()) {
+      Get.put(MediaQueryController()).update(mediaQuery: mediaQuery);
+    }
+
+    if (!Get.isRegistered<LocaleController>()) {
+      Get.put(LocaleController()).update(applyLocale);
+    }
 
     return GetMaterialApp(
       builder: (context, child) {
