@@ -342,10 +342,9 @@ class SafePrettyPrinter extends LogPrinter {
 
     if (included) {
       buffer.add(_bottomBorder);
-      buffer.add('');
     }
 
-    return buffer;
+    return buffer..add('');
   }
 }
 
