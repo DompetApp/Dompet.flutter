@@ -53,8 +53,9 @@ class PageWebviewController extends GetxController {
       InAppWebViewController.setWebContentsDebuggingEnabled(debug);
     }
 
-    loading(true);
-    loadUrl();
+    await loading(true);
+    await loadAgent();
+    await loadUrl();
   }
 
   @override
@@ -129,6 +130,13 @@ class PageWebviewController extends GetxController {
     }
 
     update(['webview']);
+  }
+
+  // loadAgent
+  Future<void> loadAgent() async {
+    return InAppWebViewController.getDefaultUserAgent().then((ua) {
+      inAppWebViewSettings.userAgent = '$ua DompetApp/1.0';
+    });
   }
 
   // loadScripts
