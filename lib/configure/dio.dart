@@ -51,7 +51,7 @@ class DioManager {
 
           if (error.requestOptions.extra['logger'] == true) {
             logger.info({
-              'dio': 'network request failed',
+              'dio': 'network request failed'.tr,
               'path': '${error.requestOptions.uri}',
               'method': error.requestOptions.method,
               'headers': '${error.requestOptions.headers}',
