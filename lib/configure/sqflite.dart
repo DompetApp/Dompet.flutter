@@ -8,7 +8,7 @@ class Sqfliter {
   static const defaultPath = 'sqflite/dompet';
 
   static Future<void> clearDatabase() async {
-    final sqfliteRoot = await PathProvider.getApplicationSupportDirectory();
+    final sqfliteRoot = await PathProvider.getApplicationDocumentsDirectory();
     final sqflitePath = join(sqfliteRoot.path, defaultPath);
     final sqfliteDir = Directory(sqflitePath);
     final sqfliteFile = File(sqflitePath);
@@ -49,7 +49,7 @@ class Sqfliter {
       dbName = '$dbName.db';
     }
 
-    final sqfliteRoot = await PathProvider.getApplicationSupportDirectory();
+    final sqfliteRoot = await PathProvider.getApplicationDocumentsDirectory();
     final sqflitePath = join(sqfliteRoot.path, defaultPath, subName);
     final sqfliteFile = File(join(sqflitePath, dbName.toLowerCase()));
 
@@ -78,7 +78,7 @@ class Sqfliter {
       dbName = '$dbName.db';
     }
 
-    final sqfliteRoot = await PathProvider.getApplicationSupportDirectory();
+    final sqfliteRoot = await PathProvider.getApplicationDocumentsDirectory();
     final sqflitePath = join(sqfliteRoot.path, defaultPath, subName);
     final sqfliteFile = join(sqflitePath, dbName.toLowerCase());
     final sqfliteDir = Directory(sqflitePath);

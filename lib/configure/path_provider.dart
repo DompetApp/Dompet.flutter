@@ -7,6 +7,11 @@ class PathProvider {
     return provider.getTemporaryDirectory();
   }
 
+  // 临时路径 - 储存运行期临时数据，系统自动清理
+  static Future<Directory> getApplicationCacheDirectory() async {
+    return provider.getApplicationCacheDirectory();
+  }
+
   // 应用程序支持的目录路径 - 不向用户公开的文件
   static Future<Directory> getApplicationSupportDirectory() async {
     return provider.getApplicationSupportDirectory();
