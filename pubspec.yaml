@@ -44,8 +44,8 @@ dependencies:
   cupertino_icons: ^1.0.8
   auto_size_text: ^3.0.0
   google_sign_in: ^6.2.2
-  firebase_core: ^3.7.0
-  firebase_auth: ^5.3.2
+  firebase_core: ^3.8.0
+  firebase_auth: ^5.3.3
   path_provider: ^2.1.5
   synchronized: ^3.3.0+3
   fluttertoast: ^8.2.8
@@ -56,7 +56,7 @@ dependencies:
   sqflite: ^2.4.1
   convert: ^3.1.2
   crypto: ^3.0.6
-  logger: ^2.4.0
+  logger: ^2.5.0
   intl: ^0.19.0
   path: ^1.9.0
   dio: ^5.7.0

@@ -2,7 +2,14 @@ import 'dart:math';
 import 'dart:convert';
 import 'package:logger/logger.dart';
 
-typedef DateTimeFormatter = String Function(DateTime time);
+const onlyTime = SafeDateTimeFormat.onlyTime;
+const onlyDate = SafeDateTimeFormat.onlyDate;
+const dateAndTime = SafeDateTimeFormat.dateAndTime;
+const onlyTimeAndSinceStart = SafeDateTimeFormat.onlyTimeAndSinceStart;
+const onlyDateAndSinceStart = SafeDateTimeFormat.onlyDateAndSinceStart;
+const dateTimeAndSinceStart = SafeDateTimeFormat.dateTimeAndSinceStart;
+
+typedef DateTimeFormatter = String Function([DateTime? time]);
 
 class SafePrettyPrinter extends LogPrinter {
   static const middleCorner = '├';
@@ -301,12 +308,20 @@ class SafePrettyPrinter extends LogPrinter {
     final List<String> buffer = [];
     var border = false;
 
+    final levels = {
+      Level.fatal: 'Fatal',
+      Level.error: 'Error',
+      Level.warning: 'Warning',
+      Level.debug: 'Debug',
+      Level.info: 'Info',
+    };
+
     if (included) {
       buffer.add(_topBorder);
     }
 
     if (time != null) {
-      buffer.add('$verticalLine$time');
+      buffer.add('$verticalLine${levels[level]} | $time');
       border = true;
     }
 
@@ -357,28 +372,40 @@ class SafeDateTimeFormat {
 
   static const DateTimeFormatter onlyTimeAndSinceStart = _onlyTimeAndSinceStart;
 
+  static const DateTimeFormatter onlyDateAndSinceStart = _onlyDateAndSinceStart;
+
   static const DateTimeFormatter dateTimeAndSinceStart = _dateTimeAndSinceStart;
 
-  static String _dateTimeAndSinceStart(DateTime t) {
-    var timeSinceStart = t.difference(SafePrettyPrinter.startTime).toString();
-    return '${_onlyDate(t)} ${_onlyTime(t)} (+$timeSinceStart)';
+  static String _dateTimeAndSinceStart([DateTime? t]) {
+    final now = t ?? DateTime.now();
+    final timeSinceStart = now.difference(SafePrettyPrinter.startTime);
+    return '${_onlyDate(now)} ${_onlyTime(now)} (+$timeSinceStart)';
   }
 
-  static String _onlyTimeAndSinceStart(DateTime t) {
-    var timeSinceStart = t.difference(SafePrettyPrinter.startTime).toString();
-    return '${_onlyTime(t)} (+$timeSinceStart)';
+  static String _onlyDateAndSinceStart([DateTime? t]) {
+    final now = t ?? DateTime.now();
+    final timeSinceStart = now.difference(SafePrettyPrinter.startTime);
+    return '${_onlyDate(now)} (+$timeSinceStart)';
   }
 
-  static String _dateAndTime(DateTime t) {
-    return "${_onlyDate(t)} ${_onlyTime(t)}";
+  static String _onlyTimeAndSinceStart([DateTime? t]) {
+    final now = t ?? DateTime.now();
+    final timeSinceStart = now.difference(SafePrettyPrinter.startTime);
+    return '${_onlyTime(now)} (+$timeSinceStart)';
   }
 
-  static String _onlyDate(DateTime t) {
-    String isoDate = t.toIso8601String();
+  static String _dateAndTime([DateTime? t]) {
+    final now = t ?? DateTime.now();
+    return "${_onlyDate(now)} ${_onlyTime(now)}";
+  }
+
+  static String _onlyDate([DateTime? t]) {
+    final now = t ?? DateTime.now();
+    final isoDate = now.toIso8601String();
     return isoDate.substring(0, isoDate.indexOf("T"));
   }
 
-  static String _onlyTime(DateTime t) {
+  static String _onlyTime([DateTime? t]) {
     String threeDigits(int n) {
       if (n >= 100) return '$n';
       if (n >= 10) return '0$n';
@@ -390,11 +417,11 @@ class SafeDateTimeFormat {
       return '0$n';
     }
 
-    var now = t;
-    var h = twoDigits(now.hour);
-    var min = twoDigits(now.minute);
-    var sec = twoDigits(now.second);
-    var ms = threeDigits(now.millisecond);
-    return '$h:$min:$sec.$ms';
+    final now = t ?? DateTime.now();
+    final hour = twoDigits(now.hour);
+    final min = twoDigits(now.minute);
+    final sec = twoDigits(now.second);
+    final ms = threeDigits(now.millisecond);
+    return '$hour:$min:$sec.$ms';
   }
 }
