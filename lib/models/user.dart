@@ -15,7 +15,7 @@ class RxUser {
         email = user.email.obs,
         activate = user.activate.obs,
         createDate = user.createDate.obs,
-        avatar = user.avatar.obs;
+        avatar = Rx<Uint8List?>(user.avatar);
 
   User get value {
     return User(

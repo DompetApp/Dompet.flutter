@@ -77,10 +77,6 @@ class SafeFileOutput extends LogOutput {
       return null;
     }
 
-    if (_sink != null) {
-      await _sink!.flush();
-    }
-
     final dir = await getDirectory();
     final list = dir.list().where((f) => f is File);
     final files = await list.cast<File>().toList();

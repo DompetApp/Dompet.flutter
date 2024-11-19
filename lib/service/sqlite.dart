@@ -42,6 +42,8 @@ class SqliteController extends GetxService {
       appDBName,
       version: 1,
       singleInstance: true,
+      onDowngrade: (db, v1, v2) async {},
+      onUpgrade: (db, v1, v2) async {},
       onCreate: (db, v1) async {
         return AppDatabaser.create(db);
       },
@@ -49,7 +51,7 @@ class SqliteController extends GetxService {
   }
 
   Future<void> closeAppDatabase() async {
-    AppDatabaser.close();
+    await AppDatabaser.close();
   }
 
   Future<void> deleteAppDatabase() async {
@@ -78,6 +80,8 @@ class SqliteController extends GetxService {
       subName: appUser!.uid,
       readOnly: false,
       singleInstance: true,
+      onDowngrade: (db, v1, v2) async {},
+      onUpgrade: (db, v1, v2) async {},
       onCreate: (db, v1) async {
         return UserDatabaser.create(db);
       },
@@ -102,7 +106,7 @@ class SqliteController extends GetxService {
     final uid = appUser!.uid;
     await closeUserDatabase();
     await Sqfliter.deleteDatabase(userDBName, subName: uid);
-    await AppDatabaser.deleteUser(appUser!.uid);
+    await AppDatabaser.deleteUser(uid);
   }
 
   // 关闭/删除/清理 所有 Database

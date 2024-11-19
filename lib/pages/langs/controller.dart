@@ -33,7 +33,7 @@ class PageLangsController extends GetxController {
   }
 
   void localer(Locale? locale) {
-    storeController.storeLocale(locale);
+    storeController.localer(locale);
 
     Future.delayed(Duration(milliseconds: 200), () {
       if (locale == enUs) {

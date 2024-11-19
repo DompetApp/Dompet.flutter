@@ -39,6 +39,8 @@ dependencies:
   flutter_launcher_icons:
     git: https://github.com/fluttercommunity/flutter_launcher_icons.git
 
+  get: ^5.0.0-release-candidate-9.2.1
+
   flutter_ringtone_player: ^4.0.0+3
   flutter_inappwebview: ^6.1.5
   cupertino_icons: ^1.0.8
@@ -60,7 +62,6 @@ dependencies:
   intl: ^0.19.0
   path: ^1.9.0
   dio: ^5.7.0
-  get: ^4.6.6
 
 flutter_launcher_icons:
   image_path: "assets/dompet_large.png"

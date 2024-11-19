@@ -1,25 +1,27 @@
-import 'package:get/get.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:dompet/service/bind.dart';
+import 'package:dompet/routes/imports.dart';
 import 'package:dompet/pages/home/index.dart';
 import 'package:dompet/pages/card/index.dart';
 import 'package:dompet/pages/login/index.dart';
 import 'package:dompet/pages/stats/index.dart';
 import 'package:dompet/pages/langs/index.dart';
 import 'package:dompet/pages/profile/index.dart';
+import 'package:dompet/pages/settings/index.dart';
 import 'package:dompet/pages/webview/index.dart';
 import 'package:dompet/pages/register/index.dart';
 import 'package:dompet/pages/operater/index.dart';
-import 'package:dompet/pages/settings/index.dart';
 import 'package:dompet/pages/notification/index.dart';
 
-class AuthMiddleware extends GetMiddleware {
+typedef PreventMode = PreventDuplicateHandlingMode;
+
+class RouteMiddleware extends GetMiddleware {
+  RouteMiddleware({super.priority});
+
   @override
-  RouteSettings? redirect(String? route) {
+  Future<RouteDecoder?> redirectDelegate(RouteDecoder route) async {
     final logined = Get.find<StoreController>().logined;
 
-    if (GetRoutes.overturns.contains(route)) {
+    if (GetRoutes.overturns.contains(route.route?.name)) {
       final orientations = [
         DeviceOrientation.portraitUp,
         DeviceOrientation.portraitDown,
@@ -29,19 +31,19 @@ class AuthMiddleware extends GetMiddleware {
       SystemChrome.setPreferredOrientations(orientations);
     }
 
-    if (!GetRoutes.overturns.contains(route)) {
+    if (!GetRoutes.overturns.contains(route.route?.name)) {
       SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
     }
 
-    if (logined.value && GetRoutes.defaults.contains(route)) {
-      return const RouteSettings(name: '/home');
+    if (logined.value && GetRoutes.defaults.contains(route.route?.name)) {
+      return RouteDecoder.fromRoute('/home');
     }
 
-    if (!logined.value && GetRoutes.authorize.contains(route)) {
-      return const RouteSettings(name: '/login');
+    if (!logined.value && GetRoutes.authorize.contains(route.route?.name)) {
+      return RouteDecoder.fromRoute('/login');
     }
 
-    return null;
+    return route;
   }
 }
 
@@ -90,57 +92,68 @@ class GetRoutes {
       GetPage(
         name: home,
         page: () => const PageHome(),
-        middlewares: [AuthMiddleware()],
+        middlewares: [RouteMiddleware(priority: 0)],
+        preventDuplicateHandlingMode: PreventMode.popUntilOriginalRoute,
       ),
       GetPage(
         name: card,
         page: () => const PageCard(),
-        middlewares: [AuthMiddleware()],
+        middlewares: [RouteMiddleware(priority: 0)],
+        preventDuplicateHandlingMode: PreventMode.reorderRoutes,
       ),
       GetPage(
         name: login,
         page: () => const PageLogin(),
-        middlewares: [AuthMiddleware()],
+        middlewares: [RouteMiddleware(priority: 0)],
+        preventDuplicateHandlingMode: PreventMode.popUntilOriginalRoute,
       ),
       GetPage(
         name: stats,
         page: () => const PageStats(),
-        middlewares: [AuthMiddleware()],
+        middlewares: [RouteMiddleware(priority: 0)],
+        preventDuplicateHandlingMode: PreventMode.reorderRoutes,
       ),
       GetPage(
         name: langs,
         page: () => const PageLangs(),
-        middlewares: [AuthMiddleware()],
+        middlewares: [RouteMiddleware(priority: 0)],
+        preventDuplicateHandlingMode: PreventMode.reorderRoutes,
       ),
       GetPage(
         name: profile,
         page: () => const PageProfile(),
-        middlewares: [AuthMiddleware()],
+        middlewares: [RouteMiddleware(priority: 0)],
+        preventDuplicateHandlingMode: PreventMode.reorderRoutes,
       ),
       GetPage(
         name: webview,
         page: () => PageWebview(),
-        middlewares: [AuthMiddleware()],
+        middlewares: [RouteMiddleware(priority: 0)],
+        preventDuplicateHandlingMode: PreventMode.reorderRoutes,
       ),
       GetPage(
         name: register,
         page: () => const PageRegister(),
-        middlewares: [AuthMiddleware()],
+        middlewares: [RouteMiddleware(priority: 0)],
+        preventDuplicateHandlingMode: PreventMode.reorderRoutes,
       ),
       GetPage(
         name: operater,
         page: () => const PageOperater(),
-        middlewares: [AuthMiddleware()],
+        middlewares: [RouteMiddleware(priority: 0)],
+        preventDuplicateHandlingMode: PreventMode.reorderRoutes,
       ),
       GetPage(
         name: settings,
         page: () => const PageSettings(),
-        middlewares: [AuthMiddleware()],
+        middlewares: [RouteMiddleware(priority: 0)],
+        preventDuplicateHandlingMode: PreventMode.reorderRoutes,
       ),
       GetPage(
         name: notification,
         page: () => const PageNotification(),
-        middlewares: [AuthMiddleware()],
+        middlewares: [RouteMiddleware(priority: 0)],
+        preventDuplicateHandlingMode: PreventMode.reorderRoutes,
       ),
     ];
   }

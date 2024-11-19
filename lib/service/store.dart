@@ -31,7 +31,7 @@ class StoreController extends GetxService {
     init();
   }
 
-  // Auth
+  // Auth / Locale
   Future<void> init() async {
     final language = storager.read<String>('locale');
     final languages = language?.split('_') ?? [];
@@ -97,10 +97,7 @@ class StoreController extends GetxService {
     return home.value.future;
   }
 
-  // Store
-  Future<void> storeLocale(Locale? locale) async {
-    this.locale.value = locale;
-
+  Future<void> localer(Locale? locale) async {
     if (locale != null) await storager.write('locale', locale.toString());
     if (locale == null) await storager.remove('locale');
 
@@ -111,8 +108,11 @@ class StoreController extends GetxService {
     Get.find<LocaleController>().update(
       locale ?? Get.deviceLocale,
     );
+
+    this.locale.value = locale;
   }
 
+  // Store business
   Future<void> storeMessages(List<Message> list) async {
     messages.change(list);
   }
@@ -133,7 +133,7 @@ class StoreController extends GetxService {
     }
   }
 
-  // Clear
+  // Clear business
   Future<void> clearMessage() async {
     messages.clear();
   }

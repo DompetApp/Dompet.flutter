@@ -312,317 +312,269 @@ class Webview {
 
 class GetRouter {
   static Future<T?> to<T>(
-    GetPageBuilder page, {
-    int? id,
-    bool? opaque,
+    Widget Function() page, {
+    String? id,
     Curve? curve,
+    bool? opaque,
     String? routeName,
-    Bindings? binding,
+    dynamic arguments,
     Duration? duration,
     Transition? transition,
-    double Function(BuildContext context)? gestureWidth,
-    bool fullscreenDialog = false,
-    bool preventDuplicates = true,
     bool? popGesture,
-    dynamic arguments,
-    Future<bool> Function()? interceptor,
+    bool rebuildStack = true,
+    bool preventDuplicates = true,
+    bool fullscreenDialog = false,
+    bool showCupertinoParallax = true,
+    List<BindingsInterface> bindings = const [],
+    double Function(BuildContext context)? gestureWidth,
+    PreventDuplicateHandlingMode? preventDuplicateHandlingMode,
   }) async {
     if (page() is PageWebview) {
       preventDuplicates = await Webview.duplicate(arguments);
       arguments = await Webview.format(arguments);
     }
 
-    if (await interceptor?.call() != false) {
-      return Get.to<T>(
-        page,
-        id: id,
-        opaque: opaque,
-        curve: curve,
-        routeName: routeName,
-        binding: binding,
-        duration: duration,
-        transition: transition,
-        gestureWidth: gestureWidth,
-        fullscreenDialog: fullscreenDialog,
-        preventDuplicates: preventDuplicates,
-        popGesture: popGesture,
-        arguments: arguments,
-      );
-    }
-
-    return Future.error(GetRouteError.interceptor);
+    return Get.to<T>(
+      page,
+      id: id,
+      curve: curve,
+      opaque: opaque,
+      bindings: bindings,
+      duration: duration,
+      routeName: routeName,
+      arguments: arguments,
+      transition: transition,
+      popGesture: popGesture,
+      gestureWidth: gestureWidth,
+      rebuildStack: rebuildStack,
+      fullscreenDialog: fullscreenDialog,
+      preventDuplicates: preventDuplicates,
+      showCupertinoParallax: showCupertinoParallax,
+      preventDuplicateHandlingMode: preventDuplicateHandlingMode ??
+          PreventDuplicateHandlingMode.reorderRoutes,
+    );
   }
 
   static Future<T?> off<T>(
-    GetPageBuilder page, {
-    int? id,
-    bool opaque = false,
+    Widget Function() page, {
+    String? id,
     Curve? curve,
+    bool? opaque,
     String? routeName,
-    Bindings? binding,
+    dynamic arguments,
     Duration? duration,
     Transition? transition,
-    double Function(BuildContext context)? gestureWidth,
+    bool? popGesture,
     bool fullscreenDialog = false,
     bool preventDuplicates = true,
-    bool? popGesture,
-    dynamic arguments,
-    Future<bool> Function()? interceptor,
+    List<BindingsInterface> bindings = const [],
+    double Function(BuildContext context)? gestureWidth,
   }) async {
     if (page() is PageWebview) {
       preventDuplicates = await Webview.duplicate(arguments);
       arguments = await Webview.format(arguments);
     }
 
-    if (await interceptor?.call() != false) {
-      return Get.off<T>(
-        page,
-        id: id,
-        opaque: opaque,
-        curve: curve,
-        routeName: routeName,
-        binding: binding,
-        duration: duration,
-        transition: transition,
-        gestureWidth: gestureWidth,
-        fullscreenDialog: fullscreenDialog,
-        preventDuplicates: preventDuplicates,
-        popGesture: popGesture,
-        arguments: arguments,
-      );
-    }
-
-    return Future.error(GetRouteError.interceptor);
+    return Get.off<T>(
+      page,
+      id: id,
+      curve: curve,
+      opaque: opaque,
+      bindings: bindings,
+      duration: duration,
+      routeName: routeName,
+      arguments: arguments,
+      transition: transition,
+      popGesture: popGesture,
+      gestureWidth: gestureWidth,
+      fullscreenDialog: fullscreenDialog,
+      preventDuplicates: preventDuplicates,
+    );
   }
 
   static Future<T?> offAll<T>(
-    GetPageBuilder page, {
-    int? id,
-    bool opaque = false,
+    Widget Function() page, {
+    String? id,
     Curve? curve,
+    bool? opaque,
     String? routeName,
-    Bindings? binding,
+    dynamic arguments,
     Duration? duration,
     Transition? transition,
-    double Function(BuildContext context)? gestureWidth,
-    bool fullscreenDialog = false,
     bool? popGesture,
-    dynamic arguments,
-    RoutePredicate? predicate,
-    Future<bool> Function()? interceptor,
+    bool fullscreenDialog = false,
+    List<BindingsInterface> bindings = const [],
+    double Function(BuildContext context)? gestureWidth,
+    bool Function(GetPage<dynamic>)? predicate,
   }) async {
     if (page() is PageWebview) {
       arguments = await Webview.format(arguments);
     }
 
-    if (await interceptor?.call() != false) {
-      return Get.offAll<T>(
-        page,
-        id: id,
-        opaque: opaque,
-        curve: curve,
-        routeName: routeName,
-        binding: binding,
-        duration: duration,
-        transition: transition,
-        gestureWidth: gestureWidth,
-        fullscreenDialog: fullscreenDialog,
-        popGesture: popGesture,
-        predicate: predicate,
-        arguments: arguments,
-      );
-    }
-
-    return Future.error(GetRouteError.interceptor);
+    return Get.offAll<T>(
+      page,
+      id: id,
+      curve: curve,
+      opaque: opaque,
+      bindings: bindings,
+      duration: duration,
+      routeName: routeName,
+      arguments: arguments,
+      predicate: predicate,
+      transition: transition,
+      popGesture: popGesture,
+      gestureWidth: gestureWidth,
+      fullscreenDialog: fullscreenDialog,
+    );
   }
 
   static Future<T?> offNamed<T>(
     String page, {
-    int? id,
+    String? id,
     dynamic arguments,
-    bool preventDuplicates = true,
     Map<String, String>? parameters,
-    Future<bool> Function()? interceptor,
   }) async {
     if (page == GetRoutes.webview) {
-      preventDuplicates = await Webview.duplicate(arguments);
       arguments = await Webview.format(arguments);
     }
 
-    if (await interceptor?.call() != false) {
-      return Get.offNamed<T>(
-        page,
-        id: id,
-        arguments: arguments,
-        preventDuplicates: preventDuplicates,
-        parameters: parameters,
-      );
-    }
-
-    return Future.error(GetRouteError.interceptor);
+    return Get.offNamed<T>(
+      page,
+      id: id,
+      arguments: arguments,
+      parameters: parameters,
+    );
   }
 
   static Future<T?> offNamedUntil<T>(
-    String page,
-    RoutePredicate predicate, {
-    int? id,
+    String page, {
+    String? id,
     dynamic arguments,
     Map<String, String>? parameters,
-    Future<bool> Function()? interceptor,
+    bool Function(GetPage<dynamic>)? predicate,
   }) async {
     if (page == GetRoutes.webview) {
       arguments = await Webview.format(arguments);
     }
 
-    if (await interceptor?.call() != false) {
-      return Get.offNamedUntil<T>(
-        page,
-        predicate,
-        id: id,
-        arguments: arguments,
-        parameters: parameters,
-      );
-    }
-
-    return Future.error(GetRouteError.interceptor);
+    return Get.offNamedUntil<T>(
+      page,
+      predicate,
+      id: id,
+      arguments: arguments,
+      parameters: parameters,
+    );
   }
 
   static Future<T?> offAndToNamed<T>(
     String page, {
-    int? id,
+    String? id,
     dynamic result,
     dynamic arguments,
     Map<String, String>? parameters,
-    Future<bool> Function()? interceptor,
   }) async {
     if (page == GetRoutes.webview) {
       arguments = await Webview.format(arguments);
     }
 
-    if (await interceptor?.call() != false) {
-      return Get.offAndToNamed<T>(
-        page,
-        id: id,
-        result: result,
-        arguments: arguments,
-        parameters: parameters,
-      );
-    }
-
-    return Future.error(GetRouteError.interceptor);
+    return Get.offAndToNamed<T>(
+      page,
+      id: id,
+      result: result,
+      arguments: arguments,
+      parameters: parameters,
+    );
   }
 
   static Future<T?> offAllNamed<T>(
     String page, {
-    int? id,
+    String? id,
     dynamic arguments,
-    RoutePredicate? predicate,
     Map<String, String>? parameters,
-    Future<bool> Function()? interceptor,
   }) async {
     if (page == GetRoutes.webview) {
       arguments = await Webview.format(arguments);
     }
 
-    if (await interceptor?.call() != false) {
-      return Get.offAllNamed<T>(
-        page,
-        id: id,
-        arguments: arguments,
-        predicate: predicate,
-        parameters: parameters,
-      );
-    }
-
-    return Future.error(GetRouteError.interceptor);
+    return Get.offAllNamed<T>(
+      page,
+      id: id,
+      arguments: arguments,
+      parameters: parameters,
+    );
   }
 
   static Future<T?> toNamed<T>(
     String page, {
-    int? id,
+    String? id,
     dynamic arguments,
-    bool preventDuplicates = true,
     Map<String, String>? parameters,
-    Future<bool> Function()? interceptor,
+    bool preventDuplicates = true,
   }) async {
     if (page == GetRoutes.webview) {
       preventDuplicates = await Webview.duplicate(arguments);
       arguments = await Webview.format(arguments);
     }
 
-    if (await interceptor?.call() != false) {
-      return Get.toNamed<T>(
-        page,
-        id: id,
-        arguments: arguments,
-        preventDuplicates: preventDuplicates,
-        parameters: parameters,
-      );
-    }
-
-    return Future.error(GetRouteError.interceptor);
+    return Get.toNamed<T>(
+      page,
+      id: id,
+      arguments: arguments,
+      parameters: parameters,
+      preventDuplicates: preventDuplicates,
+    );
   }
 
   static Future<bool> canBack({
-    int? id,
+    String? id,
   }) async {
     try {
-      return Get.global(id).currentState!.canPop();
+      return Get.searchDelegate(id).canBack;
     } catch (e) {
       return false;
     }
   }
 
   static Future<void> back<T>({
-    int? id,
-    T? result,
+    String? id,
+    int times = 1,
     bool canPop = true,
-    bool closeOverlays = false,
-    Future<bool> Function()? interceptor,
+    T? result,
   }) async {
-    if (await interceptor?.call() != false) {
-      if (canPop == true && !await canBack(id: id)) {
-        return Future.error(GetRouteError.route);
-      }
-      return Get.back<T>(
-        id: id,
-        result: result,
-        canPop: canPop,
-        closeOverlays: closeOverlays,
-      );
-    }
-
-    return Future.error(GetRouteError.interceptor);
+    return Get.back<T>(
+      id: id,
+      times: times,
+      canPop: canPop,
+      result: result,
+    );
   }
 
   static Future<void> until(
-    RoutePredicate predicate, {
-    int? id,
-    Future<bool> Function()? interceptor,
+    bool Function(GetPage<dynamic>) predicate, {
+    String? id,
   }) async {
-    if (await interceptor?.call() != false) {
-      return Get.until(
-        predicate,
-        id: id,
-      );
-    }
-
-    return Future.error(GetRouteError.interceptor);
+    return Get.until(
+      predicate,
+      id: id,
+    );
   }
 
-  static Future<void> close(
-    int times, {
-    int? id,
-    Future<bool> Function()? interceptor,
+  static Future<void> close({
+    String? id,
+    dynamic result,
+    bool closeAll = true,
+    bool closeDialog = true,
+    bool closeSnackbar = true,
+    bool closeBottomSheet = true,
   }) async {
-    if (await interceptor?.call() != false) {
-      return Get.close(
-        times,
-        id,
-      );
-    }
-
-    return Future.error(GetRouteError.interceptor);
+    return Get.close(
+      id: id,
+      result: result,
+      closeAll: closeAll,
+      closeDialog: closeDialog,
+      closeSnackbar: closeSnackbar,
+      closeBottomSheet: closeBottomSheet,
+    );
   }
 
   static Future<void> exit({
@@ -653,7 +605,6 @@ class GetRouter {
 }
 
 enum GetRouteError {
-  interceptor,
   webview,
   route,
 }

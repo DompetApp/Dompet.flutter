@@ -143,7 +143,7 @@ class WebviewChannelHandler {
 
       if (delta > 0) {
         await GetRouter.until((route) {
-          return route.settings.name != GetRoutes.webview || delta-- <= 0;
+          return route.name != GetRoutes.webview || delta-- <= 0;
         });
       }
 

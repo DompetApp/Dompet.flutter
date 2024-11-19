@@ -18,16 +18,13 @@ export 'package:dompet/service/native.dart';
 export 'package:dompet/service/sqlite.dart';
 export 'package:dompet/service/webview.dart';
 
-class AllBinding implements Bindings {
-  @override
-  void dependencies() {
-    Get.put<StoreController>(StoreController());
-    Get.put<EventController>(EventController());
-    Get.put<LocaleController>(LocaleController());
-    Get.put<SqliteController>(SqliteController());
-    Get.put<AppLinkController>(AppLinkController());
-    Get.put<MediaQueryController>(MediaQueryController());
-    Get.put<NativeChannelController>(NativeChannelController());
-    Get.put<WebviewChannelController>(WebviewChannelController());
-  }
-}
+final bindings = [
+  Bind.put<StoreController>(StoreController()),
+  Bind.put<EventController>(EventController()),
+  Bind.put<LocaleController>(LocaleController()),
+  Bind.put<SqliteController>(SqliteController()),
+  Bind.put<AppLinkController>(AppLinkController()),
+  Bind.put<MediaQueryController>(MediaQueryController()),
+  Bind.put<NativeChannelController>(NativeChannelController()),
+  Bind.put<WebviewChannelController>(WebviewChannelController()),
+];

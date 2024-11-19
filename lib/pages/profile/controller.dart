@@ -25,8 +25,8 @@ class PageProfileController extends GetxController with RxWatcher {
   void onInit() {
     super.onInit();
 
-    avatar = loginUser.avatar.value.obs;
-    readonly = loginUser.name.value.bv.obs;
+    avatar = Rx(loginUser.avatar.value);
+    readonly = Rx(loginUser.name.value.bv);
     nameController.text = loginUser.name.value;
 
     rw.ever(loginUser.name, (_) => nameController.text = loginUser.name.value);

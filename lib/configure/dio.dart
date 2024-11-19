@@ -60,7 +60,7 @@ class DioManager {
               error.requestOptions.extra['request'] ??= dateAndTime();
 
               final message = {
-                'dio': 'network request failed'.tr,
+                'dio': 'network request failed',
                 'path': '${error.requestOptions.uri}',
                 'method': error.requestOptions.method,
                 'headers': '${error.requestOptions.headers}',

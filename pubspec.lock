@@ -410,10 +410,10 @@ packages:
     dependency: "direct main"
     description:
       name: get
-      sha256: e4e7335ede17452b391ed3b2ede016545706c01a02292a6c97619705e7d2a85e
+      sha256: "7172032cf9acae0b16552ff367f211c36b321846509d7e56fc0938def2e147bc"
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "4.6.6"
+    version: "5.0.0-release-candidate-9.2.1"
   get_storage:
     dependency: "direct main"
     description:

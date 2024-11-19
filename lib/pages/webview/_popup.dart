@@ -305,7 +305,7 @@ class PageWebviewPopupState extends State<PageWebviewPopup>
       case 'backHome':
         return () async {
           return GetRouter.until((route) {
-            return route.settings.name != GetRoutes.webview;
+            return route.name != GetRoutes.webview;
           });
         };
 

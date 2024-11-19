@@ -165,13 +165,13 @@ class MyAppState extends State<MyApp> with WidgetsBindingObserver {
       navigatorObservers: [routeObserver],
       defaultTransition: Transition.rightToLeft,
       fallbackLocale: enUSLocale,
-      initialBinding: AllBinding(),
       initialRoute: GetRoutes.login,
       navigatorKey: navigatorKey,
       translations: translations,
       getPages: GetRoutes.pages(),
       locale: applyLocale,
       theme: lightTheme,
+      binds: bindings,
       title: 'Dompet',
     );
   }
