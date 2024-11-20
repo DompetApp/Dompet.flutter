@@ -14,11 +14,11 @@ import 'package:dompet/service/bind.dart';
 import 'package:dompet/routes/pages.dart';
 import 'package:dompet/theme/light.dart';
 
-const pingUrl = 'https://pub.dev/';
-const enUSLocale = Locale('en', 'US');
+const pingHttpUrl = 'https://pub.dev/';
 final translations = JsonTranslations();
 final navigatorKey = GlobalKey<NavigatorState>();
 final routeObserver = RouteObserver<ModalRoute<void>>();
+const fallbackLocale = Locale('en', 'US');
 
 void main() async {
   BindingBase.debugZoneErrorsAreFatal = true;
@@ -59,7 +59,7 @@ void runner() async {
   await logger.init;
 
   runApp(const MyApp());
-  request(pingUrl);
+  request(pingHttpUrl);
 }
 
 void request(String url) async {
@@ -109,7 +109,7 @@ class MyAppState extends State<MyApp> with WidgetsBindingObserver {
     }
 
     if (locales == null || locales.isEmpty) {
-      Get.find<LocaleController>().update(enUSLocale);
+      Get.find<LocaleController>().update(fallbackLocale);
     }
   }
 
@@ -164,10 +164,12 @@ class MyAppState extends State<MyApp> with WidgetsBindingObserver {
       debugShowCheckedModeBanner: false,
       navigatorObservers: [routeObserver],
       defaultTransition: Transition.rightToLeft,
-      fallbackLocale: enUSLocale,
+      logWriterCallback: logWriterCallback,
+      fallbackLocale: fallbackLocale,
       initialRoute: GetRoutes.login,
       navigatorKey: navigatorKey,
       translations: translations,
+      enableLog: kDebugMode,
       getPages: GetRoutes.pages(),
       locale: applyLocale,
       theme: lightTheme,

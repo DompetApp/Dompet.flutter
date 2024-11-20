@@ -95,6 +95,11 @@ class AppLinkController extends GetxService {
         return;
       }
 
+      if (params is WebviewMeta) {
+        GetRouter.toNamed(link, arguments: params);
+        return;
+      }
+
       if (params is Map) {
         final arguments = WebviewMeta(
           key: params['key'] is String ? params['key'] : null,

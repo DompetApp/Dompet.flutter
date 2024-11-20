@@ -428,6 +428,24 @@ class GetRouter {
     );
   }
 
+  static Future<T?> offUntil<T>(
+    Widget Function() page,
+    bool Function(GetPage) predicate, {
+    Object? arguments,
+    String? id,
+  }) async {
+    if (page() is PageWebview) {
+      arguments = await Webview.format(arguments);
+    }
+
+    return Get.offUntil<T>(
+      page,
+      predicate,
+      arguments,
+      id,
+    );
+  }
+
   static Future<T?> offNamed<T>(
     String page, {
     String? id,
