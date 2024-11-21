@@ -26,6 +26,7 @@ class PageWebviewScaffoldState extends State<PageWebviewScaffold> {
     final webViewKey = controller.webViewKey;
     final webviewMeta = controller.webviewMeta;
     final writeScripts = controller.writeScripts;
+    final navigator = controller.navigator;
     final popuping = controller.popuping;
     final titling = controller.titling;
     final loading = controller.loading;
@@ -152,7 +153,8 @@ class PageWebviewScaffoldState extends State<PageWebviewScaffold> {
                 onUpdateVisitedHistory: (webviewController, url, reload) async {
                   final canGoBack = await webviewController.canGoBack();
                   final canBack = await GetRouter.canBack();
-                  leading(canGoBack || canBack);
+                  await leading(canGoBack || canBack);
+                  await navigator(url);
                 },
                 onPermissionRequest: (webviewController, request) async {
                   return PermissionResponse(

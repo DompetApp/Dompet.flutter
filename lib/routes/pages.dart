@@ -58,17 +58,20 @@ class RouteMiddleware extends GetMiddleware {
     }
 
     if (name == GetRoutes.webview && arguments is WebviewMeta) {
-      final newRoute = route.route!.copyWith(
-        key: ValueKey(arguments.key),
+      route.route = route.route!.copyWith(
+        key: WebviewKey(arguments.key),
         name: GetRoutes.webview,
-        page: route.route!.page,
         arguments: arguments,
       );
 
-      route.route = newRoute;
+      return route;
     }
 
-    return route;
+    if (name == GetRoutes.webview && arguments is! WebviewMeta) {
+      return null;
+    }
+
+    return name != Get.currentRoute ? route : null;
   }
 }
 

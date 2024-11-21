@@ -1,8 +1,12 @@
 import 'dart:math';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:url_launcher/url_launcher.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'package:dompet/pages/webview/controller.dart';
+import 'package:dompet/configure/fluttertoast.dart';
+import 'package:dompet/extension/bool.dart';
 import 'package:dompet/extension/size.dart';
 import 'package:dompet/routes/router.dart';
 
@@ -27,9 +31,10 @@ class PageWebviewPopupState extends State<PageWebviewPopup>
   late final mediaPadding = mediaQueryController.viewPadding;
   late final mediaQueryController = controller.mediaQueryController;
 
+  WebUri? get requestWebUri => controller.requestWebUri;
+
   late AnimationController animationController;
   late Animation<double> animation;
-  late Function? closedCallback;
 
   @override
   initState() {
@@ -56,21 +61,12 @@ class PageWebviewPopupState extends State<PageWebviewPopup>
     });
 
     animationController.forward();
-
-    closedCallback = null;
   }
 
   @override
   dispose() {
     super.dispose();
-
     animationController.dispose();
-
-    Future.delayed(const Duration(seconds: 0), () {
-      if (closedCallback != null) {
-        closedCallback!();
-      }
-    });
   }
 
   @override
@@ -113,10 +109,12 @@ class PageWebviewPopupState extends State<PageWebviewPopup>
   // panel
   Widget controlPanel(BuildContext context) {
     final panelList = [
-      'backHome',
-      'refreshPage',
-      'clearCache',
-      'openDebug',
+      'back',
+      'refresh',
+      'clear',
+      'debug',
+      'browser',
+      'link',
     ];
 
     return Positioned(
@@ -126,12 +124,12 @@ class PageWebviewPopupState extends State<PageWebviewPopup>
       child: Container(
         decoration: BoxDecoration(
           borderRadius: BorderRadius.all(
-            Radius.circular(15.wdp),
+            Radius.circular(640.wmax * 15.sr),
           ),
           color: const Color(0xffebebeb),
         ),
         child: Padding(
-          padding: EdgeInsets.all(15.wdp),
+          padding: EdgeInsets.all(640.wmax * 15.sr),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -142,17 +140,17 @@ class PageWebviewPopupState extends State<PageWebviewPopup>
                 children: [
                   Padding(
                     padding: EdgeInsets.only(
-                      left: 8.wdp,
-                      right: 8.wdp,
+                      left: 640.wmax * 8.sr,
+                      right: 640.wmax * 8.sr,
                     ),
                     child: Text(
                       'Settings'.tr,
                       style: TextStyle(
                         color: const Color(0xff303133),
+                        letterSpacing: max(640.wmax * 1.2.sr, 1.2),
                         decoration: TextDecoration.none,
                         fontWeight: FontWeight.bold,
-                        letterSpacing: 1.2,
-                        fontSize: 16.wdp,
+                        fontSize: 640.wmax * 16.sr,
                       ),
                     ),
                   ),
@@ -160,32 +158,32 @@ class PageWebviewPopupState extends State<PageWebviewPopup>
               ),
               Container(
                 height: .5,
-                margin: EdgeInsets.symmetric(vertical: 15.wdp),
+                margin: EdgeInsets.symmetric(vertical: 640.wmax * 15.sr),
                 color: const Color(0xffcfcfcf),
               ),
               Container(
                 constraints: BoxConstraints(
-                  minHeight: min(128.wdp, 30.vh),
+                  minHeight: min(640.wmax * 128.sr, 30.vh),
                 ),
                 child: GridView.builder(
                   shrinkWrap: true,
-                  padding: EdgeInsets.zero,
                   itemCount: panelList.length,
+                  padding: EdgeInsets.all(640.wmax * 3.sr),
                   physics: const NeverScrollableScrollPhysics(),
                   gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
-                    maxCrossAxisExtent: 65.wdp,
-                    childAspectRatio: 0.65,
-                    crossAxisSpacing: 12,
-                    mainAxisSpacing: 12,
+                    maxCrossAxisExtent: 640.wmax * 66.sr,
+                    crossAxisSpacing: 640.wmax * 15.sr,
+                    mainAxisSpacing: 640.wmax * 12.sr,
+                    childAspectRatio: 0.60,
                   ),
                   itemBuilder: (context, index) {
-                    return panelPlate(panelList[index]);
+                    return controlPlate(context, panelList[index]);
                   },
                 ),
               ),
               Container(
                 height: .5,
-                margin: EdgeInsets.symmetric(vertical: 15.wdp),
+                margin: EdgeInsets.symmetric(vertical: 640.wmax * 15.sr),
                 color: const Color(0xffcfcfcf),
               ),
               GestureDetector(
@@ -202,10 +200,10 @@ class PageWebviewPopupState extends State<PageWebviewPopup>
                       'Cancel'.tr,
                       style: TextStyle(
                         color: const Color(0xff646e93),
+                        letterSpacing: max(640.wmax * 1.2.sr, 1.2),
                         decoration: TextDecoration.none,
                         fontWeight: FontWeight.bold,
-                        letterSpacing: 1.2,
-                        fontSize: 16.wdp,
+                        fontSize: 640.wmax * 16.sr,
                       ),
                     ),
                   ),
@@ -220,115 +218,147 @@ class PageWebviewPopupState extends State<PageWebviewPopup>
   }
 
   // plate
-  Widget panelPlate(String type) {
-    String image = '';
-    String title = '';
+  Widget controlPlate(BuildContext context, String type) {
+    var image = '';
+    var title = '';
 
     switch (type) {
-      case 'backHome':
+      case 'back':
         image = 'lib/assets/webview/home.png';
-        title = 'back'.tr;
+        title = 'Back App'.tr;
         break;
 
-      case 'refreshPage':
+      case 'refresh':
         image = 'lib/assets/webview/refresh.png';
-        title = 'refresh'.tr;
+        title = 'Refresh Page'.tr;
         break;
 
-      case 'clearCache':
+      case 'clear':
         image = 'lib/assets/webview/clear.png';
-        title = 'clear'.tr;
+        title = 'Clear Cache'.tr;
         break;
 
-      case 'openDebug':
+      case 'debug':
         image = 'lib/assets/webview/debug.png';
-        title = 'debug'.tr;
+        title = 'Turn Debug'.tr;
+        break;
+
+      case 'browser':
+        image = 'lib/assets/webview/browser.png';
+        title = 'Open Browser'.tr;
+        break;
+
+      case 'link':
+        image = 'lib/assets/webview/link.png';
+        title = 'Copy Link'.tr;
         break;
     }
 
     return GestureDetector(
       child: SizedBox(
-        width: 60.wdp,
+        width: 640.wmax * 60.sr,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Container(
-              width: 54.wdp,
-              height: 54.wdp,
+              width: 640.wmax * 56.sr,
+              height: 640.wmax * 56.sr,
               alignment: Alignment.center,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.all(
-                  Radius.circular(15.wdp),
+                  Radius.circular(640.wmax * 15.sr),
                 ),
                 color: const Color(0xffffffff),
               ),
               child: Image(
-                width: 30.wdp,
-                height: 30.wdp,
-                fit: BoxFit.fill,
+                width: 640.wmax * 30.sr,
+                height: 640.wmax * 30.sr,
                 image: AssetImage(image),
+                fit: BoxFit.fill,
               ),
             ),
-            Padding(
-              padding: EdgeInsets.only(
-                top: 7.wdp,
-                left: 4.wdp,
-                right: 4.wdp,
-              ),
+            Container(
+              width: 640.wmax * 56.sr,
+              alignment: Alignment.center,
+              padding: EdgeInsets.only(top: 640.wmax * 9.sr),
               child: Text(
                 title,
                 style: TextStyle(
-                  height: 1.2.wdp,
-                  fontSize: 11.wdp,
+                  height: 1.1,
+                  fontSize: 640.wmax * 10.sr,
                   fontWeight: FontWeight.w600,
                   overflow: TextOverflow.ellipsis,
                   decoration: TextDecoration.none,
                   color: const Color(0xff606266),
                 ),
+                textAlign: TextAlign.center,
                 maxLines: 2,
               ),
             ),
           ],
         ),
       ),
-      onTap: () {
-        closedCallback = callback(type);
-        animationController.reverse();
+      onTap: () async {
+        if (await trigger(context, type)) {
+          animationController.reverse();
+        }
       },
     );
   }
 
-  // callback
-  Function? callback(String type) {
-    switch (type) {
-      case 'backHome':
-        return () async {
-          return GetRouter.until((route) {
-            return route.name != GetRoutes.webview;
-          });
-        };
-
-      case 'refreshPage':
-        return () async {
-          return controller.webviewController?.reload();
-        };
-
-      case 'clearCache':
-        return () async {
-          await InAppWebViewController.clearAllCache();
-          await controller.webviewController?.reload();
-          return;
-        };
-
-      case 'openDebug':
-        return () {
-          const event = 'CallOpenVConsoleDebug';
-          const source = 'window.dispatchEvent(new CustomEvent("$event"));';
-          controller.webviewController?.evaluateJavascript(source: source);
-        };
+  // trigger
+  Future<bool> trigger(BuildContext context, String type) async {
+    if (type == 'back') {
+      await GetRouter.until((route) => route.name != GetRoutes.webview);
+      return true;
     }
 
-    return null;
+    if (type == 'refresh') {
+      await controller.webviewController?.reload();
+      return true;
+    }
+
+    if (type == 'clear') {
+      await InAppWebViewController.clearAllCache();
+      await controller.webviewController?.reload();
+      return true;
+    }
+
+    if (type == 'debug') {
+      const event = 'CallOpenVConsoleDebug';
+      const source = 'window.dispatchEvent(new CustomEvent("$event"));';
+      await controller.webviewController?.evaluateJavascript(source: source);
+      return true;
+    }
+
+    if (type == 'browser') {
+      if (requestWebUri.bv && await canLaunchUrl(requestWebUri!)) {
+        launchUrl(
+          controller.requestWebUri!,
+          mode: LaunchMode.externalApplication,
+        );
+
+        return true;
+      }
+    }
+
+    if (type == 'link') {
+      if (requestWebUri.bv && requestWebUri!.toString().isNotEmpty) {
+        final clipboard = ClipboardData(text: requestWebUri!.toString());
+        final future = Clipboard.setData(clipboard);
+
+        future.then((_) {
+          Toaster.success(
+            message: 'Copy Successful'.tr,
+            duration: 1.5.seconds,
+          );
+        });
+
+        return true;
+      }
+    }
+
+    return false;
   }
 }

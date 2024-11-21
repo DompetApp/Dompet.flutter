@@ -45,7 +45,10 @@ void runner() async {
   };
 
   SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
+    systemNavigationBarDividerColor: Colors.transparent,
     systemNavigationBarColor: Colors.transparent,
+    systemNavigationBarContrastEnforced: false,
+    systemStatusBarContrastEnforced: false,
     statusBarColor: Colors.transparent,
   ));
 

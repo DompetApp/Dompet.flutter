@@ -3,6 +3,11 @@ import 'dart:convert';
 import 'package:get/get.dart';
 import 'package:crypto/crypto.dart';
 import 'package:convert/convert.dart';
+import 'package:flutter/material.dart';
+
+class WebviewKey extends ValueKey<String> {
+  const WebviewKey(super.value);
+}
 
 class RxWebviewMeta {
   static String uuid() {

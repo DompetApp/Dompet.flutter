@@ -27,6 +27,7 @@ class PageWebviewController extends GetxController {
   late final debug = kDebugMode;
   late final webViewKey = GlobalKey();
   late final webviewMeta = RxWebviewMeta(Get.arguments);
+  late final languageCode = localeController.languageCode;
   late final inAppWebViewSettings = InAppWebViewSettings(
     mediaPlaybackRequiresUserGesture: false,
     useShouldOverrideUrlLoading: true,
@@ -38,7 +39,9 @@ class PageWebviewController extends GetxController {
   UnmodifiableListView<UserScript>? initialScripts;
   InAppWebViewController? webviewController;
   InAppWebViewInitialData? initialData;
+  Map<String, String>? initialHeaders;
   URLRequest? initialUrl;
+  WebUri? requestWebUri;
   bool? injectScript;
   bool? injectUrl;
 
@@ -69,7 +72,9 @@ class PageWebviewController extends GetxController {
     webviewMeta.canBack.value = false;
     webviewMeta.loading.value = false;
     webviewController = null;
+    initialHeaders = null;
     initialScripts = null;
+    requestWebUri = null;
     injectScript = null;
     initialData = null;
     initialUrl = null;
@@ -101,7 +106,6 @@ class PageWebviewController extends GetxController {
     final fromHtml = webviewMeta.fromHtml.value;
     final checkUrl = webviewMeta.checkUrl.value;
     final checkHttps = webviewMeta.checkHttps.value;
-    final languageCode = localeController.languageCode;
 
     if (initialUrl == null && initialData == null && fromHtml) {
       await loadScripts();
@@ -123,9 +127,12 @@ class PageWebviewController extends GetxController {
     if (initialUrl == null && initialData == null && fromUrl) {
       await loadScripts();
 
+      initialHeaders = {'Accept-Language': languageCode};
+      requestWebUri = WebUri.uri(Uri.parse(url));
+
       initialUrl = URLRequest(
-        url: WebUri.uri(Uri.parse(url)),
-        headers: {'Accept-Language': languageCode},
+        headers: initialHeaders,
+        url: requestWebUri,
       );
     }
 
@@ -190,8 +197,13 @@ class PageWebviewController extends GetxController {
     }
   }
 
+  // navigator
+  Future<void> navigator([WebUri? uri]) async {
+    requestWebUri = uri;
+  }
+
   // titling
-  Future<void> titling(String? title) async {
+  Future<void> titling([String? title = '']) async {
     title = title ?? '';
 
     final isEmpty = title.trim() == '';
@@ -210,27 +222,21 @@ class PageWebviewController extends GetxController {
   }
 
   // leading
-  Future<void> leading(bool? canBack) async {
-    if (webviewMeta.canBack.value != canBack) {
-      webviewMeta.canBack.value = canBack == true;
-    }
+  Future<void> leading([bool? canBack = false]) async {
+    webviewMeta.canBack.value = canBack == true;
   }
 
   // loading
-  Future<void> loading(bool? loading) async {
-    if (loading != null) {
-      webviewMeta.loading.value = loading;
-    }
+  Future<void> loading([bool? loading = false]) async {
+    webviewMeta.loading.value = loading == true;
   }
 
   // popuping
-  Future<void> popuping(bool? popup) async {
+  Future<void> popuping([bool? popup = false]) async {
     if (mediaQueryController.orientation.value == Orientation.landscape) {
       return;
     }
 
-    if (popup != null) {
-      webviewMeta.popup.value = popup;
-    }
+    webviewMeta.popup.value = popup == true;
   }
 }
