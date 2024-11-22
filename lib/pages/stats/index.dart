@@ -410,7 +410,7 @@ class PageStats extends GetView<PageStatsController> {
                   children: [
                     GestureDetector(
                       behavior: HitTestBehavior.opaque,
-                      onTap: () => GetRouter.back(),
+                      onTap: () => GetRouter.offNamedUntil(GetRoutes.home),
                       child: Image.asset(
                         'lib/assets/images/tabbar/home.png',
                         width: 640.wmax * 28.sr,
