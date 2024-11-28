@@ -61,11 +61,11 @@ class SafeFileOutput extends LogOutput {
       final isError = Level.error == event.level;
       final isWarning = Level.warning == event.level;
 
-      await lock.synchronized(() async {
-        if (isInfo != true && isError != true && isWarning != true) {
-          return;
-        }
+      if (isInfo != true && isError != true && isWarning != true) {
+        return;
+      }
 
+      await lock.synchronized(() async {
         if (_sink == null || await createIOName() != _name) {
           await clearIOSink();
           await createIOSink();

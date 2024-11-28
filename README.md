@@ -9,7 +9,7 @@
 </p>
 
 - Thanks to the Pixso community for providing the design draft ([しょうた](https://pixso.cn/community/file/OKp9_CF9BjALdzxa2W-3UA)).
-- A Digital Wallet App implemented by Flutter. 
+- A Digital Wallet App implemented by Flutter.
 
 <br/>
 
@@ -22,6 +22,7 @@
 ## Features
 
 - Support sign-on with github or google via firebase authentication
+- Support App to record and view running logs (based on logger extension)
 - Support App to simulate payment, transfer, recharge and message by sqlite
 - Support App to access Web pages, and provide device interaction and debugging
 - Support App to implement simple chart interaction (line chart) by fl_chart
@@ -40,6 +41,7 @@
 - firebase_core
 - firebase_auth
 - path_provider
+- synchronized
 - fluttertoast
 - image_picker
 - get_storage
@@ -47,10 +49,11 @@
 - sqflite
 - convert
 - crypto
+- logger
 - intl
 - path
 - dio
-- get
+- get (^5.x)
 
 <br/>
 
