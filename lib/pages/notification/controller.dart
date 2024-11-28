@@ -14,8 +14,9 @@ class PageNotificationController extends GetxController with RxWatcher {
 
   late final readUserMessage = eventController.readUserMessage;
   late final mediaPadding = mediaQueryController.viewPadding;
-  late final rawMessages = storeController.messages.list;
   late final mediaTopBar = mediaQueryController.topBar;
+  late final rawMessages = storeController.messages;
+  late final refMessages = RxMessages.init();
 
   Rx<List<GroupMessage>> msgGroups = Rx([]);
   Rx<bool> isShadow = false.obs;
@@ -24,7 +25,9 @@ class PageNotificationController extends GetxController with RxWatcher {
   void onInit() {
     super.onInit();
 
-    rw.ever(rawMessages, (_) => transformer());
+    refMessages.list.bindStream(rawMessages.list.stream);
+
+    rw.ever(refMessages.list, (_) => transformer());
 
     scrollController.addListener(() {
       final expanded = 640.wmax * 152.sr;
@@ -44,7 +47,7 @@ class PageNotificationController extends GetxController with RxWatcher {
   void transformer() {
     final List<GroupMessage> refGroups = [];
 
-    for (var msg in rawMessages.value) {
+    for (var msg in rawMessages.list.value) {
       try {
         final year = DateTime.parse(msg.date).year;
         final newGroup = GroupMessage(year: year, messages: []);

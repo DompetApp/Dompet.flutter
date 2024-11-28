@@ -15,6 +15,7 @@ class PageStatsController extends GetxController with RxWatcher {
   late final bankOrders = storeController.orders;
   late final loginUser = storeController.user;
   late final bankCard = storeController.card;
+  late final refOrders = RxOrders.init();
 
   Rx<List<int>> years = Rx([]);
   Rx<List<int>> showings = Rx([]);
@@ -27,6 +28,10 @@ class PageStatsController extends GetxController with RxWatcher {
   void onInit() {
     super.onInit();
 
+    refOrders.list.bindStream(bankOrders.list.stream);
+
+    rw.ever(refOrders.list, (_) => transfer());
+
     scrollController.addListener(() {
       if (!scrollController.hasClients) {
         isShowTopBar.value = false;
@@ -37,8 +42,6 @@ class PageStatsController extends GetxController with RxWatcher {
       final isMaxRange = pixels >= (640.wmax * 298.sr);
       isShowTopBar.value = isPortrait.value && isMaxRange;
     });
-
-    rw.ever(bankOrders.list, (_) => transfer());
 
     transfer();
   }

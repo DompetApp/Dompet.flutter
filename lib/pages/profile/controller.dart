@@ -6,6 +6,7 @@ import 'package:dompet/configure/fluttertoast.dart';
 import 'package:dompet/extension/bool.dart';
 import 'package:dompet/mixins/watcher.dart';
 import 'package:dompet/service/bind.dart';
+import 'package:dompet/models/user.dart';
 
 class PageProfileController extends GetxController with RxWatcher {
   late final mediaQueryController = Get.find<MediaQueryController>();
@@ -16,6 +17,7 @@ class PageProfileController extends GetxController with RxWatcher {
   late final mediaPadding = mediaQueryController.viewPadding;
   late final mediaTopBar = mediaQueryController.topBar;
   late final loginUser = storeController.user;
+  late final refUser = RxUser.init();
 
   late Rx<bool> readonly = true.obs;
   late FocusNode nameFocusNode = FocusNode();
@@ -25,13 +27,16 @@ class PageProfileController extends GetxController with RxWatcher {
   void onInit() {
     super.onInit();
 
-    avatar = Rx(loginUser.avatar.value);
-    readonly = Rx(loginUser.name.value.bv);
+    avatar = loginUser.avatar;
+    readonly = loginUser.name.value.bv.obs;
     nameController.text = loginUser.name.value;
 
-    rw.ever(loginUser.name, (_) => nameController.text = loginUser.name.value);
-    rw.ever(loginUser.name, (_) => readonly.value = loginUser.name.value.bv);
-    rw.ever(loginUser.avatar, (_) => avatar.value = loginUser.avatar.value);
+    refUser.name.bindStream(loginUser.name.stream);
+    refUser.avatar.bindStream(loginUser.avatar.stream);
+
+    rw.ever(refUser.name, (_) => nameController.text = loginUser.name.value);
+    rw.ever(refUser.name, (_) => readonly.value = loginUser.name.value.bv);
+    rw.ever(refUser.avatar, (_) => avatar.value = loginUser.avatar.value);
   }
 
   @override
