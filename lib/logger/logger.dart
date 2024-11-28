@@ -1,13 +1,14 @@
 import 'package:dio/dio.dart';
 import 'package:logger/logger.dart';
+import 'package:flutter/widgets.dart';
 import 'package:dompet/logger/output.dart';
 import 'package:dompet/logger/printer.dart';
 
 final _consoleOutput = ConsoleOutput();
 final _fileSafeOutput = SafeFileOutput();
 
-class SafeMultiOutput extends MultiOutput {
-  SafeMultiOutput() : super([_consoleOutput, _fileSafeOutput]);
+class SafeOutputs extends MultiOutput {
+  SafeOutputs() : super([_consoleOutput, _fileSafeOutput]);
 }
 
 class SafeFilter extends LogFilter {
@@ -18,7 +19,7 @@ class SafeFilter extends LogFilter {
 }
 
 class SafeLogger extends Logger {
-  SafeLogger({super.level, super.filter, super.printer, super.output});
+  SafeLogger({super.level, super.filter, super.output, super.printer});
 
   void info(dynamic message, [Object? error, StackTrace? stackTrace]) {
     i(message, error: error, stackTrace: stackTrace);
@@ -36,38 +37,112 @@ class SafeLogger extends Logger {
     w(message, error: error, stackTrace: stackTrace);
   }
 
+  SafeChangeNotifier get _changeNotifier => _fileSafeOutput.changeNotifier;
+  SafeChangeListener get removeListener => _changeNotifier.removeListener;
+  SafeChangeListener get addListener => _changeNotifier.addListener;
+
   Future<List<String>?> readAsStrings() async {
-    return _fileSafeOutput.readAsStrings();
+    try {
+      return _fileSafeOutput.readAsStrings();
+    } catch (exception, stack) {
+      FlutterError.reportError(FlutterErrorDetails(
+        library: 'Flutter SafeLogger',
+        exception: exception,
+        stack: stack,
+      ));
+
+      return null;
+    }
   }
 
   Future<FormData?> readAsFormDatas() async {
-    return _fileSafeOutput.readAsFormDatas();
+    try {
+      return _fileSafeOutput.readAsFormDatas();
+    } catch (exception, stack) {
+      FlutterError.reportError(FlutterErrorDetails(
+        library: 'Flutter SafeLogger',
+        exception: exception,
+        stack: stack,
+      ));
+
+      return null;
+    }
   }
 
   Future<FormData?> readAsFormData() async {
-    return _fileSafeOutput.readAsFormData();
+    try {
+      return _fileSafeOutput.readAsFormData();
+    } catch (exception, stack) {
+      FlutterError.reportError(FlutterErrorDetails(
+        library: 'Flutter SafeLogger',
+        exception: exception,
+        stack: stack,
+      ));
+
+      return null;
+    }
   }
 
   Future<String?> readAsString() async {
-    return _fileSafeOutput.readAsString();
+    try {
+      return _fileSafeOutput.readAsString();
+    } catch (exception, stack) {
+      FlutterError.reportError(FlutterErrorDetails(
+        library: 'Flutter SafeLogger',
+        exception: exception,
+        stack: stack,
+      ));
+
+      return null;
+    }
   }
 
   Future<void> clearHistory() async {
-    return _fileSafeOutput.clearHistory();
+    try {
+      return _fileSafeOutput.clearHistory();
+    } catch (exception, stack) {
+      FlutterError.reportError(FlutterErrorDetails(
+        library: 'Flutter SafeLogger',
+        exception: exception,
+        stack: stack,
+      ));
+
+      return;
+    }
   }
 
   Future<void> clearAll() async {
-    return _fileSafeOutput.clearAll();
+    try {
+      return _fileSafeOutput.clearAll();
+    } catch (exception, stack) {
+      FlutterError.reportError(FlutterErrorDetails(
+        library: 'Flutter SafeLogger',
+        exception: exception,
+        stack: stack,
+      ));
+
+      return;
+    }
   }
 
   Future<bool> isEmpty() async {
-    return _fileSafeOutput.isEmpty();
+    try {
+      return _fileSafeOutput.isEmpty();
+    } catch (exception, stack) {
+      FlutterError.reportError(FlutterErrorDetails(
+        library: 'Flutter SafeLogger',
+        exception: exception,
+        stack: stack,
+      ));
+
+      return true;
+    }
   }
 }
 
 final logger = SafeLogger(
   filter: SafeFilter(),
-  output: SafeMultiOutput(),
+  output: SafeOutputs(),
   printer: HybridPrinter(
     SafePrettyPrinter(
       stackTraceBeginIndex: 0,

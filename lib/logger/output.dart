@@ -6,12 +6,23 @@ import 'package:dio/dio.dart';
 import 'package:intl/intl.dart';
 import 'package:path/path.dart';
 import 'package:logger/logger.dart';
+import 'package:flutter/material.dart';
 import 'package:synchronized/synchronized.dart';
 import 'package:path_provider/path_provider.dart' as path;
 
+typedef SafeChangeListener = void Function(void Function() listener);
+
+class SafeChangeNotifier extends ChangeNotifier {
+  @override
+  void notifyListeners() {
+    super.notifyListeners();
+  }
+}
+
 class SafeFileOutput extends LogOutput {
+  final SafeChangeNotifier changeNotifier = SafeChangeNotifier();
+  final String storage = 'app.dompet.flutter/logger/output';
   final Duration time = const Duration(minutes: 3);
-  final String storage = 'app.dompet.flutter/logger';
   final Lock lock = Lock(reentrant: true);
   final DateFormat dateFormat;
   final Encoding encoding;
@@ -41,16 +52,16 @@ class SafeFileOutput extends LogOutput {
 
   @override
   void output(OutputEvent event) async {
-    _timer?.cancel();
+    try {
+      _timer?.cancel();
 
-    _timer = Timer(time, clearIOSink);
+      _timer = Timer(time, clearIOSink);
 
-    return lock.synchronized(() async {
-      try {
-        final isInfo = Level.info == event.level;
-        final isError = Level.error == event.level;
-        final isWarning = Level.warning == event.level;
+      final isInfo = Level.info == event.level;
+      final isError = Level.error == event.level;
+      final isWarning = Level.warning == event.level;
 
+      await lock.synchronized(() async {
         if (isInfo != true && isError != true && isWarning != true) {
           return;
         }
@@ -66,10 +77,12 @@ class SafeFileOutput extends LogOutput {
         }
 
         _sink!.writeAll(event.lines, '\n');
-      } catch (e) {
-        await clearIOSink();
-      }
-    });
+      });
+
+      changeNotifier.notifyListeners();
+    } catch (e) {
+      await clearIOSink();
+    }
   }
 
   Future<List<File>?> getSortedFiles() async {

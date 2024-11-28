@@ -1,5 +1,6 @@
 {
   "About App": "About App",
+  "App Logger": "App Logger",
   "available": "available",
   "Available": "Available",
   "Back App": "Back Home",
@@ -33,6 +34,9 @@
   "Hide": "Hide",
   "Language": "Language",
   "last year": "last year",
+  "loading...": "loading...",
+  "Loading...": "Loading...",
+  "Loading logs, please wait...": "Loading logs, please wait...",
   "Login": "Login",
   "Login request timed out!": "Login request timed out！",
   "Logout": "Logout",

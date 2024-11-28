@@ -46,7 +46,7 @@ class PageSettings extends GetView<PageSettingsController> {
                       scrolledUnderElevation: 0.0,
                       automaticallyImplyLeading: false,
                       collapsedHeight: max(640.wmax * 40.sr, mediaTopBar.value),
-                      expandedHeight: 640.wmax * 152.sr,
+                      expandedHeight: 640.wmax * 138.sr,
                       flexibleSpace: Obx(() {
                         List<BoxShadow>? boxShadow;
 
@@ -185,7 +185,7 @@ class PageSettings extends GetView<PageSettingsController> {
         top: 640.wmax * 12.sr,
         left: 640.wmax * 32.sr,
         right: 640.wmax * 32.sr,
-        bottom: 640.wmax * 35.sr,
+        bottom: 640.wmax * 32.sr,
       ),
       child: Column(
         children: [
@@ -380,6 +380,58 @@ class PageSettings extends GetView<PageSettingsController> {
                   Expanded(
                     child: Text(
                       'Switch Language'.tr,
+                      style: TextStyle(
+                        fontSize: 640.wmax * 16.sr,
+                        fontWeight: FontWeight.w600,
+                        color: Color(0xff130138),
+                      ),
+                    ),
+                  ),
+                  Image.asset(
+                    'lib/assets/images/settings/right.png',
+                    height: 640.wmax * 28.sr,
+                    width: 640.wmax * 28.sr,
+                    fit: BoxFit.fill,
+                  ),
+                ],
+              ),
+            ),
+          ),
+          GestureDetector(
+            behavior: HitTestBehavior.opaque,
+            onTap: () => GetRouter.toNamed(GetRoutes.logger),
+            child: Container(
+              height: 640.wmax * 44.sr,
+              margin: EdgeInsets.only(bottom: 640.wmax * 30.sr),
+              child: Row(
+                children: [
+                  Container(
+                    width: 640.wmax * 44.sr,
+                    height: 640.wmax * 44.sr,
+                    margin: EdgeInsets.only(right: 640.wmax * 26.sr),
+                    alignment: Alignment.center,
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(640.wmax * 22.sr),
+                      boxShadow: [
+                        BoxShadow(
+                          color: const Color(0xff272246).withOpacity(.08),
+                          offset: Offset(0, 640.wmax * 4.sr),
+                          spreadRadius: 0,
+                          blurRadius: 12,
+                        ),
+                      ],
+                    ),
+                    child: Image.asset(
+                      'lib/assets/images/settings/logger.png',
+                      height: 640.wmax * 24.sr,
+                      width: 640.wmax * 24.sr,
+                      fit: BoxFit.fill,
+                    ),
+                  ),
+                  Expanded(
+                    child: Text(
+                      'App Logger'.tr,
                       style: TextStyle(
                         fontSize: 640.wmax * 16.sr,
                         fontWeight: FontWeight.w600,

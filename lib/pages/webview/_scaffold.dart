@@ -183,20 +183,20 @@ class PageWebviewScaffoldState extends State<PageWebviewScaffold> {
                 child: Container(
                   constraints: const BoxConstraints.expand(),
                   color: const Color(0xffffffff).withOpacity(0.8),
-                  child: const Center(
+                  child: Center(
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         CircularProgressIndicator(
                           strokeWidth: 3.2,
-                          color: Color(0xff707177),
-                          semanticsValue: '加载中...',
+                          color: const Color(0xff707177),
+                          semanticsValue: 'Loading...'.tr,
                         ),
                         Padding(
                           padding: EdgeInsets.fromLTRB(30, 20, 30, 80),
                           child: Text(
-                            '加载中...',
+                            'Loading...'.tr,
                             style: TextStyle(
                               fontSize: 14,
                               fontWeight: FontWeight.w600,

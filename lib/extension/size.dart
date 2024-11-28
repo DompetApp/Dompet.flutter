@@ -1,6 +1,30 @@
 import 'package:get/get.dart';
 import 'package:dompet/service/media.dart';
 
+extension DoubleExtension on double {
+  int get ceil {
+    return this.ceil();
+  }
+
+  int get round {
+    return this.round();
+  }
+
+  int get floor {
+    return this.floor();
+  }
+
+  int get integer {
+    return toInt();
+  }
+}
+
+extension IntegerExtension on int {
+  double get float {
+    return toDouble();
+  }
+}
+
 extension SizeExtension on num {
   static const preset = 375.0;
   static final width = Get.find<MediaQueryController>().width;

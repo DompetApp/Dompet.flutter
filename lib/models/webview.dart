@@ -174,9 +174,9 @@ class WebviewMeta {
 
   WebviewMeta({
     String? key,
+    String? title,
     this.url = '',
     this.html = '',
-    this.title = '加载中...',
     Map<String, dynamic>? query,
     this.checkHttps = false,
     this.checkUrl = false,
@@ -186,7 +186,8 @@ class WebviewMeta {
     this.loading = false,
     this.popup = false,
   })  : key = key ?? uuid(),
-        query = query ?? {};
+        query = query ?? {},
+        title = 'Loading...'.tr;
 
   WebviewMeta clone({WebviewMeta? webviewMeta}) {
     return WebviewMeta(

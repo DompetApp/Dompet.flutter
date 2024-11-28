@@ -7,6 +7,7 @@ import 'package:dompet/pages/card/index.dart';
 import 'package:dompet/pages/login/index.dart';
 import 'package:dompet/pages/stats/index.dart';
 import 'package:dompet/pages/langs/index.dart';
+import 'package:dompet/pages/logger/index.dart';
 import 'package:dompet/pages/profile/index.dart';
 import 'package:dompet/pages/webview/index.dart';
 import 'package:dompet/pages/register/index.dart';
@@ -81,6 +82,7 @@ class GetRoutes {
   static const login = '/PageLogin';
   static const stats = '/PageStats';
   static const langs = '/PageLangs';
+  static const logger = '/PageLogger';
   static const profile = '/PageProfile';
   static const webview = '/PageWebview';
   static const register = '/PageRegister';
@@ -91,6 +93,7 @@ class GetRoutes {
   static List<String> get overturns {
     return [
       GetRoutes.stats,
+      GetRoutes.logger,
     ];
   }
 
@@ -100,6 +103,7 @@ class GetRoutes {
       GetRoutes.card,
       GetRoutes.stats,
       GetRoutes.langs,
+      GetRoutes.logger,
       GetRoutes.profile,
       GetRoutes.webview,
       GetRoutes.operater,
@@ -148,6 +152,13 @@ class GetRoutes {
       GetPage(
         name: langs,
         page: () => const PageLangs(),
+        preventDuplicateHandlingMode: PreventMode.reorderRoutes,
+        middlewares: [RouteMiddleware(priority: 0)],
+        popGesture: false,
+      ),
+      GetPage(
+        name: logger,
+        page: () => const PageLogger(),
         preventDuplicateHandlingMode: PreventMode.reorderRoutes,
         middlewares: [RouteMiddleware(priority: 0)],
         popGesture: false,

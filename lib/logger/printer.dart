@@ -60,7 +60,7 @@ class SafePrettyPrinter extends LogPrinter {
   String _topBorder = '';
 
   SafePrettyPrinter({
-    this.lineLength = 120,
+    this.lineLength = 80,
     this.methodCount = 5,
     this.errorMethodCount = 10,
     this.stackTraceBeginIndex = 0,

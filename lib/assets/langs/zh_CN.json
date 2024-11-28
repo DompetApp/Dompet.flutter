@@ -1,5 +1,6 @@
 {
   "About App": "关于 App",
+  "App Logger": "应用日志",
   "available": "已激活",
   "Available": "已激活",
   "Back App": "返回应用",
@@ -33,6 +34,9 @@
   "Hide": "隐藏",
   "Language": "语言",
   "last year": "去年",
+  "loading...": "加载中...",
+  "Loading...": "加载中...",
+  "Loading logs, please wait...": "日志读取中，请稍后...",
   "Login": "登 录",
   "Login request timed out!": "登录请求超时！",
   "Logout": "退出",
