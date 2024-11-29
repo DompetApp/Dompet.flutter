@@ -1,6 +1,5 @@
 {
   "About App": "About App",
-  "App Logger": "App Logger",
   "available": "available",
   "Available": "Available",
   "Back App": "Back Home",
@@ -58,6 +57,7 @@
   "Register": "Register",
   "Registration request timed out!": "Registration request timed out！",
   "Requesting...": "Requesting...",
+  "Run Logger": "Run Logger",
   "Settings": "Settings",
   "Sign in with": "Sign in with",
   "Sign up with": "Sign up with",

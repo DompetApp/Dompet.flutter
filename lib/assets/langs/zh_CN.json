@@ -1,6 +1,5 @@
 {
   "About App": "关于 App",
-  "App Logger": "应用日志",
   "available": "已激活",
   "Available": "已激活",
   "Back App": "返回应用",
@@ -58,6 +57,7 @@
   "Register": "注 册",
   "Registration request timed out!": "注册请求超时！",
   "Requesting...": "请求中...",
+  "Run Logger": "运行日志",
   "Settings": "设置",
   "Sign in with": "使用以下方式登录",
   "Sign up with": "使用以下方式注册",

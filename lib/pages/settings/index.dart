@@ -431,7 +431,7 @@ class PageSettings extends GetView<PageSettingsController> {
                   ),
                   Expanded(
                     child: Text(
-                      'App Logger'.tr,
+                      'Run Logger'.tr,
                       style: TextStyle(
                         fontSize: 640.wmax * 16.sr,
                         fontWeight: FontWeight.w600,

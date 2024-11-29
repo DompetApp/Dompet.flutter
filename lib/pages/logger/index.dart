@@ -167,7 +167,7 @@ class PageLogger extends GetView<PageLoggerController> {
         right: 640.wmax * 32.sr,
       ),
       child: Text(
-        'App Logger'.tr,
+        'Run Logger'.tr,
         style: TextStyle(
           fontSize: 640.wmax * 20.sr,
           fontWeight: FontWeight.bold,

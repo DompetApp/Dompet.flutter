@@ -180,6 +180,8 @@ class PageOperaterController extends GetxController {
 
         await FlutterRingtonePlayer().playNotification();
 
+        Future.delayed(Duration(seconds: 3), () => money.value = 0.0);
+
         Toaster.success(
           message: '${desc.tr} (-${money.value.usd})',
           onTap: () => GetRouter.toNamed(GetRoutes.notification),
@@ -210,6 +212,8 @@ class PageOperaterController extends GetxController {
 
         await FlutterRingtonePlayer().playNotification();
 
+        Future.delayed(Duration(seconds: 3), () => money.value = 0.0);
+
         Toaster.success(
           message: '${desc.tr} (${money.value.usd})',
           onTap: () => GetRouter.toNamed(GetRoutes.notification),
@@ -239,6 +243,8 @@ class PageOperaterController extends GetxController {
         ]);
 
         await FlutterRingtonePlayer().playNotification();
+
+        Future.delayed(Duration(seconds: 3), () => money.value = 0.0);
 
         Toaster.success(
           message: '${desc.tr} (-${money.value.usd})',
@@ -271,6 +277,8 @@ class PageOperaterController extends GetxController {
         ]);
 
         await FlutterRingtonePlayer().playNotification();
+
+        Future.delayed(Duration(seconds: 3), () => money.value = 0.0);
 
         Toaster.success(
           message: '${desc.tr} (${money.value.usd})',
