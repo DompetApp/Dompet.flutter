@@ -43,6 +43,7 @@ dependencies:
 
   flutter_ringtone_player: ^4.0.0+3
   flutter_inappwebview: ^6.1.5
+  permission_handler: ^11.3.1
   cupertino_icons: ^1.0.8
   auto_size_text: ^3.0.0
   google_sign_in: ^6.2.2

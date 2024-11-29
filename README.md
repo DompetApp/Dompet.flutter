@@ -16,11 +16,13 @@
 ## Please note
 
 - Since Firebase authentication is used, VPN is required in China to log in
+- But now we have a guest mode that allows you to log in without VPN
 
 <br/>
 
 ## Features
 
+- Support logging in as guest mode without using VPN in China
 - Support sign-on with github or google via firebase authentication
 - Support App to record and view running logs (based on logger extension)
 - Support App to simulate payment, transfer, recharge and message by sqlite
@@ -36,6 +38,7 @@
 
 - flutter_ringtone_player
 - flutter_inappwebview
+- permission_handler
 - auto_size_text
 - google_sign_in
 - firebase_core

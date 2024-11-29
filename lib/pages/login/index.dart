@@ -1,8 +1,8 @@
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/gestures.dart';
-import 'package:dompet/extension/size.dart';
 import 'package:dompet/pages/login/controller.dart';
+import 'package:dompet/extension/size.dart';
 import 'package:dompet/routes/router.dart';
 
 class PageLogin extends GetView<PageLoginController> {
@@ -36,6 +36,7 @@ class PageLogin extends GetView<PageLoginController> {
                       buildThirdAuth(context),
                       buildFormInput(context),
                       buildFormButton(context),
+                      buildFormGuestor(context),
                     ],
                   ),
                 ),
@@ -426,14 +427,13 @@ class PageLogin extends GetView<PageLoginController> {
 
   Widget buildFormButton(BuildContext context) {
     final loginTimeout = controller.loginTimeout;
-    final mediaPadding = controller.mediaPadding;
     final signInWithAccount = controller.signInWithAccount;
 
     return Container(
       width: 100.vw,
-      height: 640.wmax * 100.sr + mediaPadding.value.bottom,
-      margin: EdgeInsets.only(top: 640.wmax * 36.sr),
+      height: 640.wmax * 100.sr,
       alignment: Alignment.center,
+      margin: EdgeInsets.only(top: 640.wmax * 36.sr),
       child: Column(
         children: [
           GestureDetector(
@@ -490,6 +490,51 @@ class PageLogin extends GetView<PageLoginController> {
             ),
           )
         ],
+      ),
+    );
+  }
+
+  Widget buildFormGuestor(BuildContext context) {
+    Widget withInWell({required Widget child, dynamic onTap}) {
+      return Material(
+        color: Colors.transparent,
+        child: InkResponse(
+          radius: 180.0,
+          containedInkWell: true,
+          highlightShape: BoxShape.rectangle,
+          borderRadius: BorderRadius.all(Radius.circular(640.wmax * 30.0.sr)),
+          highlightColor: const Color(0xff5b259f).withOpacity(0.08),
+          splashColor: const Color(0xff5b259f).withOpacity(0.08),
+          focusColor: Colors.transparent,
+          hoverColor: Colors.transparent,
+          onTap: onTap,
+          child: child,
+        ),
+      );
+    }
+
+    return Container(
+      width: 100.vw,
+      height: 640.wmax * 40.sr + controller.mediaPadding.value.bottom,
+      margin: EdgeInsets.only(top: 640.wmax * 21.sr),
+      alignment: Alignment.center,
+      child: withInWell(
+        child: Container(
+          width: 640.wmax * 160.sr,
+          height: 640.wmax * 40.sr,
+          alignment: Alignment.center,
+          child: Text(
+            'Guest Mode'.tr,
+            style: TextStyle(
+              fontSize: 640.wmax * 14.sr,
+              fontWeight: FontWeight.w500,
+              color: const Color(0xff909399),
+            ),
+          ),
+        ),
+        onTap: () {
+          controller.signInWithGuestUser();
+        },
       ),
     );
   }

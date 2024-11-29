@@ -128,6 +128,27 @@ class PageLoginController extends GetxController {
     loading.value = false;
   }
 
+  Future<void> signInWithGuestUser() async {
+    loading.value = true;
+
+    await Future.delayed(Duration(milliseconds: 1500));
+
+    final user = await eventController.createUser(
+      User(
+        uid: 'guest-user-uid',
+        email: 'tester@dompet.com',
+        name: 'tester',
+        avatar: null,
+      ),
+    );
+
+    loading.value = false;
+
+    return user == null
+        ? Toaster.error(message: 'Failed to login user!'.tr)
+        : eventController.login();
+  }
+
   Future<void> storeCredentialUser(UserCredential credential) async {
     if (credential.user == null) {
       Toaster.error(message: 'The credential user is empty!'.tr);
