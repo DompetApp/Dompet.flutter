@@ -45,6 +45,7 @@
 - fluttertoast
 - image_picker
 - get_storage
+- share_plus
 - fl_chart
 - sqflite
 - convert

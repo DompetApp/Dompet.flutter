@@ -6,6 +6,7 @@ import 'package:url_launcher/url_launcher.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'package:dompet/pages/webview/controller.dart';
 import 'package:dompet/configure/fluttertoast.dart';
+import 'package:dompet/configure/share_plus.dart';
 import 'package:dompet/extension/bool.dart';
 import 'package:dompet/extension/size.dart';
 import 'package:dompet/routes/router.dart';
@@ -110,10 +111,11 @@ class PageWebviewPopupState extends State<PageWebviewPopup>
   Widget controlPanel(BuildContext context) {
     final panelList = [
       'back',
-      'refresh',
       'clear',
-      'debug',
+      'refresh',
       'browser',
+      'debug',
+      'share',
       'link',
     ];
 
@@ -228,14 +230,19 @@ class PageWebviewPopupState extends State<PageWebviewPopup>
         title = 'Back App'.tr;
         break;
 
+      case 'clear':
+        image = 'lib/assets/webview/clear.png';
+        title = 'Clear Cache'.tr;
+        break;
+
       case 'refresh':
         image = 'lib/assets/webview/refresh.png';
         title = 'Refresh Page'.tr;
         break;
 
-      case 'clear':
-        image = 'lib/assets/webview/clear.png';
-        title = 'Clear Cache'.tr;
+      case 'browser':
+        image = 'lib/assets/webview/browser.png';
+        title = 'Open Browser'.tr;
         break;
 
       case 'debug':
@@ -243,9 +250,9 @@ class PageWebviewPopupState extends State<PageWebviewPopup>
         title = 'Turn Debug'.tr;
         break;
 
-      case 'browser':
-        image = 'lib/assets/webview/browser.png';
-        title = 'Open Browser'.tr;
+      case 'share':
+        image = 'lib/assets/webview/share.png';
+        title = 'Share Website'.tr;
         break;
 
       case 'link':
@@ -314,21 +321,14 @@ class PageWebviewPopupState extends State<PageWebviewPopup>
       return true;
     }
 
-    if (type == 'refresh') {
-      await controller.webviewController?.reload();
-      return true;
-    }
-
     if (type == 'clear') {
       await InAppWebViewController.clearAllCache();
       await controller.webviewController?.reload();
       return true;
     }
 
-    if (type == 'debug') {
-      const event = 'CallOpenVConsoleDebug';
-      const source = 'window.dispatchEvent(new CustomEvent("$event"));';
-      await controller.webviewController?.evaluateJavascript(source: source);
+    if (type == 'refresh') {
+      await controller.webviewController?.reload();
       return true;
     }
 
@@ -339,6 +339,20 @@ class PageWebviewPopupState extends State<PageWebviewPopup>
           mode: LaunchMode.externalApplication,
         );
 
+        return true;
+      }
+    }
+
+    if (type == 'debug') {
+      const event = 'CallOpenVConsoleDebug';
+      const source = 'window.dispatchEvent(new CustomEvent("$event"));';
+      await controller.webviewController?.evaluateJavascript(source: source);
+      return true;
+    }
+
+    if (type == 'share') {
+      if (requestWebUri.bv) {
+        Sharer.shareUri(requestWebUri!.uriValue);
         return true;
       }
     }
