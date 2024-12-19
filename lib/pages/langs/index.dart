@@ -53,7 +53,7 @@ class PageLangs extends GetView<PageLangsController> {
                         if (isShadow.value) {
                           boxShadow = [
                             BoxShadow(
-                              color: const Color(0xff000000).withOpacity(.048),
+                              color: const Color(0x0c000000),
                               offset: const Offset(0, 1.2),
                               spreadRadius: 0,
                               blurRadius: 10,

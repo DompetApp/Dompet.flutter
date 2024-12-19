@@ -55,7 +55,7 @@ class PageNotification extends GetView<PageNotificationController> {
                         if (isShadow.value) {
                           boxShadow = [
                             BoxShadow(
-                              color: const Color(0xff000000).withOpacity(.048),
+                              color: const Color(0x0c000000),
                               offset: const Offset(0, 1.2),
                               spreadRadius: 0,
                               blurRadius: 10,
@@ -208,7 +208,7 @@ class PageNotification extends GetView<PageNotificationController> {
                     borderRadius: BorderRadius.circular(640.wmax * 17.sr),
                     boxShadow: [
                       BoxShadow(
-                        color: const Color(0xff000000).withOpacity(.058),
+                        color: const Color(0xff000000).withValues(alpha: .058),
                         offset: Offset(640.wmax * 3.sr, 640.wmax * 3.sr),
                         spreadRadius: 0,
                         blurRadius: 20,

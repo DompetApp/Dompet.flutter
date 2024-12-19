@@ -1,7 +1,6 @@
 import 'dart:math';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:dompet/pages/logger/controller.dart';
 import 'package:dompet/extension/size.dart';
@@ -50,7 +49,7 @@ class PageLogger extends GetView<PageLoggerController> {
                         if (isShadow.value) {
                           boxShadow = [
                             BoxShadow(
-                              color: const Color(0xff000000).withOpacity(.048),
+                              color: const Color(0x0c000000),
                               offset: const Offset(0, 1.2),
                               spreadRadius: 0,
                               blurRadius: 10,
@@ -205,12 +204,11 @@ class PageLogger extends GetView<PageLoggerController> {
             ),
             child: TextSelectionTheme(
               data: TextSelectionThemeData(
-                selectionColor: Color(0xff6750a4).withOpacity(0.28),
-                selectionHandleColor: Color(0xff6750a4).withOpacity(0.28),
+                selectionColor: Color(0xff6750a4).withValues(alpha: 0.28),
+                selectionHandleColor: Color(0xff6750a4).withValues(alpha: 0.28),
               ),
               child: SelectableText(
                 controller.string.value,
-                selectionControls: cupertinoTextSelectionHandleControls,
                 style: GoogleFonts.robotoMono(
                   fontWeight: FontWeight.w400,
                   fontSize: max(640.wmax * 11.sr, 11),
@@ -232,7 +230,7 @@ class PageLogger extends GetView<PageLoggerController> {
           offstage: !controller.loading.value,
           child: Container(
             constraints: const BoxConstraints.expand(),
-            color: const Color(0xffffffff).withOpacity(0.8),
+            color: const Color(0xffffffff).withValues(alpha: 0.8),
             child: Center(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,

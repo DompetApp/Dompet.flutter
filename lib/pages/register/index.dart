@@ -96,7 +96,7 @@ class PageRegister extends GetView<PageRegisterController> {
           offstage: !controller.loading.value,
           child: Container(
             constraints: const BoxConstraints.expand(),
-            color: const Color(0xffffffff).withOpacity(0.8),
+            color: const Color(0xffffffff).withValues(alpha: 0.8),
             child: Center(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -214,7 +214,7 @@ class PageRegister extends GetView<PageRegisterController> {
                       ),
                       boxShadow: [
                         BoxShadow(
-                          color: Colors.black.withOpacity(0.1),
+                          color: Colors.black.withValues(alpha: 0.1),
                           offset: const Offset(0, 2),
                           spreadRadius: 0,
                           blurRadius: 12,
@@ -267,7 +267,7 @@ class PageRegister extends GetView<PageRegisterController> {
                       ),
                       boxShadow: [
                         BoxShadow(
-                          color: Colors.black.withOpacity(0.1),
+                          color: Colors.black.withValues(alpha: 0.1),
                           offset: const Offset(0, 2),
                           spreadRadius: 0,
                           blurRadius: 12,

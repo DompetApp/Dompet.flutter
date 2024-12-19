@@ -398,8 +398,8 @@ class PageOperater extends GetView<PageOperaterController> {
           containedInkWell: true,
           highlightShape: BoxShape.rectangle,
           borderRadius: BorderRadius.all(Radius.circular(640.wmax * 20.0.sr)),
-          highlightColor: const Color(0xfff0f0f0).withOpacity(1),
-          splashColor: const Color(0xfff0f0f0).withOpacity(1),
+          highlightColor: const Color(0xfff0f0f0).withValues(alpha: 1),
+          splashColor: const Color(0xfff0f0f0).withValues(alpha: 1),
           focusColor: Colors.transparent,
           hoverColor: Colors.transparent,
           child: Container(
@@ -517,8 +517,8 @@ class PageOperater extends GetView<PageOperaterController> {
           containedInkWell: true,
           highlightShape: BoxShape.rectangle,
           borderRadius: BorderRadius.all(Radius.circular(640.wmax * 20.0.sr)),
-          highlightColor: const Color(0xff5b259f).withOpacity(1),
-          splashColor: const Color(0xff5b259f).withOpacity(1),
+          highlightColor: const Color(0xff5b259f).withValues(alpha: 1),
+          splashColor: const Color(0xff5b259f).withValues(alpha: 1),
           focusColor: Colors.transparent,
           hoverColor: Colors.transparent,
           child: Container(
@@ -527,7 +527,7 @@ class PageOperater extends GetView<PageOperaterController> {
             alignment: Alignment.center,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(640.wmax * 15.sr),
-              color: Color(0xff5b259f).withOpacity(0.85),
+              color: Color(0xff5b259f).withValues(alpha: 0.85),
             ),
             child: Text(
               controller.type.tr,

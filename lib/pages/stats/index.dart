@@ -93,7 +93,7 @@ class PageStats extends GetView<PageStatsController> {
               color: Colors.white,
               boxShadow: [
                 BoxShadow(
-                  color: const Color(0xff000000).withOpacity(.038),
+                  color: const Color(0xff000000).withValues(alpha: .038),
                   offset: const Offset(0, 1.2),
                   spreadRadius: 0,
                   blurRadius: 10,
@@ -358,7 +358,7 @@ class PageStats extends GetView<PageStatsController> {
       bottom: 0,
       child: Container(
         width: 640.wmax,
-        color: Colors.white.withOpacity(0.88),
+        color: Colors.white.withValues(alpha: 0.88),
         height: mediaBottom + 640.wmax * 92.sr,
         alignment: Alignment.topCenter,
         padding: EdgeInsets.only(
@@ -397,7 +397,7 @@ class PageStats extends GetView<PageStatsController> {
                   ),
                   boxShadow: [
                     BoxShadow(
-                      color: const Color(0xff272246).withOpacity(0.1),
+                      color: const Color(0xff272246).withValues(alpha: 0.1),
                       offset: const Offset(0, 8),
                       spreadRadius: 0,
                       blurRadius: 12,
@@ -558,15 +558,15 @@ class PageStats extends GetView<PageStatsController> {
           end: Alignment(0.0, 1.0),
           begin: Alignment(0.0, -1.0),
           colors: [
-            colorTweener.lerp(0.2)!.withOpacity(0.15),
-            colorTweener.lerp(0.2)!.withOpacity(0.05),
-            colorTweener.lerp(0.2)!.withOpacity(0.0),
+            colorTweener.lerp(0.2)!.withValues(alpha: 0.15),
+            colorTweener.lerp(0.2)!.withValues(alpha: 0.05),
+            colorTweener.lerp(0.2)!.withValues(alpha: 0.0),
           ],
           stops: [0.05, 0.45, 0.75],
         ),
       ),
       shadow: Shadow(
-        color: Colors.black.withOpacity(0.15),
+        color: Colors.black.withValues(alpha: 0.15),
         offset: Offset(0, 1),
         blurRadius: 10,
       ),

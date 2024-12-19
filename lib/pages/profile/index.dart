@@ -155,7 +155,7 @@ class PageProfile extends GetView<PageProfileController> {
                     borderRadius: BorderRadius.all(
                       Radius.circular(640.wmax * 48.sr),
                     ),
-                    color: Color(0xffeae9e5).withOpacity(0.85),
+                    color: Color(0xffeae9e5).withValues(alpha: 0.85),
                   ),
                   child: Stack(
                     fit: StackFit.expand,
@@ -169,7 +169,7 @@ class PageProfile extends GetView<PageProfileController> {
                           height: 640.wmax * 24.sr,
                           alignment: Alignment.center,
                           padding: EdgeInsets.only(bottom: 640.wmax * 3.sr),
-                          color: Color(0xff2f1155).withOpacity(0.75),
+                          color: Color(0xff2f1155).withValues(alpha: 0.75),
                           child: Text(
                             'change'.tr,
                             style: TextStyle(
@@ -373,8 +373,8 @@ class PageProfile extends GetView<PageProfileController> {
           containedInkWell: true,
           highlightShape: BoxShape.rectangle,
           borderRadius: BorderRadius.all(Radius.circular(640.wmax * 30.0.sr)),
-          highlightColor: const Color(0xff45197d).withOpacity(0.05),
-          splashColor: const Color(0xff45197d).withOpacity(0.05),
+          highlightColor: const Color(0xff45197d).withValues(alpha: 0.05),
+          splashColor: const Color(0xff45197d).withValues(alpha: 0.05),
           focusColor: Colors.transparent,
           hoverColor: Colors.transparent,
           onTap: onTap,

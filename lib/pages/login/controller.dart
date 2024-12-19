@@ -142,11 +142,15 @@ class PageLoginController extends GetxController {
       ),
     );
 
-    loading.value = false;
+    if (user == null) {
+      loading.value = false;
+      Toaster.error(message: 'Failed to login user!'.tr);
+    }
 
-    return user == null
-        ? Toaster.error(message: 'Failed to login user!'.tr)
-        : eventController.login();
+    if (user != null) {
+      Future.delayed(300.milliseconds, () => loading.value = false);
+      eventController.login();
+    }
   }
 
   Future<void> storeCredentialUser(UserCredential credential) async {

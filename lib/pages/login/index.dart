@@ -58,7 +58,7 @@ class PageLogin extends GetView<PageLoginController> {
           offstage: !controller.loading.value,
           child: Container(
             constraints: const BoxConstraints.expand(),
-            color: const Color(0xffffffff).withOpacity(0.8),
+            color: const Color(0xffffffff).withValues(alpha: 0.8),
             child: Center(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -186,7 +186,7 @@ class PageLogin extends GetView<PageLoginController> {
                       ),
                       boxShadow: [
                         BoxShadow(
-                          color: Colors.black.withOpacity(0.1),
+                          color: Colors.black.withValues(alpha: 0.1),
                           offset: const Offset(0, 2),
                           spreadRadius: 0,
                           blurRadius: 12,
@@ -239,7 +239,7 @@ class PageLogin extends GetView<PageLoginController> {
                       ),
                       boxShadow: [
                         BoxShadow(
-                          color: Colors.black.withOpacity(0.1),
+                          color: Colors.black.withValues(alpha: 0.1),
                           offset: const Offset(0, 2),
                           spreadRadius: 0,
                           blurRadius: 12,
@@ -503,8 +503,8 @@ class PageLogin extends GetView<PageLoginController> {
           containedInkWell: true,
           highlightShape: BoxShape.rectangle,
           borderRadius: BorderRadius.all(Radius.circular(640.wmax * 30.0.sr)),
-          highlightColor: const Color(0xff5b259f).withOpacity(0.08),
-          splashColor: const Color(0xff5b259f).withOpacity(0.08),
+          highlightColor: const Color(0xff5b259f).withValues(alpha: 0.08),
+          splashColor: const Color(0xff5b259f).withValues(alpha: 0.08),
           focusColor: Colors.transparent,
           hoverColor: Colors.transparent,
           onTap: onTap,

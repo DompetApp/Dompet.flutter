@@ -66,7 +66,7 @@ class PageHome extends GetView<PageHomeController> {
       if (controller.showShadow.value) {
         boxShadow = [
           BoxShadow(
-            color: const Color(0xff000000).withOpacity(.038),
+            color: const Color(0xff000000).withValues(alpha: 0.038),
             offset: const Offset(0, 1.2),
             spreadRadius: 0,
             blurRadius: 10,
@@ -216,7 +216,7 @@ class PageHome extends GetView<PageHomeController> {
                             ),
                             boxShadow: [
                               BoxShadow(
-                                color: const Color(0xff272246).withOpacity(.15),
+                                color: const Color(0x26272246),
                                 offset: const Offset(0, 4),
                                 spreadRadius: 0,
                                 blurRadius: 12,
@@ -267,7 +267,7 @@ class PageHome extends GetView<PageHomeController> {
                             ),
                             boxShadow: [
                               BoxShadow(
-                                color: const Color(0xff272246).withOpacity(.15),
+                                color: const Color(0x26272246),
                                 offset: const Offset(0, 4),
                                 spreadRadius: 0,
                                 blurRadius: 12,
@@ -318,7 +318,7 @@ class PageHome extends GetView<PageHomeController> {
                             ),
                             boxShadow: [
                               BoxShadow(
-                                color: const Color(0xff272246).withOpacity(.15),
+                                color: const Color(0x26272246),
                                 offset: const Offset(0, 4),
                                 spreadRadius: 0,
                                 blurRadius: 12,
@@ -737,7 +737,7 @@ class PageHome extends GetView<PageHomeController> {
       bottom: 0,
       child: Container(
         width: 640.wmax,
-        color: Colors.white.withOpacity(0.88),
+        color: Colors.white.withValues(alpha: 0.88),
         height: mediaBottom + 640.wmax * 92.sr,
         alignment: Alignment.topCenter,
         padding: EdgeInsets.only(
@@ -776,7 +776,7 @@ class PageHome extends GetView<PageHomeController> {
                   ),
                   boxShadow: [
                     BoxShadow(
-                      color: const Color(0xff272246).withOpacity(0.1),
+                      color: const Color(0x19272246),
                       offset: const Offset(0, 8),
                       spreadRadius: 0,
                       blurRadius: 12,

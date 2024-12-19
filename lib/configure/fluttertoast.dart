@@ -23,7 +23,7 @@ class Toaster {
 
     final fToast = FToast();
     final mediaQuery = Get.find<MediaQueryController>();
-    final mediaPadding = mediaQuery.viewPadding;
+    final mediaPadding = mediaQuery.viewPadding.value;
 
     fToast.init(Get.context!);
 
@@ -88,9 +88,9 @@ class Toaster {
         ),
       ),
       toastDuration: duration ?? const Duration(seconds: 3),
-      positionedToastBuilder: (context, child) {
+      positionedToastBuilder: (context, child, gravity) {
         return Positioned(
-          top: max(640.wmax * 54.sr, mediaPadding.value.top),
+          top: max(640.wmax * 42.sr, mediaPadding.top),
           left: 640.wmax * 20.sr,
           right: 640.wmax * 20.sr,
           child: child,
@@ -115,7 +115,7 @@ class Toaster {
 
     final fToast = FToast();
     final mediaQuery = Get.find<MediaQueryController>();
-    final mediaPadding = mediaQuery.viewPadding;
+    final mediaPadding = mediaQuery.viewPadding.value;
 
     fToast.init(Get.context!);
 
@@ -180,9 +180,9 @@ class Toaster {
         ),
       ),
       toastDuration: duration ?? const Duration(seconds: 3),
-      positionedToastBuilder: (context, child) {
+      positionedToastBuilder: (context, child, gravity) {
         return Positioned(
-          top: max(640.wmax * 54.sr, mediaPadding.value.top),
+          top: max(640.wmax * 42.sr, mediaPadding.top),
           left: 640.wmax * 20.sr,
           right: 640.wmax * 20.sr,
           child: child,
@@ -207,7 +207,7 @@ class Toaster {
 
     final fToast = FToast();
     final mediaQuery = Get.find<MediaQueryController>();
-    final mediaPadding = mediaQuery.viewPadding;
+    final mediaPadding = mediaQuery.viewPadding.value;
 
     fToast.init(Get.context!);
 
@@ -272,9 +272,9 @@ class Toaster {
         ),
       ),
       toastDuration: duration ?? const Duration(seconds: 3),
-      positionedToastBuilder: (context, child) {
+      positionedToastBuilder: (context, child, gravity) {
         return Positioned(
-          top: max(640.wmax * 54.sr, mediaPadding.value.top),
+          top: max(640.wmax * 42.sr, mediaPadding.top),
           left: 640.wmax * 20.sr,
           right: 640.wmax * 20.sr,
           child: child,

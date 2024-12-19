@@ -53,7 +53,7 @@ class PageSettings extends GetView<PageSettingsController> {
                         if (isShadow.value) {
                           boxShadow = [
                             BoxShadow(
-                              color: const Color(0xff000000).withOpacity(.048),
+                              color: const Color(0x0c000000),
                               offset: const Offset(0, 1.2),
                               spreadRadius: 0,
                               blurRadius: 10,
@@ -207,7 +207,7 @@ class PageSettings extends GetView<PageSettingsController> {
                       borderRadius: BorderRadius.circular(640.wmax * 22.sr),
                       boxShadow: [
                         BoxShadow(
-                          color: const Color(0xff272246).withOpacity(.08),
+                          color: const Color(0xff272246).withValues(alpha: .08),
                           offset: Offset(0, 640.wmax * 4.sr),
                           spreadRadius: 0,
                           blurRadius: 12,
@@ -259,7 +259,7 @@ class PageSettings extends GetView<PageSettingsController> {
                       borderRadius: BorderRadius.circular(640.wmax * 22.sr),
                       boxShadow: [
                         BoxShadow(
-                          color: const Color(0xff272246).withOpacity(.08),
+                          color: const Color(0xff272246).withValues(alpha: .08),
                           offset: Offset(0, 640.wmax * 4.sr),
                           spreadRadius: 0,
                           blurRadius: 12,
@@ -311,7 +311,7 @@ class PageSettings extends GetView<PageSettingsController> {
                       borderRadius: BorderRadius.circular(640.wmax * 22.sr),
                       boxShadow: [
                         BoxShadow(
-                          color: const Color(0xff272246).withOpacity(.08),
+                          color: const Color(0xff272246).withValues(alpha: .08),
                           offset: Offset(0, 640.wmax * 4.sr),
                           spreadRadius: 0,
                           blurRadius: 12,
@@ -363,7 +363,7 @@ class PageSettings extends GetView<PageSettingsController> {
                       borderRadius: BorderRadius.circular(640.wmax * 22.sr),
                       boxShadow: [
                         BoxShadow(
-                          color: const Color(0xff272246).withOpacity(.08),
+                          color: const Color(0xff272246).withValues(alpha: .08),
                           offset: Offset(0, 640.wmax * 4.sr),
                           spreadRadius: 0,
                           blurRadius: 12,
@@ -415,7 +415,7 @@ class PageSettings extends GetView<PageSettingsController> {
                       borderRadius: BorderRadius.circular(640.wmax * 22.sr),
                       boxShadow: [
                         BoxShadow(
-                          color: const Color(0xff272246).withOpacity(.08),
+                          color: const Color(0xff272246).withValues(alpha: .08),
                           offset: Offset(0, 640.wmax * 4.sr),
                           spreadRadius: 0,
                           blurRadius: 12,
@@ -466,7 +466,7 @@ class PageSettings extends GetView<PageSettingsController> {
                       borderRadius: BorderRadius.circular(640.wmax * 22.sr),
                       boxShadow: [
                         BoxShadow(
-                          color: const Color(0xff272246).withOpacity(.08),
+                          color: const Color(0xff272246).withValues(alpha: .08),
                           offset: Offset(0, 640.wmax * 4.sr),
                           spreadRadius: 0,
                           blurRadius: 12,
@@ -540,8 +540,8 @@ class PageSettings extends GetView<PageSettingsController> {
               focusColor: Colors.transparent,
               highlightShape: BoxShape.rectangle,
               borderRadius: BorderRadius.all(Radius.circular(640.wmax * 32.sr)),
-              highlightColor: const Color(0xff5b259f).withOpacity(0.0),
-              splashColor: const Color(0xff5b259f).withOpacity(0.0),
+              highlightColor: const Color(0xff5b259f).withValues(alpha: 0.0),
+              splashColor: const Color(0xff5b259f).withValues(alpha: 0.0),
               onTap: () => showAlertDialog(context),
               child: Container(
                 width: 640.wmax * 64.sr,
@@ -595,7 +595,7 @@ class PageSettings extends GetView<PageSettingsController> {
   void showAlertDialog(BuildContext context) {
     showDialog(
       context: context,
-      barrierColor: Color(0xff000000).withOpacity(0.65),
+      barrierColor: Color(0xff000000).withValues(alpha: 0.65),
       builder: (context) => Padding(
         padding: EdgeInsets.only(
           top: 640.wmax * 20.sr,
