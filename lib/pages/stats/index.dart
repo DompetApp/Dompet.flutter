@@ -616,9 +616,9 @@ class PageStats extends GetView<PageStatsController> {
                 }
 
                 return SideTitleWidget(
+                  meta: meta,
                   space: 1.0,
                   angle: 0.0,
-                  axisSide: meta.axisSide,
                   child: Padding(
                     padding: padding,
                     child: Text(
