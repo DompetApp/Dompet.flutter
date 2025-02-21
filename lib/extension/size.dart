@@ -66,6 +66,14 @@ extension SizeExtension on num {
     return this > height.value ? this / 1 : height.value;
   }
 
+  double get max {
+    return this < 100.vmin ? this / 1 : 100.vmin;
+  }
+
+  double get min {
+    return this > 100.vmax ? this / 1 : 100.vmax;
+  }
+
   double get wdp {
     return this * width.value.sr;
   }
