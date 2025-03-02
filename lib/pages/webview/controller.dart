@@ -29,6 +29,7 @@ class PageWebviewController extends GetxController {
   late final webviewMeta = RxWebviewMeta(Get.arguments);
   late final languageCode = localeController.languageCode;
   late final inAppWebViewSettings = InAppWebViewSettings(
+    limitsNavigationsToAppBoundDomains: true,
     mediaPlaybackRequiresUserGesture: false,
     useShouldOverrideUrlLoading: true,
     javaScriptEnabled: true,

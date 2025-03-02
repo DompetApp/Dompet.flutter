@@ -41,14 +41,14 @@ dependencies:
 
   get: ^5.0.0-release-candidate-9.3.2
 
-  flutter_ringtone_player: ^4.0.0+3
+  flutter_ringtone_player: ^4.0.0+4
   flutter_inappwebview: ^6.1.5
-  permission_handler: ^11.3.1
+  permission_handler: ^11.4.0
   cupertino_icons: ^1.0.8
   auto_size_text: ^3.0.0
   google_sign_in: ^6.2.2
-  firebase_core: ^3.12.0
-  firebase_auth: ^5.5.0
+  firebase_core: ^3.12.1
+  firebase_auth: ^5.5.1
   path_provider: ^2.1.5
   synchronized: ^3.3.1
   fluttertoast: ^8.2.12
