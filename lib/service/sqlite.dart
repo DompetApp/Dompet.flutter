@@ -20,11 +20,11 @@ class SqliteController extends GetxService {
 
   // 创建/关闭/销毁 App Database
   Future<void> initAppDatabase() async {
-    if (!AppDatabaser.isCreated) {
+    if (!AppDatabaser.created) {
       await openAppDatabase();
     }
 
-    if (AppDatabaser.isCreated) {
+    if (AppDatabaser.created) {
       appUser = await AppDatabaser.recentUser();
     }
 
@@ -34,7 +34,7 @@ class SqliteController extends GetxService {
   }
 
   Future<void> openAppDatabase() async {
-    if (AppDatabaser.isCreated) {
+    if (AppDatabaser.created) {
       return;
     }
 

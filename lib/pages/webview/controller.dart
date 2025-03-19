@@ -40,9 +40,7 @@ class PageWebviewController extends GetxController {
   UnmodifiableListView<UserScript>? initialScripts;
   InAppWebViewController? webviewController;
   InAppWebViewInitialData? initialData;
-  Map<String, String>? initialHeaders;
   URLRequest? initialUrl;
-  WebUri? requestWebUri;
   bool? injectScript;
   bool? injectUrl;
 
@@ -73,9 +71,7 @@ class PageWebviewController extends GetxController {
     webviewMeta.canBack.value = false;
     webviewMeta.loading.value = false;
     webviewController = null;
-    initialHeaders = null;
     initialScripts = null;
-    requestWebUri = null;
     injectScript = null;
     initialData = null;
     initialUrl = null;
@@ -128,12 +124,9 @@ class PageWebviewController extends GetxController {
     if (initialUrl == null && initialData == null && fromUrl) {
       await loadScripts();
 
-      initialHeaders = {'Accept-Language': languageCode};
-      requestWebUri = WebUri.uri(Uri.parse(url));
-
       initialUrl = URLRequest(
-        headers: initialHeaders,
-        url: requestWebUri,
+        headers: {'Accept-Language': languageCode},
+        url: WebUri.uri(Uri.parse(url)),
       );
     }
 
@@ -196,11 +189,6 @@ class PageWebviewController extends GetxController {
         );
       } catch (e) {/* e */}
     }
-  }
-
-  // navigator
-  Future<void> navigator([WebUri? uri]) async {
-    requestWebUri = uri;
   }
 
   // titling

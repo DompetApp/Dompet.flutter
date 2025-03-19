@@ -148,8 +148,9 @@ class PageLoginController extends GetxController {
     }
 
     if (user != null) {
-      Future.delayed(300.milliseconds, () => loading.value = false);
-      eventController.login();
+      eventController.login().whenComplete(() {
+        Future.delayed(200.milliseconds, () => loading.value = false);
+      });
     }
   }
 

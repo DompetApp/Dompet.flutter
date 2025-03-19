@@ -7,7 +7,7 @@ import 'package:dompet/models/card.dart';
 
 class UserDatabaser {
   static Database? db;
-  static get isCreated => db.bv;
+  static get active => db.bv;
 
   // init
   static Future<void> close() async {
@@ -76,302 +76,302 @@ class UserDatabaser {
       );
 
       await UserDatabaser.createUserOrder([
-        // year
+        // year-1
         Order(
           icon: 'emma',
           name: 'Emma',
           type: 'Transfer',
-          date: formatter.format(DateTime(year, 6, 17, 11, 11)),
+          date: formatter.format(DateTime(year - 1, 6, 17, 11, 11)),
           money: 10000.0,
         ),
         Order(
           icon: 'me',
           name: 'Me',
           type: 'Top up',
-          date: formatter.format(DateTime(year, 9, 2, 17, 3)),
+          date: formatter.format(DateTime(year - 1, 9, 2, 17, 3)),
           money: 50000.0,
         ),
         Order(
           icon: 'netflix',
           name: 'Netflix',
           type: 'Payment',
-          date: formatter.format(DateTime(year, 9, 11, 13, 7)),
+          date: formatter.format(DateTime(year - 1, 9, 11, 13, 7)),
           money: -2000.0,
         ),
         Order(
           icon: 'paypal',
           name: 'PayPal',
           type: 'Transfer',
-          date: formatter.format(DateTime(year, 9, 21, 8, 8)),
+          date: formatter.format(DateTime(year - 1, 9, 21, 8, 8)),
           money: -1500.0,
         ),
 
-        // year-1
+        // year-2
         Order(
           icon: 'emma',
           name: 'Emma',
           type: 'Payment',
-          date: formatter.format(DateTime(year - 1, 3, 8, 8, 11)),
+          date: formatter.format(DateTime(year - 2, 3, 8, 8, 11)),
           money: -20000.0,
         ),
         Order(
           icon: 'paypal',
           name: 'PayPal',
           type: 'Payment',
-          date: formatter.format(DateTime(year - 1, 4, 7, 15, 14)),
+          date: formatter.format(DateTime(year - 2, 4, 7, 15, 14)),
           money: -15000.0,
         ),
         Order(
           icon: 'me',
           name: 'Me',
           type: 'Top up',
-          date: formatter.format(DateTime(year - 1, 6, 6, 17, 19)),
+          date: formatter.format(DateTime(year - 2, 6, 6, 17, 19)),
           money: 20000.0,
         ),
         Order(
           icon: 'david',
           name: 'David',
           type: 'Transfer',
-          date: formatter.format(DateTime(year - 1, 8, 8, 20, 21)),
+          date: formatter.format(DateTime(year - 2, 8, 8, 20, 21)),
           money: -40000.0,
         ),
 
-        // year-2
+        // year-3
         Order(
           icon: 'netflix',
           name: 'Netflix',
           type: 'Payment',
-          date: formatter.format(DateTime(year - 2, 5, 30, 14, 25)),
+          date: formatter.format(DateTime(year - 3, 5, 30, 14, 25)),
           money: -3000.0,
         ),
         Order(
           icon: 'emma',
           name: 'Emma',
           type: 'Top up',
-          date: formatter.format(DateTime(year - 2, 7, 11, 9, 1)),
+          date: formatter.format(DateTime(year - 3, 7, 11, 9, 1)),
           money: 55000.0,
         ),
         Order(
           icon: 'paypal',
           name: 'PayPal',
           type: 'Payment',
-          date: formatter.format(DateTime(year - 2, 7, 19, 13, 7)),
+          date: formatter.format(DateTime(year - 3, 7, 19, 13, 7)),
           money: -700.0,
         ),
         Order(
           icon: 'david',
           name: 'David',
           type: 'Transfer',
-          date: formatter.format(DateTime(year - 2, 9, 3, 9, 57)),
+          date: formatter.format(DateTime(year - 3, 9, 3, 9, 57)),
           money: 27000.0,
         ),
 
-        // year-3
+        // year-4
         Order(
           icon: 'emma',
           name: 'Emma',
           type: 'Transfer',
-          date: formatter.format(DateTime(year - 3, 6, 1, 9, 37)),
+          date: formatter.format(DateTime(year - 4, 6, 1, 9, 37)),
           money: -40000.0,
         ),
         Order(
           icon: 'paypal',
           name: 'PayPal',
           type: 'Payment',
-          date: formatter.format(DateTime(year - 3, 6, 20, 11, 11)),
+          date: formatter.format(DateTime(year - 4, 6, 20, 11, 11)),
           money: -5000.0,
         ),
         Order(
           icon: 'me',
           name: 'Me',
           type: 'Top up',
-          date: formatter.format(DateTime(year - 3, 9, 9, 19, 17)),
+          date: formatter.format(DateTime(year - 4, 9, 9, 19, 17)),
           money: 3000.0,
         ),
         Order(
           icon: 'david',
           name: 'David',
           type: 'Transfer',
-          date: formatter.format(DateTime(year - 3, 10, 17, 15, 11)),
+          date: formatter.format(DateTime(year - 4, 10, 17, 15, 11)),
           money: 2500.0,
         ),
 
-        // year-4
+        // year-5
         Order(
           icon: 'me',
           name: 'Me',
           type: 'Top up',
-          date: formatter.format(DateTime(year - 4, 9, 21, 5, 10)),
+          date: formatter.format(DateTime(year - 5, 9, 21, 5, 10)),
           money: 200000.0,
         ),
         Order(
           icon: 'netflix',
           name: 'Netflix',
           type: 'Payment',
-          date: formatter.format(DateTime(year - 4, 10, 9, 17, 12)),
+          date: formatter.format(DateTime(year - 5, 10, 9, 17, 12)),
           money: -1800.0,
         ),
         Order(
           icon: 'paypal',
           name: 'PayPal',
           type: 'Transfer',
-          date: formatter.format(DateTime(year - 4, 11, 1, 8, 36)),
+          date: formatter.format(DateTime(year - 5, 11, 1, 8, 36)),
           money: -12000.0,
         ),
         Order(
           icon: 'david',
           name: 'David',
           type: 'Transfer',
-          date: formatter.format(DateTime(year - 4, 12, 22, 15, 22)),
+          date: formatter.format(DateTime(year - 5, 12, 22, 15, 22)),
           money: -20000.0,
         ),
       ]);
 
       await UserDatabaser.createUserMessage([
-        // year
+        // year-1
         Message(
           type: 'Transfer',
           desc: 'You received a transfer from Emma',
-          date: formatter.format(DateTime(year, 6, 17, 11, 11)),
+          date: formatter.format(DateTime(year - 1, 6, 17, 11, 11)),
           money: 10000.0,
           isRead: 'Y',
         ),
         Message(
           type: 'Top up',
           desc: 'You top-up some money',
-          date: formatter.format(DateTime(year, 9, 2, 17, 3)),
+          date: formatter.format(DateTime(year - 1, 9, 2, 17, 3)),
           money: 50000.0,
           isRead: 'Y',
         ),
         Message(
           type: 'Payment',
           desc: 'You paid money to Netflix',
-          date: formatter.format(DateTime(year, 9, 11, 13, 7)),
+          date: formatter.format(DateTime(year - 1, 9, 11, 13, 7)),
           money: -2000.0,
         ),
         Message(
           type: 'Transfer',
           desc: 'You transferred money to PayPal',
-          date: formatter.format(DateTime(year, 9, 21, 8, 8)),
+          date: formatter.format(DateTime(year - 1, 9, 21, 8, 8)),
           money: -1500.0,
         ),
 
-        // year-1
+        // year-2
         Message(
           type: 'Payment',
           desc: 'You paid money to Emma',
-          date: formatter.format(DateTime(year - 1, 3, 8, 8, 11)),
+          date: formatter.format(DateTime(year - 2, 3, 8, 8, 11)),
           money: -20000.0,
           isRead: 'Y',
         ),
         Message(
           type: 'Payment',
           desc: 'You paid money to PayPal',
-          date: formatter.format(DateTime(year - 1, 4, 7, 15, 14)),
+          date: formatter.format(DateTime(year - 2, 4, 7, 15, 14)),
           money: -15000.0,
           isRead: 'Y',
         ),
         Message(
           type: 'Top up',
           desc: 'You top-up some money',
-          date: formatter.format(DateTime(year - 1, 6, 6, 17, 19)),
+          date: formatter.format(DateTime(year - 2, 6, 6, 17, 19)),
           money: 20000.0,
           isRead: 'Y',
         ),
         Message(
           type: 'Transfer',
           desc: 'You transferred money to David',
-          date: formatter.format(DateTime(year - 1, 8, 8, 20, 21)),
+          date: formatter.format(DateTime(year - 2, 8, 8, 20, 21)),
           money: -40000.0,
           isRead: 'Y',
         ),
 
-        // year-2
+        // year-3
         Message(
           type: 'Payment',
           desc: 'You paid money to Netflix',
-          date: formatter.format(DateTime(year - 2, 5, 30, 14, 25)),
+          date: formatter.format(DateTime(year - 3, 5, 30, 14, 25)),
           money: -3000.0,
           isRead: 'Y',
         ),
         Message(
           type: 'Top up',
           desc: 'You received a top-up from Emma',
-          date: formatter.format(DateTime(year - 2, 7, 11, 9, 1)),
+          date: formatter.format(DateTime(year - 3, 7, 11, 9, 1)),
           money: 55000.0,
           isRead: 'Y',
         ),
         Message(
           type: 'Payment',
           desc: 'You paid money to PayPal',
-          date: formatter.format(DateTime(year - 2, 7, 19, 13, 7)),
+          date: formatter.format(DateTime(year - 3, 7, 19, 13, 7)),
           money: -700.0,
           isRead: 'Y',
         ),
         Message(
           type: 'Transfer',
           desc: 'You received a transfer from David',
-          date: formatter.format(DateTime(year - 2, 9, 3, 9, 57)),
+          date: formatter.format(DateTime(year - 3, 9, 3, 9, 57)),
           money: 27000.0,
           isRead: 'Y',
         ),
 
-        // year-3
+        // year-4
         Message(
           type: 'Transfer',
           desc: 'You transferred money to Emma',
-          date: formatter.format(DateTime(year - 3, 6, 1, 9, 37)),
+          date: formatter.format(DateTime(year - 4, 6, 1, 9, 37)),
           money: -40000.0,
           isRead: 'Y',
         ),
         Message(
           type: 'Payment',
           desc: 'You paid money to PayPal',
-          date: formatter.format(DateTime(year - 3, 6, 20, 11, 11)),
+          date: formatter.format(DateTime(year - 4, 6, 20, 11, 11)),
           money: -5000.0,
           isRead: 'Y',
         ),
         Message(
           type: 'Top up',
           desc: 'You top-up some money',
-          date: formatter.format(DateTime(year - 3, 9, 9, 19, 17)),
+          date: formatter.format(DateTime(year - 4, 9, 9, 19, 17)),
           money: 3000.0,
           isRead: 'Y',
         ),
         Message(
           type: 'Transfer',
           desc: 'You received a transfer from David',
-          date: formatter.format(DateTime(year - 3, 10, 17, 15, 11)),
+          date: formatter.format(DateTime(year - 4, 10, 17, 15, 11)),
           money: 2500.0,
           isRead: 'Y',
         ),
 
-        // year-4
+        // year-5
         Message(
           type: 'Top up',
           desc: 'You top-up some money',
-          date: formatter.format(DateTime(year - 4, 9, 21, 5, 10)),
+          date: formatter.format(DateTime(year - 5, 9, 21, 5, 10)),
           money: 200000.0,
           isRead: 'Y',
         ),
         Message(
           type: 'Payment',
           desc: 'You paid money to Netflix',
-          date: formatter.format(DateTime(year - 4, 10, 9, 17, 12)),
+          date: formatter.format(DateTime(year - 5, 10, 9, 17, 12)),
           money: -1800.0,
           isRead: 'Y',
         ),
         Message(
           type: 'Transfer',
           desc: 'You transferred money to PayPal',
-          date: formatter.format(DateTime(year - 4, 11, 1, 8, 36)),
+          date: formatter.format(DateTime(year - 5, 11, 1, 8, 36)),
           money: -12000.0,
           isRead: 'Y',
         ),
         Message(
           type: 'Transfer',
           desc: 'You transferred money to David',
-          date: formatter.format(DateTime(year - 4, 12, 22, 15, 22)),
+          date: formatter.format(DateTime(year - 5, 12, 22, 15, 22)),
           money: -166200.0,
           isRead: 'Y',
         ),

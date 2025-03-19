@@ -6,7 +6,7 @@ import 'package:dompet/extension/bool.dart';
 
 class AppDatabaser {
   static Database? db;
-  static get isCreated => db.bv;
+  static get created => db.bv;
 
   // init
   static Future<void> close() async {

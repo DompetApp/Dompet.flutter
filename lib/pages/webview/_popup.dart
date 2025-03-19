@@ -7,7 +7,6 @@ import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'package:dompet/pages/webview/controller.dart';
 import 'package:dompet/configure/fluttertoast.dart';
 import 'package:dompet/configure/share_plus.dart';
-import 'package:dompet/extension/bool.dart';
 import 'package:dompet/extension/size.dart';
 import 'package:dompet/routes/router.dart';
 
@@ -31,8 +30,6 @@ class PageWebviewPopupState extends State<PageWebviewPopup>
   late final mediaHeight = mediaQueryController.height;
   late final mediaPadding = mediaQueryController.viewPadding;
   late final mediaQueryController = controller.mediaQueryController;
-
-  WebUri? get requestWebUri => controller.requestWebUri;
 
   late AnimationController animationController;
   late Animation<double> animation;
@@ -333,12 +330,10 @@ class PageWebviewPopupState extends State<PageWebviewPopup>
     }
 
     if (type == 'browser') {
-      if (requestWebUri.bv && await canLaunchUrl(requestWebUri!)) {
-        launchUrl(
-          controller.requestWebUri!,
-          mode: LaunchMode.externalApplication,
-        );
+      final url = await controller.webviewController?.getUrl();
 
+      if (url != null && await canLaunchUrl(url)) {
+        launchUrl(url, mode: LaunchMode.externalApplication);
         return true;
       }
     }
@@ -351,15 +346,19 @@ class PageWebviewPopupState extends State<PageWebviewPopup>
     }
 
     if (type == 'share') {
-      if (requestWebUri.bv) {
-        Sharer.shareUri(requestWebUri!.uriValue);
+      final url = await controller.webviewController?.getUrl();
+
+      if (url != null) {
+        Sharer.shareUri(url);
         return true;
       }
     }
 
     if (type == 'link') {
-      if (requestWebUri.bv && requestWebUri!.toString().isNotEmpty) {
-        final clipboard = ClipboardData(text: requestWebUri!.toString());
+      final url = await controller.webviewController?.getUrl();
+      
+      if (url != null && url.toString().isNotEmpty) {
+        final clipboard = ClipboardData(text: url.toString());
         final future = Clipboard.setData(clipboard);
 
         future.then((_) {
