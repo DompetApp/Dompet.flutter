@@ -42,7 +42,7 @@ class PageWebviewController extends GetxController {
   InAppWebViewInitialData? initialData;
   URLRequest? initialUrl;
   bool? injectScript;
-  bool? injectUrl;
+  bool? localUrl;
 
   @override
   onInit() async {
@@ -75,7 +75,7 @@ class PageWebviewController extends GetxController {
     injectScript = null;
     initialData = null;
     initialUrl = null;
-    injectUrl = null;
+    localUrl = null;
   }
 
   // back
@@ -112,13 +112,13 @@ class PageWebviewController extends GetxController {
     if (initialUrl == null && initialData == null && !checkUrl) {
       final data = await rootBundle.loadString(errorUrlHtml);
       initialData = InAppWebViewInitialData(data: data);
-      injectUrl = true;
+      localUrl = true;
     }
 
     if (initialUrl == null && initialData == null && !checkHttps) {
       final data = await rootBundle.loadString(errorHttpsHtml);
       initialData = InAppWebViewInitialData(data: data);
-      injectUrl = true;
+      localUrl = true;
     }
 
     if (initialUrl == null && initialData == null && fromUrl) {
@@ -142,7 +142,7 @@ class PageWebviewController extends GetxController {
 
   // loadScripts
   Future<void> loadScripts() async {
-    if (injectUrl == true) {
+    if (localUrl == true) {
       return;
     }
 
@@ -172,7 +172,7 @@ class PageWebviewController extends GetxController {
 
   // writeScripts
   Future<void> writeScripts() async {
-    if (injectUrl == true) {
+    if (localUrl == true) {
       return;
     }
 

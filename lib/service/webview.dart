@@ -23,8 +23,8 @@ class WebviewChannelController extends GetxService {
           final caller = params[0];
           final options = params[1];
 
-          if (caller == 'CallReLaunch') {
-            return proxyer.reLaunch(options: options);
+          if (caller == 'CallRelaunch') {
+            return proxyer.relaunch(options: options);
           }
 
           if (caller == 'CallRedirectTo') {
@@ -71,7 +71,7 @@ class WebviewChannelHandler {
   InAppWebViewController webviewController;
   NativeChannelController nativeChannelController;
 
-  Future<ChannelResult> reLaunch({required dynamic options}) async {
+  Future<ChannelResult> relaunch({required dynamic options}) async {
     try {
       final page = options['page'];
 

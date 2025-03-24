@@ -93,7 +93,8 @@ class GetRoutes {
   static List<String> get overturns {
     return [
       GetRoutes.stats,
-      GetRoutes.logger,
+      GetRoutes.logger, 
+      GetRoutes.webview,
     ];
   }
 
