@@ -223,7 +223,7 @@ class PageSettings extends GetView<PageSettingsController> {
                   ),
                   Expanded(
                     child: Text(
-                      'Persion Profile'.tr,
+                      'Person Profile'.tr,
                       style: TextStyle(
                         fontSize: 640.wmax * 16.sr,
                         fontWeight: FontWeight.w600,

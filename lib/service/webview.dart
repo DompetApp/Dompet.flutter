@@ -39,6 +39,10 @@ class WebviewChannelController extends GetxService {
             return proxyer.navigateBack(options: options);
           }
 
+          if (caller == 'CallScanQRCode') {
+            return proxyer.scanQRCode(options: options);
+          }
+
           return ChannelResult(
             status: 'failure',
             message: null,
@@ -154,5 +158,12 @@ class WebviewChannelHandler {
         status: 'failure',
       );
     }
+  }
+
+  Future<ChannelResult> scanQRCode({required dynamic options}) async {
+    return ChannelResult(
+      message:'scanQRCode is not currently supported',
+      status: 'failure',
+    );
   }
 }

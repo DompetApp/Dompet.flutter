@@ -48,7 +48,7 @@ class PageWebviewController extends GetxController {
   onInit() async {
     super.onInit();
 
-    webviewMeta.canBack.value = false;
+    webviewMeta.popup.value = false;
     webviewMeta.loading.value = false;
 
     if (Platform.isAndroid) {
@@ -68,7 +68,6 @@ class PageWebviewController extends GetxController {
       webChannelController.removeScriptHandlers(this);
     }
 
-    webviewMeta.canBack.value = false;
     webviewMeta.loading.value = false;
     webviewController = null;
     initialScripts = null;
@@ -210,11 +209,6 @@ class PageWebviewController extends GetxController {
     }
   }
 
-  // leading
-  Future<void> leading([bool? canBack = false]) async {
-    webviewMeta.canBack.value = canBack == true;
-  }
-
   // loading
   Future<void> loading([bool? loading = false]) async {
     webviewMeta.loading.value = loading == true;
@@ -223,6 +217,10 @@ class PageWebviewController extends GetxController {
   // popuping
   Future<void> popuping([bool? popup = false]) async {
     if (mediaQueryController.orientation.value == Orientation.landscape) {
+      return;
+    }
+
+    if (webviewMeta.loading.value == true) {
       return;
     }
 

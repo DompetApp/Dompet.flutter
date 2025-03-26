@@ -283,7 +283,6 @@ class Webview {
         checkUrl: checkUrl(arguments),
         fromHtml: false,
         fromUrl: true,
-        canBack: false,
         loading: false,
         popup: false,
       );
@@ -300,7 +299,6 @@ class Webview {
         checkUrl: false,
         fromHtml: true,
         fromUrl: false,
-        canBack: false,
         loading: false,
         popup: false,
       );

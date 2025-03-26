@@ -111,7 +111,6 @@ class AppLinkController extends GetxService {
           checkUrl: params['checkUrl'] == true,
           fromHtml: params['fromHtml'] == true,
           fromUrl: params['fromUrl'] == true,
-          canBack: params['canBack'] == true,
           loading: params['loading'] == true,
           popup: params['popup'] == true,
         );

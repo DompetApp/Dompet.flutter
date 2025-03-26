@@ -25,7 +25,6 @@ class RxWebviewMeta {
   Rx<bool> checkUrl;
   Rx<bool> fromHtml;
   Rx<bool> fromUrl;
-  Rx<bool> canBack;
   Rx<bool> loading;
   Rx<bool> popup;
 
@@ -39,7 +38,6 @@ class RxWebviewMeta {
         checkUrl = webviewMeta.checkUrl.obs,
         fromHtml = webviewMeta.fromHtml.obs,
         fromUrl = webviewMeta.fromUrl.obs,
-        canBack = webviewMeta.canBack.obs,
         loading = webviewMeta.loading.obs,
         popup = webviewMeta.popup.obs;
 
@@ -54,7 +52,6 @@ class RxWebviewMeta {
       checkUrl: checkUrl.value,
       fromHtml: fromHtml.value,
       fromUrl: fromUrl.value,
-      canBack: canBack.value,
       loading: loading.value,
       popup: popup.value,
     );
@@ -73,7 +70,6 @@ class RxWebviewMeta {
           checkUrl: webviewMeta.checkUrl.value,
           fromHtml: webviewMeta.fromHtml.value,
           fromUrl: webviewMeta.fromUrl.value,
-          canBack: webviewMeta.canBack.value,
           loading: webviewMeta.loading.value,
           popup: webviewMeta.popup.value,
         ),
@@ -92,7 +88,6 @@ class RxWebviewMeta {
           checkUrl: webviewMeta.checkUrl,
           fromHtml: webviewMeta.fromHtml,
           fromUrl: webviewMeta.fromUrl,
-          canBack: webviewMeta.canBack,
           loading: webviewMeta.loading,
           popup: webviewMeta.popup,
         ),
@@ -110,7 +105,6 @@ class RxWebviewMeta {
         checkUrl: checkUrl.value,
         fromHtml: fromHtml.value,
         fromUrl: fromUrl.value,
-        canBack: canBack.value,
         loading: loading.value,
         popup: popup.value,
       ),
@@ -128,7 +122,6 @@ class RxWebviewMeta {
       checkUrl.value = webviewMeta.checkUrl.value;
       fromHtml.value = webviewMeta.fromHtml.value;
       fromUrl.value = webviewMeta.fromUrl.value;
-      canBack.value = webviewMeta.canBack.value;
       loading.value = webviewMeta.loading.value;
       popup.value = webviewMeta.popup.value;
     }
@@ -143,7 +136,6 @@ class RxWebviewMeta {
       checkUrl.value = webviewMeta.checkUrl;
       fromHtml.value = webviewMeta.fromHtml;
       fromUrl.value = webviewMeta.fromUrl;
-      canBack.value = webviewMeta.canBack;
       loading.value = webviewMeta.loading;
       popup.value = webviewMeta.popup;
     }
@@ -168,7 +160,6 @@ class WebviewMeta {
   bool checkUrl;
   bool fromHtml;
   bool fromUrl;
-  bool canBack;
   bool loading;
   bool popup;
 
@@ -182,7 +173,6 @@ class WebviewMeta {
     this.checkUrl = false,
     this.fromHtml = false,
     this.fromUrl = false,
-    this.canBack = false,
     this.loading = false,
     this.popup = false,
   })  : key = key ?? uuid(),
@@ -200,7 +190,6 @@ class WebviewMeta {
       checkUrl: webviewMeta != null ? webviewMeta.checkUrl : checkUrl,
       fromHtml: webviewMeta != null ? webviewMeta.fromHtml : fromHtml,
       fromUrl: webviewMeta != null ? webviewMeta.fromUrl : fromUrl,
-      canBack: webviewMeta != null ? webviewMeta.canBack : canBack,
       loading: webviewMeta != null ? webviewMeta.loading : loading,
       popup: webviewMeta != null ? webviewMeta.popup : popup,
     );
@@ -217,7 +206,6 @@ class WebviewMeta {
       checkUrl = webviewMeta.checkUrl;
       fromHtml = webviewMeta.fromHtml;
       fromUrl = webviewMeta.fromUrl;
-      canBack = webviewMeta.canBack;
       loading = webviewMeta.loading;
       popup = webviewMeta.popup;
     }

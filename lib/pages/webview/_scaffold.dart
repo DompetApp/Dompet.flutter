@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'package:dompet/pages/webview/controller.dart';
 import 'package:dompet/extension/bool.dart';
-import 'package:dompet/routes/router.dart';
 
 class PageWebviewScaffold extends StatefulWidget {
   const PageWebviewScaffold({
@@ -29,17 +28,12 @@ class PageWebviewScaffoldState extends State<PageWebviewScaffold> {
     final popuping = controller.popuping;
     final titling = controller.titling;
     final loading = controller.loading;
-    final leading = controller.leading;
     final back = controller.back;
 
     return Scaffold(
       appBar: AppBar(
         title: Obx(() => Text(webviewMeta.title.value)),
-        leading: Obx(() {
-          return webviewMeta.canBack.value
-              ? BackButton(onPressed: () => back())
-              : Container();
-        }),
+        leading: BackButton(onPressed: () => back()),
         actions: [
           Column(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -148,11 +142,6 @@ class PageWebviewScaffoldState extends State<PageWebviewScaffold> {
                   }
 
                   return NavigationActionPolicy.ALLOW;
-                },
-                onUpdateVisitedHistory: (webviewController, url, reload) async {
-                  final canGoBack = await webviewController.canGoBack();
-                  final canBack = await GetRouter.canBack();
-                  await leading(canGoBack || canBack);
                 },
                 onPermissionRequest: (webviewController, request) async {
                   return PermissionResponse(

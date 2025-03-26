@@ -162,7 +162,7 @@ class PageWebviewPopupState extends State<PageWebviewPopup>
               ),
               Container(
                 constraints: BoxConstraints(
-                  minHeight: min(640.wmax * 128.sr, 30.vh),
+                  minHeight: min(640.wmax * 150.sr, 30.vh),
                 ),
                 child: GridView.builder(
                   shrinkWrap: true,
@@ -172,7 +172,7 @@ class PageWebviewPopupState extends State<PageWebviewPopup>
                   gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
                     maxCrossAxisExtent: 640.wmax * 66.sr,
                     crossAxisSpacing: 640.wmax * 15.sr,
-                    mainAxisSpacing: 640.wmax * 12.sr,
+                    mainAxisSpacing: 640.wmax * 15.sr,
                     childAspectRatio: 0.60,
                   ),
                   itemBuilder: (context, index) {
