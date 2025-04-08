@@ -342,7 +342,7 @@ class SafePrettyPrinter extends LogPrinter {
         buffer.add('$verticalLine$line');
       }
 
-      border = true;
+      border = false;
     }
 
     if (stacktrace != null && stacktrace.isNotEmpty) {

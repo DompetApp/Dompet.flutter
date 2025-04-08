@@ -25,6 +25,8 @@ class SafeFileOutput extends LogOutput {
   final Duration time = const Duration(minutes: 3);
   final Lock lock = Lock(reentrant: true);
   final DateFormat dateFormat;
+  final String filePrefix;
+  final String fileSuffix;
   final Encoding encoding;
   final bool isOverride;
   final int count;
@@ -37,8 +39,12 @@ class SafeFileOutput extends LogOutput {
     this.count = 3,
     this.encoding = utf8,
     this.isOverride = false,
+    String filePrefix = '',
+    String fileSuffix = '.log',
     DateFormat? fileFormatter,
-  }) : dateFormat = fileFormatter ?? DateFormat('yyyyMMdd');
+  }) : dateFormat = fileFormatter ?? DateFormat('yyyyMMdd'),
+       fileSuffix = fileSuffix != '' ? fileSuffix : '.log',
+       filePrefix = filePrefix != '' ? filePrefix : '';
 
   @override
   Future<void> init() async {
@@ -86,10 +92,6 @@ class SafeFileOutput extends LogOutput {
   }
 
   Future<List<File>?> getSortedFiles() async {
-    if (await isEmpty()) {
-      return null;
-    }
-
     final dir = await getDirectory();
     final list = dir.list().where((f) => f is File);
     final files = await list.cast<File>().toList();
@@ -99,8 +101,8 @@ class SafeFileOutput extends LogOutput {
         List<String> aPaths = aFile.path.split('/');
         List<String> bPaths = bFile.path.split('/');
 
-        final aName = aPaths.last.replaceAll('.log', '');
-        final bName = bPaths.last.replaceAll('.log', '');
+        final aName = aPaths.last.replaceAll(fileSuffix, '');
+        final bName = bPaths.last.replaceAll(fileSuffix, '');
         final aDate = DateTime.tryParse(aName);
         final bDate = DateTime.tryParse(bName);
 
@@ -240,7 +242,7 @@ class SafeFileOutput extends LogOutput {
   Future<void> createIOSink() async {
     final fileDir = await getDirectory();
     final fileName = await createIOName();
-    final filePath = join(fileDir.path, '$fileName.log');
+    final filePath = join(fileDir.path, '$filePrefix$fileName$fileSuffix');
     final fileRefer = File(filePath);
 
     if (!fileDir.existsSync()) fileDir.createSync(recursive: true);
@@ -268,9 +270,13 @@ class SafeFileOutput extends LogOutput {
           if (await file.exists()) {
             await file.delete();
           }
-        } catch (e) {/* e */}
+        } catch (e) {
+          /* e */
+        }
       }
-    } catch (e) {/* e */}
+    } catch (e) {
+      /* e */
+    }
   }
 
   Future<void> clearIOSink() async {
@@ -290,7 +296,9 @@ class SafeFileOutput extends LogOutput {
       try {
         await clearIOSink();
         await clearDirectory();
-      } catch (e) {/* e */}
+      } catch (e) {
+        /* e */
+      }
     });
   }
 
@@ -309,7 +317,9 @@ class SafeFileOutput extends LogOutput {
           return false;
         }
       }
-    } catch (e) {/* e */}
+    } catch (e) {
+      /* e */
+    }
 
     return true;
   }

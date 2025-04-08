@@ -44,13 +44,15 @@ void runner() async {
     }
   };
 
-  SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
-    systemNavigationBarDividerColor: Colors.transparent,
-    systemNavigationBarColor: Colors.transparent,
-    systemNavigationBarContrastEnforced: false,
-    systemStatusBarContrastEnforced: false,
-    statusBarColor: Colors.transparent,
-  ));
+  SystemChrome.setSystemUIOverlayStyle(
+    SystemUiOverlayStyle(
+      systemNavigationBarDividerColor: Colors.transparent,
+      systemNavigationBarColor: Colors.transparent,
+      systemNavigationBarContrastEnforced: false,
+      systemStatusBarContrastEnforced: false,
+      statusBarColor: Colors.transparent,
+    ),
+  );
 
   await SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
   await SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
@@ -68,7 +70,9 @@ void runner() async {
 void request(String url) async {
   try {
     await Dio().get(url);
-  } catch (e) {/* e */}
+  } catch (e) {
+    /* e */
+  }
 }
 
 class MyApp extends StatefulWidget {
@@ -155,10 +159,7 @@ class MyAppState extends State<MyApp> with WidgetsBindingObserver {
           );
         });
       },
-      supportedLocales: [
-        Locale('en'),
-        Locale('zh'),
-      ],
+      supportedLocales: [Locale('en'), Locale('zh')],
       localizationsDelegates: [
         GlobalWidgetsLocalizations.delegate,
         GlobalMaterialLocalizations.delegate,

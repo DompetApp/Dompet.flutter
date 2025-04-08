@@ -5,7 +5,10 @@ import 'package:dompet/logger/output.dart';
 import 'package:dompet/logger/printer.dart';
 
 final _consoleOutput = ConsoleOutput();
-final _fileSafeOutput = SafeFileOutput();
+final _fileSafeOutput = SafeFileOutput(
+  filePrefix: 'flutter-',
+  fileSuffix: '.txt',
+);
 
 class SafeOutputs extends MultiOutput {
   SafeOutputs() : super([_consoleOutput, _fileSafeOutput]);
@@ -45,11 +48,13 @@ class SafeLogger extends Logger {
     try {
       return _fileSafeOutput.readAsStrings();
     } catch (exception, stack) {
-      FlutterError.reportError(FlutterErrorDetails(
-        library: 'Flutter SafeLogger',
-        exception: exception,
-        stack: stack,
-      ));
+      FlutterError.reportError(
+        FlutterErrorDetails(
+          library: 'Flutter SafeLogger',
+          exception: exception,
+          stack: stack,
+        ),
+      );
 
       return null;
     }
@@ -59,11 +64,13 @@ class SafeLogger extends Logger {
     try {
       return _fileSafeOutput.readAsFormDatas();
     } catch (exception, stack) {
-      FlutterError.reportError(FlutterErrorDetails(
-        library: 'Flutter SafeLogger',
-        exception: exception,
-        stack: stack,
-      ));
+      FlutterError.reportError(
+        FlutterErrorDetails(
+          library: 'Flutter SafeLogger',
+          exception: exception,
+          stack: stack,
+        ),
+      );
 
       return null;
     }
@@ -73,11 +80,13 @@ class SafeLogger extends Logger {
     try {
       return _fileSafeOutput.readAsFormData();
     } catch (exception, stack) {
-      FlutterError.reportError(FlutterErrorDetails(
-        library: 'Flutter SafeLogger',
-        exception: exception,
-        stack: stack,
-      ));
+      FlutterError.reportError(
+        FlutterErrorDetails(
+          library: 'Flutter SafeLogger',
+          exception: exception,
+          stack: stack,
+        ),
+      );
 
       return null;
     }
@@ -87,11 +96,13 @@ class SafeLogger extends Logger {
     try {
       return _fileSafeOutput.readAsString();
     } catch (exception, stack) {
-      FlutterError.reportError(FlutterErrorDetails(
-        library: 'Flutter SafeLogger',
-        exception: exception,
-        stack: stack,
-      ));
+      FlutterError.reportError(
+        FlutterErrorDetails(
+          library: 'Flutter SafeLogger',
+          exception: exception,
+          stack: stack,
+        ),
+      );
 
       return null;
     }
@@ -101,11 +112,13 @@ class SafeLogger extends Logger {
     try {
       return _fileSafeOutput.clearHistory();
     } catch (exception, stack) {
-      FlutterError.reportError(FlutterErrorDetails(
-        library: 'Flutter SafeLogger',
-        exception: exception,
-        stack: stack,
-      ));
+      FlutterError.reportError(
+        FlutterErrorDetails(
+          library: 'Flutter SafeLogger',
+          exception: exception,
+          stack: stack,
+        ),
+      );
 
       return;
     }
@@ -115,11 +128,13 @@ class SafeLogger extends Logger {
     try {
       return _fileSafeOutput.clearAll();
     } catch (exception, stack) {
-      FlutterError.reportError(FlutterErrorDetails(
-        library: 'Flutter SafeLogger',
-        exception: exception,
-        stack: stack,
-      ));
+      FlutterError.reportError(
+        FlutterErrorDetails(
+          library: 'Flutter SafeLogger',
+          exception: exception,
+          stack: stack,
+        ),
+      );
 
       return;
     }
@@ -129,11 +144,13 @@ class SafeLogger extends Logger {
     try {
       return _fileSafeOutput.isEmpty();
     } catch (exception, stack) {
-      FlutterError.reportError(FlutterErrorDetails(
-        library: 'Flutter SafeLogger',
-        exception: exception,
-        stack: stack,
-      ));
+      FlutterError.reportError(
+        FlutterErrorDetails(
+          library: 'Flutter SafeLogger',
+          exception: exception,
+          stack: stack,
+        ),
+      );
 
       return true;
     }
@@ -151,9 +168,6 @@ final logger = SafeLogger(
       lineLength: 120,
       printTime: true,
     ),
-    debug: SimplePrinter(
-      printTime: true,
-      colors: false,
-    ),
+    debug: SimplePrinter(printTime: true, colors: false),
   ),
 );
