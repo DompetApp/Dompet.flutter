@@ -20,10 +20,7 @@ class Sharer {
     );
   }
 
-  static Future<ShareResult> shareUri(
-    Uri uri, {
-    Rect? position,
-  }) async {
+  static Future<ShareResult> shareUri(Uri uri, {Rect? position}) async {
     return Share.shareUri(uri, sharePositionOrigin: position);
   }
 
@@ -33,10 +30,6 @@ class Sharer {
     Rect? position,
   }) async {
     assert(text.isNotEmpty);
-    return Share.share(
-      text,
-      subject: subject,
-      sharePositionOrigin: position,
-    );
+    return Share.share(text, subject: subject, sharePositionOrigin: position);
   }
 }

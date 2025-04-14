@@ -37,12 +37,9 @@ class PageOperaterController extends GetxController {
     switch (type) {
       case 'Transfer':
         {
-          operate = Rx(PayOperate(
-            type: 'Payment',
-            from: 'Me',
-            to: 'David',
-            id: '1',
-          ));
+          operate = Rx(
+            PayOperate(type: 'Payment', from: 'Me', to: 'David', id: '1'),
+          );
 
           options = Rx([
             PayOperate(id: '1', to: 'David', from: 'Me', type: 'Payment'),
@@ -55,12 +52,9 @@ class PageOperaterController extends GetxController {
         }
       case 'Payment':
         {
-          operate = Rx(PayOperate(
-            type: 'Payment',
-            from: 'Me',
-            to: 'David',
-            id: '5',
-          ));
+          operate = Rx(
+            PayOperate(type: 'Payment', from: 'Me', to: 'David', id: '5'),
+          );
 
           options = Rx([
             PayOperate(id: '5', to: 'David', from: 'Me', type: 'Payment'),
@@ -73,12 +67,9 @@ class PageOperaterController extends GetxController {
         }
       case 'Top up':
         {
-          operate = Rx(PayOperate(
-            type: 'Receipt',
-            from: 'David',
-            to: 'Me',
-            id: '9',
-          ));
+          operate = Rx(
+            PayOperate(type: 'Receipt', from: 'David', to: 'Me', id: '9'),
+          );
 
           options = Rx([
             PayOperate(id: '9', to: 'Me', from: 'David', type: 'Receipt'),
@@ -118,7 +109,9 @@ class PageOperaterController extends GetxController {
       if (cache <= 999999.0) {
         money.value = cache;
       }
-    } catch (e) {/* e */}
+    } catch (e) {
+      /* e */
+    }
   }
 
   void delete(String? num) {
@@ -137,7 +130,9 @@ class PageOperaterController extends GetxController {
       if (input == '') {
         money.value = 0.0;
       }
-    } catch (e) {/* e */}
+    } catch (e) {
+      /* e */
+    }
   }
 
   void clear(String? num) {
@@ -253,9 +248,10 @@ class PageOperaterController extends GetxController {
       }
 
       if (type == 'Top up') {
-        final desc = from != 'Me'
-            ? 'You received a top-up from $from'
-            : 'You top-up some money';
+        final desc =
+            from != 'Me'
+                ? 'You received a top-up from $from'
+                : 'You top-up some money';
 
         await eventController.createUserOrder([
           Order(

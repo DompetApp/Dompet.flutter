@@ -46,9 +46,7 @@ class PageWebviewScaffoldState extends State<PageWebviewScaffold> {
                     width: 44,
                     height: 26,
                   ),
-                  margin: const EdgeInsets.only(
-                    right: 10,
-                  ),
+                  margin: const EdgeInsets.only(right: 10),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.center,
@@ -64,10 +62,7 @@ class PageWebviewScaffoldState extends State<PageWebviewScaffold> {
                       Container(
                         width: 7,
                         height: 7,
-                        margin: const EdgeInsets.only(
-                          left: 3,
-                          right: 3,
-                        ),
+                        margin: const EdgeInsets.only(left: 3, right: 3),
                         decoration: BoxDecoration(
                           color: const Color(0xff333333),
                           borderRadius: BorderRadius.circular(4),
@@ -192,17 +187,14 @@ class PageWebviewScaffoldState extends State<PageWebviewScaffold> {
                             ),
                           ),
                         ),
-                        SizedBox(
-                          width: double.infinity,
-                          height: 80,
-                        ),
+                        SizedBox(width: double.infinity, height: 80),
                       ],
                     ),
                   ),
                 ),
               ),
             );
-          })
+          }),
         ],
       ),
       resizeToAvoidBottomInset: false,

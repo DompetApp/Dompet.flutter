@@ -81,10 +81,7 @@ class PageLogin extends GetView<PageLoginController> {
                       ),
                     ),
                   ),
-                  const SizedBox(
-                    width: double.infinity,
-                    height: 80,
-                  ),
+                  const SizedBox(width: double.infinity, height: 80),
                 ],
               ),
             ),
@@ -181,9 +178,7 @@ class PageLogin extends GetView<PageLoginController> {
                     ),
                     decoration: BoxDecoration(
                       color: Colors.white,
-                      borderRadius: BorderRadius.circular(
-                        640.wmax * 15.sr,
-                      ),
+                      borderRadius: BorderRadius.circular(640.wmax * 15.sr),
                       boxShadow: [
                         BoxShadow(
                           color: Colors.black.withValues(alpha: 0.1),
@@ -212,16 +207,13 @@ class PageLogin extends GetView<PageLoginController> {
                             fontWeight: FontWeight.w500,
                             color: const Color(0xffbdbdbd),
                           ),
-                        )
+                        ),
                       ],
                     ),
                   ),
                 ),
                 onTap: () {
-                  loginTimeout(
-                    signInWithGoogle(),
-                    Duration(seconds: 30),
-                  );
+                  loginTimeout(signInWithGoogle(), Duration(seconds: 30));
                 },
               ),
               GestureDetector(
@@ -234,9 +226,7 @@ class PageLogin extends GetView<PageLoginController> {
                     ),
                     decoration: BoxDecoration(
                       color: const Color(0xff4368c7),
-                      borderRadius: BorderRadius.circular(
-                        640.wmax * 15.sr,
-                      ),
+                      borderRadius: BorderRadius.circular(640.wmax * 15.sr),
                       boxShadow: [
                         BoxShadow(
                           color: Colors.black.withValues(alpha: 0.1),
@@ -265,16 +255,13 @@ class PageLogin extends GetView<PageLoginController> {
                             fontWeight: FontWeight.w500,
                             color: Colors.white,
                           ),
-                        )
+                        ),
                       ],
                     ),
                   ),
                 ),
                 onTap: () {
-                  loginTimeout(
-                    signInWithGithub(),
-                    Duration(seconds: 30),
-                  );
+                  loginTimeout(signInWithGithub(), Duration(seconds: 30));
                 },
               ),
             ],
@@ -304,9 +291,10 @@ class PageLogin extends GetView<PageLoginController> {
             borderRadius: BorderRadius.circular(640.wmax * 15.sr),
             border: Border.all(
               width: 1,
-              color: emailError.value
-                  ? const Color(0xfff34d4d)
-                  : const Color(0xfff2f2f2),
+              color:
+                  emailError.value
+                      ? const Color(0xfff34d4d)
+                      : const Color(0xfff2f2f2),
             ),
           ),
           child: TextField(
@@ -323,9 +311,7 @@ class PageLogin extends GetView<PageLoginController> {
                 width: 640.wmax * 64.sr,
                 alignment: Alignment.center,
                 child: Image(
-                  image: const AssetImage(
-                    'lib/assets/images/auth/email.png',
-                  ),
+                  image: const AssetImage('lib/assets/images/auth/email.png'),
                   width: 640.wmax * 24.sr,
                   height: 640.wmax * 24.sr,
                   fit: BoxFit.fill,
@@ -368,9 +354,10 @@ class PageLogin extends GetView<PageLoginController> {
             borderRadius: BorderRadius.circular(640.wmax * 15.sr),
             border: Border.all(
               width: 1,
-              color: passwordError.value
-                  ? const Color(0xfff34d4d)
-                  : const Color(0xfff2f2f2),
+              color:
+                  passwordError.value
+                      ? const Color(0xfff34d4d)
+                      : const Color(0xfff2f2f2),
             ),
           ),
           child: TextField(
@@ -458,10 +445,7 @@ class PageLogin extends GetView<PageLoginController> {
               ),
             ),
             onTap: () {
-              loginTimeout(
-                signInWithAccount(),
-                Duration(seconds: 5),
-              );
+              loginTimeout(signInWithAccount(), Duration(seconds: 5));
             },
           ),
           SizedBox(height: 640.wmax * 12.sr),
@@ -483,12 +467,13 @@ class PageLogin extends GetView<PageLoginController> {
                     fontWeight: FontWeight.w600,
                     color: const Color(0xff81c2ff),
                   ),
-                  recognizer: TapGestureRecognizer()
-                    ..onTap = () => GetRouter.toNamed(GetRoutes.register),
+                  recognizer:
+                      TapGestureRecognizer()
+                        ..onTap = () => GetRouter.toNamed(GetRoutes.register),
                 ),
               ],
             ),
-          )
+          ),
         ],
       ),
     );

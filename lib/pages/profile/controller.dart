@@ -67,10 +67,9 @@ class PageProfileController extends GetxController with RxWatcher {
     final userName = newUsername.isNotEmpty ? newUsername : oldName;
 
     if (userName != oldName || userAvatar != oldAvatar) {
-      await eventController.updateUser(loginUser.value.from({
-        'avatar': userAvatar,
-        'name': userName,
-      }));
+      await eventController.updateUser(
+        loginUser.value.from({'avatar': userAvatar, 'name': userName}),
+      );
 
       Toaster.success(
         message: 'Update user successfully!'.tr,

@@ -6,8 +6,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:dompet/pages/webview/controller.dart';
 import 'package:dompet/pages/webview/index.dart';
-import 'package:dompet/models/webview.dart';
 import 'package:dompet/routes/pages.dart';
+import 'package:dompet/models/web.dart';
 
 export 'package:dompet/routes/pages.dart';
 
@@ -348,7 +348,8 @@ class GetRouter {
       fullscreenDialog: fullscreenDialog,
       preventDuplicates: preventDuplicates,
       showCupertinoParallax: showCupertinoParallax,
-      preventDuplicateHandlingMode: preventDuplicateHandlingMode ??
+      preventDuplicateHandlingMode:
+          preventDuplicateHandlingMode ??
           PreventDuplicateHandlingMode.reorderRoutes,
     );
   }
@@ -436,12 +437,7 @@ class GetRouter {
       arguments = await Webview.format(arguments);
     }
 
-    return Get.offUntil<T>(
-      page,
-      predicate,
-      arguments,
-      id,
-    );
+    return Get.offUntil<T>(page, predicate, arguments, id);
   }
 
   static Future<T?> offNamed<T>(
@@ -541,9 +537,7 @@ class GetRouter {
     );
   }
 
-  static Future<bool> canBack({
-    String? id,
-  }) async {
+  static Future<bool> canBack({String? id}) async {
     try {
       return Get.searchDelegate(id).canBack;
     } catch (e) {
@@ -557,22 +551,14 @@ class GetRouter {
     bool canPop = true,
     T? result,
   }) async {
-    return Get.back<T>(
-      id: id,
-      times: times,
-      canPop: canPop,
-      result: result,
-    );
+    return Get.back<T>(id: id, times: times, canPop: canPop, result: result);
   }
 
   static Future<void> until(
     bool Function(GetPage<dynamic>) predicate, {
     String? id,
   }) async {
-    return Get.until(
-      predicate,
-      id: id,
-    );
+    return Get.until(predicate, id: id);
   }
 
   static Future<void> close({
@@ -593,15 +579,11 @@ class GetRouter {
     );
   }
 
-  static Future<void> exit({
-    bool? animated,
-  }) async {
+  static Future<void> exit({bool? animated}) async {
     return SystemNavigator.pop(animated: animated);
   }
 
-  static Future<void> login({
-    String? page,
-  }) async {
+  static Future<void> login({String? page}) async {
     if (GetRoutes.defaults.contains(Get.currentRoute)) {
       final redirect = page ?? GetRoutes.home;
       final isGetRoute = GetRoutes.authorize.contains(page);
@@ -609,9 +591,7 @@ class GetRouter {
     }
   }
 
-  static Future<void> logout({
-    String? page,
-  }) async {
+  static Future<void> logout({String? page}) async {
     if (!GetRoutes.defaults.contains(Get.currentRoute)) {
       final redirect = page ?? GetRoutes.login;
       final isGetRoute = GetRoutes.defaults.contains(page);
@@ -620,7 +600,4 @@ class GetRouter {
   }
 }
 
-enum GetRouteError {
-  webview,
-  route,
-}
+enum GetRouteError { webview, route }

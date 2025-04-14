@@ -138,10 +138,7 @@ class PageCard extends GetView<PageCardController> {
           right: isExpand.value ? 640.wmax * 32.sr : 640.wmax * 17.sr,
         ),
         child: Column(
-          children: [
-            buildCardImage(context),
-            buildCardDetail(context),
-          ],
+          children: [buildCardImage(context), buildCardDetail(context)],
         ),
       ),
     );
@@ -161,17 +158,20 @@ class PageCard extends GetView<PageCardController> {
             AnimatedBuilder(
               animation: animationValue,
               builder: (context, child) {
-                final scale = !isExpand.value && animationValue.value < 1
-                    ? 1 + 0.093 * (1 - animationValue.value)
-                    : 1;
+                final scale =
+                    !isExpand.value && animationValue.value < 1
+                        ? 1 + 0.093 * (1 - animationValue.value)
+                        : 1;
 
-                final width = isAnimating.value || isExpand.value
-                    ? 640.wmax * 220.sr * scale
-                    : 640.wmax * 240.sr;
+                final width =
+                    isAnimating.value || isExpand.value
+                        ? 640.wmax * 220.sr * scale
+                        : 640.wmax * 240.sr;
 
-                final height = isAnimating.value || isExpand.value
-                    ? 640.wmax * 311.sr * scale
-                    : 640.wmax * 340.sr;
+                final height =
+                    isAnimating.value || isExpand.value
+                        ? 640.wmax * 311.sr * scale
+                        : 640.wmax * 340.sr;
 
                 return Transform.rotate(
                   angle: animationValue.value,
@@ -288,10 +288,7 @@ class PageCard extends GetView<PageCardController> {
                       ],
                     ),
                   ),
-                  SizedBox(
-                    width: 640.wmax,
-                    height: 640.wmax * 18.sr,
-                  ),
+                  SizedBox(width: 640.wmax, height: 640.wmax * 18.sr),
                   Container(
                     height: 640.wmax * 20.sr,
                     alignment: Alignment.centerLeft,
@@ -321,10 +318,7 @@ class PageCard extends GetView<PageCardController> {
                       ],
                     ),
                   ),
-                  SizedBox(
-                    width: 640.wmax,
-                    height: 640.wmax * 18.sr,
-                  ),
+                  SizedBox(width: 640.wmax, height: 640.wmax * 18.sr),
                   Container(
                     height: 640.wmax * 20.sr,
                     alignment: Alignment.centerLeft,
@@ -354,10 +348,7 @@ class PageCard extends GetView<PageCardController> {
                       ],
                     ),
                   ),
-                  SizedBox(
-                    width: 640.wmax,
-                    height: 640.wmax * 18.sr,
-                  ),
+                  SizedBox(width: 640.wmax, height: 640.wmax * 18.sr),
                   Container(
                     height: 640.wmax * 20.sr,
                     alignment: Alignment.centerLeft,
@@ -389,10 +380,7 @@ class PageCard extends GetView<PageCardController> {
                       ],
                     ),
                   ),
-                  SizedBox(
-                    width: 640.wmax,
-                    height: 640.wmax * 18.sr,
-                  ),
+                  SizedBox(width: 640.wmax, height: 640.wmax * 18.sr),
                   Container(
                     height: 640.wmax * 20.sr,
                     alignment: Alignment.centerLeft,
@@ -468,9 +456,7 @@ class PageCard extends GetView<PageCardController> {
           child: Container(
             color: Colors.transparent,
             alignment: Alignment.center,
-            constraints: BoxConstraints(
-              minWidth: 640.wmax * 160.sr,
-            ),
+            constraints: BoxConstraints(minWidth: 640.wmax * 160.sr),
             padding: EdgeInsets.symmetric(
               vertical: 640.wmax * 15.sr,
               horizontal: 640.wmax * 18.sr,

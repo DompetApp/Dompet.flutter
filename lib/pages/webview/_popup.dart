@@ -43,10 +43,7 @@ class PageWebviewPopupState extends State<PageWebviewPopup>
       vsync: this,
     );
 
-    animation = Tween(
-      begin: 0.0,
-      end: 1.0,
-    ).animate(animationController);
+    animation = Tween(begin: 0.0, end: 1.0).animate(animationController);
 
     animation.addListener(() {
       setState(() => {});
@@ -81,10 +78,7 @@ class PageWebviewPopupState extends State<PageWebviewPopup>
 
         return Stack(
           fit: StackFit.expand,
-          children: [
-            opacityLayer(context),
-            controlPanel(context),
-          ],
+          children: [opacityLayer(context), controlPanel(context)],
         );
       }),
     );
@@ -122,9 +116,7 @@ class PageWebviewPopupState extends State<PageWebviewPopup>
       bottom: (animation.value - 1) * 420,
       child: Container(
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.all(
-            Radius.circular(640.wmax * 15.sr),
-          ),
+          borderRadius: BorderRadius.all(Radius.circular(640.wmax * 15.sr)),
           color: const Color(0xffebebeb),
         ),
         child: Padding(
@@ -356,16 +348,13 @@ class PageWebviewPopupState extends State<PageWebviewPopup>
 
     if (type == 'link') {
       final url = await controller.webviewController?.getUrl();
-      
+
       if (url != null && url.toString().isNotEmpty) {
         final clipboard = ClipboardData(text: url.toString());
         final future = Clipboard.setData(clipboard);
 
         future.then((_) {
-          Toaster.success(
-            message: 'Copy Successful'.tr,
-            duration: 1.5.seconds,
-          );
+          Toaster.success(message: 'Copy Successful'.tr, duration: 1.5.seconds);
         });
 
         return true;

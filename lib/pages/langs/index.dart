@@ -22,10 +22,7 @@ class PageLangs extends GetView<PageLangsController> {
       final mediaTopBar = controller.mediaTopBar;
       final isShadow = controller.isShadow;
 
-      final top = max(
-        mediaPadding.value.top,
-        640.wmax * 20.sr,
-      );
+      final top = max(mediaPadding.value.top, 640.wmax * 20.sr);
 
       return Scaffold(
         body: Stack(
@@ -85,22 +82,19 @@ class PageLangs extends GetView<PageLangsController> {
                         ),
                       ),
                       SliverList(
-                        delegate: SliverChildBuilderDelegate(
-                          (context, index) {
-                            return Obx(
-                              () => ListView(
-                                shrinkWrap: true,
-                                padding: const EdgeInsets.all(0),
-                                physics: const NeverScrollableScrollPhysics(),
-                                children: [
-                                  buildOptions(context),
-                                  buildSafeArea(context),
-                                ],
-                              ),
-                            );
-                          },
-                          childCount: 1,
-                        ),
+                        delegate: SliverChildBuilderDelegate((context, index) {
+                          return Obx(
+                            () => ListView(
+                              shrinkWrap: true,
+                              padding: const EdgeInsets.all(0),
+                              physics: const NeverScrollableScrollPhysics(),
+                              children: [
+                                buildOptions(context),
+                                buildSafeArea(context),
+                              ],
+                            ),
+                          );
+                        }, childCount: 1),
                       ),
                     ],
                   );
@@ -161,10 +155,7 @@ class PageLangs extends GetView<PageLangsController> {
     return Container(
       alignment: Alignment.center,
       constraints: const BoxConstraints.expand(),
-      padding: EdgeInsets.only(
-        left: 640.wmax * 32.sr,
-        right: 640.wmax * 32.sr,
-      ),
+      padding: EdgeInsets.only(left: 640.wmax * 32.sr, right: 640.wmax * 32.sr),
       child: Text(
         'Language'.tr,
         style: TextStyle(
@@ -204,9 +195,7 @@ class PageLangs extends GetView<PageLangsController> {
               alignment: Alignment.center,
               decoration: BoxDecoration(
                 color: Colors.white,
-                borderRadius: BorderRadius.circular(
-                  640.wmax * 15.sr,
-                ),
+                borderRadius: BorderRadius.circular(640.wmax * 15.sr),
                 border: Border.all(
                   color: isNull ? Color(0xff8438FF) : Colors.black26,
                   width: isNull ? 640.wmax * 1.4.sr : 640.wmax * 1.2.sr,
@@ -216,9 +205,7 @@ class PageLangs extends GetView<PageLangsController> {
                 horizontal: 640.wmax * 20.sr,
                 vertical: 640.wmax * 20.sr,
               ),
-              margin: EdgeInsets.only(
-                bottom: 640.wmax * 25.sr,
-              ),
+              margin: EdgeInsets.only(bottom: 640.wmax * 25.sr),
               child: Text(
                 'Follow System Language'.tr,
                 textAlign: TextAlign.center,
@@ -244,9 +231,7 @@ class PageLangs extends GetView<PageLangsController> {
               alignment: Alignment.center,
               decoration: BoxDecoration(
                 color: Colors.white,
-                borderRadius: BorderRadius.circular(
-                  640.wmax * 15.sr,
-                ),
+                borderRadius: BorderRadius.circular(640.wmax * 15.sr),
                 border: Border.all(
                   color: isZhCn ? Color(0xff8438FF) : Colors.black26,
                   width: isZhCn ? 640.wmax * 1.4.sr : 640.wmax * 1.2.sr,
@@ -256,9 +241,7 @@ class PageLangs extends GetView<PageLangsController> {
                 horizontal: 640.wmax * 20.sr,
                 vertical: 640.wmax * 20.sr,
               ),
-              margin: EdgeInsets.only(
-                bottom: 640.wmax * 25.sr,
-              ),
+              margin: EdgeInsets.only(bottom: 640.wmax * 25.sr),
               child: Text(
                 'Chinese (zh-CN)'.tr,
                 textAlign: TextAlign.center,
@@ -284,9 +267,7 @@ class PageLangs extends GetView<PageLangsController> {
               alignment: Alignment.center,
               decoration: BoxDecoration(
                 color: Colors.white,
-                borderRadius: BorderRadius.circular(
-                  640.wmax * 15.sr,
-                ),
+                borderRadius: BorderRadius.circular(640.wmax * 15.sr),
                 border: Border.all(
                   color: isEnUs ? Color(0xff8438FF) : Colors.black26,
                   width: isEnUs ? 640.wmax * 1.4.sr : 640.wmax * 1.2.sr,
@@ -296,9 +277,7 @@ class PageLangs extends GetView<PageLangsController> {
                 horizontal: 640.wmax * 20.sr,
                 vertical: 640.wmax * 20.sr,
               ),
-              margin: EdgeInsets.only(
-                bottom: 640.wmax * 25.sr,
-              ),
+              margin: EdgeInsets.only(bottom: 640.wmax * 25.sr),
               child: Text(
                 'English (en-US)'.tr,
                 textAlign: TextAlign.center,

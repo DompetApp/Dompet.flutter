@@ -25,13 +25,9 @@ class SafePrettyPrinter extends LogPrinter {
     r'^(?:package:)?(dart:\S+|\S+)',
   );
 
-  static final _deviceStackTraceRegex = RegExp(
-    r'#[0-9]+\s+(.+) \((\S+)\)',
-  );
+  static final _deviceStackTraceRegex = RegExp(r'#[0-9]+\s+(.+) \((\S+)\)');
 
-  static final _webStackTraceRegex = RegExp(
-    r'^((packages|dart-sdk)/\S+/)',
-  );
+  static final _webStackTraceRegex = RegExp(r'^((packages|dart-sdk)/\S+/)');
 
   static final _logStackTraceRegex = RegExp(
     r'^(#[0-9]+\s+(SafePrettyPrinter\.log|SafeLogger\.info)\s+\(package:\S+\))',

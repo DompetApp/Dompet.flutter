@@ -3,18 +3,10 @@ class ChannelResult {
   final String? message;
   final Object? result;
 
-  ChannelResult({
-    required this.status,
-    this.message,
-    this.result,
-  });
+  ChannelResult({required this.status, this.message, this.result});
 
   Map<String, Object?> toJson() {
-    return {
-      'status': status,
-      'message': message,
-      'result': result,
-    };
+    return {'status': status, 'message': message, 'result': result};
   }
 
   factory ChannelResult.fromJson(Map<String, dynamic> json) {
@@ -26,18 +18,10 @@ class ChannelResult {
   }
 
   factory ChannelResult.failure({String? message, dynamic result}) {
-    return ChannelResult(
-      status: 'failure',
-      message: message,
-      result: result,
-    );
+    return ChannelResult(status: 'failure', message: message, result: result);
   }
 
   factory ChannelResult.success({String? message, dynamic result}) {
-    return ChannelResult(
-      status: 'success',
-      message: message,
-      result: result,
-    );
+    return ChannelResult(status: 'success', message: message, result: result);
   }
 }

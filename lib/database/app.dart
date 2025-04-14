@@ -18,8 +18,7 @@ class AppDatabaser {
     if (db != null) {
       AppDatabaser.db = db;
 
-      return db.execute(
-        '''
+      return db.execute('''
         CREATE TABLE AppUser (
           uid TEXT PRIMARY KEY NOT NULL,
           name TEXT,
@@ -28,8 +27,7 @@ class AppDatabaser {
           activate TEXT NOT NULL DEFAULT 'Y',
           create_date TEXT NOT NULL
         )
-        ''',
-      );
+      ''');
     }
   }
 
@@ -40,10 +38,10 @@ class AppDatabaser {
     }
 
     return db!.transaction((txn) async {
-      await txn.rawUpdate(
-        'update AppUser set activate = ? where uid == ?',
-        ['N', uid],
-      );
+      await txn.rawUpdate('update AppUser set activate = ? where uid == ?', [
+        'N',
+        uid,
+      ]);
     });
   }
 
@@ -159,8 +157,7 @@ class AppDatabaser {
 
   static Future<User?> recentUser() async {
     return db?.transaction<User?>((txn) async {
-      final result = await txn.rawQuery(
-        '''
+      final result = await txn.rawQuery('''
         select
           uid,
           name,
@@ -171,8 +168,7 @@ class AppDatabaser {
         from AppUser 
         where activate = "Y" 
         order by datetime(create_date) desc
-        ''',
-      );
+      ''');
 
       if (result.isNotEmpty) {
         return User.from(result[0]);

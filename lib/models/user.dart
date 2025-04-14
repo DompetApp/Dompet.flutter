@@ -10,12 +10,12 @@ class RxUser {
   Rx<Uint8List?> avatar;
 
   RxUser(User user)
-      : uid = user.uid.obs,
-        name = user.name.obs,
-        email = user.email.obs,
-        activate = user.activate.obs,
-        createDate = user.createDate.obs,
-        avatar = Rx<Uint8List?>(user.avatar);
+    : uid = user.uid.obs,
+      name = user.name.obs,
+      email = user.email.obs,
+      activate = user.activate.obs,
+      createDate = user.createDate.obs,
+      avatar = Rx<Uint8List?>(user.avatar);
 
   User get value {
     return User(

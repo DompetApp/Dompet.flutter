@@ -119,10 +119,7 @@ class PageRegister extends GetView<PageRegisterController> {
                       ),
                     ),
                   ),
-                  const SizedBox(
-                    width: double.infinity,
-                    height: 80,
-                  ),
+                  const SizedBox(width: double.infinity, height: 80),
                 ],
               ),
             ),
@@ -142,9 +139,10 @@ class PageRegister extends GetView<PageRegisterController> {
         bottom: 640.wmax * 32.sr,
         right: 640.wmax * 48.sr,
         left: 640.wmax * 48.sr,
-        top: orientation.value == Orientation.portrait
-            ? 640.wmax * 95.sr
-            : 640.wmax * 60.sr,
+        top:
+            orientation.value == Orientation.portrait
+                ? 640.wmax * 95.sr
+                : 640.wmax * 60.sr,
       ),
       child: Text(
         'Experience the convenience of handed trading'.tr,
@@ -209,9 +207,7 @@ class PageRegister extends GetView<PageRegisterController> {
                     ),
                     decoration: BoxDecoration(
                       color: Colors.white,
-                      borderRadius: BorderRadius.circular(
-                        640.wmax * 15.sr,
-                      ),
+                      borderRadius: BorderRadius.circular(640.wmax * 15.sr),
                       boxShadow: [
                         BoxShadow(
                           color: Colors.black.withValues(alpha: 0.1),
@@ -240,16 +236,13 @@ class PageRegister extends GetView<PageRegisterController> {
                             fontWeight: FontWeight.w500,
                             color: const Color(0xffbdbdbd),
                           ),
-                        )
+                        ),
                       ],
                     ),
                   ),
                 ),
                 onTap: () {
-                  loginTimeout(
-                    signInWithGoogle(),
-                    Duration(seconds: 30),
-                  );
+                  loginTimeout(signInWithGoogle(), Duration(seconds: 30));
                 },
               ),
               GestureDetector(
@@ -262,9 +255,7 @@ class PageRegister extends GetView<PageRegisterController> {
                     ),
                     decoration: BoxDecoration(
                       color: const Color(0xff4368c7),
-                      borderRadius: BorderRadius.circular(
-                        640.wmax * 15.sr,
-                      ),
+                      borderRadius: BorderRadius.circular(640.wmax * 15.sr),
                       boxShadow: [
                         BoxShadow(
                           color: Colors.black.withValues(alpha: 0.1),
@@ -293,16 +284,13 @@ class PageRegister extends GetView<PageRegisterController> {
                             fontWeight: FontWeight.w500,
                             color: Colors.white,
                           ),
-                        )
+                        ),
                       ],
                     ),
                   ),
                 ),
                 onTap: () {
-                  loginTimeout(
-                    signInWithGithub(),
-                    Duration(seconds: 30),
-                  );
+                  loginTimeout(signInWithGithub(), Duration(seconds: 30));
                 },
               ),
             ],
@@ -338,9 +326,10 @@ class PageRegister extends GetView<PageRegisterController> {
             borderRadius: BorderRadius.circular(640.wmax * 15.sr),
             border: Border.all(
               width: 1,
-              color: emailError.value
-                  ? const Color(0xfff34d4d)
-                  : const Color(0xfff2f2f2),
+              color:
+                  emailError.value
+                      ? const Color(0xfff34d4d)
+                      : const Color(0xfff2f2f2),
             ),
           ),
           child: TextField(
@@ -357,9 +346,7 @@ class PageRegister extends GetView<PageRegisterController> {
                 width: 640.wmax * 64.sr,
                 alignment: Alignment.center,
                 child: Image(
-                  image: const AssetImage(
-                    'lib/assets/images/auth/email.png',
-                  ),
+                  image: const AssetImage('lib/assets/images/auth/email.png'),
                   width: 640.wmax * 24.sr,
                   height: 640.wmax * 24.sr,
                   fit: BoxFit.fill,
@@ -402,9 +389,10 @@ class PageRegister extends GetView<PageRegisterController> {
             borderRadius: BorderRadius.circular(640.wmax * 15.sr),
             border: Border.all(
               width: 1,
-              color: nameError.value
-                  ? const Color(0xfff34d4d)
-                  : const Color(0xfff2f2f2),
+              color:
+                  nameError.value
+                      ? const Color(0xfff34d4d)
+                      : const Color(0xfff2f2f2),
             ),
           ),
           child: TextField(
@@ -421,9 +409,7 @@ class PageRegister extends GetView<PageRegisterController> {
                 width: 640.wmax * 64.sr,
                 alignment: Alignment.center,
                 child: Image(
-                  image: const AssetImage(
-                    'lib/assets/images/auth/profile.png',
-                  ),
+                  image: const AssetImage('lib/assets/images/auth/profile.png'),
                   width: 640.wmax * 24.sr,
                   height: 640.wmax * 24.sr,
                   fit: BoxFit.fill,
@@ -467,9 +453,10 @@ class PageRegister extends GetView<PageRegisterController> {
             borderRadius: BorderRadius.circular(640.wmax * 15.sr),
             border: Border.all(
               width: 1,
-              color: passwordError1.value
-                  ? const Color(0xfff34d4d)
-                  : const Color(0xfff2f2f2),
+              color:
+                  passwordError1.value
+                      ? const Color(0xfff34d4d)
+                      : const Color(0xfff2f2f2),
             ),
           ),
           child: TextField(
@@ -534,9 +521,10 @@ class PageRegister extends GetView<PageRegisterController> {
             borderRadius: BorderRadius.circular(640.wmax * 15.sr),
             border: Border.all(
               width: 1,
-              color: passwordError2.value
-                  ? const Color(0xfff34d4d)
-                  : const Color(0xfff2f2f2),
+              color:
+                  passwordError2.value
+                      ? const Color(0xfff34d4d)
+                      : const Color(0xfff2f2f2),
             ),
           ),
           child: TextField(
@@ -627,10 +615,7 @@ class PageRegister extends GetView<PageRegisterController> {
               ),
             ),
             onTap: () {
-              loginTimeout(
-                signUpWithAccount(),
-                Duration(seconds: 5),
-              );
+              loginTimeout(signUpWithAccount(), Duration(seconds: 5));
             },
           ),
           SizedBox(height: 640.wmax * 12.sr),
@@ -652,12 +637,12 @@ class PageRegister extends GetView<PageRegisterController> {
                     fontWeight: FontWeight.w600,
                     color: const Color(0xff81c2ff),
                   ),
-                  recognizer: TapGestureRecognizer()
-                    ..onTap = () => GetRouter.back(),
+                  recognizer:
+                      TapGestureRecognizer()..onTap = () => GetRouter.back(),
                 ),
               ],
             ),
-          )
+          ),
         ],
       ),
     );

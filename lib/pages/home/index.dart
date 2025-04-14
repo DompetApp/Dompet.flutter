@@ -85,24 +85,13 @@ class PageHome extends GetView<PageHomeController> {
             left: 640.wmax * 32.sr,
             right: 640.wmax * 32.sr,
           ),
-          decoration: BoxDecoration(
-            color: Colors.white,
-            boxShadow: boxShadow,
-          ),
+          decoration: BoxDecoration(color: Colors.white, boxShadow: boxShadow),
           child: Stack(
             fit: StackFit.expand,
             alignment: Alignment.center,
             children: [
-              Positioned(
-                top: 0,
-                left: 0,
-                child: buildHeaderTitle(context),
-              ),
-              Positioned(
-                top: 0,
-                left: 0,
-                child: buildHeaderActions(context),
-              ),
+              Positioned(top: 0, left: 0, child: buildHeaderTitle(context)),
+              Positioned(top: 0, left: 0, child: buildHeaderActions(context)),
             ],
           ),
         ),
@@ -124,9 +113,7 @@ class PageHome extends GetView<PageHomeController> {
               left: 640.wmax * 32.sr,
               right: 640.wmax * 32.sr,
             ),
-            margin: EdgeInsets.only(
-              top: 640.wmax * 42.sr,
-            ),
+            margin: EdgeInsets.only(top: 640.wmax * 42.sr),
             child: GestureDetector(
               behavior: HitTestBehavior.opaque,
               onTap: () => GetRouter.toNamed(GetRoutes.card),
@@ -189,19 +176,18 @@ class PageHome extends GetView<PageHomeController> {
               left: 640.wmax * 52.sr,
               right: 640.wmax * 52.sr,
             ),
-            margin: EdgeInsets.only(
-              top: 640.wmax * 36.sr,
-            ),
+            margin: EdgeInsets.only(top: 640.wmax * 36.sr),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 GestureDetector(
                   behavior: HitTestBehavior.opaque,
-                  onTap: () => GetRouter.toNamed(
-                    GetRoutes.operater,
-                    arguments: 'Transfer',
-                  ),
+                  onTap:
+                      () => GetRouter.toNamed(
+                        GetRoutes.operater,
+                        arguments: 'Transfer',
+                      ),
                   child: SizedBox(
                     width: 640.wmax * 80.sr,
                     child: Column(
@@ -231,9 +217,7 @@ class PageHome extends GetView<PageHomeController> {
                             fit: BoxFit.fill,
                           ),
                         ),
-                        SizedBox(
-                          height: 640.wmax * 16.sr,
-                        ),
+                        SizedBox(height: 640.wmax * 16.sr),
                         Text(
                           'Transfer'.tr,
                           style: TextStyle(
@@ -249,10 +233,11 @@ class PageHome extends GetView<PageHomeController> {
                 ),
                 GestureDetector(
                   behavior: HitTestBehavior.opaque,
-                  onTap: () => GetRouter.toNamed(
-                    GetRoutes.operater,
-                    arguments: 'Payment',
-                  ),
+                  onTap:
+                      () => GetRouter.toNamed(
+                        GetRoutes.operater,
+                        arguments: 'Payment',
+                      ),
                   child: SizedBox(
                     width: 640.wmax * 80.sr,
                     child: Column(
@@ -282,9 +267,7 @@ class PageHome extends GetView<PageHomeController> {
                             fit: BoxFit.fill,
                           ),
                         ),
-                        SizedBox(
-                          height: 640.wmax * 16.sr,
-                        ),
+                        SizedBox(height: 640.wmax * 16.sr),
                         Text(
                           'Payment'.tr,
                           style: TextStyle(
@@ -300,10 +283,11 @@ class PageHome extends GetView<PageHomeController> {
                 ),
                 GestureDetector(
                   behavior: HitTestBehavior.opaque,
-                  onTap: () => GetRouter.toNamed(
-                    GetRoutes.operater,
-                    arguments: 'Top up',
-                  ),
+                  onTap:
+                      () => GetRouter.toNamed(
+                        GetRoutes.operater,
+                        arguments: 'Top up',
+                      ),
                   child: SizedBox(
                     width: 640.wmax * 80.sr,
                     child: Column(
@@ -333,9 +317,7 @@ class PageHome extends GetView<PageHomeController> {
                             fit: BoxFit.fill,
                           ),
                         ),
-                        SizedBox(
-                          height: 640.wmax * 16.sr,
-                        ),
+                        SizedBox(height: 640.wmax * 16.sr),
                         Text(
                           'Top up'.tr,
                           style: TextStyle(
@@ -386,14 +368,8 @@ class PageHome extends GetView<PageHomeController> {
     }
 
     return Container(
-      padding: EdgeInsets.only(
-        left: 640.wmax * 32.sr,
-        right: 640.wmax * 32.sr,
-      ),
-      margin: EdgeInsets.only(
-        top: 640.wmax * 42.sr,
-        bottom: 640.wmax * 15.sr,
-      ),
+      padding: EdgeInsets.only(left: 640.wmax * 32.sr, right: 640.wmax * 32.sr),
+      margin: EdgeInsets.only(top: 640.wmax * 42.sr, bottom: 640.wmax * 15.sr),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -476,9 +452,7 @@ class PageHome extends GetView<PageHomeController> {
                               ],
                             ),
                           ),
-                          SizedBox(
-                            height: 640.wmax * 2.sr,
-                          ),
+                          SizedBox(height: 640.wmax * 2.sr),
                           SizedBox(
                             height: 640.wmax * 18.sr,
                             child: Row(
@@ -550,9 +524,7 @@ class PageHome extends GetView<PageHomeController> {
                           height: 1,
                         ),
                       ),
-                      SizedBox(
-                        height: 640.wmax * 5.sr,
-                      ),
+                      SizedBox(height: 640.wmax * 5.sr),
                       Text(
                         'available'.tr,
                         style: TextStyle(
@@ -627,10 +599,11 @@ class PageHome extends GetView<PageHomeController> {
             children: [
               GestureDetector(
                 behavior: HitTestBehavior.opaque,
-                onTap: () => GetRouter.toNamed(
-                  GetRoutes.operater,
-                  arguments: 'Transfer',
-                ),
+                onTap:
+                    () => GetRouter.toNamed(
+                      GetRoutes.operater,
+                      arguments: 'Transfer',
+                    ),
                 child: Column(
                   children: [
                     Container(
@@ -659,10 +632,11 @@ class PageHome extends GetView<PageHomeController> {
               ),
               GestureDetector(
                 behavior: HitTestBehavior.opaque,
-                onTap: () => GetRouter.toNamed(
-                  GetRoutes.operater,
-                  arguments: 'Payment',
-                ),
+                onTap:
+                    () => GetRouter.toNamed(
+                      GetRoutes.operater,
+                      arguments: 'Payment',
+                    ),
                 child: Column(
                   children: [
                     Container(
@@ -691,10 +665,11 @@ class PageHome extends GetView<PageHomeController> {
               ),
               GestureDetector(
                 behavior: HitTestBehavior.opaque,
-                onTap: () => GetRouter.toNamed(
-                  GetRoutes.operater,
-                  arguments: 'Top up',
-                ),
+                onTap:
+                    () => GetRouter.toNamed(
+                      GetRoutes.operater,
+                      arguments: 'Top up',
+                    ),
                 child: Column(
                   children: [
                     Container(
@@ -771,9 +746,7 @@ class PageHome extends GetView<PageHomeController> {
                 ),
                 decoration: BoxDecoration(
                   color: const Color(0xff2f1155),
-                  borderRadius: BorderRadius.circular(
-                    640.wmax * 30.sr,
-                  ),
+                  borderRadius: BorderRadius.circular(640.wmax * 30.sr),
                   boxShadow: [
                     BoxShadow(
                       color: const Color(0x19272246),

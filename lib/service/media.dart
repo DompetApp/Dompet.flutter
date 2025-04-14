@@ -18,11 +18,7 @@ class MediaQueryController extends GetxService {
   final double minScale = 0.85;
   final double maxScale = 1.05;
 
-  void update({
-    double? topBar,
-    double? bottomBar,
-    MediaQueryData? mediaQuery,
-  }) {
+  void update({double? topBar, double? bottomBar, MediaQueryData? mediaQuery}) {
     if (topBar != null) {
       this.topBar.value = topBar;
     }

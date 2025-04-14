@@ -244,9 +244,7 @@ class PageOperater extends GetView<PageOperaterController> {
             left: 640.wmax * 32.sr,
             right: 640.wmax * 32.sr,
           ),
-          margin: EdgeInsets.only(
-            bottom: 640.wmax * 42.sr,
-          ),
+          margin: EdgeInsets.only(bottom: 640.wmax * 42.sr),
           child: PopupMenuButton(
             elevation: 2.5,
             color: Colors.white,
@@ -428,13 +426,8 @@ class PageOperater extends GetView<PageOperaterController> {
     return Container(
       color: Colors.white,
       alignment: Alignment.center,
-      padding: EdgeInsets.only(
-        left: 640.wmax * 32.sr,
-        right: 640.wmax * 32.sr,
-      ),
-      margin: EdgeInsets.only(
-        bottom: 640.wmax * 68.sr,
-      ),
+      padding: EdgeInsets.only(left: 640.wmax * 32.sr, right: 640.wmax * 32.sr),
+      margin: EdgeInsets.only(bottom: 640.wmax * 68.sr),
       child: SizedBox(
         width: 640.wmax * 250.sr,
         child: Column(
@@ -445,11 +438,7 @@ class PageOperater extends GetView<PageOperaterController> {
               child: Row(
                 mainAxisSize: MainAxisSize.min,
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  buildKey('1'),
-                  buildKey('2'),
-                  buildKey('3'),
-                ],
+                children: [buildKey('1'), buildKey('2'), buildKey('3')],
               ),
             ),
             Container(
@@ -458,11 +447,7 @@ class PageOperater extends GetView<PageOperaterController> {
               child: Row(
                 mainAxisSize: MainAxisSize.min,
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  buildKey('4'),
-                  buildKey('5'),
-                  buildKey('6'),
-                ],
+                children: [buildKey('4'), buildKey('5'), buildKey('6')],
               ),
             ),
             Container(
@@ -471,11 +456,7 @@ class PageOperater extends GetView<PageOperaterController> {
               child: Row(
                 mainAxisSize: MainAxisSize.min,
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  buildKey('7'),
-                  buildKey('8'),
-                  buildKey('9'),
-                ],
+                children: [buildKey('7'), buildKey('8'), buildKey('9')],
               ),
             ),
             Container(
@@ -503,13 +484,8 @@ class PageOperater extends GetView<PageOperaterController> {
 
     return Container(
       alignment: Alignment.center,
-      padding: EdgeInsets.only(
-        left: 640.wmax * 32.sr,
-        right: 640.wmax * 32.sr,
-      ),
-      margin: EdgeInsets.only(
-        bottom: mediaBottom,
-      ),
+      padding: EdgeInsets.only(left: 640.wmax * 32.sr, right: 640.wmax * 32.sr),
+      margin: EdgeInsets.only(bottom: mediaBottom),
       child: Material(
         color: Colors.transparent,
         child: InkResponse(

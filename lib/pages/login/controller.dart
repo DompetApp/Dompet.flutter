@@ -52,13 +52,9 @@ class PageLoginController extends GetxController {
         idToken: googleAuth?.idToken,
       );
 
-      final credential = await signInWithCredential(
-        authCredential,
-      );
+      final credential = await signInWithCredential(authCredential);
 
-      await storeCredentialUser(
-        credential,
-      );
+      await storeCredentialUser(credential);
     } on FirebaseAuthException catch (e) {
       Toaster.error(message: e.message);
     } catch (e) {
@@ -75,9 +71,7 @@ class PageLoginController extends GetxController {
       final githubProvider = GithubAuthProvider();
       final userCredential = await signInWithProvider(githubProvider);
 
-      await storeCredentialUser(
-        userCredential,
-      );
+      await storeCredentialUser(userCredential);
     } on FirebaseAuthException catch (e) {
       Toaster.error(message: e.message);
     } catch (e) {
@@ -116,9 +110,7 @@ class PageLoginController extends GetxController {
         email: email,
       );
 
-      await storeCredentialUser(
-        credential,
-      );
+      await storeCredentialUser(credential);
     } on FirebaseAuthException catch (e) {
       Toaster.error(message: e.message);
     } catch (e) {
@@ -181,9 +173,12 @@ class PageLoginController extends GetxController {
 
   Future<void> registerTimeout(Future future, Duration duration) async {
     try {
-      await future.timeout(duration, onTimeout: () {
-        throw TimeoutException("Registration request timed out!".tr);
-      });
+      await future.timeout(
+        duration,
+        onTimeout: () {
+          throw TimeoutException("Registration request timed out!".tr);
+        },
+      );
     } on TimeoutException catch (e) {
       Toaster.error(message: e.message);
       loading.value = false;
@@ -195,9 +190,12 @@ class PageLoginController extends GetxController {
 
   Future<void> loginTimeout(Future future, Duration duration) async {
     try {
-      await future.timeout(duration, onTimeout: () {
-        throw TimeoutException("Login request timed out!".tr);
-      });
+      await future.timeout(
+        duration,
+        onTimeout: () {
+          throw TimeoutException("Login request timed out!".tr);
+        },
+      );
     } on TimeoutException catch (e) {
       Toaster.error(message: e.message);
       loading.value = false;

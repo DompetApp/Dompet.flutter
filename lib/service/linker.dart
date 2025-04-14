@@ -1,9 +1,9 @@
 import 'dart:async';
 import 'package:get/get.dart';
 import 'package:app_links/app_links.dart';
-import 'package:dompet/models/webview.dart';
 import 'package:dompet/routes/router.dart';
 import 'package:dompet/service/bind.dart';
+import 'package:dompet/models/web.dart';
 
 class AppLinkController extends GetxService {
   late final storeController = Get.find<StoreController>();

@@ -27,10 +27,7 @@ class PageCardController extends GetxController with RxWatcher, TickerProvider {
     animationController = AnimationController(duration: duration, vsync: this);
 
     animationValue = Tween<double>(begin: 0, end: 3.1415926 / 2).animate(
-      CurvedAnimation(
-        parent: animationController,
-        curve: Curves.linear,
-      ),
+      CurvedAnimation(parent: animationController, curve: Curves.linear),
     );
 
     rw.ever(isExpand, (state) {

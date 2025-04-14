@@ -29,17 +29,17 @@ class RxWebviewMeta {
   Rx<bool> popup;
 
   RxWebviewMeta(WebviewMeta webviewMeta)
-      : key = webviewMeta.key.obs,
-        url = webviewMeta.url.obs,
-        html = webviewMeta.html.obs,
-        title = webviewMeta.title.obs,
-        query = Rx(webviewMeta.query),
-        checkHttps = webviewMeta.checkHttps.obs,
-        checkUrl = webviewMeta.checkUrl.obs,
-        fromHtml = webviewMeta.fromHtml.obs,
-        fromUrl = webviewMeta.fromUrl.obs,
-        loading = webviewMeta.loading.obs,
-        popup = webviewMeta.popup.obs;
+    : key = webviewMeta.key.obs,
+      url = webviewMeta.url.obs,
+      html = webviewMeta.html.obs,
+      title = webviewMeta.title.obs,
+      query = Rx(webviewMeta.query),
+      checkHttps = webviewMeta.checkHttps.obs,
+      checkUrl = webviewMeta.checkUrl.obs,
+      fromHtml = webviewMeta.fromHtml.obs,
+      fromUrl = webviewMeta.fromUrl.obs,
+      loading = webviewMeta.loading.obs,
+      popup = webviewMeta.popup.obs;
 
   WebviewMeta get value {
     return WebviewMeta(
@@ -175,9 +175,9 @@ class WebviewMeta {
     this.fromUrl = false,
     this.loading = false,
     this.popup = false,
-  })  : key = key ?? uuid(),
-        query = query ?? {},
-        title = title ?? 'Loading...'.tr;
+  }) : key = key ?? uuid(),
+       query = query ?? {},
+       title = title ?? 'Loading...'.tr;
 
   WebviewMeta clone({WebviewMeta? webviewMeta}) {
     return WebviewMeta(

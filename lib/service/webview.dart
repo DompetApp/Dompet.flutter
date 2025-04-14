@@ -43,11 +43,7 @@ class WebviewChannelController extends GetxService {
             return proxyer.scanQRCode(options: options);
           }
 
-          return ChannelResult(
-            status: 'failure',
-            message: null,
-            result: null,
-          );
+          return ChannelResult(status: 'failure', message: null, result: null);
         },
       );
 
@@ -88,10 +84,7 @@ class WebviewChannelHandler {
       await GetRouter.offAllNamed(page);
       return ChannelResult.success();
     } catch (e) {
-      return ChannelResult(
-        message: e.toString(),
-        status: 'failure',
-      );
+      return ChannelResult(message: e.toString(), status: 'failure');
     }
   }
 
@@ -108,10 +101,7 @@ class WebviewChannelHandler {
       await GetRouter.offNamed(page);
       return ChannelResult.success();
     } catch (e) {
-      return ChannelResult(
-        message: e.toString(),
-        status: 'failure',
-      );
+      return ChannelResult(message: e.toString(), status: 'failure');
     }
   }
 
@@ -128,10 +118,7 @@ class WebviewChannelHandler {
       await GetRouter.toNamed(page);
       return ChannelResult.success();
     } catch (e) {
-      return ChannelResult(
-        message: e.toString(),
-        status: 'failure',
-      );
+      return ChannelResult(message: e.toString(), status: 'failure');
     }
   }
 
@@ -153,16 +140,13 @@ class WebviewChannelHandler {
 
       return ChannelResult.success();
     } catch (e) {
-      return ChannelResult(
-        message: e.toString(),
-        status: 'failure',
-      );
+      return ChannelResult(message: e.toString(), status: 'failure');
     }
   }
 
   Future<ChannelResult> scanQRCode({required dynamic options}) async {
     return ChannelResult(
-      message:'scanQRCode is not currently supported',
+      message: 'scanQRCode is not currently supported',
       status: 'failure',
     );
   }

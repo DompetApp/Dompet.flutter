@@ -7,9 +7,9 @@ import 'package:flutter/services.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
-import 'package:dompet/models/webview.dart';
 import 'package:dompet/routes/router.dart';
 import 'package:dompet/service/bind.dart';
+import 'package:dompet/models/web.dart';
 
 class PageWebviewController extends GetxController {
   late final localeController = Get.find<LocaleController>();
@@ -186,7 +186,9 @@ class PageWebviewController extends GetxController {
         webviewController!.evaluateJavascript(
           source: "$image.src='data:image/png;base64,$data'",
         );
-      } catch (e) {/* e */}
+      } catch (e) {
+        /* e */
+      }
     }
   }
 

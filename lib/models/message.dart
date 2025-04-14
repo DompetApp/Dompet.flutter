@@ -4,10 +4,7 @@ class GroupMessage {
   List<Message> messages;
   int year;
 
-  GroupMessage({
-    required this.messages,
-    required this.year,
-  });
+  GroupMessage({required this.messages, required this.year});
 }
 
 class RxMessages {

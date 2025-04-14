@@ -180,14 +180,8 @@ class PageStats extends GetView<PageStatsController> {
     }
 
     return Container(
-      padding: EdgeInsets.only(
-        left: 640.wmax * 32.sr,
-        right: 640.wmax * 32.sr,
-      ),
-      margin: EdgeInsets.only(
-        top: 640.wmax * 50.sr,
-        bottom: 640.wmax * 15.sr,
-      ),
+      padding: EdgeInsets.only(left: 640.wmax * 32.sr, right: 640.wmax * 32.sr),
+      margin: EdgeInsets.only(top: 640.wmax * 50.sr, bottom: 640.wmax * 15.sr),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -301,9 +295,7 @@ class PageStats extends GetView<PageStatsController> {
                               ],
                             ),
                           ),
-                          SizedBox(
-                            height: 640.wmax * 2.sr,
-                          ),
+                          SizedBox(height: 640.wmax * 2.sr),
                           SizedBox(
                             height: 640.wmax * 18.sr,
                             child: Row(
@@ -392,9 +384,7 @@ class PageStats extends GetView<PageStatsController> {
                 ),
                 decoration: BoxDecoration(
                   color: const Color(0xff2f1155),
-                  borderRadius: BorderRadius.circular(
-                    640.wmax * 30.sr,
-                  ),
+                  borderRadius: BorderRadius.circular(640.wmax * 30.sr),
                   boxShadow: [
                     BoxShadow(
                       color: const Color(0xff272246).withValues(alpha: 0.1),

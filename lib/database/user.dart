@@ -19,8 +19,7 @@ class UserDatabaser {
     if (db.bv) {
       UserDatabaser.db = db!;
 
-      await db.execute(
-        '''
+      await db.execute('''
         CREATE TABLE UserCard (
           id INTEGER PRIMARY KEY AUTOINCREMENT,
           card_no TEXT NOT NULL,
@@ -30,11 +29,9 @@ class UserDatabaser {
           expiry_date TEXT NOT NULL,
           status TEXT NOT NULL
         )
-        ''',
-      );
+      ''');
 
-      await db.execute(
-        '''
+      await db.execute('''
         CREATE TABLE UserOrder (
           id INTEGER PRIMARY KEY AUTOINCREMENT,
           icon TEXT NOT NULL,
@@ -43,11 +40,9 @@ class UserDatabaser {
           date TEXT NOT NULL,
           money REAL NOT NULL
         )
-        ''',
-      );
+      ''');
 
-      await db.execute(
-        '''
+      await db.execute('''
         CREATE TABLE UserMessage (
           id INTEGER PRIMARY KEY AUTOINCREMENT,
           type TEXT NOT NULL,
@@ -56,8 +51,7 @@ class UserDatabaser {
           money REAL NOT NULL,
           is_read TEXT NOT NULL DEFAULT 'N'
         )
-        ''',
-      );
+      ''');
 
       // 预设数据
       final year = DateTime.now().year;
@@ -430,8 +424,7 @@ class UserDatabaser {
 
   static Future<Card?> queryUserCard() async {
     return db?.transaction<Card?>((txn) async {
-      final result = await txn.rawQuery(
-        '''
+      final result = await txn.rawQuery('''
         select 
           id,
           card_no,
@@ -442,8 +435,7 @@ class UserDatabaser {
           status
         from UserCard
         order by datetime(expiry_date) desc
-        ''',
-      );
+      ''');
 
       if (result.isNotEmpty) {
         return Card.from(result[0]);
@@ -466,8 +458,7 @@ class UserDatabaser {
       final formatter = DateFormat(format);
 
       return db!.transaction<List<Order>>((txn) async {
-        final cards = await txn.rawQuery(
-          '''
+        final cards = await txn.rawQuery('''
           select 
             id,
             card_no,
@@ -478,8 +469,7 @@ class UserDatabaser {
             status
           from UserCard
           order by datetime(expiry_date) desc
-          ''',
-        );
+        ''');
 
         final card = Card.from(cards[0]);
 
@@ -511,8 +501,7 @@ class UserDatabaser {
           ],
         );
 
-        final result = await txn.rawQuery(
-          '''
+        final result = await txn.rawQuery('''
           select 
             id,
             icon,
@@ -522,8 +511,7 @@ class UserDatabaser {
             money
           from UserOrder
           order by datetime(date) desc
-          ''',
-        );
+        ''');
 
         return result.map((card) => Order.from(card)).toList();
       });
@@ -534,8 +522,7 @@ class UserDatabaser {
 
   static Future<List<Order>> queryUserOrders() async {
     final list = await db?.transaction<List<Order>>((txn) async {
-      final result = await txn.rawQuery(
-        '''
+      final result = await txn.rawQuery('''
         select 
           id,
           icon,
@@ -545,8 +532,7 @@ class UserDatabaser {
           money
         from UserOrder
         order by datetime(date) desc
-        ''',
-      );
+      ''');
 
       return result.map((card) => Order.from(card)).toList();
     });
@@ -580,8 +566,7 @@ class UserDatabaser {
           );
         }
 
-        final result = await txn.rawQuery(
-          '''
+        final result = await txn.rawQuery('''
             select 
               id,
               type,
@@ -591,8 +576,7 @@ class UserDatabaser {
               is_read
             from UserMessage
             order by datetime(date) desc
-            ''',
-        );
+          ''');
 
         return result.map((card) => Message.from(card)).toList();
       });
@@ -603,13 +587,12 @@ class UserDatabaser {
 
   static Future<List<Message>> readUserMessage(Message message) async {
     return db!.transaction<List<Message>>((txn) async {
-      await txn.rawUpdate(
-        'update UserMessage set is_read = ? where id == ?',
-        ['Y', message.id],
-      );
+      await txn.rawUpdate('update UserMessage set is_read = ? where id == ?', [
+        'Y',
+        message.id,
+      ]);
 
-      final result = await txn.rawQuery(
-        '''
+      final result = await txn.rawQuery('''
         select 
           id,
           type,
@@ -619,8 +602,7 @@ class UserDatabaser {
           is_read
         from UserMessage
         order by datetime(date) desc
-        ''',
-      );
+      ''');
 
       return result.map((card) => Message.from(card)).toList();
     });
@@ -628,8 +610,7 @@ class UserDatabaser {
 
   static Future<List<Message>> queryUserMessages() async {
     final list = await db?.transaction<List<Message>>((txn) async {
-      final result = await txn.rawQuery(
-        '''
+      final result = await txn.rawQuery('''
         select 
           id,
           type,
@@ -639,8 +620,7 @@ class UserDatabaser {
           is_read
         from UserMessage
         order by datetime(date) desc
-        ''',
-      );
+      ''');
 
       return result.map((card) => Message.from(card)).toList();
     });

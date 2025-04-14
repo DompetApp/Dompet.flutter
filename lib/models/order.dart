@@ -4,10 +4,7 @@ class YearOrder {
   int year;
   double money;
 
-  YearOrder({
-    required this.year,
-    required this.money,
-  });
+  YearOrder({required this.year, required this.money});
 }
 
 class RxOrders {

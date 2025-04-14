@@ -41,10 +41,7 @@ class Sqfliter {
     }
   }
 
-  static Future<void> deleteDatabase(
-    String dbName, {
-    String? subName,
-  }) async {
+  static Future<void> deleteDatabase(String dbName, {String? subName}) async {
     if (!RegExp(r'\.db$', caseSensitive: false).hasMatch(dbName)) {
       dbName = '$dbName.db';
     }

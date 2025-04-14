@@ -33,10 +33,7 @@ class PageProfile extends GetView<PageProfileController> {
                     shrinkWrap: false,
                     padding: EdgeInsets.zero,
                     physics: const ClampingScrollPhysics(),
-                    children: [
-                      buildProfile(context),
-                      buildUpdateBtn(context),
-                    ],
+                    children: [buildProfile(context), buildUpdateBtn(context)],
                   ),
                 ),
               ),
@@ -130,20 +127,12 @@ class PageProfile extends GetView<PageProfileController> {
     return Container(
       color: Colors.white,
       alignment: Alignment.center,
-      padding: EdgeInsets.only(
-        left: 640.wmax * 30.sr,
-        right: 640.wmax * 30.sr,
-      ),
-      margin: EdgeInsets.only(
-        top: 640.wmax * 110.sr,
-        bottom: 640.wmax * 18.sr,
-      ),
+      padding: EdgeInsets.only(left: 640.wmax * 30.sr, right: 640.wmax * 30.sr),
+      margin: EdgeInsets.only(top: 640.wmax * 110.sr, bottom: 640.wmax * 18.sr),
       child: Column(
         children: [
           Padding(
-            padding: EdgeInsets.only(
-              bottom: 640.wmax * 10.sr,
-            ),
+            padding: EdgeInsets.only(bottom: 640.wmax * 10.sr),
             child: ClipOval(
               child: GestureDetector(
                 behavior: HitTestBehavior.opaque,
@@ -190,9 +179,7 @@ class PageProfile extends GetView<PageProfileController> {
           ),
           Container(
             alignment: Alignment.center,
-            padding: EdgeInsets.only(
-              bottom: 640.wmax * 30.sr,
-            ),
+            padding: EdgeInsets.only(bottom: 640.wmax * 30.sr),
             child: IntrinsicWidth(
               child: TextField(
                 readOnly: readonly.value,
@@ -229,9 +216,10 @@ class PageProfile extends GetView<PageProfileController> {
                     fontWeight: FontWeight.w400,
                     color: const Color(0xff9f9f9f),
                   ),
-                  hintText: nameController.text.isEmpty
-                      ? 'please enter your name...'.tr
-                      : null,
+                  hintText:
+                      nameController.text.isEmpty
+                          ? 'please enter your name...'.tr
+                          : null,
                 ),
                 style: TextStyle(
                   fontSize: 640.wmax * 22.sr,
@@ -391,18 +379,14 @@ class PageProfile extends GetView<PageProfileController> {
         right: 640.wmax * 32.sr,
         bottom: mediaBottom,
       ),
-      margin: EdgeInsets.only(
-        top: 640.wmax * 42.sr,
-      ),
+      margin: EdgeInsets.only(top: 640.wmax * 42.sr),
       child: IntrinsicWidth(
         child: withInWell(
           onTap: () => updateUser(),
           child: Container(
             color: Colors.transparent,
             alignment: Alignment.center,
-            constraints: BoxConstraints(
-              minWidth: 640.wmax * 160.sr,
-            ),
+            constraints: BoxConstraints(minWidth: 640.wmax * 160.sr),
             padding: EdgeInsets.symmetric(
               vertical: 640.wmax * 15.sr,
               horizontal: 640.wmax * 18.sr,

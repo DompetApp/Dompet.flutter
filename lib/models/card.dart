@@ -10,13 +10,13 @@ class RxCard {
   Rx<String> status;
 
   RxCard(Card card)
-      : id = card.id.obs,
-        cardNo = card.cardNo.obs,
-        cardType = card.cardType.obs,
-        bankName = card.bankName.obs,
-        expiryDate = card.expiryDate.obs,
-        balance = card.balance.obs,
-        status = card.status.obs;
+    : id = card.id.obs,
+      cardNo = card.cardNo.obs,
+      cardType = card.cardType.obs,
+      bankName = card.bankName.obs,
+      expiryDate = card.expiryDate.obs,
+      balance = card.balance.obs,
+      status = card.status.obs;
 
   Card get value {
     return Card(

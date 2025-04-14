@@ -62,7 +62,9 @@ class PageNotificationController extends GetxController with RxWatcher {
         }
 
         refGroup.messages.add(msg);
-      } catch (e) {/* e */}
+      } catch (e) {
+        /* e */
+      }
     }
 
     msgGroups.value = refGroups;

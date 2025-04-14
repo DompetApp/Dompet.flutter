@@ -24,10 +24,7 @@ class PageNotification extends GetView<PageNotificationController> {
       final mediaTopBar = controller.mediaTopBar;
       final isShadow = controller.isShadow;
 
-      final top = max(
-        mediaPadding.value.top,
-        640.wmax * 20.sr,
-      );
+      final top = max(mediaPadding.value.top, 640.wmax * 20.sr);
 
       return Scaffold(
         body: Stack(
@@ -87,22 +84,19 @@ class PageNotification extends GetView<PageNotificationController> {
                         ),
                       ),
                       SliverList(
-                        delegate: SliverChildBuilderDelegate(
-                          (context, index) {
-                            return Obx(
-                              () => ListView(
-                                shrinkWrap: true,
-                                padding: const EdgeInsets.all(0),
-                                physics: const NeverScrollableScrollPhysics(),
-                                children: [
-                                  buidlMessages(context),
-                                  buildSafeArea(context),
-                                ],
-                              ),
-                            );
-                          },
-                          childCount: 1,
-                        ),
+                        delegate: SliverChildBuilderDelegate((context, index) {
+                          return Obx(
+                            () => ListView(
+                              shrinkWrap: true,
+                              padding: const EdgeInsets.all(0),
+                              physics: const NeverScrollableScrollPhysics(),
+                              children: [
+                                buidlMessages(context),
+                                buildSafeArea(context),
+                              ],
+                            ),
+                          );
+                        }, childCount: 1),
                       ),
                     ],
                   );
@@ -163,10 +157,7 @@ class PageNotification extends GetView<PageNotificationController> {
     return Container(
       alignment: Alignment.center,
       constraints: const BoxConstraints.expand(),
-      padding: EdgeInsets.only(
-        left: 640.wmax * 32.sr,
-        right: 640.wmax * 32.sr,
-      ),
+      padding: EdgeInsets.only(left: 640.wmax * 32.sr, right: 640.wmax * 32.sr),
       child: Text(
         'Notification'.tr,
         style: TextStyle(
@@ -335,10 +326,7 @@ class PageNotification extends GetView<PageNotificationController> {
                 ),
               ),
             ),
-            SizedBox(
-              width: 640.wmax * 312.sr,
-              height: 640.wmax * 15.sr,
-            ),
+            SizedBox(width: 640.wmax * 312.sr, height: 640.wmax * 15.sr),
             SizedBox(
               width: 640.wmax * 312.sr,
               child: Column(
@@ -357,10 +345,7 @@ class PageNotification extends GetView<PageNotificationController> {
     return Container(
       color: Colors.white,
       alignment: Alignment.center,
-      padding: EdgeInsets.only(
-        left: 640.wmax * 32.sr,
-        right: 640.wmax * 32.sr,
-      ),
+      padding: EdgeInsets.only(left: 640.wmax * 32.sr, right: 640.wmax * 32.sr),
       child: Column(
         children: [
           ...msgGroups.value.map((group) {

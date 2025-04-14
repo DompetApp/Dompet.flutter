@@ -105,9 +105,7 @@ class StoreController extends GetxService {
       Get.put(LocaleController());
     }
 
-    Get.find<LocaleController>().update(
-      locale ?? Get.deviceLocale,
-    );
+    Get.find<LocaleController>().update(locale ?? Get.deviceLocale);
 
     this.locale.value = locale;
   }

@@ -1,7 +1,7 @@
+import 'package:dompet/models/web.dart';
 import 'package:dompet/service/bind.dart';
 import 'package:dompet/logger/logger.dart';
 import 'package:dompet/routes/imports.dart';
-import 'package:dompet/models/webview.dart';
 import 'package:dompet/pages/home/index.dart';
 import 'package:dompet/pages/card/index.dart';
 import 'package:dompet/pages/login/index.dart';
@@ -91,11 +91,7 @@ class GetRoutes {
   static const notification = '/PageNotification';
 
   static List<String> get overturns {
-    return [
-      GetRoutes.stats,
-      GetRoutes.logger, 
-      GetRoutes.webview,
-    ];
+    return [GetRoutes.stats, GetRoutes.logger, GetRoutes.webview];
   }
 
   static List<String> get authorize {
@@ -114,10 +110,7 @@ class GetRoutes {
   }
 
   static List<String> get defaults {
-    return [
-      GetRoutes.login,
-      GetRoutes.register,
-    ];
+    return [GetRoutes.login, GetRoutes.register];
   }
 
   static List<GetPage> pages() {

@@ -82,25 +82,22 @@ class PageLogger extends GetView<PageLoggerController> {
                         ),
                       ),
                       SliverList(
-                        delegate: SliverChildBuilderDelegate(
-                          (context, index) {
-                            return Obx(
-                              () => Container(
-                                width: 100.vw,
-                                height: 100.vh - height - offset,
-                                alignment: Alignment.center,
-                                child: Stack(
-                                  fit: StackFit.expand,
-                                  children: [
-                                    buildContent(context),
-                                    buildLoading(context),
-                                  ],
-                                ),
+                        delegate: SliverChildBuilderDelegate((context, index) {
+                          return Obx(
+                            () => Container(
+                              width: 100.vw,
+                              height: 100.vh - height - offset,
+                              alignment: Alignment.center,
+                              child: Stack(
+                                fit: StackFit.expand,
+                                children: [
+                                  buildContent(context),
+                                  buildLoading(context),
+                                ],
                               ),
-                            );
-                          },
-                          childCount: 1,
-                        ),
+                            ),
+                          );
+                        }, childCount: 1),
                       ),
                     ],
                   );
@@ -161,10 +158,7 @@ class PageLogger extends GetView<PageLoggerController> {
     return Container(
       alignment: Alignment.center,
       constraints: const BoxConstraints.expand(),
-      padding: EdgeInsets.only(
-        left: 640.wmax * 32.sr,
-        right: 640.wmax * 32.sr,
-      ),
+      padding: EdgeInsets.only(left: 640.wmax * 32.sr, right: 640.wmax * 32.sr),
       child: Text(
         'Run Logger'.tr,
         style: TextStyle(
@@ -253,10 +247,7 @@ class PageLogger extends GetView<PageLoggerController> {
                       ),
                     ),
                   ),
-                  SizedBox(
-                    width: double.infinity,
-                    height: 80,
-                  ),
+                  SizedBox(width: double.infinity, height: 80),
                 ],
               ),
             ),
