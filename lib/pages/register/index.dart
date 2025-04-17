@@ -149,7 +149,7 @@ class PageRegister extends GetView<PageRegisterController> {
         textAlign: TextAlign.center,
         style: TextStyle(
           fontSize: 640.wmax * 24.sr,
-          fontFamily: 'PingFang-Bold',
+          fontFamily: 'PingFang',
           color: const Color(0xff2f1155),
           fontWeight: FontWeight.w700,
           height: 1.2,
@@ -178,7 +178,7 @@ class PageRegister extends GetView<PageRegisterController> {
             textAlign: TextAlign.center,
             style: TextStyle(
               fontSize: 640.wmax * 13.sr,
-              fontFamily: 'PingFang-Bold',
+              fontFamily: 'PingFang',
               color: const Color(0xffbdbdbd),
               fontWeight: FontWeight.w500,
               height: 1.2,
@@ -359,7 +359,7 @@ class PageRegister extends GetView<PageRegisterController> {
               hintStyle: TextStyle(
                 letterSpacing: 1.5,
                 fontSize: 640.wmax * 16.sr,
-                fontFamily: 'PingFang SC',
+                fontFamily: 'PingFang',
                 fontWeight: FontWeight.w500,
                 color: const Color(0xff909399),
               ),
@@ -367,7 +367,7 @@ class PageRegister extends GetView<PageRegisterController> {
             style: TextStyle(
               letterSpacing: 1.5,
               fontSize: 640.wmax * 16.sr,
-              fontFamily: 'PingFang SC',
+              fontFamily: 'PingFang',
               fontWeight: FontWeight.w500,
               color: const Color(0xff606266),
             ),
@@ -422,7 +422,7 @@ class PageRegister extends GetView<PageRegisterController> {
               hintStyle: TextStyle(
                 letterSpacing: 1.5,
                 fontSize: 640.wmax * 16.sr,
-                fontFamily: 'PingFang SC',
+                fontFamily: 'PingFang',
                 fontWeight: FontWeight.w500,
                 color: const Color(0xff909399),
               ),
@@ -430,7 +430,7 @@ class PageRegister extends GetView<PageRegisterController> {
             style: TextStyle(
               letterSpacing: 1.5,
               fontSize: 640.wmax * 16.sr,
-              fontFamily: 'PingFang SC',
+              fontFamily: 'PingFang',
               fontWeight: FontWeight.w500,
               color: const Color(0xff606266),
             ),
@@ -489,7 +489,7 @@ class PageRegister extends GetView<PageRegisterController> {
               hintStyle: TextStyle(
                 letterSpacing: 1.5,
                 fontSize: 640.wmax * 16.sr,
-                fontFamily: 'PingFang SC',
+                fontFamily: 'PingFang',
                 fontWeight: FontWeight.w500,
                 color: const Color(0xff909399),
               ),
@@ -497,7 +497,7 @@ class PageRegister extends GetView<PageRegisterController> {
             style: TextStyle(
               letterSpacing: 1.5,
               fontSize: 640.wmax * 16.sr,
-              fontFamily: 'PingFang SC',
+              fontFamily: 'PingFang',
               fontWeight: FontWeight.w500,
               color: const Color(0xff606266),
             ),
@@ -557,7 +557,7 @@ class PageRegister extends GetView<PageRegisterController> {
               hintStyle: TextStyle(
                 letterSpacing: 1.5,
                 fontSize: 640.wmax * 16.sr,
-                fontFamily: 'PingFang SC',
+                fontFamily: 'PingFang',
                 fontWeight: FontWeight.w500,
                 color: const Color(0xff909399),
               ),
@@ -565,7 +565,7 @@ class PageRegister extends GetView<PageRegisterController> {
             style: TextStyle(
               letterSpacing: 1.5,
               fontSize: 640.wmax * 16.sr,
-              fontFamily: 'PingFang SC',
+              fontFamily: 'PingFang',
               fontWeight: FontWeight.w500,
               color: const Color(0xff606266),
             ),

@@ -212,7 +212,7 @@ class PageProfile extends GetView<PageProfileController> {
                   ),
                   hintStyle: TextStyle(
                     fontSize: 640.wmax * 20.sr,
-                    fontFamily: 'PingFang SC',
+                    fontFamily: 'PingFang',
                     fontWeight: FontWeight.w400,
                     color: const Color(0xff9f9f9f),
                   ),
@@ -223,7 +223,7 @@ class PageProfile extends GetView<PageProfileController> {
                 ),
                 style: TextStyle(
                   fontSize: 640.wmax * 22.sr,
-                  fontFamily: 'PingFang SC',
+                  fontFamily: 'PingFang',
                   fontWeight: FontWeight.w600,
                   color: const Color(0xff130138),
                 ),

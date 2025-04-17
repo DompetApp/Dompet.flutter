@@ -36,7 +36,7 @@ class RouteMiddleware extends GetMiddleware {
     final arguments = route.pageSettings?.arguments;
     final name = route.pageSettings?.name;
 
-    if (GetRoutes.overturns.contains(name)) {
+    if (GetRoutes.flipping.contains(name)) {
       final orientations = [
         DeviceOrientation.portraitUp,
         DeviceOrientation.portraitDown,
@@ -46,7 +46,7 @@ class RouteMiddleware extends GetMiddleware {
       SystemChrome.setPreferredOrientations(orientations);
     }
 
-    if (!GetRoutes.overturns.contains(name)) {
+    if (!GetRoutes.flipping.contains(name)) {
       SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
     }
 
@@ -90,10 +90,6 @@ class GetRoutes {
   static const settings = '/PageSettings';
   static const notification = '/PageNotification';
 
-  static List<String> get overturns {
-    return [GetRoutes.stats, GetRoutes.logger, GetRoutes.webview];
-  }
-
   static List<String> get authorize {
     return [
       GetRoutes.home,
@@ -111,6 +107,10 @@ class GetRoutes {
 
   static List<String> get defaults {
     return [GetRoutes.login, GetRoutes.register];
+  }
+
+  static List<String> get flipping {
+    return [GetRoutes.stats, GetRoutes.logger, GetRoutes.webview];
   }
 
   static List<GetPage> pages() {

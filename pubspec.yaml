@@ -58,7 +58,7 @@ dependencies:
   get_storage: ^2.1.1
   share_plus: ^10.1.4
   app_links: ^6.4.0
-  fl_chart: ^0.70.2
+  fl_chart: ^0.71.0
   sqflite: ^2.4.2
   convert: ^3.1.2
   crypto: ^3.0.6
