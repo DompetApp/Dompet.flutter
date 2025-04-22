@@ -7,6 +7,7 @@ import 'package:dompet/service/bind.dart';
 import 'package:dompet/models/user.dart';
 
 class SqliteController extends GetxService {
+  late final storeController = Get.find<StoreController>();
   late final eventController = Get.find<EventController>();
   late final userDBName = 'dompet.user.db';
   late final appDBName = 'dompet.app.db';
@@ -29,7 +30,9 @@ class SqliteController extends GetxService {
     }
 
     if (appUser != null) {
-      eventController.login();
+      !storeController.logined.value
+          ? eventController.logout()
+          : eventController.login();
     }
   }
 

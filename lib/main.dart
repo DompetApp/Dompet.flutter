@@ -1,4 +1,4 @@
-import 'dart:async';
+import 'dart:io';
 import 'package:get/get.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
@@ -21,28 +21,37 @@ final routeObserver = RouteObserver<ModalRoute<void>>();
 const fallbackLocale = Locale('en', 'US');
 
 void main() async {
-  BindingBase.debugZoneErrorsAreFatal = true;
-
-  runZonedGuarded(() => runner(), (error, stack) {
-    if (error is Exception || error is Error) {
-      logger.error('App ZonedGuarded...', error, stack);
-      return;
-    }
-  });
-}
-
-void runner() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   FlutterError.onError = (FlutterErrorDetails details) {
     final stack = details.stack;
     final exception = details.exception;
 
+    if (exception is DioException || exception is WebSocketException) {
+      return;
+    }
+
     if (exception is Exception || exception is Error) {
-      logger.error('App FlutterError...', exception, stack);
+      logger.error('App FlutterError.onError...', exception, stack);
       return;
     }
   };
+
+  PlatformDispatcher.instance.onError = (Object error, StackTrace stack) {
+    if (error is DioException || error is WebSocketException) {
+      return true;
+    }
+
+    if (error is Exception || error is Error) {
+      logger.error('App PlatformDispatcher.onError...', error, stack);
+      return true;
+    }
+
+    return true;
+  };
+
+  await SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
+  await SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
 
   SystemChrome.setSystemUIOverlayStyle(
     SystemUiOverlayStyle(
@@ -54,8 +63,6 @@ void runner() async {
     ),
   );
 
-  await SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
-  await SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
   await initializeDateFormatting('en_US');
   await initializeDateFormatting('zh_CN');
   await GetStorage.init('dompet.store');
