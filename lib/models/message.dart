@@ -20,7 +20,7 @@ class RxMessages {
         desc: map['desc'] ?? '',
         date: map['date'] ?? '',
         money: map['money'] ?? 0.0,
-        isRead: map['is_read'] ?? map['isRead'] ?? 'N',
+        isRead: map['isRead'] ?? 'N',
       ),
     );
 
@@ -64,7 +64,7 @@ class Message {
       desc: map['desc'] ?? '',
       date: map['date'] ?? '',
       money: map['money'] ?? 0.0,
-      isRead: map['is_read'] ?? map['isRead'] ?? 'N',
+      isRead: map['isRead'] ?? 'N',
     );
   }
 }

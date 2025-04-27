@@ -1,5 +1,6 @@
 import 'package:intl/intl.dart';
 import 'package:sqflite/sqflite.dart';
+import 'package:dompet/utils/doctor.dart';
 import 'package:dompet/extension/bool.dart';
 import 'package:dompet/models/message.dart';
 import 'package:dompet/models/order.dart';
@@ -402,6 +403,8 @@ class UserDatabaser {
       );
 
       if (result.isNotEmpty) {
+        card.expiryDate = formatter.format(DateTime.now());
+
         await txn.rawUpdate(
           'update UserCard set card_no = ?, balance = ?, card_type = ?, bank_name = ?, expiry_date = ?, status = ? where id == ?',
           [
@@ -409,7 +412,7 @@ class UserDatabaser {
             card.balance,
             card.cardType,
             card.bankName,
-            formatter.format(DateTime.now()),
+            card.expiryDate,
             card.status,
             card.id,
           ],
@@ -438,7 +441,8 @@ class UserDatabaser {
       ''');
 
       if (result.isNotEmpty) {
-        return Card.from(result[0]);
+        final json = Map<String, dynamic>.from(result[0]);
+        return Card.from(doctor.camelCase(json));
       }
 
       return null;
@@ -471,7 +475,8 @@ class UserDatabaser {
           order by datetime(expiry_date) desc
         ''');
 
-        final card = Card.from(cards[0]);
+        final json = Map<String, dynamic>.from(cards[0]);
+        final card = Card.from(doctor.camelCase(json));
 
         for (var item in list) {
           await txn.rawInsert(
@@ -488,6 +493,8 @@ class UserDatabaser {
           card.balance += item.money;
         }
 
+        card.expiryDate = formatter.format(DateTime.now());
+
         await txn.rawUpdate(
           'update UserCard set card_no = ?, balance = ?, card_type = ?, bank_name = ?, expiry_date = ?, status = ? where id == ?',
           [
@@ -495,7 +502,7 @@ class UserDatabaser {
             card.balance,
             card.cardType,
             card.bankName,
-            formatter.format(DateTime.now()),
+            card.expiryDate,
             card.status,
             card.id,
           ],
@@ -513,7 +520,10 @@ class UserDatabaser {
           order by datetime(date) desc
         ''');
 
-        return result.map((card) => Order.from(card)).toList();
+        return result.map((order) {
+          final json = Map<String, dynamic>.from(order);
+          return Order.from(doctor.camelCase(json));
+        }).toList();
       });
     }
 
@@ -534,7 +544,10 @@ class UserDatabaser {
         order by datetime(date) desc
       ''');
 
-      return result.map((card) => Order.from(card)).toList();
+      return result.map((order) {
+        final json = Map<String, dynamic>.from(order);
+        return Order.from(doctor.camelCase(json));
+      }).toList();
     });
 
     return list ?? [];
@@ -578,7 +591,10 @@ class UserDatabaser {
             order by datetime(date) desc
           ''');
 
-        return result.map((card) => Message.from(card)).toList();
+        return result.map((msg) {
+          final json = Map<String, dynamic>.from(msg);
+          return Message.from(doctor.camelCase(json));
+        }).toList();
       });
     }
 
@@ -604,7 +620,10 @@ class UserDatabaser {
         order by datetime(date) desc
       ''');
 
-      return result.map((card) => Message.from(card)).toList();
+      return result.map((msg) {
+        final json = Map<String, dynamic>.from(msg);
+        return Message.from(doctor.camelCase(json));
+      }).toList();
     });
   }
 
@@ -622,7 +641,10 @@ class UserDatabaser {
         order by datetime(date) desc
       ''');
 
-      return result.map((card) => Message.from(card)).toList();
+      return result.map((msg) {
+        final json = Map<String, dynamic>.from(msg);
+        return Message.from(doctor.camelCase(json));
+      }).toList();
     });
 
     return list ?? [];

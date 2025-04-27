@@ -7,29 +7,74 @@ class Sharer {
   static Future<ShareResult> shareFiles(
     List<XFile> files, {
     String? text,
+    String? title,
     String? subject,
-    List<String>? fileNameOverrides,
+    XFile? previewThumbnail,
     Rect? sharePositionOrigin,
+    List<String>? fileNameOverrides,
+    bool downloadFallbackEnabled = true,
+    bool mailToFallbackEnabled = true,
   }) async {
-    return Share.shareXFiles(
-      files,
-      text: text,
-      subject: subject,
-      fileNameOverrides: fileNameOverrides,
-      sharePositionOrigin: sharePositionOrigin,
+    return SharePlus.instance.share(
+      ShareParams(
+        files: files,
+        text: text,
+        title: title,
+        subject: subject,
+        previewThumbnail: previewThumbnail,
+        sharePositionOrigin: sharePositionOrigin,
+        downloadFallbackEnabled: downloadFallbackEnabled,
+        mailToFallbackEnabled: mailToFallbackEnabled,
+        fileNameOverrides: fileNameOverrides,
+      ),
     );
   }
 
-  static Future<ShareResult> shareUri(Uri uri, {Rect? position}) async {
-    return Share.shareUri(uri, sharePositionOrigin: position);
+  static Future<ShareResult> shareUri(
+    Uri uri, {
+    String? title,
+    String? subject,
+    XFile? previewThumbnail,
+    Rect? sharePositionOrigin,
+    List<String>? fileNameOverrides,
+    bool downloadFallbackEnabled = true,
+    bool mailToFallbackEnabled = true,
+  }) async {
+    return SharePlus.instance.share(
+      ShareParams(
+        uri: uri,
+        title: title,
+        subject: subject,
+        previewThumbnail: previewThumbnail,
+        sharePositionOrigin: sharePositionOrigin,
+        downloadFallbackEnabled: downloadFallbackEnabled,
+        mailToFallbackEnabled: mailToFallbackEnabled,
+        fileNameOverrides: fileNameOverrides,
+      ),
+    );
   }
 
   static Future<ShareResult> share(
     String text, {
+    String? title,
     String? subject,
-    Rect? position,
+    XFile? previewThumbnail,
+    Rect? sharePositionOrigin,
+    List<String>? fileNameOverrides,
+    bool downloadFallbackEnabled = true,
+    bool mailToFallbackEnabled = true,
   }) async {
-    assert(text.isNotEmpty);
-    return Share.share(text, subject: subject, sharePositionOrigin: position);
+    return SharePlus.instance.share(
+      ShareParams(
+        text: text,
+        title: title,
+        subject: subject,
+        previewThumbnail: previewThumbnail,
+        sharePositionOrigin: sharePositionOrigin,
+        downloadFallbackEnabled: downloadFallbackEnabled,
+        mailToFallbackEnabled: mailToFallbackEnabled,
+        fileNameOverrides: fileNameOverrides,
+      ),
+    );
   }
 }

@@ -38,10 +38,10 @@ class RxCard {
     return RxCard(
       Card(
         id: map['id'],
-        cardNo: map['card_no'] ?? map['cardNo'],
-        cardType: map['card_type'] ?? map['cardType'],
-        bankName: map['bank_name'] ?? map['bankName'],
-        expiryDate: map['expiry_date'] ?? map['expiryDate'],
+        cardNo: map['cardNo'],
+        cardType: map['cardType'],
+        bankName: map['bankName'],
+        expiryDate: map['expiryDate'],
         balance: map['balance'],
         status: map['status'],
       ),
@@ -52,10 +52,10 @@ class RxCard {
     return RxCard(
       Card(
         id: map['id'] ?? id,
-        cardNo: map['card_no'] ?? map['cardNo'] ?? cardNo,
-        cardType: map['card_type'] ?? map['cardType'] ?? cardType,
-        bankName: map['bank_name'] ?? map['bankName'] ?? bankName,
-        expiryDate: map['expiry_date'] ?? map['expiryDate'] ?? expiryDate,
+        cardNo: map['cardNo'] ?? cardNo,
+        cardType: map['cardType'] ?? cardType,
+        bankName: map['bankName'] ?? bankName,
+        expiryDate: map['expiryDate'] ?? expiryDate,
         balance: map['balance'] ?? balance,
         status: map['status'] ?? status,
       ),
@@ -126,10 +126,10 @@ class Card {
   factory Card.from(Map<String, dynamic> map) {
     return Card(
       id: map['id'] ?? 0,
-      cardNo: map['card_no'] ?? map['cardNo'] ?? '',
-      cardType: map['card_type'] ?? map['cardType'] ?? '',
-      bankName: map['bank_name'] ?? map['bankName'] ?? '',
-      expiryDate: map['expiry_date'] ?? map['expiryDate'] ?? '',
+      cardNo: map['cardNo'] ?? '',
+      cardType: map['cardType'] ?? '',
+      bankName: map['bankName'] ?? '',
+      expiryDate: map['expiryDate'] ?? '',
       balance: map['balance'] ?? 0.0,
       status: map['status'] ?? 'Y',
     );
@@ -138,10 +138,10 @@ class Card {
   Card from(Map<String, dynamic> map) {
     return Card(
       id: map['id'] ?? id,
-      cardNo: map['card_no'] ?? map['cardNo'] ?? cardNo,
-      cardType: map['card_type'] ?? map['cardType'] ?? cardType,
-      bankName: map['bank_name'] ?? map['bankName'] ?? bankName,
-      expiryDate: map['expiry_date'] ?? map['expiryDate'] ?? expiryDate,
+      cardNo: map['cardNo'] ?? cardNo,
+      cardType: map['cardType'] ?? cardType,
+      bankName: map['bankName'] ?? bankName,
+      expiryDate: map['expiryDate'] ?? expiryDate,
       balance: map['balance'] ?? balance,
       status: map['status'] ?? status,
     );

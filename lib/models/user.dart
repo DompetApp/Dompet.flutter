@@ -39,7 +39,7 @@ class RxUser {
         name: map['name'],
         email: map['email'],
         activate: map['activate'],
-        createDate: map['create_date'] ?? map['createDate'],
+        createDate: map['createDate'],
         avatar: map['avatar'],
       ),
     );
@@ -106,7 +106,7 @@ class User {
       name: map['name'] ?? '',
       email: map['email'] ?? '',
       activate: map['activate'] ?? '',
-      createDate: map['create_date'] ?? map['createDate'] ?? '',
+      createDate: map['createDate'] ?? '',
       avatar: map['avatar'],
     );
   }
@@ -117,7 +117,7 @@ class User {
       name: map['name'] ?? name,
       email: map['email'] ?? email,
       activate: map['activate'] ?? activate,
-      createDate: map['create_date'] ?? map['createDate'] ?? createDate,
+      createDate: map['createDate'] ?? createDate,
       avatar: map['avatar'] ?? avatar,
     );
   }

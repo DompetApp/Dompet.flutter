@@ -2,6 +2,7 @@ import 'dart:typed_data';
 import 'package:intl/intl.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:dompet/models/user.dart';
+import 'package:dompet/utils/doctor.dart';
 import 'package:dompet/extension/bool.dart';
 
 class AppDatabaser {
@@ -165,13 +166,14 @@ class AppDatabaser {
           avatar,
           activate,
           create_date
-        from AppUser 
+        from AppUser
         where activate = "Y" 
         order by datetime(create_date) desc
       ''');
 
       if (result.isNotEmpty) {
-        return User.from(result[0]);
+        final json = Map<String, dynamic>.from(result[0]);
+        return User.from(doctor.camelCase(json));
       }
 
       return null;
