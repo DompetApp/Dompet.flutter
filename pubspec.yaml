@@ -48,7 +48,7 @@ dependencies:
   auto_size_text: ^3.0.0
   google_sign_in: ^6.3.0
   firebase_core: ^3.13.0
-  firebase_auth: ^5.5.2
+  firebase_auth: ^5.5.3
   path_provider: ^2.1.5
   synchronized: ^3.3.1
   fluttertoast: ^8.2.12

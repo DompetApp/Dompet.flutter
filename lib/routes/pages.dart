@@ -51,7 +51,7 @@ class RouteMiddleware extends GetMiddleware {
     }
 
     if (logined.value && GetRoutes.defaults.contains(name)) {
-      return RouteDecoder.fromRoute(GetRoutes.home);
+      return null;
     }
 
     if (!logined.value && GetRoutes.authorize.contains(name)) {

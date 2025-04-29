@@ -583,20 +583,24 @@ class GetRouter {
     return SystemNavigator.pop(animated: animated);
   }
 
-  static Future<void> login({String? page}) async {
-    if (GetRoutes.defaults.contains(Get.currentRoute)) {
-      final redirect = page ?? GetRoutes.home;
-      final isGetRoute = GetRoutes.authorize.contains(page);
-      offAllNamed(isGetRoute ? redirect : GetRoutes.home);
-    }
+  static Future<void> login({String? id, String? page}) async {
+    final redirect = page ?? GetRoutes.home;
+    final checked = !GetRoutes.defaults.contains(page);
+    final pages = Get.searchDelegate(id).activePages;
+
+    pages.isNotEmpty
+        ? offAllNamed(checked ? redirect : GetRoutes.home)
+        : toNamed(checked ? redirect : GetRoutes.home);
   }
 
-  static Future<void> logout({String? page}) async {
-    if (!GetRoutes.defaults.contains(Get.currentRoute)) {
-      final redirect = page ?? GetRoutes.login;
-      final isGetRoute = GetRoutes.defaults.contains(page);
-      offAllNamed(isGetRoute ? redirect : GetRoutes.login);
-    }
+  static Future<void> logout({String? id, String? page}) async {
+    final redirect = page ?? GetRoutes.login;
+    final checked = GetRoutes.defaults.contains(page);
+    final pages = Get.searchDelegate(id).activePages;
+
+    pages.isNotEmpty
+        ? offAllNamed(checked ? redirect : GetRoutes.login)
+        : toNamed(checked ? redirect : GetRoutes.login);
   }
 }
 
