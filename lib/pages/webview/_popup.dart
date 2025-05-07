@@ -135,7 +135,7 @@ class PageWebviewPopupState extends State<PageWebviewPopup>
                       right: 640.wmax * 8.sr,
                     ),
                     child: Text(
-                      'Settings'.tr,
+                      'Webview_Settings'.tr,
                       style: TextStyle(
                         color: const Color(0xff303133),
                         letterSpacing: max(640.wmax * 1.2.sr, 1.2),
@@ -188,7 +188,7 @@ class PageWebviewPopupState extends State<PageWebviewPopup>
                   ),
                   child: Align(
                     child: Text(
-                      'Cancel'.tr,
+                      'System_Cancel'.tr,
                       style: TextStyle(
                         color: const Color(0xff646e93),
                         letterSpacing: max(640.wmax * 1.2.sr, 1.2),
@@ -216,37 +216,37 @@ class PageWebviewPopupState extends State<PageWebviewPopup>
     switch (type) {
       case 'back':
         image = 'lib/assets/webview/home.png';
-        title = 'Back App'.tr;
+        title = 'Webview_Back_App'.tr;
         break;
 
       case 'clear':
         image = 'lib/assets/webview/clear.png';
-        title = 'Clear Cache'.tr;
+        title = 'Webview_Clear_Cache'.tr;
         break;
 
       case 'refresh':
         image = 'lib/assets/webview/refresh.png';
-        title = 'Refresh Page'.tr;
+        title = 'Webview_Refresh_Page'.tr;
         break;
 
       case 'browser':
         image = 'lib/assets/webview/browser.png';
-        title = 'Open Browser'.tr;
+        title = 'Webview_Open_Browser'.tr;
         break;
 
       case 'debug':
         image = 'lib/assets/webview/debug.png';
-        title = 'Turn Debug'.tr;
+        title = 'Webview_Turn_Debug'.tr;
         break;
 
       case 'share':
         image = 'lib/assets/webview/share.png';
-        title = 'Share Website'.tr;
+        title = 'Webview_Share_Website'.tr;
         break;
 
       case 'link':
         image = 'lib/assets/webview/link.png';
-        title = 'Copy Link'.tr;
+        title = 'Webview_Copy_Link'.tr;
         break;
     }
 
@@ -354,7 +354,10 @@ class PageWebviewPopupState extends State<PageWebviewPopup>
         final future = Clipboard.setData(clipboard);
 
         future.then((_) {
-          Toaster.success(message: 'Copy Successful'.tr, duration: 1.5.seconds);
+          Toaster.success(
+            message: 'Webview_Copy_Successful'.tr,
+            duration: 1.5.seconds,
+          );
         });
 
         return true;

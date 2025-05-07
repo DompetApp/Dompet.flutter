@@ -631,7 +631,7 @@ class PageSettings extends GetView<PageSettingsController> {
                     minimumSize: Size(0, 44),
                   ),
                   child: Text(
-                    'Cancel'.tr,
+                    'System_Cancel'.tr,
                     style: TextStyle(
                       fontSize: 640.wmax * 15.sr,
                       fontWeight: FontWeight.w500,

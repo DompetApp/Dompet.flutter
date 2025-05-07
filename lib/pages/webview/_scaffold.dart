@@ -173,12 +173,12 @@ class PageWebviewScaffoldState extends State<PageWebviewScaffold> {
                         CircularProgressIndicator(
                           strokeWidth: 3.2,
                           color: const Color(0xff707177),
-                          semanticsValue: 'Loading...'.tr,
+                          semanticsValue: 'Webview_Loading'.tr,
                         ),
                         Padding(
                           padding: EdgeInsets.fromLTRB(30, 20, 30, 80),
                           child: Text(
-                            'Loading...'.tr,
+                            'Webview_Loading'.tr,
                             style: TextStyle(
                               fontSize: 14,
                               fontWeight: FontWeight.w600,

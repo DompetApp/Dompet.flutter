@@ -177,7 +177,7 @@ class WebviewMeta {
     this.popup = false,
   }) : key = key ?? uuid(),
        query = query ?? {},
-       title = title ?? 'Loading...'.tr;
+       title = title ?? 'System_Loading'.tr;
 
   WebviewMeta clone({WebviewMeta? webviewMeta}) {
     return WebviewMeta(

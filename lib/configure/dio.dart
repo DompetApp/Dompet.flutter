@@ -48,11 +48,11 @@ class DioManager {
               case DioExceptionType.sendTimeout:
               case DioExceptionType.receiveTimeout:
               case DioExceptionType.connectionTimeout:
-                Toaster.error(message: 'Network timeout!'.tr);
+                Toaster.error(message: 'System_Network_Timeout'.tr);
                 break;
 
               default:
-                Toaster.error(message: 'System abnormality!'.tr);
+                Toaster.error(message: 'System_Abnormality'.tr);
             }
 
             if (error.requestOptions.extra['logger'] == true) {
