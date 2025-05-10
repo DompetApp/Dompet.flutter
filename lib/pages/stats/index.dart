@@ -652,7 +652,7 @@ class PageStats extends GetView<PageStatsController> {
           touchTooltipData: LineTouchTooltipData(
             fitInsideVertically: true,
             fitInsideHorizontally: true,
-            tooltipRoundedRadius: 640.wmax * 8.sr,
+            tooltipBorderRadius: BorderRadius.circular(640.wmax * 8.sr),
             tooltipPadding: EdgeInsets.symmetric(
               horizontal: 640.wmax * 7.sr,
               vertical: 640.wmax * 4.sr,

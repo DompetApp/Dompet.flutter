@@ -1,5 +1,7 @@
 import 'dart:async';
 import 'package:get/get.dart';
+import 'package:dompet/configure/get_dialoger.dart';
+import 'package:dompet/configure/permission_handler.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'package:dompet/pages/webview/controller.dart';
 import 'package:dompet/models/channel.dart';
@@ -145,6 +147,21 @@ class WebviewChannelHandler {
   }
 
   Future<ChannelResult> scanQRCode({required dynamic options}) async {
+    if (!await Permissioner.camera()) {
+      await Dialoger.show(
+        message: 'System_Open_Camera_Permission'.tr,
+        textConfirm: 'System_To_Settings'.tr,
+        onConfirm: () {
+          Permissioner.openSettings();
+        },
+      );
+
+      return ChannelResult(
+        message: 'scanQRCode requires camera permission for authorization',
+        status: 'failure',
+      );
+    }
+
     return ChannelResult(
       message: 'scanQRCode is not currently supported',
       status: 'failure',
