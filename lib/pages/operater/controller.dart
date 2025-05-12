@@ -38,7 +38,7 @@ class PageOperaterController extends GetxController {
       case 'Transfer':
         {
           operate = Rx(
-            PayOperate(type: 'Payment', from: 'Me', to: 'David', id: '1'),
+            PayOperate(id: '1', to: 'David', from: 'Me', type: 'Payment'),
           );
 
           options = Rx([
@@ -53,7 +53,7 @@ class PageOperaterController extends GetxController {
       case 'Payment':
         {
           operate = Rx(
-            PayOperate(type: 'Payment', from: 'Me', to: 'David', id: '5'),
+            PayOperate(id: '5', to: 'David', from: 'Me', type: 'Payment'),
           );
 
           options = Rx([
@@ -68,7 +68,7 @@ class PageOperaterController extends GetxController {
       case 'Top up':
         {
           operate = Rx(
-            PayOperate(type: 'Receipt', from: 'David', to: 'Me', id: '9'),
+            PayOperate(id: '9', to: 'Me', from: 'David', type: 'Receipt'),
           );
 
           options = Rx([
