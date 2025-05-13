@@ -136,7 +136,7 @@ class PageProfile extends GetView<PageProfileController> {
             child: ClipOval(
               child: GestureDetector(
                 behavior: HitTestBehavior.opaque,
-                onTap: () => controller.pickAvater(),
+                onTap: () => controller.pickAvatar(),
                 child: Container(
                   width: 640.wmax * 96.sr,
                   height: 640.wmax * 96.sr,

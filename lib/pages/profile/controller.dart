@@ -55,7 +55,7 @@ class PageProfileController extends GetxController with RxWatcher {
     });
   }
 
-  Future<void> pickAvater() async {
+  Future<void> pickAvatar() async {
     avatar.value = await MediaPicker.pickImage(source: ImageSource.gallery);
   }
 
