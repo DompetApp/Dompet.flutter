@@ -2,7 +2,7 @@
   "project_info": {
     "project_number": "1035616477079",
     "project_id": "dompet-fd703",
-    "storage_bucket": "dompet-fd703.appspot.com"
+    "storage_bucket": "dompet-fd703.firebasestorage.app"
   },
   "client": [
     {
