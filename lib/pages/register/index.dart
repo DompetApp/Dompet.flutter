@@ -139,10 +139,9 @@ class PageRegister extends GetView<PageRegisterController> {
         bottom: 640.wmax * 32.sr,
         right: 640.wmax * 48.sr,
         left: 640.wmax * 48.sr,
-        top:
-            orientation.value == Orientation.portrait
-                ? 640.wmax * 95.sr
-                : 640.wmax * 60.sr,
+        top: orientation.value == Orientation.portrait
+            ? 640.wmax * 95.sr
+            : 640.wmax * 60.sr,
       ),
       child: Text(
         'Experience the convenience of handed trading'.tr,
@@ -326,10 +325,9 @@ class PageRegister extends GetView<PageRegisterController> {
             borderRadius: BorderRadius.circular(640.wmax * 15.sr),
             border: Border.all(
               width: 1,
-              color:
-                  emailError.value
-                      ? const Color(0xfff34d4d)
-                      : const Color(0xfff2f2f2),
+              color: emailError.value
+                  ? const Color(0xfff34d4d)
+                  : const Color(0xfff2f2f2),
             ),
           ),
           child: TextField(
@@ -389,10 +387,9 @@ class PageRegister extends GetView<PageRegisterController> {
             borderRadius: BorderRadius.circular(640.wmax * 15.sr),
             border: Border.all(
               width: 1,
-              color:
-                  nameError.value
-                      ? const Color(0xfff34d4d)
-                      : const Color(0xfff2f2f2),
+              color: nameError.value
+                  ? const Color(0xfff34d4d)
+                  : const Color(0xfff2f2f2),
             ),
           ),
           child: TextField(
@@ -453,10 +450,9 @@ class PageRegister extends GetView<PageRegisterController> {
             borderRadius: BorderRadius.circular(640.wmax * 15.sr),
             border: Border.all(
               width: 1,
-              color:
-                  passwordError1.value
-                      ? const Color(0xfff34d4d)
-                      : const Color(0xfff2f2f2),
+              color: passwordError1.value
+                  ? const Color(0xfff34d4d)
+                  : const Color(0xfff2f2f2),
             ),
           ),
           child: TextField(
@@ -521,10 +517,9 @@ class PageRegister extends GetView<PageRegisterController> {
             borderRadius: BorderRadius.circular(640.wmax * 15.sr),
             border: Border.all(
               width: 1,
-              color:
-                  passwordError2.value
-                      ? const Color(0xfff34d4d)
-                      : const Color(0xfff2f2f2),
+              color: passwordError2.value
+                  ? const Color(0xfff34d4d)
+                  : const Color(0xfff2f2f2),
             ),
           ),
           child: TextField(
@@ -637,8 +632,8 @@ class PageRegister extends GetView<PageRegisterController> {
                     fontWeight: FontWeight.w600,
                     color: const Color(0xff81c2ff),
                   ),
-                  recognizer:
-                      TapGestureRecognizer()..onTap = () => GetRouter.back(),
+                  recognizer: TapGestureRecognizer()
+                    ..onTap = () => GetRouter.back(),
                 ),
               ],
             ),

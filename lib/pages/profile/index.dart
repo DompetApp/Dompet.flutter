@@ -216,10 +216,9 @@ class PageProfile extends GetView<PageProfileController> {
                     fontWeight: FontWeight.w400,
                     color: const Color(0xff9f9f9f),
                   ),
-                  hintText:
-                      nameController.text.isEmpty
-                          ? 'please enter your name...'.tr
-                          : null,
+                  hintText: nameController.text.isEmpty
+                      ? 'please enter your name...'.tr
+                      : null,
                 ),
                 style: TextStyle(
                   fontSize: 640.wmax * 22.sr,

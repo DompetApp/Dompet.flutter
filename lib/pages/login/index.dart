@@ -291,10 +291,9 @@ class PageLogin extends GetView<PageLoginController> {
             borderRadius: BorderRadius.circular(640.wmax * 15.sr),
             border: Border.all(
               width: 1,
-              color:
-                  emailError.value
-                      ? const Color(0xfff34d4d)
-                      : const Color(0xfff2f2f2),
+              color: emailError.value
+                  ? const Color(0xfff34d4d)
+                  : const Color(0xfff2f2f2),
             ),
           ),
           child: TextField(
@@ -354,10 +353,9 @@ class PageLogin extends GetView<PageLoginController> {
             borderRadius: BorderRadius.circular(640.wmax * 15.sr),
             border: Border.all(
               width: 1,
-              color:
-                  passwordError.value
-                      ? const Color(0xfff34d4d)
-                      : const Color(0xfff2f2f2),
+              color: passwordError.value
+                  ? const Color(0xfff34d4d)
+                  : const Color(0xfff2f2f2),
             ),
           ),
           child: TextField(
@@ -467,9 +465,8 @@ class PageLogin extends GetView<PageLoginController> {
                     fontWeight: FontWeight.w600,
                     color: const Color(0xff81c2ff),
                   ),
-                  recognizer:
-                      TapGestureRecognizer()
-                        ..onTap = () => GetRouter.toNamed(GetRoutes.register),
+                  recognizer: TapGestureRecognizer()
+                    ..onTap = () => GetRouter.toNamed(GetRoutes.register),
                 ),
               ],
             ),

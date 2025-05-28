@@ -3,7 +3,7 @@
 typedef M = Map<dynamic, dynamic>;
 
 class doctor {
-  static hyphenCase<T extends M>(T json, [bool first = false]) {
+  static T hyphenCase<T extends M>(T json, [bool first = false]) {
     final arrays = Map.from(json).entries;
 
     for (final arr in arrays) {
@@ -32,7 +32,7 @@ class doctor {
     return json;
   }
 
-  static underCase<T extends M>(T json, [bool first = false]) {
+  static T underCase<T extends M>(T json, [bool first = false]) {
     final arrays = Map.from(json).entries;
 
     for (final arr in arrays) {
@@ -61,7 +61,7 @@ class doctor {
     return json;
   }
 
-  static camelCase<T extends M>(T json, [bool first = false]) {
+  static T camelCase<T extends M>(T json, [bool first = false]) {
     final arrays = Map.from(json).entries;
 
     for (final arr in arrays) {
@@ -83,7 +83,7 @@ class doctor {
     return json;
   }
 
-  static upperCase<T extends M>(T json) {
+  static T upperCase<T extends M>(T json) {
     final arrays = Map.from(json).entries;
 
     for (final arr in arrays) {
@@ -100,7 +100,7 @@ class doctor {
     return json;
   }
 
-  static lowerCase<T extends M>(T json) {
+  static T lowerCase<T extends M>(T json) {
     final arrays = Map.from(json).entries;
 
     for (final arr in arrays) {

@@ -158,20 +158,17 @@ class PageCard extends GetView<PageCardController> {
             AnimatedBuilder(
               animation: animationValue,
               builder: (context, child) {
-                final scale =
-                    !isExpand.value && animationValue.value < 1
-                        ? 1 + 0.093 * (1 - animationValue.value)
-                        : 1;
+                final scale = !isExpand.value && animationValue.value < 1
+                    ? 1 + 0.093 * (1 - animationValue.value)
+                    : 1;
 
-                final width =
-                    isAnimating.value || isExpand.value
-                        ? 640.wmax * 220.sr * scale
-                        : 640.wmax * 240.sr;
+                final width = isAnimating.value || isExpand.value
+                    ? 640.wmax * 220.sr * scale
+                    : 640.wmax * 240.sr;
 
-                final height =
-                    isAnimating.value || isExpand.value
-                        ? 640.wmax * 311.sr * scale
-                        : 640.wmax * 340.sr;
+                final height = isAnimating.value || isExpand.value
+                    ? 640.wmax * 311.sr * scale
+                    : 640.wmax * 340.sr;
 
                 return Transform.rotate(
                   angle: animationValue.value,

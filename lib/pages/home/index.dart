@@ -183,11 +183,10 @@ class PageHome extends GetView<PageHomeController> {
               children: [
                 GestureDetector(
                   behavior: HitTestBehavior.opaque,
-                  onTap:
-                      () => GetRouter.toNamed(
-                        GetRoutes.operater,
-                        arguments: 'Transfer',
-                      ),
+                  onTap: () => GetRouter.toNamed(
+                    GetRoutes.operater,
+                    arguments: 'Transfer',
+                  ),
                   child: SizedBox(
                     width: 640.wmax * 80.sr,
                     child: Column(
@@ -233,11 +232,10 @@ class PageHome extends GetView<PageHomeController> {
                 ),
                 GestureDetector(
                   behavior: HitTestBehavior.opaque,
-                  onTap:
-                      () => GetRouter.toNamed(
-                        GetRoutes.operater,
-                        arguments: 'Payment',
-                      ),
+                  onTap: () => GetRouter.toNamed(
+                    GetRoutes.operater,
+                    arguments: 'Payment',
+                  ),
                   child: SizedBox(
                     width: 640.wmax * 80.sr,
                     child: Column(
@@ -283,11 +281,10 @@ class PageHome extends GetView<PageHomeController> {
                 ),
                 GestureDetector(
                   behavior: HitTestBehavior.opaque,
-                  onTap:
-                      () => GetRouter.toNamed(
-                        GetRoutes.operater,
-                        arguments: 'Top up',
-                      ),
+                  onTap: () => GetRouter.toNamed(
+                    GetRoutes.operater,
+                    arguments: 'Top up',
+                  ),
                   child: SizedBox(
                     width: 640.wmax * 80.sr,
                     child: Column(
@@ -599,11 +596,10 @@ class PageHome extends GetView<PageHomeController> {
             children: [
               GestureDetector(
                 behavior: HitTestBehavior.opaque,
-                onTap:
-                    () => GetRouter.toNamed(
-                      GetRoutes.operater,
-                      arguments: 'Transfer',
-                    ),
+                onTap: () => GetRouter.toNamed(
+                  GetRoutes.operater,
+                  arguments: 'Transfer',
+                ),
                 child: Column(
                   children: [
                     Container(
@@ -632,11 +628,8 @@ class PageHome extends GetView<PageHomeController> {
               ),
               GestureDetector(
                 behavior: HitTestBehavior.opaque,
-                onTap:
-                    () => GetRouter.toNamed(
-                      GetRoutes.operater,
-                      arguments: 'Payment',
-                    ),
+                onTap: () =>
+                    GetRouter.toNamed(GetRoutes.operater, arguments: 'Payment'),
                 child: Column(
                   children: [
                     Container(
@@ -665,11 +658,9 @@ class PageHome extends GetView<PageHomeController> {
               ),
               GestureDetector(
                 behavior: HitTestBehavior.opaque,
-                onTap:
-                    () => GetRouter.toNamed(
-                      GetRoutes.operater,
-                      arguments: 'Top up',
-                    ),
+                onTap: () {
+                  GetRouter.toNamed(GetRoutes.operater, arguments: 'Top up');
+                },
                 child: Column(
                   children: [
                     Container(

@@ -584,82 +584,81 @@ class PageSettings extends GetView<PageSettingsController> {
     showDialog(
       context: context,
       barrierColor: Color(0xff000000).withValues(alpha: 0.65),
-      builder:
-          (context) => Padding(
-            padding: EdgeInsets.only(
-              top: 640.wmax * 20.sr,
-              bottom: 640.wmax * 100.sr,
+      builder: (context) => Padding(
+        padding: EdgeInsets.only(
+          top: 640.wmax * 20.sr,
+          bottom: 640.wmax * 100.sr,
+        ),
+        child: AlertDialog(
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(25.0),
+          ),
+          iconPadding: EdgeInsets.all(0),
+          contentPadding: EdgeInsets.only(
+            top: 640.wmax * 30.sr,
+            left: 640.wmax * 30.sr,
+            right: 640.wmax * 30.sr,
+          ),
+          actionsPadding: EdgeInsets.only(
+            top: 640.wmax * 14.sr,
+            left: 640.wmax * 20.sr,
+            right: 640.wmax * 20.sr,
+            bottom: 640.wmax * 8.sr,
+          ),
+          buttonPadding: EdgeInsets.only(
+            top: 640.wmax * 10.sr,
+            left: 640.wmax * 5.sr,
+            right: 640.wmax * 5.sr,
+            bottom: 640.wmax * 10.sr,
+          ),
+          backgroundColor: Colors.white,
+          content: Text(
+            'Do you want to logout?'.tr,
+            style: TextStyle(
+              fontSize: 640.wmax * 17.6.sr,
+              fontWeight: FontWeight.w600,
+              color: Color(0xfff34d4d),
+              letterSpacing: 1.2,
             ),
-            child: AlertDialog(
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(25.0),
+          ),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.of(context).pop(),
+              style: TextButton.styleFrom(
+                tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                padding: EdgeInsets.symmetric(horizontal: 7),
+                minimumSize: Size(0, 44),
               ),
-              iconPadding: EdgeInsets.all(0),
-              contentPadding: EdgeInsets.only(
-                top: 640.wmax * 30.sr,
-                left: 640.wmax * 30.sr,
-                right: 640.wmax * 30.sr,
-              ),
-              actionsPadding: EdgeInsets.only(
-                top: 640.wmax * 14.sr,
-                left: 640.wmax * 20.sr,
-                right: 640.wmax * 20.sr,
-                bottom: 640.wmax * 8.sr,
-              ),
-              buttonPadding: EdgeInsets.only(
-                top: 640.wmax * 10.sr,
-                left: 640.wmax * 5.sr,
-                right: 640.wmax * 5.sr,
-                bottom: 640.wmax * 10.sr,
-              ),
-              backgroundColor: Colors.white,
-              content: Text(
-                'Do you want to logout?'.tr,
+              child: Text(
+                'System_Cancel'.tr,
                 style: TextStyle(
-                  fontSize: 640.wmax * 17.6.sr,
-                  fontWeight: FontWeight.w600,
-                  color: Color(0xfff34d4d),
+                  fontSize: 640.wmax * 15.sr,
+                  fontWeight: FontWeight.w500,
+                  color: Color(0xff9f9f9f),
                   letterSpacing: 1.2,
                 ),
               ),
-              actions: [
-                TextButton(
-                  onPressed: () => Navigator.of(context).pop(),
-                  style: TextButton.styleFrom(
-                    tapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                    padding: EdgeInsets.symmetric(horizontal: 7),
-                    minimumSize: Size(0, 44),
-                  ),
-                  child: Text(
-                    'System_Cancel'.tr,
-                    style: TextStyle(
-                      fontSize: 640.wmax * 15.sr,
-                      fontWeight: FontWeight.w500,
-                      color: Color(0xff9f9f9f),
-                      letterSpacing: 1.2,
-                    ),
-                  ),
-                ),
-                TextButton(
-                  onPressed: () => controller.logout(),
-                  style: TextButton.styleFrom(
-                    tapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                    padding: EdgeInsets.symmetric(horizontal: 7),
-                    minimumSize: Size(0, 44),
-                  ),
-                  child: Text(
-                    'Logout'.tr,
-                    style: TextStyle(
-                      fontSize: 640.wmax * 15.sr,
-                      fontWeight: FontWeight.w500,
-                      color: Color(0xff606266),
-                      letterSpacing: 1.2,
-                    ),
-                  ),
-                ),
-              ],
             ),
-          ),
+            TextButton(
+              onPressed: () => controller.logout(),
+              style: TextButton.styleFrom(
+                tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                padding: EdgeInsets.symmetric(horizontal: 7),
+                minimumSize: Size(0, 44),
+              ),
+              child: Text(
+                'Logout'.tr,
+                style: TextStyle(
+                  fontSize: 640.wmax * 15.sr,
+                  fontWeight: FontWeight.w500,
+                  color: Color(0xff606266),
+                  letterSpacing: 1.2,
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
     );
   }
 }
