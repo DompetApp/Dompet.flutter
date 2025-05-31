@@ -8,7 +8,7 @@ import 'package:dompet/models/card.dart';
 
 class UserDatabaser {
   static Database? db;
-  static get active => db.bv;
+  static bool get active => db.bv;
 
   // init
   static Future<void> close() async {

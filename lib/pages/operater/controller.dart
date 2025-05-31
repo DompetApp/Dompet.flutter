@@ -248,10 +248,9 @@ class PageOperaterController extends GetxController {
       }
 
       if (type == 'Top up') {
-        final desc =
-            from != 'Me'
-                ? 'You received a top-up from $from'
-                : 'You top-up some money';
+        final desc = from != 'Me'
+            ? 'You received a top-up from $from'
+            : 'You top-up some money';
 
         await eventController.createUserOrder([
           Order(
