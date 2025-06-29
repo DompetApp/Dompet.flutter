@@ -5,7 +5,8 @@ import 'package:dompet/service/linker.dart';
 import 'package:dompet/routes/router.dart';
 
 class NativeChannelController extends GetxService {
-  late final nativeMessenger = const MethodChannel('app.native/methodChannel');
+  late final eventChannel = const EventChannel('app.native/eventChannel');
+  late final methodChannel = const MethodChannel('app.native/methodChannel');
   late final appLinkController = Get.find<AppLinkController>();
 
   @override
@@ -16,11 +17,11 @@ class NativeChannelController extends GetxService {
   }
 
   Future<void> invokerNativeMethodChannel() async {
-    return nativeMessenger.invokeMethod('invokerNativeMethodChannel');
+    return methodChannel.invokeMethod('invokeNativeMethodChannel');
   }
 
   Future<void> registerNativeMethodChannel() async {
-    return nativeMessenger.setMethodCallHandler((call) async {
+    return methodChannel.setMethodCallHandler((call) async {
       final method = call.method;
       final arguments = call.arguments;
       final shortcutType = arguments is Map ? arguments['shortcut'] : null;

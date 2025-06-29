@@ -7,6 +7,7 @@ import 'package:flutter/foundation.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:dompet/configure/get_translate.dart';
 import 'package:dompet/logger/logger.dart';
@@ -53,6 +54,8 @@ void main() async {
   await SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
   await SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
 
+  FirebaseAuth.instanceFor(app: await Firebase.initializeApp());
+
   SystemChrome.setSystemUIOverlayStyle(
     SystemUiOverlayStyle(
       statusBarIconBrightness: Brightness.light,
@@ -68,7 +71,6 @@ void main() async {
   await initializeDateFormatting('en_US');
   await initializeDateFormatting('zh_CN');
   await GetStorage.init('dompet.store');
-  await Firebase.initializeApp();
   await translations.init();
   await logger.init;
 

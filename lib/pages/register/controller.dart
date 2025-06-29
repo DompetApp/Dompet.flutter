@@ -52,15 +52,15 @@ class PageRegisterController extends GetxController {
     try {
       loading.value = true;
 
-      final googleUser = await GoogleSignIn().signIn();
-      final googleAuth = await googleUser?.authentication;
+      await GoogleSignIn.instance.initialize();
 
-      final authCredential = GoogleAuthProvider.credential(
-        accessToken: googleAuth?.accessToken,
-        idToken: googleAuth?.idToken,
+      final googleUser = await GoogleSignIn.instance.authenticate();
+
+      final credential = await signInWithCredential(
+        GoogleAuthProvider.credential(
+          idToken: googleUser.authentication.idToken,
+        ),
       );
-
-      final credential = await signInWithCredential(authCredential);
 
       await storeCredentialUser(credential);
     } on FirebaseAuthException catch (e) {

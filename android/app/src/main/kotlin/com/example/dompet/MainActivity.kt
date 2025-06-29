@@ -12,20 +12,33 @@ class MainActivity: FlutterActivity() {
     override fun configureFlutterEngine(flutterEngine: FlutterEngine) {
         super.configureFlutterEngine(flutterEngine)
         mainFlutterEngine = flutterEngine
-        mainActivity = this
-        initAppShortcuts()
-        setMessenger()
+        setMethodChannel()
+        setEventChannel()
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        initAppShortcuts(this)
         initActiveShortcut(intent)
+        mainActivity = this
     }
 
     override fun onNewIntent(intent: Intent) {
         super.onNewIntent(intent)
         initActiveShortcut(intent)
         setIntent(intent)
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+
+        if (mainActivity != null) {
+            mainActivity = null
+        }
+
+        if (mainFlutterEngine != null) {
+            mainFlutterEngine = null
+        }
     }
 }
 
