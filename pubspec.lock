@@ -5,10 +5,10 @@ packages:
     dependency: transitive
     description:
       name: _flutterfire_internals
-      sha256: dda4fd7909a732a014239009aa52537b136f8ce568de23c212587097887e2307
+      sha256: a5788040810bd84400bc209913fbc40f388cded7cdf95ee2f5d2bff7e38d5241
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "1.3.56"
+    version: "1.3.58"
   app_links:
     dependency: "direct main"
     description:
@@ -237,50 +237,50 @@ packages:
     dependency: "direct main"
     description:
       name: firebase_auth
-      sha256: "10ddd766bd3d3baf1cc8fed544ef83a2c0e6027514a020e56114212ffe1036f2"
+      sha256: f5b640f664aae71774b398ed765740c1b5d34a339f4c4975d4dde61d59a623f6
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "5.6.0"
+    version: "5.6.2"
   firebase_auth_platform_interface:
     dependency: transitive
     description:
       name: firebase_auth_platform_interface
-      sha256: fde52352bfd553f5e38239b868e1e6fe6c1a6af542f5cc547554c61fef30b99b
+      sha256: "62199aeda6a688cbdefbcbbac53ede71be3ac8807cec00a8066d444797a08806"
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "7.7.0"
+    version: "7.7.2"
   firebase_auth_web:
     dependency: transitive
     description:
       name: firebase_auth_web
-      sha256: "33a0e6521a1c8c476949cc4f2f7b7d9ed8f99514b08dd905fdb9546d2391e5d9"
+      sha256: caaf29b7eb9d212dcec36d2eaa66504c5bd523fe844302833680c9df8460fbc0
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "5.15.0"
+    version: "5.15.2"
   firebase_core:
     dependency: "direct main"
     description:
       name: firebase_core
-      sha256: "420d9111dcf095341f1ea8fdce926eef750cf7b9745d21f38000de780c94f608"
+      sha256: c6e8a6bf883d8ddd0dec39be90872daca65beaa6f4cff0051ed3b16c56b82e9f
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "3.14.0"
+    version: "3.15.1"
   firebase_core_platform_interface:
     dependency: transitive
     description:
       name: firebase_core_platform_interface
-      sha256: d7253d255ff10f85cfd2adaba9ac17bae878fa3ba577462451163bd9f1d1f0bf
+      sha256: "5dbc900677dcbe5873d22ad7fbd64b047750124f1f9b7ebe2a33b9ddccc838eb"
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "5.4.0"
+    version: "6.0.0"
   firebase_core_web:
     dependency: transitive
     description:
       name: firebase_core_web
-      sha256: ddd72baa6f727e5b23f32d9af23d7d453d67946f380bd9c21daf474ee0f7326e
+      sha256: "0ed0dc292e8f9ac50992e2394e9d336a0275b6ae400d64163fdf0a8a8b556c37"
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "2.23.0"
+    version: "2.24.1"
   fixnum:
     dependency: transitive
     description:
@@ -457,10 +457,10 @@ packages:
     dependency: "direct main"
     description:
       name: google_sign_in
-      sha256: dba1a1a79368d8ca464bf36ef94f528851efa9925e4a28bfc4aaefb1f5da2fc4
+      sha256: b15bff04ca1ba9c2900c9bf2ed9179f06a1eff8dad258b401a89da69491254fc
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "7.0.0"
+    version: "7.1.0"
   google_sign_in_android:
     dependency: transitive
     description:
@@ -677,6 +677,14 @@ packages:
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "2.0.0"
+  mobile_scanner:
+    dependency: "direct main"
+    description:
+      name: mobile_scanner
+      sha256: "54005bdea7052d792d35b4fef0f84ec5ddc3a844b250ecd48dc192fb9b4ebc95"
+      url: "https://pub.flutter-io.cn"
+    source: hosted
+    version: "7.0.1"
   path:
     dependency: "direct main"
     description:
@@ -737,10 +745,10 @@ packages:
     dependency: "direct main"
     description:
       name: permission_handler
-      sha256: "2d070d8684b68efb580a5997eb62f675e8a885ef0be6e754fb9ef489c177470f"
+      sha256: bc917da36261b00137bbc8896bf1482169cd76f866282368948f032c8c1caae1
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "12.0.0+1"
+    version: "12.0.1"
   permission_handler_android:
     dependency: transitive
     description:
@@ -1084,4 +1092,4 @@ packages:
     version: "3.1.3"
 sdks:
   dart: ">=3.8.1 <4.0.0"
-  flutter: ">=3.27.4"
+  flutter: ">=3.29.0"

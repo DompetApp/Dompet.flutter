@@ -169,7 +169,7 @@ class GetRoutes {
         page: () => PageWebview(),
         preventDuplicateHandlingMode: PreventMode.reorderRoutes,
         middlewares: [RouteMiddleware(priority: 0)],
-        popGesture: false,
+        popGesture: true,
       ),
       GetPage(
         name: register,

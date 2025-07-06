@@ -40,6 +40,8 @@ class PageWebviewController extends GetxController {
   UnmodifiableListView<UserScript>? initialScripts;
   InAppWebViewController? webviewController;
   InAppWebViewInitialData? initialData;
+  Rx<bool> canPop = true.obs;
+
   URLRequest? initialUrl;
   bool? injectScript;
   bool? localUrl;
@@ -50,6 +52,8 @@ class PageWebviewController extends GetxController {
 
     webviewMeta.popup.value = false;
     webviewMeta.loading.value = false;
+
+    HardwareKeyboard.instance.addHandler(keyboarding);
 
     if (Platform.isAndroid) {
       InAppWebViewController.setWebContentsDebuggingEnabled(debug);
@@ -67,6 +71,8 @@ class PageWebviewController extends GetxController {
     if (injectScript == true) {
       webChannelController.removeScriptHandlers(this);
     }
+
+    HardwareKeyboard.instance.removeHandler(keyboarding);
 
     webviewMeta.loading.value = false;
     webviewController = null;
@@ -192,8 +198,26 @@ class PageWebviewController extends GetxController {
     }
   }
 
+  // loading
+  Future<void> loading([bool? loading = false]) async {
+    webviewMeta.loading.value = loading == true;
+  }
+
+  // popuping
+  void popuping([bool? popup = false]) {
+    if (mediaQueryController.orientation.value == Orientation.landscape) {
+      return;
+    }
+
+    if (webviewMeta.loading.value == true) {
+      return;
+    }
+
+    webviewMeta.popup.value = popup == true;
+  }
+
   // titling
-  Future<void> titling([String? title = '']) async {
+  void titling([String? title = '']) {
     title = title ?? '';
 
     final isEmpty = title.trim() == '';
@@ -211,21 +235,16 @@ class PageWebviewController extends GetxController {
     }
   }
 
-  // loading
-  Future<void> loading([bool? loading = false]) async {
-    webviewMeta.loading.value = loading == true;
-  }
-
-  // popuping
-  Future<void> popuping([bool? popup = false]) async {
-    if (mediaQueryController.orientation.value == Orientation.landscape) {
-      return;
+  // keyboarding
+  bool keyboarding(KeyEvent event) {
+    if (event.logicalKey != LogicalKeyboardKey.goBack) {
+      return false;
     }
 
-    if (webviewMeta.loading.value == true) {
-      return;
+    if (event is KeyUpEvent) {
+      back();
     }
 
-    webviewMeta.popup.value = popup == true;
+    return true;
   }
 }

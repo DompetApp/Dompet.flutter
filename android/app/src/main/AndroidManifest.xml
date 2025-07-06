@@ -4,6 +4,7 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/applicationName"
         android:roundIcon="@mipmap/ic_launcher_round"
+        android:usesCleartextTraffic="true"
     >
         <activity
             android:name=".MainActivity"

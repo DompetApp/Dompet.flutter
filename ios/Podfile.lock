@@ -11,36 +11,36 @@ PODS:
     - GoogleUtilities/Environment (~> 8.0)
     - GoogleUtilities/UserDefaults (~> 8.0)
     - PromisesObjC (~> 2.4)
-  - Firebase/Auth (11.13.0):
+  - Firebase/Auth (11.15.0):
     - Firebase/CoreOnly
-    - FirebaseAuth (~> 11.13.0)
-  - Firebase/CoreOnly (11.13.0):
-    - FirebaseCore (~> 11.13.0)
-  - firebase_auth (5.6.0):
-    - Firebase/Auth (= 11.13.0)
+    - FirebaseAuth (~> 11.15.0)
+  - Firebase/CoreOnly (11.15.0):
+    - FirebaseCore (~> 11.15.0)
+  - firebase_auth (5.6.2):
+    - Firebase/Auth (= 11.15.0)
     - firebase_core
     - Flutter
-  - firebase_core (3.14.0):
-    - Firebase/CoreOnly (= 11.13.0)
+  - firebase_core (3.15.1):
+    - Firebase/CoreOnly (= 11.15.0)
     - Flutter
-  - FirebaseAppCheckInterop (11.14.0)
-  - FirebaseAuth (11.13.0):
+  - FirebaseAppCheckInterop (11.15.0)
+  - FirebaseAuth (11.15.0):
     - FirebaseAppCheckInterop (~> 11.0)
     - FirebaseAuthInterop (~> 11.0)
-    - FirebaseCore (~> 11.13.0)
-    - FirebaseCoreExtension (~> 11.13.0)
+    - FirebaseCore (~> 11.15.0)
+    - FirebaseCoreExtension (~> 11.15.0)
     - GoogleUtilities/AppDelegateSwizzler (~> 8.1)
     - GoogleUtilities/Environment (~> 8.1)
     - GTMSessionFetcher/Core (< 5.0, >= 3.4)
     - RecaptchaInterop (~> 101.0)
-  - FirebaseAuthInterop (11.14.0)
-  - FirebaseCore (11.13.0):
-    - FirebaseCoreInternal (~> 11.13.0)
+  - FirebaseAuthInterop (11.15.0)
+  - FirebaseCore (11.15.0):
+    - FirebaseCoreInternal (~> 11.15.0)
     - GoogleUtilities/Environment (~> 8.1)
     - GoogleUtilities/Logger (~> 8.1)
-  - FirebaseCoreExtension (11.13.0):
-    - FirebaseCore (~> 11.13.0)
-  - FirebaseCoreInternal (11.13.0):
+  - FirebaseCoreExtension (11.15.0):
+    - FirebaseCore (~> 11.15.0)
+  - FirebaseCoreInternal (11.15.0):
     - "GoogleUtilities/NSData+zlib (~> 8.1)"
   - Flutter (1.0.0)
   - flutter_inappwebview_ios (0.0.1):
@@ -99,6 +99,9 @@ PODS:
     - GTMSessionFetcher/Core
   - image_picker_ios (0.0.1):
     - Flutter
+  - mobile_scanner (7.0.0):
+    - Flutter
+    - FlutterMacOS
   - OrderedSet (6.0.3)
   - path_provider_foundation (0.0.1):
     - Flutter
@@ -125,6 +128,7 @@ DEPENDENCIES:
   - fluttertoast (from `.symlinks/plugins/fluttertoast/ios`)
   - google_sign_in_ios (from `.symlinks/plugins/google_sign_in_ios/darwin`)
   - image_picker_ios (from `.symlinks/plugins/image_picker_ios/ios`)
+  - mobile_scanner (from `.symlinks/plugins/mobile_scanner/darwin`)
   - path_provider_foundation (from `.symlinks/plugins/path_provider_foundation/darwin`)
   - permission_handler_apple (from `.symlinks/plugins/permission_handler_apple/ios`)
   - share_plus (from `.symlinks/plugins/share_plus/ios`)
@@ -169,6 +173,8 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/google_sign_in_ios/darwin"
   image_picker_ios:
     :path: ".symlinks/plugins/image_picker_ios/ios"
+  mobile_scanner:
+    :path: ".symlinks/plugins/mobile_scanner/darwin"
   path_provider_foundation:
     :path: ".symlinks/plugins/path_provider_foundation/darwin"
   permission_handler_apple:
@@ -184,15 +190,15 @@ SPEC CHECKSUMS:
   app_links: 76b66b60cc809390ca1ad69bfd66b998d2387ac7
   AppAuth: d4f13a8fe0baf391b2108511793e4b479691fb73
   AppCheckCore: cc8fd0a3a230ddd401f326489c99990b013f0c4f
-  Firebase: 3435bc66b4d494c2f22c79fd3aae4c1db6662327
-  firebase_auth: ebc1f561cc3077efebad5005974c9ed58008973b
-  firebase_core: 700bac7ed92bb754fd70fbf01d72b36ecdd6d450
-  FirebaseAppCheckInterop: a92ba81d0ee3c4cddb1a2e52c668ea51dc63c3ae
-  FirebaseAuth: 175cb5503dfdb52191b8ff81cdd52c1d9dee9ac9
-  FirebaseAuthInterop: e25b58ecb90f3285085fa2118861a3c9dfdc62ad
-  FirebaseCore: c692c7f1c75305ab6aff2b367f25e11d73aa8bd0
-  FirebaseCoreExtension: c048485c347616dba6165358dbef765c5197597b
-  FirebaseCoreInternal: 29d7b3af4aaf0b8f3ed20b568c13df399b06f68c
+  Firebase: d99ac19b909cd2c548339c2241ecd0d1599ab02e
+  firebase_auth: dad1f2f9c317dba1b300933a3f7622fa30eb721c
+  firebase_core: ece862f94b2bc72ee0edbeec7ab5c7cb09fe1ab5
+  FirebaseAppCheckInterop: 06fe5a3799278ae4667e6c432edd86b1030fa3df
+  FirebaseAuth: a6575e5fbf46b046c58dc211a28a5fbdd8d4c83b
+  FirebaseAuthInterop: 7087d7a4ee4bc4de019b2d0c240974ed5d89e2fd
+  FirebaseCore: efb3893e5b94f32b86e331e3bd6dadf18b66568e
+  FirebaseCoreExtension: edbd30474b5ccf04e5f001470bdf6ea616af2435
+  FirebaseCoreInternal: 9afa45b1159304c963da48addb78275ef701c6b4
   Flutter: e0871f40cf51350855a761d2e70bf5af5b9b5de7
   flutter_inappwebview_ios: b89ba3482b96fb25e00c967aae065701b66e9b99
   flutter_ringtone_player: a77c42464250845611eaa44c27e8714acc800138
@@ -203,6 +209,7 @@ SPEC CHECKSUMS:
   GTMAppAuth: f69bd07d68cd3b766125f7e072c45d7340dea0de
   GTMSessionFetcher: 5aea5ba6bd522a239e236100971f10cb71b96ab6
   image_picker_ios: 7fe1ff8e34c1790d6fff70a32484959f563a928a
+  mobile_scanner: 9157936403f5a0644ca3779a38ff8404c5434a93
   OrderedSet: e539b66b644ff081c73a262d24ad552a69be3a94
   path_provider_foundation: 080d55be775b7414fd5a5ef3ac137b97b097e564
   permission_handler_apple: 4ed2196e43d0651e8ff7ca3483a069d469701f2d

@@ -1,5 +1,6 @@
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'package:dompet/pages/webview/controller.dart';
 import 'package:dompet/extension/bool.dart';
@@ -19,9 +20,18 @@ class PageWebviewScaffold extends StatefulWidget {
 }
 
 class PageWebviewScaffoldState extends State<PageWebviewScaffold> {
+  PageWebviewController get controller => widget.controller;
+
   @override
   Widget build(BuildContext context) {
-    final controller = widget.controller;
+    return Obx(() {
+      final child = webview(context);
+      final allow = controller.canPop.value;
+      return PopScope(canPop: allow, child: child);
+    });
+  }
+
+  Widget webview(BuildContext context) {
     final webViewKey = controller.webViewKey;
     final webviewMeta = controller.webviewMeta;
     final writeScripts = controller.writeScripts;
@@ -31,6 +41,8 @@ class PageWebviewScaffoldState extends State<PageWebviewScaffold> {
     final back = controller.back;
 
     return Scaffold(
+      resizeToAvoidBottomInset: false,
+      backgroundColor: Colors.white,
       appBar: AppBar(
         title: Obx(() => Text(webviewMeta.title.value)),
         leading: BackButton(onPressed: () => back()),
@@ -92,6 +104,7 @@ class PageWebviewScaffoldState extends State<PageWebviewScaffold> {
             id: 'webview',
             tag: widget.tag,
             builder: (_) {
+              final canPop = controller.canPop;
               final initialUrl = controller.initialUrl;
               final initialData = controller.initialData;
               final initialScripts = controller.initialScripts;
@@ -108,14 +121,17 @@ class PageWebviewScaffoldState extends State<PageWebviewScaffold> {
                 initialSettings: initialSettings,
                 initialUserScripts: initialScripts,
                 onLoadStop: (webviewController, url) async {
-                  await writeScripts();
-                  await loading(false);
+                  writeScripts().whenComplete(() => loading(false));
                 },
                 onTitleChanged: (webviewController, title) async {
                   titling(title);
                 },
                 onReceivedError: (webviewController, request, error) async {
                   loading(false);
+                },
+                onUpdateVisitedHistory: (controller, url, isReload) async {
+                  await Future.delayed(Duration(milliseconds: 200));
+                  canPop.value = !await controller.canGoBack();
                 },
                 shouldOverrideUrlLoading: (webviewController, action) async {
                   final url = action.request.url;
@@ -124,15 +140,8 @@ class PageWebviewScaffoldState extends State<PageWebviewScaffold> {
                     return NavigationActionPolicy.CANCEL;
                   }
 
-                  if (![
-                    "data",
-                    "file",
-                    "http",
-                    "https",
-                    "about",
-                    "chrome",
-                    "javascript",
-                  ].contains(url!.scheme)) {
+                  if (["tel"].contains(url!.scheme)) {
+                    launchUrl(url).catchError((_) => false);
                     return NavigationActionPolicy.CANCEL;
                   }
 
@@ -197,7 +206,6 @@ class PageWebviewScaffoldState extends State<PageWebviewScaffold> {
           }),
         ],
       ),
-      resizeToAvoidBottomInset: false,
     );
   }
 }
