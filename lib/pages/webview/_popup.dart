@@ -24,19 +24,33 @@ class PageWebviewPopup extends StatefulWidget {
   State<PageWebviewPopup> createState() => PageWebviewPopupState();
 }
 
-class PageWebviewPopupState extends State<PageWebviewPopup>
-    with SingleTickerProviderStateMixin {
-  late final controller = widget.controller;
-  late final mediaHeight = mediaQueryController.height;
-  late final mediaPadding = mediaQueryController.viewPadding;
-  late final mediaQueryController = controller.mediaQueryController;
+typedef SingleTicker = SingleTickerProviderStateMixin<PageWebviewPopup>;
 
+class PageWebviewPopupState extends State<PageWebviewPopup> with SingleTicker {
   late AnimationController animationController;
+  late PageWebviewController controller;
+
   late Animation<double> animation;
+  late Rx<EdgeInsets> mediaPadding;
+  late Rx<double> mediaHeight;
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+
+    setState(() {
+      controller = widget.controller;
+      mediaHeight = widget.controller.mediaQueryController.height;
+      mediaPadding = widget.controller.mediaQueryController.viewPadding;
+    });
+  }
 
   @override
   initState() {
     super.initState();
+    controller = widget.controller;
+    mediaHeight = widget.controller.mediaQueryController.height;
+    mediaPadding = widget.controller.mediaQueryController.viewPadding;
 
     animationController = AnimationController(
       duration: const Duration(milliseconds: 300),
@@ -45,9 +59,7 @@ class PageWebviewPopupState extends State<PageWebviewPopup>
 
     animation = Tween(begin: 0.0, end: 1.0).animate(animationController);
 
-    animation.addListener(() {
-      setState(() => {});
-    });
+    animation.addListener(() => setState(() => {}));
 
     animation.addStatusListener((status) {
       if (status == AnimationStatus.dismissed) {

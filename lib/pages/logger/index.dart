@@ -2,6 +2,7 @@ import 'dart:math';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+export 'package:dompet/pages/logger/controller.dart';
 import 'package:dompet/pages/logger/controller.dart';
 import 'package:dompet/extension/size.dart';
 import 'package:dompet/routes/router.dart';
@@ -11,10 +12,6 @@ class PageLogger extends GetView<PageLoggerController> {
 
   @override
   Widget build(BuildContext context) {
-    if (!Get.isRegistered<PageLoggerController>()) {
-      Get.put(PageLoggerController());
-    }
-
     return Obx(() {
       const physics = NeverScrollableScrollPhysics();
       final mediaPadding = controller.mediaPadding;

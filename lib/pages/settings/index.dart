@@ -1,6 +1,7 @@
 import 'dart:math';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
+export 'package:dompet/pages/settings/controller.dart';
 import 'package:dompet/pages/settings/controller.dart';
 import 'package:dompet/extension/size.dart';
 import 'package:dompet/routes/router.dart';
@@ -11,10 +12,6 @@ class PageSettings extends GetView<PageSettingsController> {
 
   @override
   Widget build(BuildContext context) {
-    if (!Get.isRegistered<PageSettingsController>()) {
-      Get.put(PageSettingsController());
-    }
-
     return Obx(() {
       const physics = AlwaysScrollableScrollPhysics();
       final scrollController = controller.scrollController;

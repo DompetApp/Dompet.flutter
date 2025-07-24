@@ -98,14 +98,10 @@ class StoreController extends GetxService {
   }
 
   Future<void> localer(Locale? locale) async {
-    if (locale != null) await storager.write('locale', locale.toString());
     if (locale == null) await storager.remove('locale');
+    if (locale != null) await storager.write('locale', locale.toString());
 
-    if (!Get.isRegistered<LocaleController>()) {
-      Get.put(LocaleController());
-    }
-
-    Get.find<LocaleController>().update(locale ?? Get.deviceLocale);
+    Get.putOrFind(() => LocaleController()).update(locale ?? Get.deviceLocale);
 
     this.locale.value = locale;
   }

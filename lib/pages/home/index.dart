@@ -1,6 +1,7 @@
 import 'dart:math';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
+export 'package:dompet/pages/home/controller.dart';
 import 'package:dompet/pages/home/controller.dart';
 import 'package:dompet/extension/money.dart';
 import 'package:dompet/extension/date.dart';
@@ -13,10 +14,6 @@ class PageHome extends GetView<PageHomeController> {
 
   @override
   Widget build(BuildContext context) {
-    if (!Get.isRegistered<PageHomeController>()) {
-      Get.put(PageHomeController());
-    }
-
     return Scaffold(
       body: Obx(() {
         final mediaPadding = controller.mediaPadding.value;

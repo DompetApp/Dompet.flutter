@@ -3,9 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:dompet/service/bind.dart';
 import 'package:dompet/mixins/watcher.dart';
 
-typedef TickerProvider = GetSingleTickerProviderStateMixin;
+typedef SingleTicker = GetSingleTickerProviderStateMixin;
 
-class PageCardController extends GetxController with RxWatcher, TickerProvider {
+class PageCardController extends GetxController with RxWatcher, SingleTicker {
   late final mediaQueryController = Get.find<MediaQueryController>();
   late final storeController = Get.find<StoreController>();
 

@@ -47,6 +47,7 @@
 - synchronized
 - fluttertoast
 - image_picker
+- audioplayers
 - get_storage
 - share_plus
 - fl_chart

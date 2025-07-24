@@ -94,6 +94,12 @@ class MyApp extends StatefulWidget {
 }
 
 class MyAppState extends State<MyApp> with WidgetsBindingObserver {
+  Locale? get locale => storeController.locale.value ?? Get.deviceLocale;
+
+  late final mediaQueryController = Get.put(MediaQueryController());
+  late final localeController = Get.put(LocaleController());
+  late final storeController = Get.put(StoreController());
+
   @override
   void dispose() {
     super.dispose();
@@ -104,19 +110,15 @@ class MyAppState extends State<MyApp> with WidgetsBindingObserver {
   void initState() {
     super.initState();
 
-    WidgetsBinding.instance.addObserver(this);
+    localeController.update(locale);
 
-    if (!Get.isRegistered<StoreController>()) {
-      Get.put(StoreController());
-    }
+    WidgetsBinding.instance.addObserver(this);
   }
 
   @override
   void didChangeMetrics() {
     WidgetsBinding.instance.addPostFrameCallback((_) async {
-      Get.find<MediaQueryController>().update(
-        mediaQuery: MediaQuery.of(context),
-      );
+      mediaQueryController.update(mediaQuery: MediaQuery.of(context));
     });
   }
 
@@ -135,31 +137,19 @@ class MyAppState extends State<MyApp> with WidgetsBindingObserver {
   void didChangeAppLifecycleState(state) {
     if (state == AppLifecycleState.resumed) {
       WidgetsBinding.instance.addPostFrameCallback((_) async {
-        Get.find<MediaQueryController>().update(
-          mediaQuery: MediaQuery.of(context),
-        );
+        mediaQueryController.update(mediaQuery: MediaQuery.of(context));
       });
     }
   }
 
   @override
   Widget build(BuildContext context) {
-    final mediaQuery = MediaQuery.of(context);
-    final storeLocale = Get.find<StoreController>().locale;
-    final applyLocale = storeLocale.value ?? Get.deviceLocale;
-
-    if (!Get.isRegistered<MediaQueryController>()) {
-      Get.put(MediaQueryController()).update(mediaQuery: mediaQuery);
-    }
-
-    if (!Get.isRegistered<LocaleController>()) {
-      Get.put(LocaleController()).update(applyLocale);
-    }
+    mediaQueryController.update(mediaQuery: MediaQuery.of(context));
 
     return GetMaterialApp(
       builder: (context, child) {
         return Obx(() {
-          final mediaQuery = Get.find<MediaQueryController>();
+          final mediaQuery = mediaQueryController;
           final textScaler = mediaQuery.textScaler.value;
 
           Widget builder(context) => child!;
@@ -186,7 +176,7 @@ class MyAppState extends State<MyApp> with WidgetsBindingObserver {
       translations: translations,
       enableLog: kDebugMode,
       getPages: GetRoutes.pages(),
-      locale: applyLocale,
+      locale: locale,
       theme: lightTheme,
       binds: bindings,
       title: 'Dompet',

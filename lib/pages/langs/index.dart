@@ -1,6 +1,7 @@
 import 'dart:math';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
+export 'package:dompet/pages/langs/controller.dart';
 import 'package:dompet/pages/langs/controller.dart';
 import 'package:dompet/extension/bool.dart';
 import 'package:dompet/extension/size.dart';
@@ -11,10 +12,6 @@ class PageLangs extends GetView<PageLangsController> {
 
   @override
   Widget build(BuildContext context) {
-    if (!Get.isRegistered<PageLangsController>()) {
-      Get.put(PageLangsController());
-    }
-
     return Obx(() {
       const physics = AlwaysScrollableScrollPhysics();
       final scrollController = controller.scrollController;

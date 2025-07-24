@@ -39,7 +39,7 @@ class AppDatabaser {
     }
 
     return db!.transaction((txn) async {
-      await txn.rawUpdate('update AppUser set activate = ? where uid == ?', [
+      await txn.rawUpdate('update AppUser set activate = ? where uid = ?', [
         'N',
         uid,
       ]);
@@ -52,7 +52,7 @@ class AppDatabaser {
     }
 
     return db!.transaction((txn) async {
-      txn.rawDelete('Delete from AppUser where uid == "$uid"');
+      txn.rawDelete('Delete from AppUser where uid = "$uid"');
     });
   }
 
@@ -70,11 +70,11 @@ class AppDatabaser {
 
     return db!.transaction<User?>((txn) async {
       await txn.rawUpdate(
-        'update AppUser set activate = "N" where activate == "Y"',
+        'update AppUser set activate = "N" where activate = "Y"',
       );
 
       final list = await txn.rawQuery(
-        'select uid, name, avatar from AppUser where email == ?',
+        'select uid, name, avatar from AppUser where email = ?',
         [user.email],
       );
 
@@ -86,7 +86,7 @@ class AppDatabaser {
         final isChangeAvatar = !avatar.bv && user.avatar.bv;
 
         await txn.rawUpdate(
-          'update AppUser set name = ?, avatar = ?, create_date = ?, activate = ? where uid == ?',
+          'update AppUser set name = ?, avatar = ?, create_date = ?, activate = ? where uid = ?',
           [
             isChangeName ? user.name : name,
             isChangeAvatar ? user.avatar : avatar,
@@ -133,12 +133,12 @@ class AppDatabaser {
 
     return db!.transaction<User?>((txn) async {
       final result = await txn.rawQuery(
-        'select count(*) from AppUser where uid == "${user.uid}"',
+        'select count(*) from AppUser where uid = "${user.uid}"',
       );
 
       if (result.isNotEmpty) {
         await txn.rawUpdate(
-          'update AppUser set name = ?, email = ?, avatar = ?, create_date = ?, activate = ? where uid == ?',
+          'update AppUser set name = ?, email = ?, avatar = ?, create_date = ?, activate = ? where uid = ?',
           [
             user.name,
             user.email,

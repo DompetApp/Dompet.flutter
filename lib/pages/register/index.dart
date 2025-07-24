@@ -2,6 +2,7 @@ import 'dart:math';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/gestures.dart';
+export 'package:dompet/pages/register/controller.dart';
 import 'package:dompet/pages/register/controller.dart';
 import 'package:dompet/extension/size.dart';
 import 'package:dompet/routes/router.dart';
@@ -11,10 +12,6 @@ class PageRegister extends GetView<PageRegisterController> {
 
   @override
   Widget build(BuildContext context) {
-    if (!Get.isRegistered<PageRegisterController>()) {
-      Get.put(PageRegisterController());
-    }
-
     return Obx(
       () => GestureDetector(
         onTap: () => FocusScope.of(context).unfocus(),

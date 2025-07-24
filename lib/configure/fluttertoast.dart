@@ -90,7 +90,7 @@ class Toaster {
       toastDuration: duration ?? const Duration(seconds: 3),
       positionedToastBuilder: (context, child, gravity) {
         return Positioned(
-          top: max(640.wmax * 42.sr, mediaPadding.top),
+          top: max(640.wmax * 48.sr, mediaPadding.top + 640.wmax * 6.sr),
           left: 640.wmax * 20.sr,
           right: 640.wmax * 20.sr,
           child: child,
@@ -182,7 +182,7 @@ class Toaster {
       toastDuration: duration ?? const Duration(seconds: 3),
       positionedToastBuilder: (context, child, gravity) {
         return Positioned(
-          top: max(640.wmax * 42.sr, mediaPadding.top),
+          top: max(640.wmax * 48.sr, mediaPadding.top + 640.wmax * 6.sr),
           left: 640.wmax * 20.sr,
           right: 640.wmax * 20.sr,
           child: child,
@@ -274,7 +274,7 @@ class Toaster {
       toastDuration: duration ?? const Duration(seconds: 3),
       positionedToastBuilder: (context, child, gravity) {
         return Positioned(
-          top: max(640.wmax * 42.sr, mediaPadding.top),
+          top: max(640.wmax * 48.sr, mediaPadding.top + 640.wmax * 6.sr),
           left: 640.wmax * 20.sr,
           right: 640.wmax * 20.sr,
           child: child,

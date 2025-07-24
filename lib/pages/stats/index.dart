@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:auto_size_text/auto_size_text.dart';
+export 'package:dompet/pages/stats/controller.dart';
 import 'package:dompet/pages/stats/controller.dart';
 import 'package:dompet/extension/money.dart';
 import 'package:dompet/extension/date.dart';
@@ -14,10 +15,6 @@ class PageStats extends GetView<PageStatsController> {
 
   @override
   Widget build(BuildContext context) {
-    if (!Get.isRegistered<PageStatsController>()) {
-      Get.put(PageStatsController());
-    }
-
     return Scaffold(
       body: Obx(() {
         final isPortrait = controller.isPortrait;

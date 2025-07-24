@@ -1,6 +1,7 @@
 import 'dart:math';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
+export 'package:dompet/pages/operater/controller.dart';
 import 'package:dompet/pages/operater/controller.dart';
 import 'package:dompet/extension/money.dart';
 import 'package:dompet/extension/bool.dart';
@@ -12,10 +13,6 @@ class PageOperater extends GetView<PageOperaterController> {
 
   @override
   Widget build(BuildContext context) {
-    if (!Get.isRegistered<PageOperaterController>()) {
-      Get.put(PageOperaterController());
-    }
-
     return Obx(
       () => Scaffold(
         body: Stack(

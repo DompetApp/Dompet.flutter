@@ -399,14 +399,14 @@ class UserDatabaser {
 
     return db!.transaction<Card?>((txn) async {
       final result = await txn.rawQuery(
-        'select count(*) from UserCard where id == "${card.id}"',
+        'select count(*) from UserCard where id = "${card.id}"',
       );
 
       if (result.isNotEmpty) {
         card.expiryDate = formatter.format(DateTime.now());
 
         await txn.rawUpdate(
-          'update UserCard set card_no = ?, balance = ?, card_type = ?, bank_name = ?, expiry_date = ?, status = ? where id == ?',
+          'update UserCard set card_no = ?, balance = ?, card_type = ?, bank_name = ?, expiry_date = ?, status = ? where id = ?',
           [
             card.cardNo,
             card.balance,
@@ -496,7 +496,7 @@ class UserDatabaser {
         card.expiryDate = formatter.format(DateTime.now());
 
         await txn.rawUpdate(
-          'update UserCard set card_no = ?, balance = ?, card_type = ?, bank_name = ?, expiry_date = ?, status = ? where id == ?',
+          'update UserCard set card_no = ?, balance = ?, card_type = ?, bank_name = ?, expiry_date = ?, status = ? where id = ?',
           [
             card.cardNo,
             card.balance,
@@ -603,7 +603,7 @@ class UserDatabaser {
 
   static Future<List<Message>> readUserMessage(Message message) async {
     return db!.transaction<List<Message>>((txn) async {
-      await txn.rawUpdate('update UserMessage set is_read = ? where id == ?', [
+      await txn.rawUpdate('update UserMessage set is_read = ? where id = ?', [
         'Y',
         message.id,
       ]);

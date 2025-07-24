@@ -1,6 +1,7 @@
 import 'dart:math';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
+export 'package:dompet/pages/card/controller.dart';
 import 'package:dompet/pages/card/controller.dart';
 import 'package:dompet/extension/date.dart';
 import 'package:dompet/extension/size.dart';
@@ -11,10 +12,6 @@ class PageCard extends GetView<PageCardController> {
 
   @override
   Widget build(BuildContext context) {
-    if (!Get.isRegistered<PageCardController>()) {
-      Get.put(PageCardController());
-    }
-
     return Obx(
       () => Scaffold(
         body: Stack(

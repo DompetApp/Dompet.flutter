@@ -1,6 +1,7 @@
 import 'dart:math';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
+export 'package:dompet/pages/profile/controller.dart';
 import 'package:dompet/pages/profile/controller.dart';
 import 'package:dompet/extension/bool.dart';
 import 'package:dompet/extension/date.dart';
@@ -12,10 +13,6 @@ class PageProfile extends GetView<PageProfileController> {
 
   @override
   Widget build(BuildContext context) {
-    if (!Get.isRegistered<PageProfileController>()) {
-      Get.put(PageProfileController());
-    }
-
     return Obx(
       () => GestureDetector(
         behavior: HitTestBehavior.translucent,

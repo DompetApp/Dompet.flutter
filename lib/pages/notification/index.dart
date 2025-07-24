@@ -1,6 +1,7 @@
 import 'dart:math';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
+export 'package:dompet/pages/notification/controller.dart';
 import 'package:dompet/pages/notification/controller.dart';
 import 'package:dompet/extension/money.dart';
 import 'package:dompet/models/message.dart';
@@ -13,10 +14,6 @@ class PageNotification extends GetView<PageNotificationController> {
 
   @override
   Widget build(BuildContext context) {
-    if (!Get.isRegistered<PageNotificationController>()) {
-      Get.put(PageNotificationController());
-    }
-
     return Obx(() {
       const physics = AlwaysScrollableScrollPhysics();
       final scrollController = controller.scrollController;

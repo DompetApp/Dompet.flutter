@@ -8,14 +8,12 @@ import 'package:dompet/theme/light.dart';
 class PageWebview extends StatelessWidget {
   PageWebview({super.key});
 
-  late final controller = PageWebviewController();
-  late final webviewMeta = controller.webviewMeta.value;
+  late final dep = PageWebviewController();
+  late final tag = dep.webviewMeta.key.value;
 
   @override
   Widget build(BuildContext context) {
-    if (!Get.isRegistered<PageWebviewController>(tag: webviewMeta.key)) {
-      Get.put(controller, tag: webviewMeta.key);
-    }
+    final controller = Get.put(dep, tag: tag);
 
     return Theme(
       data: lightTheme,
@@ -24,27 +22,20 @@ class PageWebview extends StatelessWidget {
         children: [
           GetBuilder<PageWebviewController>(
             id: 'scaffold',
-            tag: webviewMeta.key,
+            tag: tag,
             builder: (_) {
-              return PageWebviewScaffold(
-                controller: controller,
-                tag: webviewMeta.key,
-              );
+              return PageWebviewScaffold(controller: controller, tag: tag);
             },
           ),
           GetBuilder<PageWebviewController>(
             id: 'popup',
-            tag: webviewMeta.key,
+            tag: tag,
             builder: (_) {
-              return Obx(() {
-                if (controller.webviewMeta.popup.value == true) {
-                  return PageWebviewPopup(
-                    controller: controller,
-                    tag: webviewMeta.key,
-                  );
-                }
-                return const SizedBox.shrink();
-              });
+              return Obx(
+                () => controller.webviewMeta.popup.value == true
+                    ? PageWebviewPopup(controller: controller, tag: tag)
+                    : const SizedBox.shrink(),
+              );
             },
           ),
         ],
