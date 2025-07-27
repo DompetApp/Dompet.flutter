@@ -78,6 +78,7 @@ flutter:
     - lib/assets/images/card/
     - lib/assets/webview/
     - lib/assets/scripts/
+    - lib/assets/medias/
     - lib/assets/langs/
 
   fonts:

@@ -23,7 +23,6 @@ class AppLinkController extends GetxService {
 
   @override
   void onClose() {
-    super.onClose();
     timer?.cancel();
     subscription?.cancel();
 
@@ -33,6 +32,8 @@ class AppLinkController extends GetxService {
 
     subscription = null;
     timer = null;
+
+    super.onClose();
   }
 
   Future<void> timeout(Completer completer) async {

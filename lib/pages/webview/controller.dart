@@ -66,8 +66,6 @@ class PageWebviewController extends GetxController {
 
   @override
   onClose() async {
-    super.onClose();
-
     if (injectScript == true) {
       webChannelController.removeScriptHandlers(this);
     }
@@ -81,6 +79,8 @@ class PageWebviewController extends GetxController {
     initialData = null;
     initialUrl = null;
     localUrl = null;
+
+    super.onClose();
   }
 
   // back

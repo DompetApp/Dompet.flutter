@@ -1,4 +1,10 @@
 {
+  "Scanner_Camera_permission_denied": "未开启相机权限",
+  "Scanner_Camera_permission_request": "请在 “设置” > “应用” > “电子钱包” 中开启相机权限",
+  "Scanner_Exit": "退出扫码",
+  "Scanner_Go_to_settings": "前往设置",
+  "Scanner_Photo_permission_denied": "未开启相册权限",
+  "Scanner_Photo_permission_request": "请在 “设置” > “应用” > “电子钱包” 中开启相册权限",
   "System_Abnormality": "系统异常！",
   "System_Cancel": "取消",
   "System_Confirm": "确认",

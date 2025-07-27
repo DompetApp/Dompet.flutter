@@ -41,11 +41,11 @@ class PageRegisterController extends GetxController {
 
   @override
   onClose() async {
-    super.onClose();
-    nameFocusNode.dispose();
-    emailFocusNode.dispose();
-    passwordFocusNode1.dispose();
     passwordFocusNode2.dispose();
+    passwordFocusNode1.dispose();
+    emailFocusNode.dispose();
+    nameFocusNode.dispose();
+    super.onClose();
   }
 
   Future<void> signInWithGoogle() async {

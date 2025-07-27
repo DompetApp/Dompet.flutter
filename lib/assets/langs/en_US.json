@@ -1,4 +1,10 @@
 {
+  "Scanner_Camera_permission_denied": "Camera permission is not enabled",
+  "Scanner_Camera_permission_request": "Please enable the \"Camera\" permission in \"Settings\" > \"Apps\" > \"Dompet\"",
+  "Scanner_Exit": "Exit Scanning Code",
+  "Scanner_Go_to_settings": "Go to settings",
+  "Scanner_Photo_permission_denied": "Photo permission is not enabled",
+  "Scanner_Photo_permission_request": "Please enable the \"Photo\" permission in \"Settings\" > \"Apps\" > \"Dompet\"",
   "System_Abnormality": "System_Abnormality!",
   "System_Cancel": "Cancel",
   "System_Confirm": "Confirm",

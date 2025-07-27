@@ -9,6 +9,7 @@ import 'package:dompet/pages/login/index.dart';
 import 'package:dompet/pages/stats/index.dart';
 import 'package:dompet/pages/langs/index.dart';
 import 'package:dompet/pages/logger/index.dart';
+import 'package:dompet/pages/scanner/index.dart';
 import 'package:dompet/pages/profile/index.dart';
 import 'package:dompet/pages/webview/index.dart';
 import 'package:dompet/pages/register/index.dart';
@@ -84,6 +85,7 @@ class GetRoutes {
   static const stats = '/PageStats';
   static const langs = '/PageLangs';
   static const logger = '/PageLogger';
+  static const scanner = '/PageScanner';
   static const profile = '/PageProfile';
   static const webview = '/PageWebview';
   static const register = '/PageRegister';
@@ -98,6 +100,7 @@ class GetRoutes {
       GetRoutes.stats,
       GetRoutes.langs,
       GetRoutes.logger,
+      GetRoutes.scanner,
       GetRoutes.profile,
       GetRoutes.webview,
       GetRoutes.operater,
@@ -119,7 +122,7 @@ class GetRoutes {
       GetPage(
         name: home,
         page: () => const PageHome(),
-        binding: BindingBuilder.put(PageHomeController()),
+        binding: BindingBuilder.put(() => PageHomeController()),
         preventDuplicateHandlingMode: PreventMode.popUntilOriginalRoute,
         middlewares: [RouteMiddleware(priority: 0)],
         popGesture: false,
@@ -127,7 +130,7 @@ class GetRoutes {
       GetPage(
         name: card,
         page: () => const PageCard(),
-        binding: BindingBuilder.put(PageCardController()),
+        binding: BindingBuilder.put(() => PageCardController()),
         preventDuplicateHandlingMode: PreventMode.reorderRoutes,
         middlewares: [RouteMiddleware(priority: 0)],
         popGesture: false,
@@ -135,7 +138,7 @@ class GetRoutes {
       GetPage(
         name: login,
         page: () => const PageLogin(),
-        binding: BindingBuilder.put(PageLoginController()),
+        binding: BindingBuilder.put(() => PageLoginController()),
         preventDuplicateHandlingMode: PreventMode.popUntilOriginalRoute,
         middlewares: [RouteMiddleware(priority: 0)],
         popGesture: false,
@@ -143,7 +146,7 @@ class GetRoutes {
       GetPage(
         name: stats,
         page: () => const PageStats(),
-        binding: BindingBuilder.put(PageStatsController()),
+        binding: BindingBuilder.put(() => PageStatsController()),
         preventDuplicateHandlingMode: PreventMode.reorderRoutes,
         middlewares: [RouteMiddleware(priority: 0)],
         popGesture: false,
@@ -151,7 +154,7 @@ class GetRoutes {
       GetPage(
         name: langs,
         page: () => const PageLangs(),
-        binding: BindingBuilder.put(PageLangsController()),
+        binding: BindingBuilder.put(() => PageLangsController()),
         preventDuplicateHandlingMode: PreventMode.reorderRoutes,
         middlewares: [RouteMiddleware(priority: 0)],
         popGesture: false,
@@ -159,7 +162,15 @@ class GetRoutes {
       GetPage(
         name: logger,
         page: () => const PageLogger(),
-        binding: BindingBuilder.put(PageLoggerController()),
+        binding: BindingBuilder.put(() => PageLoggerController()),
+        preventDuplicateHandlingMode: PreventMode.reorderRoutes,
+        middlewares: [RouteMiddleware(priority: 0)],
+        popGesture: false,
+      ),
+      GetPage(
+        name: scanner,
+        page: () => const PageScanner(),
+        binding: BindingBuilder.put(() => PageScannerController()),
         preventDuplicateHandlingMode: PreventMode.reorderRoutes,
         middlewares: [RouteMiddleware(priority: 0)],
         popGesture: false,
@@ -167,7 +178,7 @@ class GetRoutes {
       GetPage(
         name: profile,
         page: () => const PageProfile(),
-        binding: BindingBuilder.put(PageProfileController()),
+        binding: BindingBuilder.put(() => PageProfileController()),
         preventDuplicateHandlingMode: PreventMode.reorderRoutes,
         middlewares: [RouteMiddleware(priority: 0)],
         popGesture: false,
@@ -182,7 +193,7 @@ class GetRoutes {
       GetPage(
         name: register,
         page: () => const PageRegister(),
-        binding: BindingBuilder.put(PageRegisterController()),
+        binding: BindingBuilder.put(() => PageRegisterController()),
         preventDuplicateHandlingMode: PreventMode.reorderRoutes,
         middlewares: [RouteMiddleware(priority: 0)],
         popGesture: false,
@@ -190,7 +201,7 @@ class GetRoutes {
       GetPage(
         name: operater,
         page: () => const PageOperater(),
-        binding: BindingBuilder.put(PageOperaterController()),
+        binding: BindingBuilder.put(() => PageOperaterController()),
         preventDuplicateHandlingMode: PreventMode.reorderRoutes,
         middlewares: [RouteMiddleware(priority: 0)],
         popGesture: false,
@@ -198,7 +209,7 @@ class GetRoutes {
       GetPage(
         name: settings,
         page: () => const PageSettings(),
-        binding: BindingBuilder.put(PageSettingsController()),
+        binding: BindingBuilder.put(() => PageSettingsController()),
         preventDuplicateHandlingMode: PreventMode.reorderRoutes,
         middlewares: [RouteMiddleware(priority: 0)],
         popGesture: false,
@@ -206,7 +217,7 @@ class GetRoutes {
       GetPage(
         name: notification,
         page: () => const PageNotification(),
-        binding: BindingBuilder.put(PageNotificationController()),
+        binding: BindingBuilder.put(() => PageNotificationController()),
         preventDuplicateHandlingMode: PreventMode.reorderRoutes,
         middlewares: [RouteMiddleware(priority: 0)],
         popGesture: false,

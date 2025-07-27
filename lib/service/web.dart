@@ -156,15 +156,16 @@ class WebviewChannelHandler {
         },
       );
 
-      return ChannelResult(
+      return ChannelResult.failure(
         message: 'scanQRCode requires camera permission for authorization',
-        status: 'failure',
       );
     }
 
-    return ChannelResult(
-      message: 'scanQRCode is not currently supported',
-      status: 'failure',
-    );
+    try {
+      final result = await GetRouter.toNamed<ChannelResult>(GetRoutes.scanner);
+      return result ?? ChannelResult.failure(message: 'Scanned result unknown');
+    } catch (error) {
+      return ChannelResult.failure(message: error.toString());
+    }
   }
 }
