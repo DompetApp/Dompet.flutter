@@ -17,11 +17,13 @@ dependencies:
 
   get: ^5.0.0-release-candidate-9.3.2
 
+  internet_connection_checker: ^3.0.1
   flutter_ringtone_player: ^5.0.0-dev.1
   flutter_launcher_icons: ^0.14.4
   flutter_inappwebview: ^6.1.5
   responsive_framework: ^1.5.1
   permission_handler: ^12.0.1
+  connectivity_plus: ^6.1.4
   cupertino_icons: ^1.0.8
   mobile_scanner: ^7.0.1
   auto_size_text: ^3.0.0
