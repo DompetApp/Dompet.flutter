@@ -4,6 +4,7 @@ import 'package:url_launcher/url_launcher.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'package:dompet/pages/webview/controller.dart';
 import 'package:dompet/extension/bool.dart';
+import 'package:dompet/utils/empty.dart';
 
 class PageWebviewScaffold extends StatefulWidget {
   const PageWebviewScaffold({
@@ -122,9 +123,9 @@ class PageWebviewScaffoldState extends State<PageWebviewScaffold> {
                 initialSettings: initialSettings,
                 initialUserScripts: initialScripts,
                 onLoadStop: (webController, url) async {
-                  await writeScripts().catchError((_) => null);
-                  await focusWebview().catchError((_) => null);
-                  await loading(false).catchError((_) => null);
+                  await writeScripts().catchError(Empty.fn);
+                  await focusWebview().catchError(Empty.fn);
+                  await loading(false).catchError(Empty.fn);
                 },
                 onTitleChanged: (webController, title) async {
                   titling(title);

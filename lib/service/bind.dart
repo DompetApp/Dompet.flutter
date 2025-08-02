@@ -8,6 +8,7 @@ import 'package:dompet/service/locale.dart';
 import 'package:dompet/service/linker.dart';
 import 'package:dompet/service/native.dart';
 import 'package:dompet/service/sqlite.dart';
+import 'package:dompet/service/socket.dart';
 import 'package:dompet/service/network.dart';
 
 export 'package:dompet/service/web.dart';
@@ -18,6 +19,7 @@ export 'package:dompet/service/locale.dart';
 export 'package:dompet/service/linker.dart';
 export 'package:dompet/service/native.dart';
 export 'package:dompet/service/sqlite.dart';
+export 'package:dompet/service/socket.dart';
 export 'package:dompet/service/network.dart';
 
 final bindings = [
@@ -25,6 +27,7 @@ final bindings = [
   Bind.put<EventController>(EventController()),
   Bind.put<LocaleController>(LocaleController()),
   Bind.put<SqliteController>(SqliteController()),
+  Bind.put<SocketController>(SocketController()),
   Bind.put<NetworkController>(NetworkController()),
   Bind.put<AppLinkController>(AppLinkController()),
   Bind.put<MediaQueryController>(MediaQueryController()),

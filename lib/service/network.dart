@@ -17,7 +17,16 @@ class NetworkController extends GetxService {
   void onInit() async {
     super.onInit();
 
-    available.value = await connectionChecker.hasConnection;
+    connectionChecker.onStatusChange.listen((status) {
+      final state = status == InternetConnectionStatus.connected;
+
+      if (available.value == state) {
+        return;
+      }
+
+      connectController.add(state);
+      available.value = state;
+    });
 
     connectivity.onConnectivityChanged.listen((results) {
       if (!results.contains(ConnectivityResult.none)) {
@@ -31,16 +40,7 @@ class NetworkController extends GetxService {
       }
     });
 
-    connectionChecker.onStatusChange.listen((status) {
-      final state = status == InternetConnectionStatus.connected;
-
-      if (available.value == state) {
-        return;
-      }
-
-      connectController.add(state);
-      available.value = state;
-    });
+    available.value = await connectionChecker.hasConnection;
   }
 
   @override

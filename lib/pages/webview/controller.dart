@@ -91,19 +91,12 @@ class PageWebviewController extends GetxController {
 
   // back
   Future<void> back() async {
-    if (webviewController == null) {
-      return GetRouter.back().catchError((e) {
-        GetRouter.offAllNamed(GetRoutes.home);
-      });
+    try {
+      final allow = await webviewController?.canGoBack() ?? false;
+      return allow ? webviewController!.goBack() : GetRouter.back();
+    } catch (e) {
+      GetRouter.offAllNamed(GetRoutes.home);
     }
-
-    if (!await webviewController!.canGoBack()) {
-      return GetRouter.back().catchError((e) {
-        GetRouter.offAllNamed(GetRoutes.home);
-      });
-    }
-
-    return webviewController!.goBack();
   }
 
   // loadUrl
