@@ -38,6 +38,7 @@
 
 - flutter_ringtone_player
 - flutter_inappwebview
+- web_socket_channel
 - permission_handler
 - auto_size_text
 - google_sign_in
@@ -48,6 +49,7 @@
 - fluttertoast
 - image_picker
 - audioplayers
+- google_fonts
 - get_storage
 - share_plus
 - fl_chart

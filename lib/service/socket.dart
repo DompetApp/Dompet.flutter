@@ -31,14 +31,15 @@ class SocketController extends GetxService {
   int pings = 0;
 
   @override
-  onInit() {
+  onInit() async {
     super.onInit();
     stageWatcher();
     netWatcher();
   }
 
   @override
-  onClose() {
+  onClose() async {
+    await closeWebSocket().catchError(Empty.fn);
     appLifecycleListener.dispose();
     connectionChecker.dispose();
     super.onClose();
