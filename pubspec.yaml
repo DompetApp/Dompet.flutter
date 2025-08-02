@@ -30,7 +30,7 @@ dependencies:
   auto_size_text: ^3.0.0
   google_sign_in: ^7.1.1
   firebase_core: ^3.15.2
-  firebase_auth: ^5.7.0
+  firebase_auth: ^6.0.0
   path_provider: ^2.1.5
   synchronized: ^3.4.0
   fluttertoast: ^8.2.12
