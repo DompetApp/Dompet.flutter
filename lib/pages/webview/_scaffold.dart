@@ -26,14 +26,15 @@ class PageWebviewScaffoldState extends State<PageWebviewScaffold> {
   Widget build(BuildContext context) {
     return Obx(() {
       final child = webview(context);
-      final allow = controller.canPop.value;
-      return PopScope(canPop: allow, child: child);
+      final isAllow = controller.canPop.value;
+      return PopScope(canPop: isAllow, child: child);
     });
   }
 
   Widget webview(BuildContext context) {
     final webViewKey = controller.webViewKey;
     final webviewMeta = controller.webviewMeta;
+    final focusWebview = controller.focusWebview;
     final writeScripts = controller.writeScripts;
     final popuping = controller.popuping;
     final titling = controller.titling;
@@ -120,20 +121,18 @@ class PageWebviewScaffoldState extends State<PageWebviewScaffold> {
                 initialUrlRequest: initialUrl,
                 initialSettings: initialSettings,
                 initialUserScripts: initialScripts,
-                onLoadStop: (webviewController, url) async {
-                  writeScripts().whenComplete(() => loading(false));
+                onLoadStop: (webController, url) async {
+                  await writeScripts().catchError((_) => null);
+                  await focusWebview().catchError((_) => null);
+                  await loading(false).catchError((_) => null);
                 },
-                onTitleChanged: (webviewController, title) async {
+                onTitleChanged: (webController, title) async {
                   titling(title);
                 },
-                onReceivedError: (webviewController, request, error) async {
+                onReceivedError: (webController, request, error) async {
                   loading(false);
                 },
-                onUpdateVisitedHistory: (controller, url, isReload) async {
-                  await Future.delayed(Duration(milliseconds: 200));
-                  canPop.value = !await controller.canGoBack();
-                },
-                shouldOverrideUrlLoading: (webviewController, action) async {
+                shouldOverrideUrlLoading: (webController, action) async {
                   final url = action.request.url;
 
                   if (!url.bv) {
@@ -147,19 +146,24 @@ class PageWebviewScaffoldState extends State<PageWebviewScaffold> {
 
                   return NavigationActionPolicy.ALLOW;
                 },
-                onPermissionRequest: (webviewController, request) async {
+                onUpdateVisitedHistory: (webController, url, _) async {
+                  await Future.delayed(Duration(milliseconds: 100));
+                  canPop.value = !await webController.canGoBack();
+                },
+                onPermissionRequest: (webController, request) async {
                   return PermissionResponse(
                     resources: request.resources,
                     action: PermissionResponseAction.GRANT,
                   );
                 },
-                onProgressChanged: (webviewController, progress) async {
+                onProgressChanged: (webController, progress) async {
                   if (progress == 100) {
-                    loading(false);
+                    await Future.delayed(Duration(milliseconds: 100));
+                    canPop.value = !await webController.canGoBack();
                   }
                 },
-                onWebViewCreated: (webviewController) async {
-                  controller.webviewController = webviewController;
+                onWebViewCreated: (webController) async {
+                  controller.webviewController = webController;
                   controller.webChannelController.createScriptHandlers(
                     controller,
                   );

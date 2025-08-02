@@ -29,8 +29,14 @@ class PageWebviewController extends GetxController {
   late final webviewMeta = RxWebviewMeta(Get.arguments);
   late final languageCode = localeController.languageCode;
   late final inAppWebViewSettings = InAppWebViewSettings(
-    limitsNavigationsToAppBoundDomains: true,
+    regexToAllowSyncUrlLoading: r'^(http://|https://).*',
+    allowsBackForwardNavigationGestures: true,
+    limitsNavigationsToAppBoundDomains: false,
     mediaPlaybackRequiresUserGesture: false,
+    allowUniversalAccessFromFileURLs: false,
+    useShouldInterceptFetchRequest: false,
+    useShouldInterceptAjaxRequest: false,
+    allowFileAccessFromFileURLs: false,
     useShouldOverrideUrlLoading: true,
     javaScriptEnabled: true,
     isInspectable: debug,
@@ -53,7 +59,7 @@ class PageWebviewController extends GetxController {
     webviewMeta.popup.value = false;
     webviewMeta.loading.value = false;
 
-    HardwareKeyboard.instance.addHandler(keyboarding);
+    HardwareKeyboard.instance.addHandler(keyboard);
 
     if (Platform.isAndroid) {
       InAppWebViewController.setWebContentsDebuggingEnabled(debug);
@@ -70,7 +76,7 @@ class PageWebviewController extends GetxController {
       webChannelController.removeScriptHandlers(this);
     }
 
-    HardwareKeyboard.instance.removeHandler(keyboarding);
+    HardwareKeyboard.instance.removeHandler(keyboard);
 
     webviewMeta.loading.value = false;
     webviewController = null;
@@ -198,6 +204,11 @@ class PageWebviewController extends GetxController {
     }
   }
 
+  // focusWebview
+  Future<void> focusWebview() async {
+    await webviewController?.requestFocus();
+  }
+
   // loading
   Future<void> loading([bool? loading = false]) async {
     webviewMeta.loading.value = loading == true;
@@ -235,8 +246,8 @@ class PageWebviewController extends GetxController {
     }
   }
 
-  // keyboarding
-  bool keyboarding(KeyEvent event) {
+  // keyboard
+  bool keyboard(KeyEvent event) {
     if (event.logicalKey != LogicalKeyboardKey.goBack) {
       return false;
     }
