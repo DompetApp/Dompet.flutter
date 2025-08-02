@@ -99,117 +99,119 @@ class PageWebviewScaffoldState extends State<PageWebviewScaffold> {
           ),
         ],
       ),
-      body: Stack(
-        fit: StackFit.expand,
-        children: [
-          GetBuilder<PageWebviewController>(
-            id: 'webview',
-            tag: widget.tag,
-            builder: (_) {
-              final canPop = controller.canPop;
-              final initialUrl = controller.initialUrl;
-              final initialData = controller.initialData;
-              final initialScripts = controller.initialScripts;
-              final initialSettings = controller.inAppWebViewSettings;
+      body: SafeArea(
+        child: Stack(
+          fit: StackFit.expand,
+          children: [
+            GetBuilder<PageWebviewController>(
+              id: 'webview',
+              tag: widget.tag,
+              builder: (_) {
+                final canPop = controller.canPop;
+                final initialUrl = controller.initialUrl;
+                final initialData = controller.initialData;
+                final initialScripts = controller.initialScripts;
+                final initialSettings = controller.inAppWebViewSettings;
 
-              if (!initialUrl.bv && !initialData.bv) {
-                return const SizedBox.shrink();
-              }
+                if (!initialUrl.bv && !initialData.bv) {
+                  return const SizedBox.shrink();
+                }
 
-              return InAppWebView(
-                key: webViewKey,
-                initialData: initialData,
-                initialUrlRequest: initialUrl,
-                initialSettings: initialSettings,
-                initialUserScripts: initialScripts,
-                onLoadStop: (webController, url) async {
-                  await writeScripts().catchError(Empty.fn);
-                  await focusWebview().catchError(Empty.fn);
-                  await loading(false).catchError(Empty.fn);
-                },
-                onTitleChanged: (webController, title) async {
-                  titling(title);
-                },
-                onReceivedError: (webController, request, error) async {
-                  loading(false);
-                },
-                shouldOverrideUrlLoading: (webController, action) async {
-                  final url = action.request.url;
+                return InAppWebView(
+                  key: webViewKey,
+                  initialData: initialData,
+                  initialUrlRequest: initialUrl,
+                  initialSettings: initialSettings,
+                  initialUserScripts: initialScripts,
+                  onLoadStop: (webController, url) async {
+                    await writeScripts().catchError(Empty.fn);
+                    await focusWebview().catchError(Empty.fn);
+                    await loading(false).catchError(Empty.fn);
+                  },
+                  onTitleChanged: (webController, title) async {
+                    titling(title);
+                  },
+                  onReceivedError: (webController, request, error) async {
+                    loading(false);
+                  },
+                  shouldOverrideUrlLoading: (webController, action) async {
+                    final url = action.request.url;
 
-                  if (!url.bv) {
-                    return NavigationActionPolicy.CANCEL;
-                  }
+                    if (!url.bv) {
+                      return NavigationActionPolicy.CANCEL;
+                    }
 
-                  if (["tel"].contains(url!.scheme)) {
-                    launchUrl(url).catchError((_) => false);
-                    return NavigationActionPolicy.CANCEL;
-                  }
+                    if (["tel"].contains(url!.scheme)) {
+                      launchUrl(url).catchError((_) => false);
+                      return NavigationActionPolicy.CANCEL;
+                    }
 
-                  return NavigationActionPolicy.ALLOW;
-                },
-                onUpdateVisitedHistory: (webController, url, _) async {
-                  await Future.delayed(Duration(milliseconds: 100));
-                  canPop.value = !await webController.canGoBack();
-                },
-                onPermissionRequest: (webController, request) async {
-                  return PermissionResponse(
-                    resources: request.resources,
-                    action: PermissionResponseAction.GRANT,
-                  );
-                },
-                onProgressChanged: (webController, progress) async {
-                  if (progress == 100) {
+                    return NavigationActionPolicy.ALLOW;
+                  },
+                  onUpdateVisitedHistory: (webController, url, _) async {
                     await Future.delayed(Duration(milliseconds: 100));
                     canPop.value = !await webController.canGoBack();
-                  }
-                },
-                onWebViewCreated: (webController) async {
-                  controller.webviewController = webController;
-                  controller.webChannelController.createScriptHandlers(
-                    controller,
-                  );
-                },
-              );
-            },
-          ),
-          Obx(() {
-            return Positioned(
-              child: Offstage(
-                offstage: !webviewMeta.loading.value,
-                child: Container(
-                  constraints: const BoxConstraints.expand(),
-                  color: const Color(0xffffffff).withValues(alpha: 0.8),
-                  child: Center(
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        CircularProgressIndicator(
-                          strokeWidth: 3.2,
-                          color: const Color(0xff707177),
-                          semanticsValue: 'Webview_Loading'.tr,
-                        ),
-                        Padding(
-                          padding: EdgeInsets.fromLTRB(30, 20, 30, 80),
-                          child: Text(
-                            'Webview_Loading'.tr,
-                            style: TextStyle(
-                              fontSize: 14,
-                              fontWeight: FontWeight.w600,
-                              letterSpacing: 1.5,
-                              color: Color(0xff707177),
+                  },
+                  onPermissionRequest: (webController, request) async {
+                    return PermissionResponse(
+                      resources: request.resources,
+                      action: PermissionResponseAction.GRANT,
+                    );
+                  },
+                  onProgressChanged: (webController, progress) async {
+                    if (progress == 100) {
+                      await Future.delayed(Duration(milliseconds: 100));
+                      canPop.value = !await webController.canGoBack();
+                    }
+                  },
+                  onWebViewCreated: (webController) async {
+                    controller.webviewController = webController;
+                    controller.webChannelController.createScriptHandlers(
+                      controller,
+                    );
+                  },
+                );
+              },
+            ),
+            Obx(() {
+              return Positioned(
+                child: Offstage(
+                  offstage: !webviewMeta.loading.value,
+                  child: Container(
+                    constraints: const BoxConstraints.expand(),
+                    color: const Color(0xffffffff).withValues(alpha: 0.8),
+                    child: Center(
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          CircularProgressIndicator(
+                            strokeWidth: 3.2,
+                            color: const Color(0xff707177),
+                            semanticsValue: 'Webview_Loading'.tr,
+                          ),
+                          Padding(
+                            padding: EdgeInsets.fromLTRB(30, 20, 30, 80),
+                            child: Text(
+                              'Webview_Loading'.tr,
+                              style: TextStyle(
+                                fontSize: 14,
+                                fontWeight: FontWeight.w600,
+                                letterSpacing: 1.5,
+                                color: Color(0xff707177),
+                              ),
                             ),
                           ),
-                        ),
-                        SizedBox(width: double.infinity, height: 80),
-                      ],
+                          SizedBox(width: double.infinity, height: 80),
+                        ],
+                      ),
                     ),
                   ),
                 ),
-              ),
-            );
-          }),
-        ],
+              );
+            }),
+          ],
+        ),
       ),
     );
   }
