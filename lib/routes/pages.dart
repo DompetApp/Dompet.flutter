@@ -18,7 +18,7 @@ import 'package:dompet/pages/settings/index.dart';
 import 'package:dompet/pages/notification/index.dart';
 
 void logWriterCallback(String message, {bool? isError}) {
-  if (isError == true) logger.error('GetX: $message');
+  if (isError == true) logger.warning('GetX: $message');
   if (isError != true) logger.info('GetX: $message');
 }
 
