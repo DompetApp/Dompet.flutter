@@ -134,6 +134,11 @@ class PageWebviewScaffoldState extends State<PageWebviewScaffold> {
                   onReceivedError: (webController, request, error) async {
                     loading(false);
                   },
+                  onReceivedServerTrustAuthRequest: (webController, _) async {
+                    return ServerTrustAuthResponse(
+                      action: ServerTrustAuthResponseAction.PROCEED,
+                    );
+                  },
                   shouldOverrideUrlLoading: (webController, action) async {
                     final url = action.request.url;
 
