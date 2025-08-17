@@ -24,31 +24,32 @@ dependencies:
   responsive_framework: ^1.5.1
   permission_handler: ^12.0.1
   web_socket_channel: ^3.0.3
-  connectivity_plus: ^6.1.4
+  connectivity_plus: ^6.1.5
   cupertino_icons: ^1.0.8
   mobile_scanner: ^7.0.1
   auto_size_text: ^3.0.0
   google_sign_in: ^7.1.1
   firebase_core: ^4.0.0
-  firebase_auth: ^6.0.0
+  firebase_auth: ^6.0.1
   path_provider: ^2.1.5
   synchronized: ^3.4.0
   fluttertoast: ^8.2.12
   google_fonts: ^6.3.0
   url_launcher: ^6.3.2
-  image_picker: ^1.1.2
+  image_picker: ^1.2.0
   audioplayers: ^6.5.0
   get_storage: ^2.1.1
-  share_plus: ^11.0.0
-  app_links: ^6.4.0
+  share_plus: ^11.1.0
+  app_links: ^6.4.1
   fl_chart: ^1.0.0
   sqflite: ^2.4.2
   convert: ^3.1.2
   crypto: ^3.0.6
   logger: ^2.6.1
   intl: ^0.20.2
+  http: ^1.5.0
   path: ^1.9.1
-  dio: ^5.8.0+1
+  dio: ^5.9.0
 
 flutter_launcher_icons:
   image_path: "assets/dompet_large.png"
