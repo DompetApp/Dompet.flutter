@@ -129,8 +129,9 @@ class PageWebviewController extends GetxController {
       await loadScripts();
 
       initialUrl = URLRequest(
-        headers: {'Accept-Language': languageCode},
         url: WebUri.uri(Uri.parse(url)),
+        headers: {'Accept-Language': languageCode},
+        cachePolicy: URLRequestCachePolicy.USE_PROTOCOL_CACHE_POLICY,
       );
     }
 

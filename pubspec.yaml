@@ -5,7 +5,7 @@ version: 1.0.1+1
 
 
 environment:
-  sdk: ">=3.8.1 <4.0.0"
+  sdk: ">=3.9.0 <4.0.0"
 
 
 dependencies:
@@ -34,7 +34,7 @@ dependencies:
   path_provider: ^2.1.5
   synchronized: ^3.4.0
   fluttertoast: ^8.2.12
-  google_fonts: ^6.3.0
+  google_fonts: ^6.3.1
   url_launcher: ^6.3.2
   image_picker: ^1.2.0
   audioplayers: ^6.5.0
