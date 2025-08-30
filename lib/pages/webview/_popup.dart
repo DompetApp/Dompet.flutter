@@ -1,3 +1,4 @@
+import 'dart:io';
 import 'dart:math';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
@@ -323,8 +324,16 @@ class PageWebviewPopupState extends State<PageWebviewPopup> with SingleTicker {
     }
 
     if (type == 'clear') {
-      await InAppWebViewController.clearAllCache();
-      await controller.webviewController?.reload();
+      await InAppWebViewController.clearAllCache(includeDiskFiles: true);
+
+      if (!Platform.isIOS && !Platform.isMacOS) {
+        await controller.webviewController?.reload();
+      }
+
+      if (Platform.isIOS || Platform.isMacOS) {
+        await controller.webviewController?.reloadFromOrigin();
+      }
+
       return true;
     }
 
