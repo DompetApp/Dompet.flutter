@@ -21,7 +21,6 @@ class PageWebviewController extends GetxController {
   late final webviewJs = 'lib/assets/scripts/webview.min.js';
   late final flutterJs = 'lib/assets/scripts/flutter.min.js';
   late final vdebugJs = 'lib/assets/scripts/vdebug.min.js';
-  late final metaJs = 'lib/assets/scripts/meta.min.js';
   late final app = 'lib/assets/webview/app.png';
 
   late final debug = kDebugMode;
@@ -38,6 +37,7 @@ class PageWebviewController extends GetxController {
     useShouldInterceptAjaxRequest: false,
     allowFileAccessFromFileURLs: false,
     useShouldOverrideUrlLoading: true,
+    useOnLoadResource: false,
     javaScriptEnabled: true,
     isInspectable: debug,
     cacheEnabled: true,
@@ -153,10 +153,6 @@ class PageWebviewController extends GetxController {
 
     initialScripts = UnmodifiableListView([
       UserScript(
-        source: await rootBundle.loadString(metaJs),
-        injectionTime: UserScriptInjectionTime.AT_DOCUMENT_END,
-      ),
-      UserScript(
         source: await rootBundle.loadString(vconsoleJs),
         injectionTime: UserScriptInjectionTime.AT_DOCUMENT_END,
       ),
@@ -190,7 +186,7 @@ class PageWebviewController extends GetxController {
         final data = base64Encode(bytes);
 
         webviewController!.evaluateJavascript(
-          source: "$image.src='data:image/png;base64,$data'",
+          source: "if($image)$image.src='data:image/png;base64,$data';",
         );
       } catch (e) {
         /* e */
