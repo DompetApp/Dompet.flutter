@@ -15,7 +15,6 @@ import 'package:dompet/service/bind.dart';
 import 'package:dompet/routes/pages.dart';
 import 'package:dompet/theme/light.dart';
 
-const pingHttpUrl = 'https://pub.dev/';
 final translations = JsonTranslations();
 final navigatorKey = GlobalKey<NavigatorState>();
 final routeObserver = RouteObserver<ModalRoute<void>>();
@@ -75,15 +74,6 @@ void main() async {
   await logger.init;
 
   runApp(const MyApp());
-  request(pingHttpUrl);
-}
-
-void request(String url) async {
-  try {
-    await Dio().get(url);
-  } catch (e) {
-    /* e */
-  }
 }
 
 class MyApp extends StatefulWidget {
