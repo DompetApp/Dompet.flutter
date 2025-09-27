@@ -21,11 +21,11 @@ PODS:
     - FirebaseAuth (~> 12.2.0)
   - Firebase/CoreOnly (12.2.0):
     - FirebaseCore (~> 12.2.0)
-  - firebase_auth (6.0.2):
+  - firebase_auth (6.1.0):
     - Firebase/Auth (= 12.2.0)
     - firebase_core
     - Flutter
-  - firebase_core (4.1.0):
+  - firebase_core (4.1.1):
     - Firebase/CoreOnly (= 12.2.0)
     - Flutter
   - FirebaseAppCheckInterop (12.2.0)
@@ -203,8 +203,8 @@ SPEC CHECKSUMS:
   audioplayers_darwin: 4f9ca89d92d3d21cec7ec580e78ca888e5fb68bd
   connectivity_plus: cb623214f4e1f6ef8fe7403d580fdad517d2f7dd
   Firebase: 26f6f8d460603af3df970ad505b16b15f5e2e9a1
-  firebase_auth: 9c0ce237c3bdc34c85fec8b87575beda143adba0
-  firebase_core: 3ff52146406557dddd01d570e807e203ec7e1302
+  firebase_auth: 069b05a861a7c2f7a73112dd616a49a40f35ae52
+  firebase_core: dfc4bd142bee4bc53a5d482397ca322c2dd3165d
   FirebaseAppCheckInterop: a1b2598c64c5a8c42fd6f6a1c3d0938ae4324678
   FirebaseAuth: 059c11702bdb759bb49b6c7ec6ff67abf21f39c4
   FirebaseAuthInterop: 217702acd4cc6baa98ba9d6c054532e0de0b8a16

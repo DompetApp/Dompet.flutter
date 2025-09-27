@@ -1,14 +1,19 @@
 import 'dart:async';
 import 'package:get/get.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
-import 'package:internet_connection_checker/internet_connection_checker.dart';
+import 'package:internet_connection_checker_plus/internet_connection_checker_plus.dart';
 
 class NetworkController extends GetxService {
-  late final connectionChecker = InternetConnectionChecker.createInstance(
-    addresses: [AddressCheckOption(uri: Uri.parse('https://pub.dev/'))],
-    connectivity: connectivity,
+  late final connectionChecker = InternetConnection.createInstance(
+    customCheckOptions: [
+      InternetCheckOption(uri: Uri.parse('https://pub.dev')),
+    ],
+    enableStrictCheck: true,
+    useDefaultOptions: false,
+    checkInterval: 3.seconds,
   );
 
+  late final List<StreamSubscription<dynamic>> connectSubscriptions = [];
   late final connectController = StreamController<bool>.broadcast();
   late final connectivity = Connectivity();
   late final available = true.obs;
@@ -17,18 +22,7 @@ class NetworkController extends GetxService {
   void onInit() async {
     super.onInit();
 
-    connectionChecker.onStatusChange.listen((status) {
-      final state = status == InternetConnectionStatus.connected;
-
-      if (available.value == state) {
-        return;
-      }
-
-      connectController.add(state);
-      available.value = state;
-    });
-
-    connectivity.onConnectivityChanged.listen((results) {
+    final activityer = connectivity.onConnectivityChanged.listen((results) {
       if (!results.contains(ConnectivityResult.none)) {
         return;
       }
@@ -40,12 +34,29 @@ class NetworkController extends GetxService {
       }
     });
 
-    available.value = await connectionChecker.hasConnection;
+    final statuser = connectionChecker.onStatusChange.listen((status) {
+      final state = status == InternetStatus.connected;
+
+      if (available.value == state) {
+        return;
+      }
+
+      connectController.add(state);
+      available.value = state;
+    });
+
+    available.value = await connectionChecker.hasInternetAccess;
+
+    connectSubscriptions.addAll([statuser, activityer]);
   }
 
   @override
   void onClose() {
-    connectionChecker.dispose();
+    for (var listener in connectSubscriptions) {
+      listener.cancel();
+    }
+
+    connectSubscriptions.clear();
     connectController.close();
     super.onClose();
   }

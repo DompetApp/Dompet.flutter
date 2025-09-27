@@ -40,6 +40,8 @@
 - flutter_inappwebview
 - web_socket_channel
 - permission_handler
+- connectivity_plus
+- mobile_scanner
 - auto_size_text
 - google_sign_in
 - firebase_core
@@ -55,6 +57,7 @@
 - fl_chart
 - sqflite
 - convert
+- encrypt
 - crypto
 - logger
 - intl

@@ -2,8 +2,8 @@ import 'dart:async';
 import 'dart:convert';
 import 'package:get/get.dart';
 import 'package:flutter/widgets.dart';
+import 'package:dompet/service/network.dart';
 import 'package:web_socket_channel/io.dart';
-import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:dompet/extension/bool.dart';
 import 'package:dompet/logger/logger.dart';
 import 'package:dompet/models/socket.dart';
@@ -11,15 +11,16 @@ import 'package:dompet/utils/empty.dart';
 
 typedef Callback = SocketCallback;
 
-class SocketController extends GetxService {
+class IOSocketController extends GetxService {
   late final List<SocketSubscribe> queues = [];
   late final AppLifecycleListener appLifecycleListener;
-  late final connectionChecker = InternetConnectionChecker.createInstance(
-    addresses: [AddressCheckOption(uri: Uri.parse('https://pub.dev/'))],
-  );
+
+  late final networkController = Get.find<NetworkController>();
+  late final connectController = networkController.connectController;
 
   StreamSubscription<dynamic>? subscription;
   IOWebSocketChannel? channel;
+  Worker? worker;
   Timer? timer;
 
   bool network = false;
@@ -41,7 +42,8 @@ class SocketController extends GetxService {
   onClose() async {
     await closeWebSocket().catchError(Empty.fn);
     appLifecycleListener.dispose();
-    connectionChecker.dispose();
+    subscription?.cancel();
+    worker?.dispose();
     super.onClose();
   }
 
@@ -82,13 +84,14 @@ class SocketController extends GetxService {
   }
 
   Future<void> netWatcher() async {
-    connectionChecker.onStatusChange.listen((status) {
-      if (status != InternetConnectionStatus.connected) {
-        network = false;
+    network = networkController.available.value;
+
+    worker = ever(networkController.available, (status) {
+      if (network == status) {
         return;
       }
 
-      network = true;
+      network = status;
       start();
     });
   }
