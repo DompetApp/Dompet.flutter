@@ -22,7 +22,7 @@ export 'package:dompet/service/sqlite.dart';
 export 'package:dompet/service/socket.dart';
 export 'package:dompet/service/network.dart';
 
-final bindings = [
+final binds = [
   Bind.put<StoreController>(StoreController()),
   Bind.put<EventController>(EventController()),
   Bind.put<LocaleController>(LocaleController()),

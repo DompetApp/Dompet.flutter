@@ -3,9 +3,9 @@ import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 export 'package:dompet/pages/card/controller.dart';
 import 'package:dompet/pages/card/controller.dart';
+import 'package:dompet/routes/navigator.dart';
 import 'package:dompet/extension/date.dart';
 import 'package:dompet/extension/size.dart';
-import 'package:dompet/routes/router.dart';
 
 class PageCard extends GetView<PageCardController> {
   const PageCard({super.key});
@@ -69,7 +69,7 @@ class PageCard extends GetView<PageCardController> {
             children: [
               GestureDetector(
                 behavior: HitTestBehavior.opaque,
-                onTap: () => GetRouter.back(),
+                onTap: () => GetNavigate.back(),
                 child: Image(
                   image: const AssetImage('lib/assets/images/auth/back.png'),
                   width: 640.wmax * 36.sr,

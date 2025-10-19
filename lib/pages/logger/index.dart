@@ -4,8 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 export 'package:dompet/pages/logger/controller.dart';
 import 'package:dompet/pages/logger/controller.dart';
+import 'package:dompet/routes/navigator.dart';
 import 'package:dompet/extension/size.dart';
-import 'package:dompet/routes/router.dart';
 
 class PageLogger extends GetView<PageLoggerController> {
   const PageLogger({super.key});
@@ -136,7 +136,7 @@ class PageLogger extends GetView<PageLoggerController> {
             children: [
               GestureDetector(
                 behavior: HitTestBehavior.opaque,
-                onTap: () => GetRouter.back(),
+                onTap: () => GetNavigate.back(),
                 child: Image(
                   image: const AssetImage('lib/assets/images/auth/back.png'),
                   width: 640.wmax * 36.sr,

@@ -3,9 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:audioplayers/audioplayers.dart';
 import 'package:mobile_scanner/mobile_scanner.dart';
 import 'package:dompet/configure/permission_handler.dart';
+import 'package:dompet/routes/navigator.dart';
 import 'package:dompet/models/channel.dart';
 import 'package:dompet/extension/size.dart';
-import 'package:dompet/routes/router.dart';
 import 'package:dompet/service/media.dart';
 
 typedef TickerProvider = GetSingleTickerProviderStateMixin;
@@ -130,7 +130,7 @@ class PageScannerController extends GetxController with TickerProvider {
                 ),
               ),
               onPressed: () {
-                GetRouter.back(
+                GetNavigate.back(
                   result: ChannelResult.failure(
                     message: 'Camera or Album permissions not enabled',
                   ),

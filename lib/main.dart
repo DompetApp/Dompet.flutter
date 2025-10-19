@@ -10,14 +10,13 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:dompet/configure/get_translate.dart';
+import 'package:dompet/routes/navigator.dart';
+import 'package:dompet/routes/router.dart';
 import 'package:dompet/logger/logger.dart';
 import 'package:dompet/service/bind.dart';
-import 'package:dompet/routes/pages.dart';
-import 'package:dompet/theme/light.dart';
+import 'package:dompet/theme/index.dart';
 
 final translations = JsonTranslations();
-final navigatorKey = GlobalKey<NavigatorState>();
-final routeObserver = RouteObserver<ModalRoute<void>>();
 const fallbackLocale = Locale('en', 'US');
 
 void main() async {
@@ -89,6 +88,7 @@ class MyAppState extends State<MyApp> with WidgetsBindingObserver {
   late final mediaQueryController = Get.put(MediaQueryController());
   late final localeController = Get.put(LocaleController());
   late final storeController = Get.put(StoreController());
+  late final getPages = GetRouter.pages();
 
   @override
   void dispose() {
@@ -136,7 +136,7 @@ class MyAppState extends State<MyApp> with WidgetsBindingObserver {
   Widget build(BuildContext context) {
     mediaQueryController.update(mediaQuery: MediaQuery.of(context));
 
-    return GetMaterialApp(
+    return GetMaterialApp.router(
       builder: (context, child) {
         return Obx(() {
           final mediaQuery = mediaQueryController;
@@ -150,26 +150,28 @@ class MyAppState extends State<MyApp> with WidgetsBindingObserver {
           );
         });
       },
-      supportedLocales: [Locale('en'), Locale('zh')],
+      supportedLocales: [
+        // supports
+        Locale('en'),
+        Locale('zh'),
+      ],
       localizationsDelegates: [
         GlobalWidgetsLocalizations.delegate,
         GlobalMaterialLocalizations.delegate,
         GlobalCupertinoLocalizations.delegate,
       ],
       debugShowCheckedModeBanner: false,
-      navigatorObservers: [routeObserver],
+      logWriterCallback: GetRouter.logWriter,
       defaultTransition: Transition.rightToLeft,
-      logWriterCallback: logWriterCallback,
+      routerDelegate: AppDelegate(pages: getPages),
       fallbackLocale: fallbackLocale,
-      initialRoute: GetRoutes.login,
-      navigatorKey: navigatorKey,
       translations: translations,
       enableLog: kDebugMode,
-      getPages: GetRoutes.pages(),
+      getPages: getPages,
       locale: locale,
-      theme: lightTheme,
-      binds: bindings,
       title: 'Dompet',
+      theme: theme,
+      binds: binds,
     );
   }
 }

@@ -2,10 +2,10 @@ import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:flutter_ringtone_player/flutter_ringtone_player.dart';
 import 'package:dompet/configure/fluttertoast.dart';
+import 'package:dompet/routes/navigator.dart';
 import 'package:dompet/extension/money.dart';
 import 'package:dompet/models/message.dart';
 import 'package:dompet/models/operate.dart';
-import 'package:dompet/routes/router.dart';
 import 'package:dompet/models/order.dart';
 import 'package:dompet/service/bind.dart';
 
@@ -179,7 +179,7 @@ class PageOperaterController extends GetxController {
 
         Toaster.success(
           message: '${desc.tr} (-${money.value.usd})',
-          onTap: () => GetRouter.toNamed(GetRoutes.notification),
+          onTap: () => GetNavigate.toNamed(GetRoutes.notification),
         );
       }
 
@@ -211,7 +211,7 @@ class PageOperaterController extends GetxController {
 
         Toaster.success(
           message: '${desc.tr} (${money.value.usd})',
-          onTap: () => GetRouter.toNamed(GetRoutes.notification),
+          onTap: () => GetNavigate.toNamed(GetRoutes.notification),
         );
       }
 
@@ -243,7 +243,7 @@ class PageOperaterController extends GetxController {
 
         Toaster.success(
           message: '${desc.tr} (-${money.value.usd})',
-          onTap: () => GetRouter.toNamed(GetRoutes.notification),
+          onTap: () => GetNavigate.toNamed(GetRoutes.notification),
         );
       }
 
@@ -277,7 +277,7 @@ class PageOperaterController extends GetxController {
 
         Toaster.success(
           message: '${desc.tr} (${money.value.usd})',
-          onTap: () => GetRouter.toNamed(GetRoutes.notification),
+          onTap: () => GetNavigate.toNamed(GetRoutes.notification),
         );
       }
     } catch (e) {

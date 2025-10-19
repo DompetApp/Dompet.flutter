@@ -4,8 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/gestures.dart';
 export 'package:dompet/pages/register/controller.dart';
 import 'package:dompet/pages/register/controller.dart';
+import 'package:dompet/routes/navigator.dart';
 import 'package:dompet/extension/size.dart';
-import 'package:dompet/routes/router.dart';
 
 class PageRegister extends GetView<PageRegisterController> {
   const PageRegister({super.key});
@@ -71,7 +71,7 @@ class PageRegister extends GetView<PageRegisterController> {
             children: [
               GestureDetector(
                 behavior: HitTestBehavior.opaque,
-                onTap: () => GetRouter.back(),
+                onTap: () => GetNavigate.back(),
                 child: Image(
                   image: const AssetImage('lib/assets/images/auth/back.png'),
                   width: 640.wmax * 36.sr,
@@ -630,7 +630,7 @@ class PageRegister extends GetView<PageRegisterController> {
                     color: const Color(0xff81c2ff),
                   ),
                   recognizer: TapGestureRecognizer()
-                    ..onTap = () => GetRouter.back(),
+                    ..onTap = () => GetNavigate.back(),
                 ),
               ],
             ),

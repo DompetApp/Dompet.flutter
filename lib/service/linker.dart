@@ -1,9 +1,8 @@
 import 'dart:async';
 import 'package:get/get.dart';
 import 'package:app_links/app_links.dart';
-import 'package:dompet/routes/router.dart';
+import 'package:dompet/routes/navigator.dart';
 import 'package:dompet/service/bind.dart';
-import 'package:dompet/models/web.dart';
 
 class AppLinkController extends GetxService {
   late final storeController = Get.find<StoreController>();
@@ -92,12 +91,12 @@ class AppLinkController extends GetxService {
       }
 
       if (link != GetRoutes.webview) {
-        GetRouter.toNamed(link, arguments: params);
+        GetNavigate.toNamed(link, arguments: params);
         return;
       }
 
       if (params is WebviewMeta) {
-        GetRouter.toNamed(link, arguments: params);
+        GetNavigate.toNamed(link, arguments: params);
         return;
       }
 
@@ -116,7 +115,7 @@ class AppLinkController extends GetxService {
           popup: params['popup'] == true,
         );
 
-        GetRouter.toNamed(link, arguments: arguments);
+        GetNavigate.toNamed(link, arguments: arguments);
         return;
       }
     });

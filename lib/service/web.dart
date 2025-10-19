@@ -4,8 +4,8 @@ import 'package:dompet/configure/get_dialoger.dart';
 import 'package:dompet/configure/permission_handler.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'package:dompet/pages/webview/controller.dart';
+import 'package:dompet/routes/navigator.dart';
 import 'package:dompet/models/channel.dart';
-import 'package:dompet/routes/router.dart';
 import 'package:dompet/service/bind.dart';
 
 class WebviewChannelController extends GetxService {
@@ -83,7 +83,7 @@ class WebviewChannelHandler {
         );
       }
 
-      await GetRouter.offAllNamed(page);
+      await GetNavigate.offAllNamed(page);
       return ChannelResult.success();
     } catch (e) {
       return ChannelResult(message: e.toString(), status: 'failure');
@@ -100,7 +100,7 @@ class WebviewChannelHandler {
         );
       }
 
-      await GetRouter.offNamed(page);
+      await GetNavigate.offNamed(page);
       return ChannelResult.success();
     } catch (e) {
       return ChannelResult(message: e.toString(), status: 'failure');
@@ -117,7 +117,7 @@ class WebviewChannelHandler {
         );
       }
 
-      await GetRouter.toNamed(page);
+      await GetNavigate.toNamed(page);
       return ChannelResult.success();
     } catch (e) {
       return ChannelResult(message: e.toString(), status: 'failure');
@@ -135,7 +135,7 @@ class WebviewChannelHandler {
       }
 
       if (delta > 0) {
-        await GetRouter.until((route) {
+        await GetNavigate.until((route) {
           return route.name != GetRoutes.webview || delta-- <= 0;
         });
       }
@@ -162,7 +162,9 @@ class WebviewChannelHandler {
     }
 
     try {
-      final result = await GetRouter.toNamed<ChannelResult>(GetRoutes.scanner);
+      final result = await GetNavigate.toNamed<ChannelResult>(
+        GetRoutes.scanner,
+      );
       return result ?? ChannelResult.failure(message: 'Scanned result unknown');
     } catch (error) {
       return ChannelResult.failure(message: error.toString());

@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/gestures.dart';
 export 'package:dompet/pages/login/controller.dart';
 import 'package:dompet/pages/login/controller.dart';
+import 'package:dompet/routes/navigator.dart';
 import 'package:dompet/extension/size.dart';
-import 'package:dompet/routes/router.dart';
 
 class PageLogin extends GetView<PageLoginController> {
   const PageLogin({super.key});
@@ -463,7 +463,7 @@ class PageLogin extends GetView<PageLoginController> {
                     color: const Color(0xff81c2ff),
                   ),
                   recognizer: TapGestureRecognizer()
-                    ..onTap = () => GetRouter.toNamed(GetRoutes.register),
+                    ..onTap = () => GetNavigate.toNamed(GetRoutes.register),
                 ),
               ],
             ),

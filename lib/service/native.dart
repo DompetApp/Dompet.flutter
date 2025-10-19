@@ -2,7 +2,7 @@ import 'dart:async';
 import 'package:get/get.dart';
 import 'package:flutter/services.dart';
 import 'package:dompet/service/linker.dart';
-import 'package:dompet/routes/router.dart';
+import 'package:dompet/routes/navigator.dart';
 
 class NativeChannelController extends GetxService {
   late final eventChannel = const EventChannel('app.native/eventChannel');

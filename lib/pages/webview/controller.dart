@@ -7,9 +7,8 @@ import 'package:flutter/services.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
-import 'package:dompet/routes/router.dart';
+import 'package:dompet/routes/navigator.dart';
 import 'package:dompet/service/bind.dart';
-import 'package:dompet/models/web.dart';
 
 class PageWebviewController extends GetxController {
   late final localeController = Get.find<LocaleController>();
@@ -93,9 +92,9 @@ class PageWebviewController extends GetxController {
   Future<void> back() async {
     try {
       final allow = await webviewController?.canGoBack() ?? false;
-      return allow ? webviewController!.goBack() : GetRouter.back();
+      return allow ? webviewController!.goBack() : GetNavigate.back();
     } catch (e) {
-      GetRouter.offAllNamed(GetRoutes.home);
+      GetNavigate.offAllNamed(GetRoutes.home);
     }
   }
 
@@ -205,7 +204,7 @@ class PageWebviewController extends GetxController {
   }
 
   // popuping
-  void popuping([bool? popup = false]) {
+  void popuping([bool? popup = false]) async {
     if (mediaQueryController.orientation.value == Orientation.landscape) {
       return;
     }
@@ -218,7 +217,7 @@ class PageWebviewController extends GetxController {
   }
 
   // titling
-  void titling([String? title = '']) {
+  void titling([String? title = '']) async {
     title = title ?? '';
 
     final isEmpty = title.trim() == '';

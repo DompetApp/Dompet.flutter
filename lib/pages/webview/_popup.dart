@@ -8,8 +8,8 @@ import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'package:dompet/pages/webview/controller.dart';
 import 'package:dompet/configure/fluttertoast.dart';
 import 'package:dompet/configure/share_plus.dart';
+import 'package:dompet/routes/navigator.dart';
 import 'package:dompet/extension/size.dart';
-import 'package:dompet/routes/router.dart';
 
 class PageWebviewPopup extends StatefulWidget {
   const PageWebviewPopup({
@@ -319,7 +319,7 @@ class PageWebviewPopupState extends State<PageWebviewPopup> with SingleTicker {
   // trigger
   Future<bool> trigger(BuildContext context, String type) async {
     if (type == 'back') {
-      await GetRouter.until((route) => route.name != GetRoutes.webview);
+      await GetNavigate.until((route) => route.name != GetRoutes.webview);
       return true;
     }
 

@@ -3,11 +3,11 @@ import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 export 'package:dompet/pages/home/controller.dart';
 import 'package:dompet/pages/home/controller.dart';
+import 'package:dompet/routes/navigator.dart';
 import 'package:dompet/extension/money.dart';
 import 'package:dompet/extension/date.dart';
 import 'package:dompet/extension/bool.dart';
 import 'package:dompet/extension/size.dart';
-import 'package:dompet/routes/router.dart';
 
 class PageHome extends GetView<PageHomeController> {
   const PageHome({super.key});
@@ -113,7 +113,7 @@ class PageHome extends GetView<PageHomeController> {
             margin: EdgeInsets.only(top: 640.wmax * 42.sr),
             child: GestureDetector(
               behavior: HitTestBehavior.opaque,
-              onTap: () => GetRouter.toNamed(GetRoutes.card),
+              onTap: () => GetNavigate.toNamed(GetRoutes.card),
               child: Container(
                 width: 640.wmax * 310.sr,
                 height: 640.wmax * 140.sr,
@@ -180,7 +180,7 @@ class PageHome extends GetView<PageHomeController> {
               children: [
                 GestureDetector(
                   behavior: HitTestBehavior.opaque,
-                  onTap: () => GetRouter.toNamed(
+                  onTap: () => GetNavigate.toNamed(
                     GetRoutes.operater,
                     arguments: 'Transfer',
                   ),
@@ -229,7 +229,7 @@ class PageHome extends GetView<PageHomeController> {
                 ),
                 GestureDetector(
                   behavior: HitTestBehavior.opaque,
-                  onTap: () => GetRouter.toNamed(
+                  onTap: () => GetNavigate.toNamed(
                     GetRoutes.operater,
                     arguments: 'Payment',
                   ),
@@ -278,7 +278,7 @@ class PageHome extends GetView<PageHomeController> {
                 ),
                 GestureDetector(
                   behavior: HitTestBehavior.opaque,
-                  onTap: () => GetRouter.toNamed(
+                  onTap: () => GetNavigate.toNamed(
                     GetRoutes.operater,
                     arguments: 'Top up',
                   ),
@@ -534,7 +534,7 @@ class PageHome extends GetView<PageHomeController> {
               ),
               GestureDetector(
                 behavior: HitTestBehavior.opaque,
-                onTap: () => GetRouter.toNamed(GetRoutes.profile),
+                onTap: () => GetNavigate.toNamed(GetRoutes.profile),
                 child: buildHeaderAvatar(context),
               ),
             ],
@@ -593,7 +593,7 @@ class PageHome extends GetView<PageHomeController> {
             children: [
               GestureDetector(
                 behavior: HitTestBehavior.opaque,
-                onTap: () => GetRouter.toNamed(
+                onTap: () => GetNavigate.toNamed(
                   GetRoutes.operater,
                   arguments: 'Transfer',
                 ),
@@ -625,8 +625,10 @@ class PageHome extends GetView<PageHomeController> {
               ),
               GestureDetector(
                 behavior: HitTestBehavior.opaque,
-                onTap: () =>
-                    GetRouter.toNamed(GetRoutes.operater, arguments: 'Payment'),
+                onTap: () => GetNavigate.toNamed(
+                  GetRoutes.operater,
+                  arguments: 'Payment',
+                ),
                 child: Column(
                   children: [
                     Container(
@@ -656,7 +658,7 @@ class PageHome extends GetView<PageHomeController> {
               GestureDetector(
                 behavior: HitTestBehavior.opaque,
                 onTap: () {
-                  GetRouter.toNamed(GetRoutes.operater, arguments: 'Top up');
+                  GetNavigate.toNamed(GetRoutes.operater, arguments: 'Top up');
                 },
                 child: Column(
                   children: [
@@ -760,7 +762,7 @@ class PageHome extends GetView<PageHomeController> {
                     ),
                     GestureDetector(
                       behavior: HitTestBehavior.opaque,
-                      onTap: () => GetRouter.toNamed(GetRoutes.stats),
+                      onTap: () => GetNavigate.toNamed(GetRoutes.stats),
                       child: Image.asset(
                         'lib/assets/images/tabbar/chart.png',
                         width: 640.wmax * 28.sr,
@@ -770,7 +772,7 @@ class PageHome extends GetView<PageHomeController> {
                     ),
                     GestureDetector(
                       behavior: HitTestBehavior.opaque,
-                      onTap: () => GetRouter.toNamed(GetRoutes.notification),
+                      onTap: () => GetNavigate.toNamed(GetRoutes.notification),
                       child: Image.asset(
                         'lib/assets/images/tabbar/notification.png',
                         width: 640.wmax * 28.sr,
@@ -780,7 +782,7 @@ class PageHome extends GetView<PageHomeController> {
                     ),
                     GestureDetector(
                       behavior: HitTestBehavior.opaque,
-                      onTap: () => GetRouter.toNamed(GetRoutes.settings),
+                      onTap: () => GetNavigate.toNamed(GetRoutes.settings),
                       child: Image.asset(
                         'lib/assets/images/tabbar/settings.png',
                         width: 640.wmax * 28.sr,

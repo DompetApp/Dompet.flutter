@@ -3,9 +3,8 @@ import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 export 'package:dompet/pages/settings/controller.dart';
 import 'package:dompet/pages/settings/controller.dart';
+import 'package:dompet/routes/navigator.dart';
 import 'package:dompet/extension/size.dart';
-import 'package:dompet/routes/router.dart';
-import 'package:dompet/models/web.dart';
 
 class PageSettings extends GetView<PageSettingsController> {
   const PageSettings({super.key});
@@ -134,7 +133,7 @@ class PageSettings extends GetView<PageSettingsController> {
             children: [
               GestureDetector(
                 behavior: HitTestBehavior.opaque,
-                onTap: () => GetRouter.back(),
+                onTap: () => GetNavigate.back(),
                 child: Image(
                   image: const AssetImage('lib/assets/images/auth/back.png'),
                   width: 640.wmax * 36.sr,
@@ -179,7 +178,6 @@ class PageSettings extends GetView<PageSettingsController> {
         children: [
           GestureDetector(
             behavior: HitTestBehavior.opaque,
-            onTap: () => GetRouter.toNamed(GetRoutes.profile),
             child: Container(
               height: 640.wmax * 44.sr,
               margin: EdgeInsets.only(bottom: 640.wmax * 30.sr),
@@ -228,10 +226,14 @@ class PageSettings extends GetView<PageSettingsController> {
                 ],
               ),
             ),
+            onTap: () {
+              GetNavigate.toNamed(
+                GetRoutes.join([GetRoutes.settings, GetRoutes.profile]),
+              );
+            },
           ),
           GestureDetector(
             behavior: HitTestBehavior.opaque,
-            onTap: () => GetRouter.toNamed(GetRoutes.notification),
             child: Container(
               height: 640.wmax * 44.sr,
               margin: EdgeInsets.only(bottom: 640.wmax * 30.sr),
@@ -280,10 +282,12 @@ class PageSettings extends GetView<PageSettingsController> {
                 ],
               ),
             ),
+            onTap: () {
+              GetNavigate.toNamed(GetRoutes.notification);
+            },
           ),
           GestureDetector(
             behavior: HitTestBehavior.opaque,
-            onTap: () => GetRouter.toNamed(GetRoutes.card),
             child: Container(
               height: 640.wmax * 44.sr,
               margin: EdgeInsets.only(bottom: 640.wmax * 30.sr),
@@ -332,10 +336,12 @@ class PageSettings extends GetView<PageSettingsController> {
                 ],
               ),
             ),
+            onTap: () {
+              GetNavigate.toNamed(GetRoutes.card);
+            },
           ),
           GestureDetector(
             behavior: HitTestBehavior.opaque,
-            onTap: () => GetRouter.toNamed(GetRoutes.langs),
             child: Container(
               height: 640.wmax * 44.sr,
               margin: EdgeInsets.only(bottom: 640.wmax * 30.sr),
@@ -384,10 +390,14 @@ class PageSettings extends GetView<PageSettingsController> {
                 ],
               ),
             ),
+            onTap: () {
+              GetNavigate.toNamed(
+                GetRoutes.join([GetRoutes.settings, GetRoutes.langs]),
+              );
+            },
           ),
           GestureDetector(
             behavior: HitTestBehavior.opaque,
-            onTap: () => GetRouter.toNamed(GetRoutes.logger),
             child: Container(
               height: 640.wmax * 44.sr,
               margin: EdgeInsets.only(bottom: 640.wmax * 30.sr),
@@ -436,6 +446,11 @@ class PageSettings extends GetView<PageSettingsController> {
                 ],
               ),
             ),
+            onTap: () {
+              GetNavigate.toNamed(
+                GetRoutes.join([GetRoutes.settings, GetRoutes.logger]),
+              );
+            },
           ),
           GestureDetector(
             behavior: HitTestBehavior.opaque,
@@ -496,7 +511,7 @@ class PageSettings extends GetView<PageSettingsController> {
               ),
             ),
             onTap: () {
-              GetRouter.toNamed(
+              GetNavigate.toNamed(
                 GetRoutes.webview,
                 arguments: WebviewMeta(
                   title: 'Github DompetApp'.tr,

@@ -8,9 +8,9 @@ export 'package:dompet/pages/scanner/controller.dart';
 import 'package:dompet/pages/scanner/controller.dart';
 import 'package:dompet/configure/permission_handler.dart';
 import 'package:dompet/configure/image_picker.dart';
+import 'package:dompet/routes/navigator.dart';
 import 'package:dompet/extension/size.dart';
 import 'package:dompet/models/channel.dart';
-import 'package:dompet/routes/router.dart';
 
 class PageScanner extends GetView<PageScannerController> {
   const PageScanner({super.key});
@@ -40,7 +40,7 @@ class PageScanner extends GetView<PageScannerController> {
               scanWindow: scanArea,
               controller: scanController,
               onDetectError: (error, stackTrace) {
-                GetRouter.back(
+                GetNavigate.back(
                   result: ChannelResult.failure(message: error.toString()),
                 );
               },
@@ -57,7 +57,7 @@ class PageScanner extends GetView<PageScannerController> {
                 }
 
                 if (result.barcodes.isEmpty) {
-                  GetRouter.back(
+                  GetNavigate.back(
                     result: ChannelResult.failure(
                       message: 'Scanned result unknown',
                     ),
@@ -65,7 +65,7 @@ class PageScanner extends GetView<PageScannerController> {
                   return;
                 }
 
-                GetRouter.back(
+                GetNavigate.back(
                   result: ChannelResult.success(
                     result: result.barcodes.first.rawValue ?? '',
                   ),
@@ -111,7 +111,7 @@ class PageScanner extends GetView<PageScannerController> {
                         fit: BoxFit.fill,
                       ),
                       onTap: () {
-                        GetRouter.back(
+                        GetNavigate.back(
                           result: ChannelResult.failure(
                             message: 'Scanning has been canceled',
                           ),
@@ -192,13 +192,13 @@ class PageScanner extends GetView<PageScannerController> {
           }
 
           if (result == null || result.barcodes.isEmpty) {
-            GetRouter.back(
+            GetNavigate.back(
               result: ChannelResult.failure(message: 'Scanned result unknown'),
             );
             return;
           }
 
-          GetRouter.back(
+          GetNavigate.back(
             result: ChannelResult.success(
               result: result.barcodes.first.rawValue ?? '',
             ),

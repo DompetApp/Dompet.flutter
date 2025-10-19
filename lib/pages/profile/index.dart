@@ -3,10 +3,10 @@ import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 export 'package:dompet/pages/profile/controller.dart';
 import 'package:dompet/pages/profile/controller.dart';
+import 'package:dompet/routes/navigator.dart';
 import 'package:dompet/extension/bool.dart';
 import 'package:dompet/extension/date.dart';
 import 'package:dompet/extension/size.dart';
-import 'package:dompet/routes/router.dart';
 
 class PageProfile extends GetView<PageProfileController> {
   const PageProfile({super.key});
@@ -70,7 +70,7 @@ class PageProfile extends GetView<PageProfileController> {
             children: [
               GestureDetector(
                 behavior: HitTestBehavior.opaque,
-                onTap: () => GetRouter.back(),
+                onTap: () => GetNavigate.back(),
                 child: Image(
                   image: const AssetImage('lib/assets/images/auth/back.png'),
                   width: 640.wmax * 36.sr,

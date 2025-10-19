@@ -2,7 +2,7 @@ import 'package:get/get.dart';
 import 'package:dompet/service/bind.dart';
 import 'package:dompet/database/app.dart';
 import 'package:dompet/database/user.dart';
-import 'package:dompet/routes/router.dart';
+import 'package:dompet/routes/navigator.dart';
 import 'package:dompet/models/message.dart';
 import 'package:dompet/models/order.dart';
 import 'package:dompet/models/card.dart';
@@ -27,7 +27,7 @@ class EventController extends GetxService {
     await storeController.storeUser(user!);
     await storeController.login();
 
-    GetRouter.login();
+    GetNavigate.login();
   }
 
   Future<void> logout() async {
@@ -39,7 +39,7 @@ class EventController extends GetxService {
     await storeController.clearUser();
     await storeController.logout();
 
-    GetRouter.logout();
+    GetNavigate.logout();
   }
 
   // User

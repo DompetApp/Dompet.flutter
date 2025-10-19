@@ -5,10 +5,10 @@ import 'package:fl_chart/fl_chart.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 export 'package:dompet/pages/stats/controller.dart';
 import 'package:dompet/pages/stats/controller.dart';
+import 'package:dompet/routes/navigator.dart';
 import 'package:dompet/extension/money.dart';
 import 'package:dompet/extension/date.dart';
 import 'package:dompet/extension/size.dart';
-import 'package:dompet/routes/router.dart';
 
 class PageStats extends GetView<PageStatsController> {
   const PageStats({super.key});
@@ -397,7 +397,7 @@ class PageStats extends GetView<PageStatsController> {
                   children: [
                     GestureDetector(
                       behavior: HitTestBehavior.opaque,
-                      onTap: () => GetRouter.offNamedUntil(GetRoutes.home),
+                      onTap: () => GetNavigate.offNamedUntil(GetRoutes.home),
                       child: Image.asset(
                         'lib/assets/images/tabbar/home.png',
                         width: 640.wmax * 28.sr,
@@ -417,7 +417,7 @@ class PageStats extends GetView<PageStatsController> {
                     ),
                     GestureDetector(
                       behavior: HitTestBehavior.opaque,
-                      onTap: () => GetRouter.toNamed(GetRoutes.notification),
+                      onTap: () => GetNavigate.toNamed(GetRoutes.notification),
                       child: Image.asset(
                         'lib/assets/images/tabbar/notification.png',
                         width: 640.wmax * 28.sr,
@@ -427,7 +427,7 @@ class PageStats extends GetView<PageStatsController> {
                     ),
                     GestureDetector(
                       behavior: HitTestBehavior.opaque,
-                      onTap: () => GetRouter.toNamed(GetRoutes.settings),
+                      onTap: () => GetNavigate.toNamed(GetRoutes.settings),
                       child: Image.asset(
                         'lib/assets/images/tabbar/settings.png',
                         width: 640.wmax * 28.sr,

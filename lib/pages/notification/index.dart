@@ -3,11 +3,11 @@ import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 export 'package:dompet/pages/notification/controller.dart';
 import 'package:dompet/pages/notification/controller.dart';
+import 'package:dompet/routes/navigator.dart';
 import 'package:dompet/extension/money.dart';
-import 'package:dompet/models/message.dart';
 import 'package:dompet/extension/date.dart';
 import 'package:dompet/extension/size.dart';
-import 'package:dompet/routes/router.dart';
+import 'package:dompet/models/message.dart';
 
 class PageNotification extends GetView<PageNotificationController> {
   const PageNotification({super.key});
@@ -135,7 +135,7 @@ class PageNotification extends GetView<PageNotificationController> {
             children: [
               GestureDetector(
                 behavior: HitTestBehavior.opaque,
-                onTap: () => GetRouter.back(),
+                onTap: () => GetNavigate.back(),
                 child: Image(
                   image: const AssetImage('lib/assets/images/auth/back.png'),
                   width: 640.wmax * 36.sr,

@@ -3,10 +3,10 @@ import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 export 'package:dompet/pages/operater/controller.dart';
 import 'package:dompet/pages/operater/controller.dart';
+import 'package:dompet/routes/navigator.dart';
 import 'package:dompet/extension/money.dart';
 import 'package:dompet/extension/bool.dart';
 import 'package:dompet/extension/size.dart';
-import 'package:dompet/routes/router.dart';
 
 class PageOperater extends GetView<PageOperaterController> {
   const PageOperater({super.key});
@@ -71,7 +71,7 @@ class PageOperater extends GetView<PageOperaterController> {
             children: [
               GestureDetector(
                 behavior: HitTestBehavior.opaque,
-                onTap: () => GetRouter.back(),
+                onTap: () => GetNavigate.back(),
                 child: Image(
                   image: const AssetImage('lib/assets/images/auth/back.png'),
                   width: 640.wmax * 36.sr,
