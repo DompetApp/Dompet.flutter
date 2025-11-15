@@ -1,6 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="applicationName">电子钱包</string>
-    <string name="shortcut_short_bill">账单</string>
-    <string name="shortcut_long_bill">我的账单</string>
 </resources>

@@ -14,21 +14,12 @@ import app_links
       AppLinks.shared.handleLink(url: url)
       return true
     }
-    
+
     if let controller = window?.rootViewController as? FlutterBinaryMessenger {
       setMethodChannel(controller: controller)
       setEventChannel(controller: controller)
-      initAppShortcuts()
     }
 
     return super.application(application, didFinishLaunchingWithOptions: launchOptions)
-  }
-
-  override func application(
-    _ application: UIApplication, performActionFor shortcutItem: UIApplicationShortcutItem,
-    completionHandler: @escaping (Bool) -> Void
-  ) {
-    initActiveShortcut(shortcutItem)
-    completionHandler(true)
   }
 }

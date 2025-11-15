@@ -10,6 +10,7 @@ import 'package:dompet/service/native.dart';
 import 'package:dompet/service/sqlite.dart';
 import 'package:dompet/service/socket.dart';
 import 'package:dompet/service/network.dart';
+import 'package:dompet/service/shortcut.dart';
 
 export 'package:dompet/service/web.dart';
 export 'package:dompet/service/store.dart';
@@ -21,6 +22,7 @@ export 'package:dompet/service/native.dart';
 export 'package:dompet/service/sqlite.dart';
 export 'package:dompet/service/socket.dart';
 export 'package:dompet/service/network.dart';
+export 'package:dompet/service/shortcut.dart';
 
 final binds = [
   Bind.put<StoreController>(StoreController()),
@@ -29,6 +31,7 @@ final binds = [
   Bind.put<SqliteController>(SqliteController()),
   Bind.put<NetworkController>(NetworkController()),
   Bind.put<AppLinkController>(AppLinkController()),
+  Bind.put<ShortcutController>(ShortcutController()),
   Bind.put<IOSocketController>(IOSocketController()),
   Bind.put<MediaQueryController>(MediaQueryController()),
   Bind.put<NativeChannelController>(NativeChannelController()),

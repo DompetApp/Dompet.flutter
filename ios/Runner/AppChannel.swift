@@ -52,7 +52,6 @@ func setMethodChannelHandler(methodChannel: FlutterMethodChannel) {
   methodChannel.setMethodCallHandler {
     (call, result) in
     if "invokeNativeMethodChannel" == call.method {
-      openActiveShortcut(getActiveShortcut())
       initialized = true
       result(true)
       return

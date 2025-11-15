@@ -25,7 +25,6 @@ fun setMethodChannelHandler () {
             "invokeNativeMethodChannel" -> {
                 initialized = true
                 result.success(true)
-                openActiveShortcut(getActiveShortcut())
             }
             else -> result.notImplemented()
         }
@@ -41,14 +40,14 @@ fun setEventChannelHandler () {
 
 fun setMethodChannel() {
     val channel = "app.native/methodChannel"
-    val executor = getMainFlutterEngine().dartExecutor
+    val executor = getMainEngine().dartExecutor
     methodChannel = MethodChannel(executor, channel)
     setMethodChannelHandler()
 }
 
 fun setEventChannel() {
     val channel = "app.native/eventChannel"
-    val executor = getMainFlutterEngine().dartExecutor
+    val executor = getMainEngine().dartExecutor
     eventChannel = EventChannel(executor, channel)
     setEventChannelHandler()
 }

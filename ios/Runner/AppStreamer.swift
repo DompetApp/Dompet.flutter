@@ -14,7 +14,9 @@ class AppStreamHandler: NSObject, FlutterStreamHandler {
     self.onInnerCancel = onCancel
   }
 
-  func onListen(withArguments args: Any?, eventSink sink: @escaping FlutterEventSink) -> FlutterError? {
+  func onListen(withArguments args: Any?, eventSink sink: @escaping FlutterEventSink)
+    -> FlutterError?
+  {
     return onInnerListen?(args, sink)
   }
 

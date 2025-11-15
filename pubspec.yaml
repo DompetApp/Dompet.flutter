@@ -16,9 +16,8 @@ dependencies:
     sdk: flutter
 
   get: ^5.0.0-release-candidate-9.3.2
-  flutter_inappwebview: ^6.2.0-beta.2
-
   internet_connection_checker_plus: ^2.9.1
+  flutter_inappwebview: ^6.2.0-beta.2
   flutter_launcher_icons: ^0.14.4
   responsive_framework: ^1.5.1
   permission_handler: ^12.0.1
@@ -30,6 +29,7 @@ dependencies:
   google_sign_in: ^7.2.0
   firebase_core: ^4.2.1
   firebase_auth: ^6.1.2
+  quick_actions: ^1.1.0
   path_provider: ^2.1.5
   synchronized: ^3.4.0
   fluttertoast: ^9.0.0
