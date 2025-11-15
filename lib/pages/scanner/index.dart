@@ -27,8 +27,8 @@ class PageScanner extends GetView<PageScannerController> {
 
       final scanArea = Rect.fromCenter(
         center: MediaQuery.sizeOf(context).center(Offset.zero),
-        height: 640.wmax * 248.sr,
-        width: 640.wmax * 248.sr,
+        height: 248.vp,
+        width: 248.vp,
       );
 
       return Scaffold(
@@ -93,11 +93,11 @@ class PageScanner extends GetView<PageScannerController> {
               },
             ),
             Positioned(
-              top: max(mediaPadding.top, 640.wmax * 20.sr),
-              left: 640.wmax * 20.sr,
+              top: max(mediaPadding.top, 20.vp),
+              left: 20.vp,
               child: Container(
                 alignment: Alignment.centerLeft,
-                height: max(640.wmax * 40.sr, mediaTopBar),
+                height: max(40.vp, mediaTopBar),
                 child: Row(
                   children: [
                     GestureDetector(
@@ -106,8 +106,8 @@ class PageScanner extends GetView<PageScannerController> {
                         image: const AssetImage(
                           'lib/assets/images/scanner/back.png',
                         ),
-                        height: 640.wmax * 36.sr,
-                        width: 640.wmax * 36.sr,
+                        height: 36.vp,
+                        width: 36.vp,
                         fit: BoxFit.fill,
                       ),
                       onTap: () {
@@ -123,16 +123,16 @@ class PageScanner extends GetView<PageScannerController> {
               ),
             ),
             Positioned(
-              top: max(mediaPadding.top, 640.wmax * 20.sr),
-              right: max(mediaPadding.right, 640.wmax * 20.sr),
+              top: max(mediaPadding.top, 20.vp),
+              right: max(mediaPadding.right, 20.vp),
               child: Container(
                 alignment: Alignment.centerRight,
-                height: max(640.wmax * 40.sr, mediaTopBar),
+                height: max(40.vp, mediaTopBar),
                 child: buildAlbum(context),
               ),
             ),
             Positioned(
-              bottom: max(mediaPadding.bottom, 640.wmax * 90.sr),
+              bottom: max(mediaPadding.bottom, 90.vp),
               child: Container(
                 alignment: Alignment.centerRight,
                 child: buildTorch(context),
@@ -153,11 +153,11 @@ class PageScanner extends GetView<PageScannerController> {
       return GestureDetector(
         behavior: HitTestBehavior.opaque,
         child: Container(
-          padding: EdgeInsets.all(640.wmax * 10.sr),
+          padding: EdgeInsets.all(10.vp),
           child: Image(
             image: AssetImage('lib/assets/images/scanner/photo.png'),
-            height: 640.wmax * 30.sr,
-            width: 640.wmax * 36.sr,
+            height: 30.vp,
+            width: 36.vp,
           ),
         ),
         onTap: () async {
@@ -223,8 +223,8 @@ class PageScanner extends GetView<PageScannerController> {
               'lib/assets/images/scanner/${torchOpened.value ? 'torch_open' : 'torch_close'}.png',
             ),
             fit: BoxFit.fill,
-            height: 640.wmax * 48.sr,
-            width: 640.wmax * 36.sr,
+            height: 48.vp,
+            width: 36.vp,
           ),
         ),
         onTap: () {

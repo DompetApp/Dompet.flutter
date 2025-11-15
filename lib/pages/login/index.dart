@@ -26,7 +26,7 @@ class PageLogin extends GetView<PageLoginController> {
                   width: 640.wmax,
                   height: 100.vh,
                   child: ListView(
-                    padding: EdgeInsets.only(bottom: 50.wdp),
+                    padding: EdgeInsets.only(bottom: 50.vp),
                     physics: const ClampingScrollPhysics(),
                     children: [
                       buildMainTitle(context),
@@ -70,11 +70,11 @@ class PageLogin extends GetView<PageLoginController> {
                     padding: const EdgeInsets.fromLTRB(30, 20, 30, 80),
                     child: Text(
                       'Requesting...'.tr,
-                      style: const TextStyle(
-                        fontSize: 16,
+                      style: TextStyle(
+                        color: Color(0xff707177),
                         fontWeight: FontWeight.w600,
                         letterSpacing: 1.5,
-                        color: Color(0xff707177),
+                        fontSize: 16.fp,
                       ),
                     ),
                   ),
@@ -92,10 +92,10 @@ class PageLogin extends GetView<PageLoginController> {
     return Container(
       alignment: Alignment.center,
       padding: EdgeInsets.only(
-        top: 640.wmax * 95.sr,
-        left: 640.wmax * 48.sr,
-        right: 640.wmax * 48.sr,
-        bottom: 640.wmax * 32.sr,
+        top: 95.vp,
+        left: 48.vp,
+        right: 48.vp,
+        bottom: 32.vp,
       ),
       child: Column(
         children: [
@@ -103,10 +103,10 @@ class PageLogin extends GetView<PageLoginController> {
             'Welcome back'.tr,
             textAlign: TextAlign.center,
             style: TextStyle(
-              fontSize: 640.wmax * 24.sr,
-              fontFamily: 'PingFang',
               color: const Color(0xff2f1155),
               fontWeight: FontWeight.w700,
+              fontFamily: 'PingFang',
+              fontSize: 24.fp,
               height: 1.3,
             ),
           ),
@@ -114,10 +114,10 @@ class PageLogin extends GetView<PageLoginController> {
             'Digital Wallet'.tr,
             textAlign: TextAlign.center,
             style: TextStyle(
-              fontSize: 640.wmax * 24.sr,
-              fontFamily: 'PingFang',
               color: const Color(0xff2f1155),
               fontWeight: FontWeight.w700,
+              fontFamily: 'PingFang',
+              fontSize: 24.fp,
               height: 1.3,
             ),
           ),
@@ -136,19 +136,19 @@ class PageLogin extends GetView<PageLoginController> {
         Container(
           alignment: Alignment.center,
           padding: EdgeInsets.only(
-            top: 640.wmax * 1.5.sr,
-            left: 640.wmax * 45.sr,
-            right: 640.wmax * 45.sr,
-            bottom: 640.wmax * 1.5.sr,
+            top: 1.5.vp,
+            left: 45.vp,
+            right: 45.vp,
+            bottom: 1.5.vp,
           ),
           child: Text(
             'Sign in with'.tr,
             textAlign: TextAlign.center,
             style: TextStyle(
-              fontSize: 640.wmax * 14.sr,
-              fontFamily: 'PingFang',
               color: const Color(0xffbdbdbd),
               fontWeight: FontWeight.w500,
+              fontFamily: 'PingFang',
+              fontSize: 14.fp,
               height: 1.2,
             ),
           ),
@@ -156,26 +156,26 @@ class PageLogin extends GetView<PageLoginController> {
         Container(
           alignment: Alignment.center,
           padding: EdgeInsets.only(
-            top: 640.wmax * 22.sr,
-            left: 640.wmax * 28.sr,
-            right: 640.wmax * 28.sr,
-            bottom: 640.wmax * 38.sr,
+            top: 22.vp,
+            left: 28.vp,
+            right: 28.vp,
+            bottom: 38.vp,
           ),
           child: Wrap(
-            spacing: 640.wmax * 20.sr,
-            runSpacing: 640.wmax * 18.sr,
+            spacing: 20.vp,
+            runSpacing: 18.vp,
             children: [
               GestureDetector(
                 behavior: HitTestBehavior.opaque,
                 child: IntrinsicWidth(
                   child: Container(
                     padding: EdgeInsets.symmetric(
-                      vertical: 640.wmax * 18.sr,
-                      horizontal: 640.wmax * 20.sr,
+                      vertical: 18.vp,
+                      horizontal: 20.vp,
                     ),
                     decoration: BoxDecoration(
                       color: Colors.white,
-                      borderRadius: BorderRadius.circular(640.wmax * 15.sr),
+                      borderRadius: BorderRadius.circular(15.vp),
                       boxShadow: [
                         BoxShadow(
                           color: Colors.black.withValues(alpha: 0.1),
@@ -192,17 +192,17 @@ class PageLogin extends GetView<PageLoginController> {
                           image: const AssetImage(
                             'lib/assets/images/auth/google.png',
                           ),
-                          width: 640.wmax * 24.sr,
-                          height: 640.wmax * 24.sr,
+                          width: 24.vp,
+                          height: 24.vp,
                           fit: BoxFit.fill,
                         ),
-                        SizedBox(width: 640.wmax * 7.sr),
+                        SizedBox(width: 7.vp),
                         Text(
                           'Google',
                           style: TextStyle(
-                            fontSize: 640.wmax * 16.sr,
-                            fontWeight: FontWeight.w500,
                             color: const Color(0xffbdbdbd),
+                            fontWeight: FontWeight.w500,
+                            fontSize: 16.fp,
                           ),
                         ),
                       ],
@@ -218,12 +218,12 @@ class PageLogin extends GetView<PageLoginController> {
                 child: IntrinsicWidth(
                   child: Container(
                     padding: EdgeInsets.symmetric(
-                      vertical: 640.wmax * 18.sr,
-                      horizontal: 640.wmax * 20.sr,
+                      vertical: 18.vp,
+                      horizontal: 20.vp,
                     ),
                     decoration: BoxDecoration(
                       color: const Color(0xff4368c7),
-                      borderRadius: BorderRadius.circular(640.wmax * 15.sr),
+                      borderRadius: BorderRadius.circular(15.vp),
                       boxShadow: [
                         BoxShadow(
                           color: Colors.black.withValues(alpha: 0.1),
@@ -240,17 +240,17 @@ class PageLogin extends GetView<PageLoginController> {
                           image: const AssetImage(
                             'lib/assets/images/auth/github.png',
                           ),
-                          width: 640.wmax * 24.sr,
-                          height: 640.wmax * 24.sr,
+                          width: 24.vp,
+                          height: 24.vp,
                           fit: BoxFit.fill,
                         ),
-                        SizedBox(width: 640.wmax * 9.sr),
+                        SizedBox(width: 9.vp),
                         Text(
                           'Github',
                           style: TextStyle(
-                            fontSize: 640.wmax * 16.sr,
-                            fontWeight: FontWeight.w500,
                             color: Colors.white,
+                            fontWeight: FontWeight.w500,
+                            fontSize: 16.fp,
                           ),
                         ),
                       ],
@@ -279,13 +279,13 @@ class PageLogin extends GetView<PageLoginController> {
     return Column(
       children: [
         Container(
-          width: 640.wmax * 310.sr,
-          height: 640.wmax * 54.sr,
+          width: 310.vp,
+          height: 54.vp,
           alignment: Alignment.center,
-          margin: EdgeInsets.only(bottom: 640.wmax * 18.sr),
+          margin: EdgeInsets.only(bottom: 18.vp),
           decoration: BoxDecoration(
             color: const Color(0xfff2f2f2),
-            borderRadius: BorderRadius.circular(640.wmax * 15.sr),
+            borderRadius: BorderRadius.circular(15.vp),
             border: Border.all(
               width: 1,
               color: emailError.value
@@ -296,20 +296,20 @@ class PageLogin extends GetView<PageLoginController> {
           child: TextField(
             focusNode: emailFocusNode,
             controller: emailController,
-            cursorWidth: 640.wmax * 1.8.sr,
-            cursorHeight: 640.wmax * 18.sr,
+            cursorWidth: 1.8.vp,
+            cursorHeight: 18.vp,
             keyboardType: TextInputType.text,
             textAlignVertical: TextAlignVertical.center,
             decoration: InputDecoration(
               filled: true,
               hintText: 'Email'.tr,
               prefixIcon: Container(
-                width: 640.wmax * 64.sr,
+                width: 64.vp,
                 alignment: Alignment.center,
                 child: Image(
                   image: const AssetImage('lib/assets/images/auth/email.png'),
-                  width: 640.wmax * 24.sr,
-                  height: 640.wmax * 24.sr,
+                  width: 24.vp,
+                  height: 24.vp,
                   fit: BoxFit.fill,
                 ),
               ),
@@ -318,19 +318,19 @@ class PageLogin extends GetView<PageLoginController> {
               enabledBorder: InputBorder.none,
               fillColor: Colors.transparent,
               hintStyle: TextStyle(
-                letterSpacing: 1.5,
-                fontSize: 640.wmax * 16.sr,
-                fontFamily: 'PingFang',
-                fontWeight: FontWeight.w500,
                 color: const Color(0xff909399),
+                fontWeight: FontWeight.w500,
+                fontFamily: 'PingFang',
+                letterSpacing: 1.5,
+                fontSize: 16.fp,
               ),
             ),
             style: TextStyle(
-              letterSpacing: 1.5,
-              fontSize: 640.wmax * 16.sr,
-              fontFamily: 'PingFang',
-              fontWeight: FontWeight.w500,
               color: const Color(0xff606266),
+              fontWeight: FontWeight.w500,
+              fontFamily: 'PingFang',
+              letterSpacing: 1.5,
+              fontSize: 16.fp,
             ),
             onChanged: (v) {
               emailError.value = false;
@@ -341,13 +341,13 @@ class PageLogin extends GetView<PageLoginController> {
           ),
         ),
         Container(
-          width: 640.wmax * 310.sr,
-          height: 640.wmax * 54.sr,
+          width: 310.vp,
+          height: 54.vp,
           alignment: Alignment.center,
-          margin: EdgeInsets.only(bottom: 640.wmax * 18.sr),
+          margin: EdgeInsets.only(bottom: 18.vp),
           decoration: BoxDecoration(
             color: const Color(0xfff2f2f2),
-            borderRadius: BorderRadius.circular(640.wmax * 15.sr),
+            borderRadius: BorderRadius.circular(15.vp),
             border: Border.all(
               width: 1,
               color: passwordError.value
@@ -359,22 +359,22 @@ class PageLogin extends GetView<PageLoginController> {
             obscureText: true,
             focusNode: passwordFocusNode,
             controller: passwordController,
-            cursorWidth: 640.wmax * 1.8.sr,
-            cursorHeight: 640.wmax * 18.sr,
+            cursorWidth: 1.8.vp,
+            cursorHeight: 18.vp,
             keyboardType: TextInputType.text,
             textAlignVertical: TextAlignVertical.center,
             decoration: InputDecoration(
               filled: true,
               hintText: 'Password'.tr,
               prefixIcon: Container(
-                width: 640.wmax * 64.sr,
+                width: 64.vp,
                 alignment: Alignment.center,
                 child: Image(
                   image: const AssetImage(
                     'lib/assets/images/auth/password.png',
                   ),
-                  width: 640.wmax * 24.sr,
-                  height: 640.wmax * 24.sr,
+                  width: 24.vp,
+                  height: 24.vp,
                   fit: BoxFit.fill,
                 ),
               ),
@@ -383,19 +383,19 @@ class PageLogin extends GetView<PageLoginController> {
               enabledBorder: InputBorder.none,
               fillColor: Colors.transparent,
               hintStyle: TextStyle(
-                letterSpacing: 1.5,
-                fontSize: 640.wmax * 16.sr,
-                fontFamily: 'PingFang',
-                fontWeight: FontWeight.w500,
                 color: const Color(0xff909399),
+                fontWeight: FontWeight.w500,
+                fontFamily: 'PingFang',
+                letterSpacing: 1.5,
+                fontSize: 16.fp,
               ),
             ),
             style: TextStyle(
-              letterSpacing: 1.5,
-              fontSize: 640.wmax * 16.sr,
-              fontFamily: 'PingFang',
-              fontWeight: FontWeight.w500,
               color: const Color(0xff606266),
+              fontWeight: FontWeight.w500,
+              fontFamily: 'PingFang',
+              letterSpacing: 1.5,
+              fontSize: 16.fp,
             ),
             onChanged: (v) {
               passwordError.value = false;
@@ -413,29 +413,29 @@ class PageLogin extends GetView<PageLoginController> {
 
     return Container(
       width: 100.vw,
-      height: 640.wmax * 100.sr,
+      height: 100.vp,
       alignment: Alignment.center,
-      margin: EdgeInsets.only(top: 640.wmax * 36.sr),
+      margin: EdgeInsets.only(top: 36.vp),
       child: Column(
         children: [
           GestureDetector(
             behavior: HitTestBehavior.opaque,
             child: Container(
-              width: 640.wmax * 200.sr,
-              height: 640.wmax * 64.sr,
+              width: 200.vp,
+              height: 64.vp,
               alignment: Alignment.center,
               decoration: BoxDecoration(
                 color: const Color(0xff5b259f),
-                borderRadius: BorderRadius.circular(640.wmax * 15.sr),
+                borderRadius: BorderRadius.circular(15.vp),
               ),
               child: Text(
                 'Login'.tr,
                 style: TextStyle(
-                  letterSpacing: 1.2,
                   color: Colors.white,
-                  fontSize: 640.wmax * 18.sr,
                   fontWeight: FontWeight.bold,
                   fontFamily: 'PingFang',
+                  letterSpacing: 1.2,
+                  fontSize: 18.fp,
                 ),
               ),
             ),
@@ -443,24 +443,24 @@ class PageLogin extends GetView<PageLoginController> {
               loginTimeout(signInWithAccount(), Duration(seconds: 5));
             },
           ),
-          SizedBox(height: 640.wmax * 12.sr),
+          SizedBox(height: 12.vp),
           RichText(
             text: TextSpan(
               children: [
                 TextSpan(
                   text: "Don't have an account yet？".tr,
                   style: TextStyle(
-                    fontSize: 640.wmax * 14.sr,
-                    fontWeight: FontWeight.w500,
                     color: const Color(0xffbdbdbd),
+                    fontWeight: FontWeight.w500,
+                    fontSize: 14.fp,
                   ),
                 ),
                 TextSpan(
                   text: 'Register'.tr,
                   style: TextStyle(
-                    fontSize: 640.wmax * 14.sr,
-                    fontWeight: FontWeight.w600,
                     color: const Color(0xff81c2ff),
+                    fontWeight: FontWeight.w600,
+                    fontSize: 14.fp,
                   ),
                   recognizer: TapGestureRecognizer()
                     ..onTap = () => GetNavigate.toNamed(GetRoutes.register),
@@ -481,7 +481,7 @@ class PageLogin extends GetView<PageLoginController> {
           radius: 180.0,
           containedInkWell: true,
           highlightShape: BoxShape.rectangle,
-          borderRadius: BorderRadius.all(Radius.circular(640.wmax * 30.0.sr)),
+          borderRadius: BorderRadius.all(Radius.circular(30.0.vp)),
           highlightColor: const Color(0xff5b259f).withValues(alpha: 0.08),
           splashColor: const Color(0xff5b259f).withValues(alpha: 0.08),
           focusColor: Colors.transparent,
@@ -494,20 +494,20 @@ class PageLogin extends GetView<PageLoginController> {
 
     return Container(
       width: 100.vw,
-      height: 640.wmax * 40.sr + controller.mediaPadding.value.bottom,
-      margin: EdgeInsets.only(top: 640.wmax * 21.sr),
+      height: 40.vp + controller.mediaPadding.value.bottom,
+      margin: EdgeInsets.only(top: 21.vp),
       alignment: Alignment.center,
       child: withInWell(
         child: Container(
-          width: 640.wmax * 160.sr,
-          height: 640.wmax * 40.sr,
+          width: 160.vp,
+          height: 40.vp,
           alignment: Alignment.center,
           child: Text(
             'Guest Mode'.tr,
             style: TextStyle(
-              fontSize: 640.wmax * 14.sr,
-              fontWeight: FontWeight.w500,
               color: const Color(0xff909399),
+              fontWeight: FontWeight.w500,
+              fontSize: 14.fp,
             ),
           ),
         ),

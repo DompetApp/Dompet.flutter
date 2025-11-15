@@ -48,7 +48,7 @@ class PageOperater extends GetView<PageOperaterController> {
   Widget buildBack(BuildContext context) {
     final mediaTopBar = controller.mediaTopBar.value;
     final mediaPadding = controller.mediaPadding.value;
-    final height = max(640.wmax * 40.sr, mediaTopBar);
+    final height = max(40.vp, mediaTopBar);
 
     return Positioned(
       top: 0,
@@ -60,12 +60,12 @@ class PageOperater extends GetView<PageOperaterController> {
           width: 680.wmax,
           height: height,
           margin: EdgeInsets.only(
-            top: max(mediaPadding.top, 640.wmax * 20.sr),
-            left: 640.wmax * 20.sr,
+            top: max(mediaPadding.top, 20.vp),
+            left: 20.vp,
           ),
           padding: EdgeInsets.only(
-            top: (height - 640.wmax * 36.sr) / 2,
-            bottom: (height - 640.wmax * 36.sr) / 2,
+            top: (height - 36.vp) / 2,
+            bottom: (height - 36.vp) / 2,
           ),
           child: Row(
             children: [
@@ -74,8 +74,8 @@ class PageOperater extends GetView<PageOperaterController> {
                 onTap: () => GetNavigate.back(),
                 child: Image(
                   image: const AssetImage('lib/assets/images/auth/back.png'),
-                  width: 640.wmax * 36.sr,
-                  height: 640.wmax * 36.sr,
+                  width: 36.vp,
+                  height: 36.vp,
                   fit: BoxFit.fill,
                 ),
               ),
@@ -91,20 +91,14 @@ class PageOperater extends GetView<PageOperaterController> {
       () => Container(
         color: Colors.white,
         alignment: Alignment.center,
-        margin: EdgeInsets.only(
-          top: 640.wmax * 130.sr,
-          bottom: 640.wmax * 44.sr,
-        ),
-        padding: EdgeInsets.only(
-          left: 640.wmax * 32.sr,
-          right: 640.wmax * 32.sr,
-        ),
+        margin: EdgeInsets.only(top: 130.vp, bottom: 44.vp),
+        padding: EdgeInsets.only(left: 32.vp, right: 32.vp),
         child: Text(
           controller.money.value.USD,
           style: TextStyle(
-            fontSize: 640.wmax * 32.sr,
-            fontWeight: FontWeight.bold,
             color: const Color(0xff2f1155),
+            fontWeight: FontWeight.bold,
+            fontSize: 32.fp,
             height: 1,
           ),
         ),
@@ -142,8 +136,8 @@ class PageOperater extends GetView<PageOperaterController> {
             return ClipOval(
               child: Image.memory(
                 loginUser.avatar.value!,
-                width: 640.wmax * 20.sr,
-                height: 640.wmax * 20.sr,
+                width: 20.vp,
+                height: 20.vp,
                 fit: BoxFit.fill,
               ),
             );
@@ -157,8 +151,8 @@ class PageOperater extends GetView<PageOperaterController> {
         return ClipOval(
           child: Image.asset(
             'lib/assets/images/payer/$icon.png',
-            width: 640.wmax * 20.sr,
-            height: 640.wmax * 20.sr,
+            width: 20.vp,
+            height: 20.vp,
             fit: BoxFit.fill,
           ),
         );
@@ -170,26 +164,26 @@ class PageOperater extends GetView<PageOperaterController> {
             value: opt.id,
             padding: EdgeInsets.zero,
             child: Container(
-              width: 640.wmax * 375.sr,
-              height: 640.wmax * 48.sr,
+              width: 375.vp,
+              height: 48.vp,
               padding: EdgeInsets.only(
-                top: 640.wmax * 12.sr,
-                left: 640.wmax * 30.sr,
-                right: 640.wmax * 24.sr,
-                bottom: 640.wmax * 12.sr,
+                top: 12.vp,
+                left: 30.vp,
+                right: 24.vp,
+                bottom: 12.vp,
               ),
               child: Row(
                 children: [
                   Padding(
-                    padding: EdgeInsets.only(right: 640.wmax * 4.sr),
+                    padding: EdgeInsets.only(right: 4.vp),
                     child: iconAvatar(isTopup ? opt.from : opt.to),
                   ),
                   Text(
                     isTopup ? opt.from.tr : opt.to.tr,
                     style: TextStyle(
-                      fontSize: 640.wmax * 16.sr,
-                      fontWeight: FontWeight.w600,
                       color: Color(0xff363853),
+                      fontWeight: FontWeight.w600,
+                      fontSize: 16.fp,
                     ),
                   ),
                   Offstage(
@@ -198,27 +192,24 @@ class PageOperater extends GetView<PageOperaterController> {
                       mainAxisSize: MainAxisSize.min,
                       children: [
                         Padding(
-                          padding: EdgeInsets.only(
-                            left: 640.wmax * 15.sr,
-                            right: 640.wmax * 15.sr,
-                          ),
+                          padding: EdgeInsets.only(left: 15.vp, right: 15.vp),
                           child: Image.asset(
                             'lib/assets/images/operater/left.png',
-                            height: 640.wmax * 26.sr,
-                            width: 640.wmax * 24.sr,
+                            height: 26.vp,
+                            width: 24.vp,
                             fit: BoxFit.fill,
                           ),
                         ),
                         Padding(
-                          padding: EdgeInsets.only(right: 640.wmax * 4.sr),
+                          padding: EdgeInsets.only(right: 4.vp),
                           child: iconAvatar(opt.from.toLowerCase()),
                         ),
                         Text(
                           opt.from.tr,
                           style: TextStyle(
-                            fontSize: 640.wmax * 16.sr,
-                            fontWeight: FontWeight.w600,
                             color: Color(0xff363853),
+                            fontWeight: FontWeight.w600,
+                            fontSize: 16.fp,
                           ),
                         ),
                       ],
@@ -237,11 +228,8 @@ class PageOperater extends GetView<PageOperaterController> {
         Container(
           color: Colors.white,
           alignment: Alignment.center,
-          padding: EdgeInsets.only(
-            left: 640.wmax * 32.sr,
-            right: 640.wmax * 32.sr,
-          ),
-          margin: EdgeInsets.only(bottom: 640.wmax * 42.sr),
+          padding: EdgeInsets.only(left: 32.vp, right: 32.vp),
+          margin: EdgeInsets.only(bottom: 42.vp),
           child: PopupMenuButton(
             elevation: 2.5,
             color: Colors.white,
@@ -250,28 +238,25 @@ class PageOperater extends GetView<PageOperaterController> {
             clipBehavior: Clip.antiAlias,
             position: PopupMenuPosition.under,
             shadowColor: Color(0x88000000),
-            constraints: BoxConstraints(
-              minWidth: 640.wmax * 311.sr,
-              maxWidth: 640.wmax * 311.sr,
-            ),
+            constraints: BoxConstraints(minWidth: 311.vp, maxWidth: 311.vp),
             shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(640.wmax * 20.sr),
+              borderRadius: BorderRadius.circular(20.vp),
             ),
-            offset: Offset(0, 640.wmax * 3.sr),
+            offset: Offset(0, 3.vp),
             onSelected: (id) => controller.find(id),
             itemBuilder: (BuildContext context) => itemBuilder(),
             child: Container(
-              height: 640.wmax * 66.sr,
+              height: 66.vp,
               alignment: Alignment.center,
               decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(640.wmax * 20.sr),
+                borderRadius: BorderRadius.circular(20.vp),
                 color: Color(0xfff2f2f2),
               ),
               padding: EdgeInsets.only(
-                top: 640.wmax * 20.sr,
-                left: 640.wmax * 30.sr,
-                right: 640.wmax * 24.sr,
-                bottom: 640.wmax * 20.sr,
+                top: 20.vp,
+                left: 30.vp,
+                right: 24.vp,
+                bottom: 20.vp,
               ),
               child: Row(
                 children: [
@@ -280,15 +265,15 @@ class PageOperater extends GetView<PageOperaterController> {
                       mainAxisSize: MainAxisSize.min,
                       children: [
                         Padding(
-                          padding: EdgeInsets.only(right: 640.wmax * 4.sr),
+                          padding: EdgeInsets.only(right: 4.vp),
                           child: iconAvatar(isTopup ? from : to),
                         ),
                         Text(
                           isTopup ? from.tr : to.tr,
                           style: TextStyle(
-                            fontSize: 640.wmax * 16.sr,
-                            fontWeight: FontWeight.w600,
                             color: Color(0xff363853),
+                            fontWeight: FontWeight.w600,
+                            fontSize: 16.fp,
                           ),
                         ),
                         Offstage(
@@ -298,28 +283,26 @@ class PageOperater extends GetView<PageOperaterController> {
                             children: [
                               Padding(
                                 padding: EdgeInsets.only(
-                                  left: 640.wmax * 15.sr,
-                                  right: 640.wmax * 15.sr,
+                                  left: 15.vp,
+                                  right: 15.vp,
                                 ),
                                 child: Image.asset(
                                   'lib/assets/images/operater/left.png',
-                                  height: 640.wmax * 26.sr,
-                                  width: 640.wmax * 24.sr,
+                                  height: 26.vp,
+                                  width: 24.vp,
                                   fit: BoxFit.fill,
                                 ),
                               ),
                               Padding(
-                                padding: EdgeInsets.only(
-                                  right: 640.wmax * 4.sr,
-                                ),
+                                padding: EdgeInsets.only(right: 4.vp),
                                 child: iconAvatar(from.toLowerCase()),
                               ),
                               Text(
                                 from.tr,
                                 style: TextStyle(
-                                  fontSize: 640.wmax * 16.sr,
-                                  fontWeight: FontWeight.w600,
                                   color: Color(0xff363853),
+                                  fontWeight: FontWeight.w600,
+                                  fontSize: 16.fp,
                                 ),
                               ),
                             ],
@@ -329,14 +312,11 @@ class PageOperater extends GetView<PageOperaterController> {
                     ),
                   ),
                   Padding(
-                    padding: EdgeInsets.only(
-                      left: 640.wmax * 15.sr,
-                      right: 640.wmax * 6.sr,
-                    ),
+                    padding: EdgeInsets.only(left: 15.vp, right: 6.vp),
                     child: Image.asset(
                       'lib/assets/images/operater/down.png',
-                      height: 640.wmax * 24.sr,
-                      width: 640.wmax * 24.sr,
+                      height: 24.vp,
+                      width: 24.vp,
                     ),
                   ),
                 ],
@@ -360,9 +340,9 @@ class PageOperater extends GetView<PageOperaterController> {
         child = Text(
           text,
           style: TextStyle(
-            fontSize: 640.wmax * 24.sr,
-            fontWeight: FontWeight.w500,
             color: Color(0xff363853),
+            fontWeight: FontWeight.w500,
+            fontSize: 24.fp,
             height: 1.0,
           ),
         );
@@ -371,8 +351,8 @@ class PageOperater extends GetView<PageOperaterController> {
       if (text == 'Delete') {
         child = Image.asset(
           'lib/assets/images/operater/delete.png',
-          height: 640.wmax * 27.sr,
-          width: 640.wmax * 25.sr,
+          height: 27.vp,
+          width: 25.vp,
           fit: BoxFit.fill,
         );
       }
@@ -380,8 +360,8 @@ class PageOperater extends GetView<PageOperaterController> {
       if (text == 'Clear') {
         child = Image.asset(
           'lib/assets/images/operater/clear.png',
-          height: 640.wmax * 24.sr,
-          width: 640.wmax * 24.sr,
+          height: 24.vp,
+          width: 24.vp,
           fit: BoxFit.fill,
         );
       }
@@ -392,14 +372,14 @@ class PageOperater extends GetView<PageOperaterController> {
           radius: 100.0,
           containedInkWell: true,
           highlightShape: BoxShape.rectangle,
-          borderRadius: BorderRadius.all(Radius.circular(640.wmax * 20.0.sr)),
+          borderRadius: BorderRadius.all(Radius.circular(20.0.vp)),
           highlightColor: const Color(0xfff0f0f0).withValues(alpha: 1),
           splashColor: const Color(0xfff0f0f0).withValues(alpha: 1),
           focusColor: Colors.transparent,
           hoverColor: Colors.transparent,
           child: Container(
-            width: 640.wmax * 60.sr,
-            height: 640.wmax * 60.sr,
+            width: 60.vp,
+            height: 60.vp,
             alignment: Alignment.center,
             child: child,
           ),
@@ -423,15 +403,15 @@ class PageOperater extends GetView<PageOperaterController> {
     return Container(
       color: Colors.white,
       alignment: Alignment.center,
-      padding: EdgeInsets.only(left: 640.wmax * 32.sr, right: 640.wmax * 32.sr),
-      margin: EdgeInsets.only(bottom: 640.wmax * 68.sr),
+      padding: EdgeInsets.only(left: 32.vp, right: 32.vp),
+      margin: EdgeInsets.only(bottom: 68.vp),
       child: SizedBox(
-        width: 640.wmax * 250.sr,
+        width: 250.vp,
         child: Column(
           children: [
             Container(
-              width: 640.wmax * 250.sr,
-              margin: EdgeInsets.only(bottom: 640.wmax * 20.sr),
+              width: 250.vp,
+              margin: EdgeInsets.only(bottom: 20.vp),
               child: Row(
                 mainAxisSize: MainAxisSize.min,
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -439,8 +419,8 @@ class PageOperater extends GetView<PageOperaterController> {
               ),
             ),
             Container(
-              width: 640.wmax * 250.sr,
-              margin: EdgeInsets.only(bottom: 640.wmax * 20.sr),
+              width: 250.vp,
+              margin: EdgeInsets.only(bottom: 20.vp),
               child: Row(
                 mainAxisSize: MainAxisSize.min,
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -448,8 +428,8 @@ class PageOperater extends GetView<PageOperaterController> {
               ),
             ),
             Container(
-              width: 640.wmax * 250.sr,
-              margin: EdgeInsets.only(bottom: 640.wmax * 30.sr),
+              width: 250.vp,
+              margin: EdgeInsets.only(bottom: 30.vp),
               child: Row(
                 mainAxisSize: MainAxisSize.min,
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -457,7 +437,7 @@ class PageOperater extends GetView<PageOperaterController> {
               ),
             ),
             Container(
-              width: 640.wmax * 250.sr,
+              width: 250.vp,
               margin: EdgeInsets.only(bottom: 0),
               child: Row(
                 mainAxisSize: MainAxisSize.min,
@@ -477,11 +457,11 @@ class PageOperater extends GetView<PageOperaterController> {
 
   Widget buildConfirmBtn(BuildContext context) {
     final mediaPadding = controller.mediaPadding.value;
-    final mediaBottom = max(mediaPadding.bottom, 640.wmax * 30.sr);
+    final mediaBottom = max(mediaPadding.bottom, 30.vp);
 
     return Container(
       alignment: Alignment.center,
-      padding: EdgeInsets.only(left: 640.wmax * 32.sr, right: 640.wmax * 32.sr),
+      padding: EdgeInsets.only(left: 32.vp, right: 32.vp),
       margin: EdgeInsets.only(bottom: mediaBottom),
       child: Material(
         color: Colors.transparent,
@@ -489,25 +469,25 @@ class PageOperater extends GetView<PageOperaterController> {
           radius: 100.0,
           containedInkWell: true,
           highlightShape: BoxShape.rectangle,
-          borderRadius: BorderRadius.all(Radius.circular(640.wmax * 20.0.sr)),
+          borderRadius: BorderRadius.all(Radius.circular(20.0.vp)),
           highlightColor: const Color(0xff5b259f).withValues(alpha: 1),
           splashColor: const Color(0xff5b259f).withValues(alpha: 1),
           focusColor: Colors.transparent,
           hoverColor: Colors.transparent,
           child: Container(
-            width: 640.wmax * 195.sr,
-            height: 640.wmax * 65.sr,
+            width: 195.vp,
+            height: 65.vp,
             alignment: Alignment.center,
             decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(640.wmax * 15.sr),
+              borderRadius: BorderRadius.circular(15.vp),
               color: Color(0xff5b259f).withValues(alpha: 0.85),
             ),
             child: Text(
               controller.type.tr,
               style: TextStyle(
-                fontSize: 640.wmax * 20.sr,
-                fontWeight: FontWeight.w600,
                 color: Colors.white,
+                fontWeight: FontWeight.w600,
+                fontSize: 20.fp,
               ),
             ),
           ),

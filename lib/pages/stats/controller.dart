@@ -39,7 +39,7 @@ class PageStatsController extends GetxController with RxWatcher {
       }
 
       final pixels = scrollController.position.pixels;
-      final isMaxRange = pixels >= (640.wmax * 298.sr);
+      final isMaxRange = pixels >= (298.vp);
       isShowTopBar.value = isPortrait.value && isMaxRange;
     });
 

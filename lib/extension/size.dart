@@ -1,3 +1,4 @@
+import 'dart:math' as math;
 import 'package:get/get.dart';
 import 'package:dompet/service/media.dart';
 
@@ -26,6 +27,8 @@ extension IntegerExtension on int {
 }
 
 extension SizeExtension on num {
+  static const font = 1.0;
+  static const scale = 1.5;
   static const preset = 375.0;
   static final width = Get.find<MediaQueryController>().width;
   static final height = Get.find<MediaQueryController>().height;
@@ -74,12 +77,12 @@ extension SizeExtension on num {
     return this > 100.vmax ? this / 1 : 100.vmax;
   }
 
-  double get wdp {
-    return this * width.value.sr;
+  double get vp {
+    return this * math.min(width.value.sr, scale);
   }
 
-  double get hdp {
-    return this * height.value.sr;
+  double get fp {
+    return this * math.min(width.value.sr, font);
   }
 
   double get sr {

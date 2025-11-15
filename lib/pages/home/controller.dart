@@ -34,8 +34,8 @@ class PageHomeController extends GetxController {
 
     scrollController.addListener(() {
       final scrollTop = scrollController.position.pixels;
-      final isShowShadow = scrollTop >= 640.wmax * 42.sr;
-      final isShowActions = scrollTop >= 640.wmax * 296.sr;
+      final isShowShadow = scrollTop >= 42.vp;
+      final isShowActions = scrollTop >= 296.vp;
 
       if (showActions.value != isShowActions) {
         isRunAnimating.value = showActions.value != isShowActions;

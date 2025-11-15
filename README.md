@@ -36,7 +36,6 @@
 
 ## Packages
 
-- flutter_ringtone_player
 - flutter_inappwebview
 - web_socket_channel
 - permission_handler

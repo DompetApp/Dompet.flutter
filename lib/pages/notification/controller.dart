@@ -30,8 +30,8 @@ class PageNotificationController extends GetxController with RxWatcher {
     rw.ever(refMessages.list, (_) => transformer());
 
     scrollController.addListener(() {
-      final expanded = 640.wmax * 152.sr;
-      final collapsed = max(640.wmax * 40.sr, mediaTopBar.value);
+      final expanded = 152.vp;
+      final collapsed = max(40.vp, mediaTopBar.value);
       isShadow.value = scrollController.position.pixels >= expanded - collapsed;
     });
 

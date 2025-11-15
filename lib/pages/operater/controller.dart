@@ -1,6 +1,6 @@
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
-import 'package:flutter_ringtone_player/flutter_ringtone_player.dart';
+import 'package:audioplayers/audioplayers.dart';
 import 'package:dompet/configure/fluttertoast.dart';
 import 'package:dompet/routes/navigator.dart';
 import 'package:dompet/extension/money.dart';
@@ -18,6 +18,7 @@ class PageOperaterController extends GetxController {
   late final mediaTopBar = mediaQueryController.topBar;
   late final loginUser = storeController.user;
 
+  late AudioPlayer audioPlayer = AudioPlayer();
   late String type = Get.arguments ?? '';
   late Rx<List<PayOperate>> options;
   late Rx<PayOperate> operate;
@@ -27,6 +28,7 @@ class PageOperaterController extends GetxController {
   onInit() {
     init(0.0);
     super.onInit();
+    audioPlayer.audioCache = AudioCache(prefix: 'lib/assets/');
   }
 
   void init(double num) {
@@ -173,7 +175,12 @@ class PageOperaterController extends GetxController {
           ),
         ]);
 
-        await FlutterRingtonePlayer().playNotification();
+        try {
+          final source = AssetSource('medias/pay.wav');
+          await audioPlayer.play(source, volume: 0.5);
+        } catch (e) {
+          /* e */
+        }
 
         Future.delayed(Duration(seconds: 3), () => money.value = 0.0);
 
@@ -205,7 +212,12 @@ class PageOperaterController extends GetxController {
           ),
         ]);
 
-        await FlutterRingtonePlayer().playNotification();
+        try {
+          final source = AssetSource('medias/pay.wav');
+          await audioPlayer.play(source, volume: 0.5);
+        } catch (e) {
+          /* e */
+        }
 
         Future.delayed(Duration(seconds: 3), () => money.value = 0.0);
 
@@ -237,7 +249,12 @@ class PageOperaterController extends GetxController {
           ),
         ]);
 
-        await FlutterRingtonePlayer().playNotification();
+        try {
+          final source = AssetSource('medias/pay.wav');
+          await audioPlayer.play(source, volume: 0.5);
+        } catch (e) {
+          /* e */
+        }
 
         Future.delayed(Duration(seconds: 3), () => money.value = 0.0);
 
@@ -271,7 +288,12 @@ class PageOperaterController extends GetxController {
           ),
         ]);
 
-        await FlutterRingtonePlayer().playNotification();
+        try {
+          final source = AssetSource('medias/pay.wav');
+          await audioPlayer.play(source, volume: 0.5);
+        } catch (e) {
+          /* e */
+        }
 
         Future.delayed(Duration(seconds: 3), () => money.value = 0.0);
 
