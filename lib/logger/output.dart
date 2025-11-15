@@ -2,6 +2,7 @@ import 'dart:io';
 import 'dart:math';
 import 'dart:async';
 import 'dart:convert';
+import 'dart:typed_data';
 import 'package:dio/dio.dart';
 import 'package:intl/intl.dart';
 import 'package:path/path.dart';
@@ -119,7 +120,7 @@ class SafeFileOutput extends LogOutput {
     return null;
   }
 
-  Future<List<String>?> readAsStrings() async {
+  Future<List<Uint8List>?> readAsBytesArr() async {
     return lock.synchronized(() async {
       if (await isEmpty()) {
         return null;
@@ -129,8 +130,33 @@ class SafeFileOutput extends LogOutput {
         await _sink!.flush();
       }
 
+      final List<Uint8List> bytes = [];
       final List<File>? files = await getSortedFiles();
+
+      if (files == null || files.isEmpty) {
+        return null;
+      }
+
+      for (final file in files) {
+        bytes.add(file.readAsBytesSync());
+      }
+
+      return bytes;
+    });
+  }
+
+  Future<List<String>?> readAsStringArr() async {
+    return lock.synchronized(() async {
+      if (await isEmpty()) {
+        return null;
+      }
+
+      if (_sink != null) {
+        await _sink!.flush();
+      }
+
       final List<String> logs = [];
+      final List<File>? files = await getSortedFiles();
 
       if (files == null || files.isEmpty) {
         return null;
@@ -144,7 +170,7 @@ class SafeFileOutput extends LogOutput {
     });
   }
 
-  Future<FormData?> readAsFormDatas() async {
+  Future<FormData?> readAsFormDataArr() async {
     return lock.synchronized(() async {
       if (await isEmpty()) {
         return null;
@@ -205,6 +231,26 @@ class SafeFileOutput extends LogOutput {
       );
 
       return formData;
+    });
+  }
+
+  Future<Uint8List?> readAsBytes() async {
+    return lock.synchronized(() async {
+      if (await isEmpty()) {
+        return null;
+      }
+
+      if (_sink != null) {
+        await _sink!.flush();
+      }
+
+      final files = await getSortedFiles();
+
+      if (files == null || files.isEmpty) {
+        return null;
+      }
+
+      return files.first.readAsBytesSync();
     });
   }
 

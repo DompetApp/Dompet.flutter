@@ -1,3 +1,4 @@
+import 'dart:typed_data';
 import 'package:dio/dio.dart';
 import 'package:logger/logger.dart';
 import 'package:flutter/widgets.dart';
@@ -44,9 +45,9 @@ class SafeLogger extends Logger {
   SafeChangeListener get removeListener => _changeNotifier.removeListener;
   SafeChangeListener get addListener => _changeNotifier.addListener;
 
-  Future<List<String>?> readAsStrings() async {
+  Future<List<Uint8List>?> readAsBytesArr() async {
     try {
-      return _fileSafeOutput.readAsStrings();
+      return _fileSafeOutput.readAsBytesArr();
     } catch (exception, stack) {
       FlutterError.reportError(
         FlutterErrorDetails(
@@ -60,9 +61,25 @@ class SafeLogger extends Logger {
     }
   }
 
-  Future<FormData?> readAsFormDatas() async {
+  Future<List<String>?> readAsStringArr() async {
     try {
-      return _fileSafeOutput.readAsFormDatas();
+      return _fileSafeOutput.readAsStringArr();
+    } catch (exception, stack) {
+      FlutterError.reportError(
+        FlutterErrorDetails(
+          library: 'Flutter SafeLogger',
+          exception: exception,
+          stack: stack,
+        ),
+      );
+
+      return null;
+    }
+  }
+
+  Future<FormData?> readAsFormDataArr() async {
+    try {
+      return _fileSafeOutput.readAsFormDataArr();
     } catch (exception, stack) {
       FlutterError.reportError(
         FlutterErrorDetails(
@@ -79,6 +96,22 @@ class SafeLogger extends Logger {
   Future<FormData?> readAsFormData() async {
     try {
       return _fileSafeOutput.readAsFormData();
+    } catch (exception, stack) {
+      FlutterError.reportError(
+        FlutterErrorDetails(
+          library: 'Flutter SafeLogger',
+          exception: exception,
+          stack: stack,
+        ),
+      );
+
+      return null;
+    }
+  }
+
+  Future<Uint8List?> readAsBytes() async {
+    try {
+      return _fileSafeOutput.readAsBytes();
     } catch (exception, stack) {
       FlutterError.reportError(
         FlutterErrorDetails(
