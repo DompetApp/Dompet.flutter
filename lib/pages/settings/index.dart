@@ -18,7 +18,7 @@ class PageSettings extends GetView<PageSettingsController> {
       final mediaTopBar = controller.mediaTopBar;
       final isShadow = controller.isShadow;
 
-      final top = max(mediaPadding.value.top, 640.wmax * 20.sr);
+      final top = max(mediaPadding.value.top, 20.vp);
 
       return Scaffold(
         body: Stack(
@@ -38,8 +38,8 @@ class PageSettings extends GetView<PageSettingsController> {
                       elevation: 0.0,
                       scrolledUnderElevation: 0.0,
                       automaticallyImplyLeading: false,
-                      collapsedHeight: max(640.wmax * 40.sr, mediaTopBar.value),
-                      expandedHeight: 640.wmax * 138.sr,
+                      collapsedHeight: max(40.vp, mediaTopBar.value),
+                      expandedHeight: 138.vp,
                       flexibleSpace: Obx(() {
                         List<BoxShadow>? boxShadow;
 
@@ -110,7 +110,7 @@ class PageSettings extends GetView<PageSettingsController> {
   Widget buildBack(BuildContext context) {
     final mediaTopBar = controller.mediaTopBar.value;
     final mediaPadding = controller.mediaPadding.value;
-    final height = max(640.wmax * 40.sr, mediaTopBar);
+    final height = max(40.vp, mediaTopBar);
 
     return Positioned(
       top: 0,
@@ -122,12 +122,12 @@ class PageSettings extends GetView<PageSettingsController> {
           width: 680.wmax,
           height: height,
           margin: EdgeInsets.only(
-            top: max(mediaPadding.top, 640.wmax * 20.sr),
-            left: 640.wmax * 20.sr,
+            top: max(mediaPadding.top, 20.vp),
+            left: 20.vp,
           ),
           padding: EdgeInsets.only(
-            top: (height - 640.wmax * 36.sr) / 2,
-            bottom: (height - 640.wmax * 36.sr) / 2,
+            top: (height - 36.vp) / 2,
+            bottom: (height - 36.vp) / 2,
           ),
           child: Row(
             children: [
@@ -136,8 +136,8 @@ class PageSettings extends GetView<PageSettingsController> {
                 onTap: () => GetNavigate.back(),
                 child: Image(
                   image: const AssetImage('lib/assets/images/auth/back.png'),
-                  width: 640.wmax * 36.sr,
-                  height: 640.wmax * 36.sr,
+                  width: 36.vp,
+                  height: 36.vp,
                   fit: BoxFit.fill,
                 ),
               ),
@@ -152,14 +152,14 @@ class PageSettings extends GetView<PageSettingsController> {
     return Container(
       alignment: Alignment.center,
       constraints: const BoxConstraints.expand(),
-      padding: EdgeInsets.only(left: 640.wmax * 32.sr, right: 640.wmax * 32.sr),
+      padding: EdgeInsets.only(left: 32.vp, right: 32.vp),
       child: Text(
         'Settings'.tr,
         style: TextStyle(
-          fontSize: 640.wmax * 20.sr,
-          fontWeight: FontWeight.bold,
           color: const Color(0xff130138),
-          letterSpacing: 3,
+          fontWeight: FontWeight.bold,
+          letterSpacing: 3.0,
+          fontSize: 20.fp,
           height: 1,
         ),
       ),
@@ -169,32 +169,32 @@ class PageSettings extends GetView<PageSettingsController> {
   Widget buildItems(BuildContext context) {
     return Container(
       padding: EdgeInsets.only(
-        top: 640.wmax * 12.sr,
-        left: 640.wmax * 32.sr,
-        right: 640.wmax * 32.sr,
-        bottom: 640.wmax * 32.sr,
+        top: 12.vp,
+        left: 32.vp,
+        right: 32.vp,
+        bottom: 32.vp,
       ),
       child: Column(
         children: [
           GestureDetector(
             behavior: HitTestBehavior.opaque,
             child: Container(
-              height: 640.wmax * 44.sr,
-              margin: EdgeInsets.only(bottom: 640.wmax * 30.sr),
+              height: 44.vp,
+              margin: EdgeInsets.only(bottom: 30.vp),
               child: Row(
                 children: [
                   Container(
-                    width: 640.wmax * 44.sr,
-                    height: 640.wmax * 44.sr,
-                    margin: EdgeInsets.only(right: 640.wmax * 26.sr),
+                    width: 44.vp,
+                    height: 44.vp,
+                    margin: EdgeInsets.only(right: 26.vp),
                     alignment: Alignment.center,
                     decoration: BoxDecoration(
                       color: Colors.white,
-                      borderRadius: BorderRadius.circular(640.wmax * 22.sr),
+                      borderRadius: BorderRadius.circular(22.vp),
                       boxShadow: [
                         BoxShadow(
                           color: const Color(0xff272246).withValues(alpha: .08),
-                          offset: Offset(0, 640.wmax * 4.sr),
+                          offset: Offset(0, 4.vp),
                           spreadRadius: 0,
                           blurRadius: 12,
                         ),
@@ -202,8 +202,8 @@ class PageSettings extends GetView<PageSettingsController> {
                     ),
                     child: Image.asset(
                       'lib/assets/images/settings/profile.png',
-                      height: 640.wmax * 24.sr,
-                      width: 640.wmax * 24.sr,
+                      height: 24.vp,
+                      width: 24.vp,
                       fit: BoxFit.fill,
                     ),
                   ),
@@ -211,16 +211,16 @@ class PageSettings extends GetView<PageSettingsController> {
                     child: Text(
                       'Person Profile'.tr,
                       style: TextStyle(
-                        fontSize: 640.wmax * 16.sr,
-                        fontWeight: FontWeight.w600,
                         color: Color(0xff130138),
+                        fontWeight: FontWeight.w600,
+                        fontSize: 16.fp,
                       ),
                     ),
                   ),
                   Image.asset(
                     'lib/assets/images/settings/right.png',
-                    height: 640.wmax * 28.sr,
-                    width: 640.wmax * 28.sr,
+                    height: 28.vp,
+                    width: 28.vp,
                     fit: BoxFit.fill,
                   ),
                 ],
@@ -235,22 +235,22 @@ class PageSettings extends GetView<PageSettingsController> {
           GestureDetector(
             behavior: HitTestBehavior.opaque,
             child: Container(
-              height: 640.wmax * 44.sr,
-              margin: EdgeInsets.only(bottom: 640.wmax * 30.sr),
+              height: 44.vp,
+              margin: EdgeInsets.only(bottom: 30.vp),
               child: Row(
                 children: [
                   Container(
-                    width: 640.wmax * 44.sr,
-                    height: 640.wmax * 44.sr,
-                    margin: EdgeInsets.only(right: 640.wmax * 26.sr),
+                    width: 44.vp,
+                    height: 44.vp,
+                    margin: EdgeInsets.only(right: 26.vp),
                     alignment: Alignment.center,
                     decoration: BoxDecoration(
                       color: Colors.white,
-                      borderRadius: BorderRadius.circular(640.wmax * 22.sr),
+                      borderRadius: BorderRadius.circular(22.vp),
                       boxShadow: [
                         BoxShadow(
                           color: const Color(0xff272246).withValues(alpha: .08),
-                          offset: Offset(0, 640.wmax * 4.sr),
+                          offset: Offset(0, 4.vp),
                           spreadRadius: 0,
                           blurRadius: 12,
                         ),
@@ -258,8 +258,8 @@ class PageSettings extends GetView<PageSettingsController> {
                     ),
                     child: Image.asset(
                       'lib/assets/images/settings/notification.png',
-                      height: 640.wmax * 24.sr,
-                      width: 640.wmax * 24.sr,
+                      height: 24.vp,
+                      width: 24.vp,
                       fit: BoxFit.fill,
                     ),
                   ),
@@ -267,16 +267,16 @@ class PageSettings extends GetView<PageSettingsController> {
                     child: Text(
                       'Message Notification'.tr,
                       style: TextStyle(
-                        fontSize: 640.wmax * 16.sr,
-                        fontWeight: FontWeight.w600,
                         color: Color(0xff130138),
+                        fontWeight: FontWeight.w600,
+                        fontSize: 16.fp,
                       ),
                     ),
                   ),
                   Image.asset(
                     'lib/assets/images/settings/right.png',
-                    height: 640.wmax * 28.sr,
-                    width: 640.wmax * 28.sr,
+                    height: 28.vp,
+                    width: 28.vp,
                     fit: BoxFit.fill,
                   ),
                 ],
@@ -289,22 +289,22 @@ class PageSettings extends GetView<PageSettingsController> {
           GestureDetector(
             behavior: HitTestBehavior.opaque,
             child: Container(
-              height: 640.wmax * 44.sr,
-              margin: EdgeInsets.only(bottom: 640.wmax * 30.sr),
+              height: 44.vp,
+              margin: EdgeInsets.only(bottom: 30.vp),
               child: Row(
                 children: [
                   Container(
-                    width: 640.wmax * 44.sr,
-                    height: 640.wmax * 44.sr,
-                    margin: EdgeInsets.only(right: 640.wmax * 26.sr),
+                    width: 44.vp,
+                    height: 44.vp,
+                    margin: EdgeInsets.only(right: 26.vp),
                     alignment: Alignment.center,
                     decoration: BoxDecoration(
                       color: Colors.white,
-                      borderRadius: BorderRadius.circular(640.wmax * 22.sr),
+                      borderRadius: BorderRadius.circular(22.vp),
                       boxShadow: [
                         BoxShadow(
                           color: const Color(0xff272246).withValues(alpha: .08),
-                          offset: Offset(0, 640.wmax * 4.sr),
+                          offset: Offset(0, 4.vp),
                           spreadRadius: 0,
                           blurRadius: 12,
                         ),
@@ -312,8 +312,8 @@ class PageSettings extends GetView<PageSettingsController> {
                     ),
                     child: Image.asset(
                       'lib/assets/images/settings/card.png',
-                      height: 640.wmax * 24.sr,
-                      width: 640.wmax * 24.sr,
+                      height: 24.vp,
+                      width: 24.vp,
                       fit: BoxFit.fill,
                     ),
                   ),
@@ -321,16 +321,16 @@ class PageSettings extends GetView<PageSettingsController> {
                     child: Text(
                       'My Bank Card'.tr,
                       style: TextStyle(
-                        fontSize: 640.wmax * 16.sr,
-                        fontWeight: FontWeight.w600,
                         color: Color(0xff130138),
+                        fontWeight: FontWeight.w600,
+                        fontSize: 16.fp,
                       ),
                     ),
                   ),
                   Image.asset(
                     'lib/assets/images/settings/right.png',
-                    height: 640.wmax * 28.sr,
-                    width: 640.wmax * 28.sr,
+                    height: 28.vp,
+                    width: 28.vp,
                     fit: BoxFit.fill,
                   ),
                 ],
@@ -343,22 +343,22 @@ class PageSettings extends GetView<PageSettingsController> {
           GestureDetector(
             behavior: HitTestBehavior.opaque,
             child: Container(
-              height: 640.wmax * 44.sr,
-              margin: EdgeInsets.only(bottom: 640.wmax * 30.sr),
+              height: 44.vp,
+              margin: EdgeInsets.only(bottom: 30.vp),
               child: Row(
                 children: [
                   Container(
-                    width: 640.wmax * 44.sr,
-                    height: 640.wmax * 44.sr,
-                    margin: EdgeInsets.only(right: 640.wmax * 26.sr),
+                    width: 44.vp,
+                    height: 44.vp,
+                    margin: EdgeInsets.only(right: 26.vp),
                     alignment: Alignment.center,
                     decoration: BoxDecoration(
                       color: Colors.white,
-                      borderRadius: BorderRadius.circular(640.wmax * 22.sr),
+                      borderRadius: BorderRadius.circular(22.vp),
                       boxShadow: [
                         BoxShadow(
                           color: const Color(0xff272246).withValues(alpha: .08),
-                          offset: Offset(0, 640.wmax * 4.sr),
+                          offset: Offset(0, 4.vp),
                           spreadRadius: 0,
                           blurRadius: 12,
                         ),
@@ -366,8 +366,8 @@ class PageSettings extends GetView<PageSettingsController> {
                     ),
                     child: Image.asset(
                       'lib/assets/images/settings/langs.png',
-                      height: 640.wmax * 24.sr,
-                      width: 640.wmax * 24.sr,
+                      height: 24.vp,
+                      width: 24.vp,
                       fit: BoxFit.fill,
                     ),
                   ),
@@ -375,16 +375,16 @@ class PageSettings extends GetView<PageSettingsController> {
                     child: Text(
                       'Switch Language'.tr,
                       style: TextStyle(
-                        fontSize: 640.wmax * 16.sr,
-                        fontWeight: FontWeight.w600,
                         color: Color(0xff130138),
+                        fontWeight: FontWeight.w600,
+                        fontSize: 16.fp,
                       ),
                     ),
                   ),
                   Image.asset(
                     'lib/assets/images/settings/right.png',
-                    height: 640.wmax * 28.sr,
-                    width: 640.wmax * 28.sr,
+                    height: 28.vp,
+                    width: 28.vp,
                     fit: BoxFit.fill,
                   ),
                 ],
@@ -399,22 +399,22 @@ class PageSettings extends GetView<PageSettingsController> {
           GestureDetector(
             behavior: HitTestBehavior.opaque,
             child: Container(
-              height: 640.wmax * 44.sr,
-              margin: EdgeInsets.only(bottom: 640.wmax * 30.sr),
+              height: 44.vp,
+              margin: EdgeInsets.only(bottom: 30.vp),
               child: Row(
                 children: [
                   Container(
-                    width: 640.wmax * 44.sr,
-                    height: 640.wmax * 44.sr,
-                    margin: EdgeInsets.only(right: 640.wmax * 26.sr),
+                    width: 44.vp,
+                    height: 44.vp,
+                    margin: EdgeInsets.only(right: 26.vp),
                     alignment: Alignment.center,
                     decoration: BoxDecoration(
                       color: Colors.white,
-                      borderRadius: BorderRadius.circular(640.wmax * 22.sr),
+                      borderRadius: BorderRadius.circular(22.vp),
                       boxShadow: [
                         BoxShadow(
                           color: const Color(0xff272246).withValues(alpha: .08),
-                          offset: Offset(0, 640.wmax * 4.sr),
+                          offset: Offset(0, 4.vp),
                           spreadRadius: 0,
                           blurRadius: 12,
                         ),
@@ -422,8 +422,8 @@ class PageSettings extends GetView<PageSettingsController> {
                     ),
                     child: Image.asset(
                       'lib/assets/images/settings/logger.png',
-                      height: 640.wmax * 24.sr,
-                      width: 640.wmax * 24.sr,
+                      height: 24.vp,
+                      width: 24.vp,
                       fit: BoxFit.fill,
                     ),
                   ),
@@ -431,16 +431,16 @@ class PageSettings extends GetView<PageSettingsController> {
                     child: Text(
                       'Run Logger'.tr,
                       style: TextStyle(
-                        fontSize: 640.wmax * 16.sr,
-                        fontWeight: FontWeight.w600,
                         color: Color(0xff130138),
+                        fontWeight: FontWeight.w600,
+                        fontSize: 16.fp,
                       ),
                     ),
                   ),
                   Image.asset(
                     'lib/assets/images/settings/right.png',
-                    height: 640.wmax * 28.sr,
-                    width: 640.wmax * 28.sr,
+                    height: 28.vp,
+                    width: 28.vp,
                     fit: BoxFit.fill,
                   ),
                 ],
@@ -455,22 +455,22 @@ class PageSettings extends GetView<PageSettingsController> {
           GestureDetector(
             behavior: HitTestBehavior.opaque,
             child: Container(
-              height: 640.wmax * 44.sr,
-              margin: EdgeInsets.only(bottom: 640.wmax * 30.sr),
+              height: 44.vp,
+              margin: EdgeInsets.only(bottom: 30.vp),
               child: Row(
                 children: [
                   Container(
-                    width: 640.wmax * 44.sr,
-                    height: 640.wmax * 44.sr,
-                    margin: EdgeInsets.only(right: 640.wmax * 26.sr),
+                    width: 44.vp,
+                    height: 44.vp,
+                    margin: EdgeInsets.only(right: 26.vp),
                     alignment: Alignment.center,
                     decoration: BoxDecoration(
                       color: Colors.white,
-                      borderRadius: BorderRadius.circular(640.wmax * 22.sr),
+                      borderRadius: BorderRadius.circular(22.vp),
                       boxShadow: [
                         BoxShadow(
                           color: const Color(0xff272246).withValues(alpha: .08),
-                          offset: Offset(0, 640.wmax * 4.sr),
+                          offset: Offset(0, 4.vp),
                           spreadRadius: 0,
                           blurRadius: 12,
                         ),
@@ -478,8 +478,8 @@ class PageSettings extends GetView<PageSettingsController> {
                     ),
                     child: Image.asset(
                       'lib/assets/images/settings/github.png',
-                      height: 640.wmax * 24.sr,
-                      width: 640.wmax * 24.sr,
+                      height: 24.vp,
+                      width: 24.vp,
                       fit: BoxFit.fill,
                     ),
                   ),
@@ -487,23 +487,23 @@ class PageSettings extends GetView<PageSettingsController> {
                     child: Text(
                       'About App'.tr,
                       style: TextStyle(
-                        fontSize: 640.wmax * 16.sr,
-                        fontWeight: FontWeight.w600,
                         color: Color(0xff130138),
+                        fontWeight: FontWeight.w600,
+                        fontSize: 16.fp,
                       ),
                     ),
                   ),
                   Padding(
                     padding: EdgeInsets.only(
-                      top: 640.wmax * 5.sr,
-                      left: 640.wmax * 5.sr,
-                      right: 640.wmax * 7.sr,
-                      bottom: 640.wmax * 5.sr,
+                      top: 5.vp,
+                      left: 5.vp,
+                      right: 7.vp,
+                      bottom: 5.vp,
                     ),
                     child: Image.asset(
                       'lib/assets/images/settings/link.png',
-                      height: 640.wmax * 18.sr,
-                      width: 640.wmax * 18.sr,
+                      height: 18.vp,
+                      width: 18.vp,
                       fit: BoxFit.fill,
                     ),
                   ),
@@ -528,7 +528,7 @@ class PageSettings extends GetView<PageSettingsController> {
   Widget buildLogout(BuildContext context) {
     return Container(
       alignment: Alignment.center,
-      padding: EdgeInsets.only(left: 640.wmax * 32.sr, right: 640.wmax * 32.sr),
+      padding: EdgeInsets.only(left: 32.vp, right: 32.vp),
       child: Column(
         children: [
           Material(
@@ -539,23 +539,23 @@ class PageSettings extends GetView<PageSettingsController> {
               hoverColor: Colors.transparent,
               focusColor: Colors.transparent,
               highlightShape: BoxShape.rectangle,
-              borderRadius: BorderRadius.all(Radius.circular(640.wmax * 32.sr)),
+              borderRadius: BorderRadius.all(Radius.circular(32.vp)),
               highlightColor: const Color(0xff5b259f).withValues(alpha: 0.0),
               splashColor: const Color(0xff5b259f).withValues(alpha: 0.0),
               onTap: () => showAlertDialog(context),
               child: Container(
-                width: 640.wmax * 64.sr,
-                height: 640.wmax * 64.sr,
+                width: 64.vp,
+                height: 64.vp,
                 alignment: Alignment.center,
-                padding: EdgeInsets.only(right: 640.wmax * 3.sr),
+                padding: EdgeInsets.only(right: 3.vp),
                 decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(640.wmax * 32.sr),
+                  borderRadius: BorderRadius.circular(32.vp),
                   border: Border.all(color: Color(0xffe0e0e0), width: .8),
                 ),
                 child: Image.asset(
                   'lib/assets/images/settings/logout.png',
-                  height: 640.wmax * 36.sr,
-                  width: 640.wmax * 36.sr,
+                  height: 36.vp,
+                  width: 36.vp,
                   fit: BoxFit.fill,
                 ),
               ),
@@ -565,14 +565,14 @@ class PageSettings extends GetView<PageSettingsController> {
             behavior: HitTestBehavior.translucent,
             onTap: () => showAlertDialog(context),
             child: Padding(
-              padding: EdgeInsets.only(top: 640.wmax * 12.sr),
+              padding: EdgeInsets.only(top: 12.vp),
               child: Text(
                 'Logout'.tr,
                 style: TextStyle(
-                  fontSize: 640.wmax * 18.sr,
-                  fontWeight: FontWeight.w600,
                   color: Color(0xff5b259f),
+                  fontWeight: FontWeight.w600,
                   letterSpacing: 3,
+                  fontSize: 18.fp,
                 ),
               ),
             ),
@@ -586,10 +586,7 @@ class PageSettings extends GetView<PageSettingsController> {
     final mediaPadding = controller.mediaPadding;
     final mediaBottom = mediaPadding.value.bottom;
 
-    return SizedBox(
-      width: 640.wmax,
-      height: max(mediaBottom - 640.wmax * 20.sr, 640.wmax * 10.sr),
-    );
+    return SizedBox(width: 640.wmax, height: max(mediaBottom - 20.vp, 10.vp));
   }
 
   void showAlertDialog(BuildContext context) {
@@ -597,40 +594,37 @@ class PageSettings extends GetView<PageSettingsController> {
       context: context,
       barrierColor: Color(0xff000000).withValues(alpha: 0.65),
       builder: (context) => Padding(
-        padding: EdgeInsets.only(
-          top: 640.wmax * 20.sr,
-          bottom: 640.wmax * 100.sr,
-        ),
+        padding: EdgeInsets.only(top: 20.vp, bottom: 100.vp),
         child: AlertDialog(
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(25.0),
           ),
           iconPadding: EdgeInsets.all(0),
           contentPadding: EdgeInsets.only(
-            top: 640.wmax * 30.sr,
-            left: 640.wmax * 30.sr,
-            right: 640.wmax * 30.sr,
+            top: 30.vp,
+            left: 30.vp,
+            right: 30.vp,
           ),
           actionsPadding: EdgeInsets.only(
-            top: 640.wmax * 14.sr,
-            left: 640.wmax * 20.sr,
-            right: 640.wmax * 20.sr,
-            bottom: 640.wmax * 8.sr,
+            top: 14.vp,
+            left: 20.vp,
+            right: 20.vp,
+            bottom: 8.vp,
           ),
           buttonPadding: EdgeInsets.only(
-            top: 640.wmax * 10.sr,
-            left: 640.wmax * 5.sr,
-            right: 640.wmax * 5.sr,
-            bottom: 640.wmax * 10.sr,
+            top: 10.vp,
+            left: 5.vp,
+            right: 5.vp,
+            bottom: 10.vp,
           ),
           backgroundColor: Colors.white,
           content: Text(
             'Do you want to logout?'.tr,
             style: TextStyle(
-              fontSize: 640.wmax * 17.6.sr,
-              fontWeight: FontWeight.w600,
               color: Color(0xfff34d4d),
+              fontWeight: FontWeight.w600,
               letterSpacing: 1.2,
+              fontSize: 17.6.fp,
             ),
           ),
           actions: [
@@ -644,10 +638,10 @@ class PageSettings extends GetView<PageSettingsController> {
               child: Text(
                 'System_Cancel'.tr,
                 style: TextStyle(
-                  fontSize: 640.wmax * 15.sr,
-                  fontWeight: FontWeight.w500,
                   color: Color(0xff9f9f9f),
+                  fontWeight: FontWeight.w500,
                   letterSpacing: 1.2,
+                  fontSize: 15.fp,
                 ),
               ),
             ),
@@ -661,10 +655,10 @@ class PageSettings extends GetView<PageSettingsController> {
               child: Text(
                 'Logout'.tr,
                 style: TextStyle(
-                  fontSize: 640.wmax * 15.sr,
-                  fontWeight: FontWeight.w500,
                   color: Color(0xff606266),
+                  fontWeight: FontWeight.w500,
                   letterSpacing: 1.2,
+                  fontSize: 15.fp,
                 ),
               ),
             ),

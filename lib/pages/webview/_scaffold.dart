@@ -4,6 +4,7 @@ import 'package:url_launcher/url_launcher.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'package:dompet/pages/webview/controller.dart';
 import 'package:dompet/extension/bool.dart';
+import 'package:dompet/extension/size.dart';
 import 'package:dompet/utils/empty.dart';
 
 class PageWebviewScaffold extends StatefulWidget {
@@ -200,10 +201,10 @@ class PageWebviewScaffoldState extends State<PageWebviewScaffold> {
                             child: Text(
                               'Webview_Loading'.tr,
                               style: TextStyle(
-                                fontSize: 14,
+                                color: Color(0xff707177),
                                 fontWeight: FontWeight.w600,
                                 letterSpacing: 1.5,
-                                color: Color(0xff707177),
+                                fontSize: 14.fp,
                               ),
                             ),
                           ),

@@ -19,9 +19,9 @@ class PageStats extends GetView<PageStatsController> {
       body: Obx(() {
         final isPortrait = controller.isPortrait;
         final mediaPadding = controller.mediaPadding.value;
-        final mediaBottom = max(mediaPadding.bottom, 640.wmax * 30.sr);
+        final mediaBottom = max(mediaPadding.bottom, 30.vp);
 
-        final bottom = isPortrait.value ? mediaBottom + 640.wmax * 92.sr : 0.0;
+        final bottom = isPortrait.value ? mediaBottom + 92.vp : 0.0;
         final width = isPortrait.value ? 640.wmax : 100.vw;
 
         return Align(
@@ -79,12 +79,12 @@ class PageStats extends GetView<PageStatsController> {
           opacity: isShowTopBar.value ? 1.0 : 0.0,
           child: Container(
             width: 640.wmax,
-            height: max(640.wmax * 88.sr, mediaTop + 640.wmax * 56.sr),
+            height: max(88.vp, mediaTop + 56.vp),
             alignment: Alignment.center,
             padding: EdgeInsets.only(
-              top: max(640.wmax * 32.sr, mediaTop),
-              left: 640.wmax * 32.sr,
-              right: 640.wmax * 32.sr,
+              top: max(32.vp, mediaTop),
+              left: 32.vp,
+              right: 32.vp,
             ),
             decoration: BoxDecoration(
               color: Colors.white,
@@ -98,20 +98,20 @@ class PageStats extends GetView<PageStatsController> {
               ],
             ),
             child: SizedBox(
-              height: 640.wmax * 56.sr,
+              height: 56.vp,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Padding(
-                    padding: EdgeInsets.only(right: 640.wmax * 10.sr),
+                    padding: EdgeInsets.only(right: 10.vp),
                     child: Text(
                       'Balance'.tr,
                       style: TextStyle(
-                        fontSize: 640.wmax * 20.sr,
-                        fontWeight: FontWeight.w600,
                         color: const Color(0xff130138),
+                        fontWeight: FontWeight.w600,
                         letterSpacing: 1.2,
+                        fontSize: 20.fp,
                         height: 1,
                       ),
                     ),
@@ -120,14 +120,14 @@ class PageStats extends GetView<PageStatsController> {
                     child: AutoSizeText(
                       balance.usd2,
                       style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 640.wmax * 25.sr,
                         color: Color(0xff9038ff),
+                        fontWeight: FontWeight.bold,
+                        fontSize: 25.fp,
                       ),
                       textAlign: TextAlign.right,
-                      minFontSize: (640.wmax * 15.sr).floor() * 1.0,
-                      maxFontSize: (640.wmax * 26.sr).floor() * 1.0,
-                      stepGranularity: max((640.wmax * 1.sr).floor() * 1.0, 1),
+                      minFontSize: (15.vp).floor() * 1.0,
+                      maxFontSize: (26.vp).floor() * 1.0,
+                      stepGranularity: max((1.vp).floor() * 1.0, 1),
                       overflow: TextOverflow.ellipsis,
                       maxLines: 1,
                     ),
@@ -159,8 +159,8 @@ class PageStats extends GetView<PageStatsController> {
         return ClipOval(
           child: Image.memory(
             userAvatar,
-            width: 640.wmax * 39.sr,
-            height: 640.wmax * 39.sr,
+            width: 39.vp,
+            height: 39.vp,
             fit: BoxFit.fill,
           ),
         );
@@ -169,59 +169,55 @@ class PageStats extends GetView<PageStatsController> {
       return ClipOval(
         child: Image.asset(
           'lib/assets/images/payer/$icon.png',
-          width: 640.wmax * 39.sr,
-          height: 640.wmax * 39.sr,
+          width: 39.vp,
+          height: 39.vp,
           fit: BoxFit.fill,
         ),
       );
     }
 
     return Container(
-      padding: EdgeInsets.only(left: 640.wmax * 32.sr, right: 640.wmax * 32.sr),
-      margin: EdgeInsets.only(top: 640.wmax * 50.sr, bottom: 640.wmax * 15.sr),
+      padding: EdgeInsets.only(left: 32.vp, right: 32.vp),
+      margin: EdgeInsets.only(top: 50.vp, bottom: 15.vp),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Container(
-            height: 640.wmax * 20.sr,
+            height: 20.vp,
             alignment: Alignment.center,
-            margin: EdgeInsets.only(bottom: 640.wmax * 16.sr),
+            margin: EdgeInsets.only(bottom: 16.vp),
             child: Text(
               'Balance'.tr,
               style: TextStyle(
-                fontWeight: FontWeight.w500,
-                fontSize: 640.wmax * 16.sr,
                 color: Color(0xff8b98b1),
+                fontWeight: FontWeight.w500,
+                fontSize: 16.fp,
               ),
             ),
           ),
           Container(
-            height: 640.wmax * 44.sr,
+            height: 44.vp,
             alignment: Alignment.center,
-            margin: EdgeInsets.only(bottom: 640.wmax * 42.sr),
+            margin: EdgeInsets.only(bottom: 42.vp),
             child: AutoSizeText(
               balance.USD,
               style: TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize: 640.wmax * 36.sr,
                 color: Color(0xff9038ff),
+                fontWeight: FontWeight.bold,
+                fontSize: 36.fp,
               ),
-              minFontSize: (640.wmax * 24.sr).floor() * 1.0,
-              maxFontSize: (640.wmax * 36.sr).floor() * 1.0,
-              stepGranularity: max((640.wmax * 1.sr).floor() * 1.0, 1),
+              minFontSize: (24.vp).floor() * 1.0,
+              maxFontSize: (36.vp).floor() * 1.0,
+              stepGranularity: max((1.vp).floor() * 1.0, 1),
               overflow: TextOverflow.ellipsis,
               maxLines: 1,
             ),
           ),
           Container(
             width: 640.wmax,
-            height: 640.wmax * 21.sr,
-            margin: EdgeInsets.only(
-              left: 640.wmax * 2.sr,
-              right: 640.wmax * 2.sr,
-              bottom: 640.wmax * 25.sr,
-            ),
+            height: 21.vp,
+            margin: EdgeInsets.only(left: 2.vp, right: 2.vp, bottom: 25.vp),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               crossAxisAlignment: CrossAxisAlignment.center,
@@ -229,19 +225,19 @@ class PageStats extends GetView<PageStatsController> {
                 Text(
                   'Transactions'.tr,
                   style: TextStyle(
-                    fontSize: 640.wmax * 18.sr,
-                    fontWeight: FontWeight.w600,
                     color: const Color(0xff130138),
+                    fontWeight: FontWeight.w600,
                     letterSpacing: -0.35,
+                    fontSize: 18.fp,
                     height: 1,
                   ),
                 ),
                 Text(
                   'Money'.tr,
                   style: TextStyle(
-                    fontSize: 640.wmax * 14.sr,
-                    fontWeight: FontWeight.w600,
                     color: const Color(0xff130138),
+                    fontWeight: FontWeight.w600,
+                    fontSize: 14.fp,
                     height: 1,
                   ),
                 ),
@@ -257,61 +253,61 @@ class PageStats extends GetView<PageStatsController> {
               final order = rawOrders[index];
 
               return SizedBox(
-                height: 640.wmax * 39.sr,
+                height: 39.vp,
                 child: Row(
                   children: [
                     buildIconAvatar(order.icon),
-                    SizedBox(width: 640.wmax * 15.sr),
+                    SizedBox(width: 15.vp),
                     Expanded(
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.start,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           SizedBox(
-                            height: 640.wmax * 19.sr,
+                            height: 19.vp,
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 Text(
                                   order.name.tr,
                                   style: TextStyle(
-                                    fontSize: 640.wmax * 16.sr,
-                                    fontWeight: FontWeight.w600,
                                     color: const Color(0xff000000),
+                                    fontWeight: FontWeight.w600,
+                                    fontSize: 16.fp,
                                   ),
                                 ),
                                 Text(
                                   order.money.usd,
                                   style: TextStyle(
-                                    fontSize: 640.wmax * 16.sr,
-                                    fontWeight: FontWeight.w600,
                                     color: const Color(0xff363853),
+                                    fontWeight: FontWeight.w600,
                                     letterSpacing: -0.6,
+                                    fontSize: 16.fp,
                                   ),
                                 ),
                               ],
                             ),
                           ),
-                          SizedBox(height: 640.wmax * 2.sr),
+                          SizedBox(height: 2.vp),
                           SizedBox(
-                            height: 640.wmax * 18.sr,
+                            height: 18.vp,
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 Text(
                                   order.type.tr,
                                   style: TextStyle(
-                                    fontSize: 640.wmax * 14.sr,
-                                    fontWeight: FontWeight.w500,
                                     color: const Color(0xff909399),
+                                    fontWeight: FontWeight.w500,
+                                    fontSize: 14.fp,
                                   ),
                                 ),
                                 Text(
                                   order.date.yMMMd(),
                                   style: TextStyle(
-                                    fontSize: 640.wmax * 12.sr,
-                                    fontWeight: FontWeight.w500,
                                     color: const Color(0xffababab),
+                                    fontWeight: FontWeight.w500,
+                                    fontSize: 12.fp,
                                   ),
                                 ),
                               ],
@@ -325,7 +321,7 @@ class PageStats extends GetView<PageStatsController> {
               );
             },
             separatorBuilder: (BuildContext context, int index) {
-              return SizedBox(height: 640.wmax * 21.sr);
+              return SizedBox(height: 21.vp);
             },
           ),
         ],
@@ -336,7 +332,7 @@ class PageStats extends GetView<PageStatsController> {
   Widget buildBottomTabbar(BuildContext context) {
     final isPortrait = controller.isPortrait;
     final mediaPadding = controller.mediaPadding.value;
-    final mediaBottom = max(mediaPadding.bottom, 640.wmax * 30.sr);
+    final mediaBottom = max(mediaPadding.bottom, 30.vp);
 
     if (!isPortrait.value) {
       return const SizedBox.shrink();
@@ -348,40 +344,40 @@ class PageStats extends GetView<PageStatsController> {
       child: Container(
         width: 640.wmax,
         color: Colors.white.withValues(alpha: 0.88),
-        height: mediaBottom + 640.wmax * 92.sr,
+        height: mediaBottom + 92.vp,
         alignment: Alignment.topCenter,
         padding: EdgeInsets.only(
-          top: 640.wmax * 10.sr,
-          left: 640.wmax * 24.sr,
-          right: 640.wmax * 24.sr,
+          top: 10.vp,
+          left: 24.vp,
+          right: 24.vp,
           bottom: mediaBottom,
         ),
         child: Stack(
           fit: StackFit.expand,
           children: [
             Positioned(
-              top: 640.wmax * 32.sr,
-              left: 640.wmax * 24.sr,
+              top: 32.vp,
+              left: 24.vp,
               child: Image.asset(
                 'lib/assets/images/tabbar/bg.png',
-                width: 640.wmax * 280.sr,
-                height: 640.wmax * 52.sr,
+                width: 280.vp,
+                height: 52.vp,
                 fit: BoxFit.fill,
               ),
             ),
             Align(
               alignment: Alignment.topLeft,
               child: Container(
-                height: 640.wmax * 78.sr,
+                height: 78.vp,
                 padding: EdgeInsets.only(
-                  top: 640.wmax * 25.sr,
-                  left: 640.wmax * 40.sr,
-                  right: 640.wmax * 40.sr,
-                  bottom: 640.wmax * 25.sr,
+                  top: 25.vp,
+                  left: 40.vp,
+                  right: 40.vp,
+                  bottom: 25.vp,
                 ),
                 decoration: BoxDecoration(
                   color: const Color(0xff2f1155),
-                  borderRadius: BorderRadius.circular(640.wmax * 30.sr),
+                  borderRadius: BorderRadius.circular(30.vp),
                   boxShadow: [
                     BoxShadow(
                       color: const Color(0xff272246).withValues(alpha: 0.1),
@@ -400,8 +396,8 @@ class PageStats extends GetView<PageStatsController> {
                       onTap: () => GetNavigate.offNamedUntil(GetRoutes.home),
                       child: Image.asset(
                         'lib/assets/images/tabbar/home.png',
-                        width: 640.wmax * 28.sr,
-                        height: 640.wmax * 28.sr,
+                        width: 28.vp,
+                        height: 28.vp,
                         fit: BoxFit.fill,
                       ),
                     ),
@@ -410,8 +406,8 @@ class PageStats extends GetView<PageStatsController> {
                       onTap: () => {},
                       child: Image.asset(
                         'lib/assets/images/tabbar/chart_select.png',
-                        width: 640.wmax * 28.sr,
-                        height: 640.wmax * 28.sr,
+                        width: 28.vp,
+                        height: 28.vp,
                         fit: BoxFit.fill,
                       ),
                     ),
@@ -420,8 +416,8 @@ class PageStats extends GetView<PageStatsController> {
                       onTap: () => GetNavigate.toNamed(GetRoutes.notification),
                       child: Image.asset(
                         'lib/assets/images/tabbar/notification.png',
-                        width: 640.wmax * 28.sr,
-                        height: 640.wmax * 28.sr,
+                        width: 28.vp,
+                        height: 28.vp,
                         fit: BoxFit.fill,
                       ),
                     ),
@@ -430,8 +426,8 @@ class PageStats extends GetView<PageStatsController> {
                       onTap: () => GetNavigate.toNamed(GetRoutes.settings),
                       child: Image.asset(
                         'lib/assets/images/tabbar/settings.png',
-                        width: 640.wmax * 28.sr,
-                        height: 640.wmax * 28.sr,
+                        width: 28.vp,
+                        height: 28.vp,
                         fit: BoxFit.fill,
                       ),
                     ),
@@ -457,20 +453,20 @@ class PageStats extends GetView<PageStatsController> {
     final mediaPadding = controller.mediaPadding;
 
     if (!isPortrait.value) {
-      top = 640.wmax * 10.sr;
-      left = max(640.wmax * 15.sr, mediaPadding.value.left);
-      right = max(640.wmax * 15.sr, mediaPadding.value.top);
+      top = 10.vp;
+      left = max(15.vp, mediaPadding.value.left);
+      right = max(15.vp, mediaPadding.value.top);
       width = 100.vw;
       height = 100.vh;
-      bottom = 640.wmax * 20.sr;
+      bottom = 20.vp;
     }
 
     if (isPortrait.value) {
-      top = max(30.wdp, mediaPadding.value.top + 10.wdp);
-      left = 25.wdp;
-      right = 25.wdp;
+      top = max(30.vp, mediaPadding.value.top + 10.vp);
+      left = 25.vp;
+      right = 25.vp;
       width = 100.vw;
-      height = 165.wdp + top;
+      height = 165.vp + top;
       bottom = 0.0;
     }
 
@@ -487,17 +483,17 @@ class PageStats extends GetView<PageStatsController> {
         fit: StackFit.expand,
         children: [
           Positioned(
-            top: 640.wmax * 10.sr,
-            left: 640.wmax * 3.sr,
+            top: 10.vp,
+            left: 3.vp,
             child: Container(
-              height: 640.wmax * 22.sr,
+              height: 22.vp,
               alignment: Alignment.centerLeft,
               child: Text(
                 'Balance'.tr,
                 style: TextStyle(
-                  fontSize: 640.wmax * 18.sr,
-                  fontWeight: FontWeight.w600,
                   color: Color(0xff130138),
+                  fontWeight: FontWeight.w600,
+                  fontSize: 18.fp,
                 ),
               ),
             ),
@@ -536,7 +532,7 @@ class PageStats extends GetView<PageStatsController> {
       isCurved: true,
       isStrokeCapRound: true,
       color: Color(0xff8438ff),
-      barWidth: 640.wmax * 2.0.sr,
+      barWidth: 2.0.vp,
       showingIndicators: showings.value,
       dotData: const FlDotData(show: false),
       belowBarData: BarAreaData(
@@ -580,26 +576,26 @@ class PageStats extends GetView<PageStatsController> {
             sideTitles: SideTitles(
               interval: 1,
               showTitles: true,
-              reservedSize: 640.wmax * 20.sr,
+              reservedSize: 20.vp,
               getTitlesWidget: (value, meta) {
                 var index = value.toInt();
                 var year = years.value[index];
                 var padding = EdgeInsets.zero;
 
                 if (value < (maxX - minX) / 2) {
-                  padding = EdgeInsets.only(left: 12.wdp);
+                  padding = EdgeInsets.only(left: 12.vp);
                 }
 
                 if (value > (maxX - minX) / 2) {
-                  padding = EdgeInsets.only(right: 12.wdp);
+                  padding = EdgeInsets.only(right: 12.vp);
                 }
 
                 if (value == minX) {
-                  padding = EdgeInsets.only(left: 30.wdp);
+                  padding = EdgeInsets.only(left: 30.vp);
                 }
 
                 if (value == maxX) {
-                  padding = EdgeInsets.only(right: 30.wdp);
+                  padding = EdgeInsets.only(right: 30.vp);
                 }
 
                 return SideTitleWidget(
@@ -611,9 +607,9 @@ class PageStats extends GetView<PageStatsController> {
                     child: Text(
                       '$year',
                       style: TextStyle(
-                        fontWeight: FontWeight.w500,
-                        fontSize: 640.wmax * 12.sr,
                         color: Color(0xff8b98b1),
+                        fontWeight: FontWeight.w500,
+                        fontSize: 12.fp,
                       ),
                     ),
                   ),
@@ -626,7 +622,7 @@ class PageStats extends GetView<PageStatsController> {
         lineTouchData: LineTouchData(
           enabled: true,
           handleBuiltInTouches: false,
-          touchSpotThreshold: 640.wmax * 20.sr,
+          touchSpotThreshold: 20.vp,
           getTouchedSpotIndicator: (barData, spotIndexes) {
             final indicators = spotIndexes.map(
               (index) => TouchedSpotIndicatorData(
@@ -635,10 +631,10 @@ class PageStats extends GetView<PageStatsController> {
                   show: true,
                   getDotPainter: (spot, percent, barData, index) {
                     return FlDotCirclePainter(
-                      radius: 640.wmax * 6.sr,
+                      radius: 6.vp,
                       color: Color(0xff8438ff),
                       strokeColor: Colors.white,
-                      strokeWidth: 640.wmax * 1.5.sr,
+                      strokeWidth: 1.5.vp,
                     );
                   },
                 ),
@@ -649,10 +645,10 @@ class PageStats extends GetView<PageStatsController> {
           touchTooltipData: LineTouchTooltipData(
             fitInsideVertically: true,
             fitInsideHorizontally: true,
-            tooltipBorderRadius: BorderRadius.circular(640.wmax * 8.sr),
+            tooltipBorderRadius: BorderRadius.circular(8.vp),
             tooltipPadding: EdgeInsets.symmetric(
-              horizontal: 640.wmax * 7.sr,
-              vertical: 640.wmax * 4.sr,
+              horizontal: 7.vp,
+              vertical: 4.vp,
             ),
             getTooltipItems: (List<LineBarSpot> lineBarsSpot) {
               return lineBarsSpot.map((lineBarSpot) {
@@ -660,8 +656,8 @@ class PageStats extends GetView<PageStatsController> {
                   lineBarSpot.y.usd,
                   TextStyle(
                     color: Colors.white,
-                    fontSize: 640.wmax * 13.6.sr,
                     fontWeight: FontWeight.w500,
+                    fontSize: 13.6.fp,
                   ),
                 );
               }).toList();

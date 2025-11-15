@@ -1,6 +1,7 @@
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:dompet/service/bind.dart';
+import 'package:dompet/extension/size.dart';
 
 class Dialoger {
   static Future<bool?> show({
@@ -45,14 +46,14 @@ class Dialoger {
 
     if (cancel == null && showCancelButton == true) {
       cancel = TextButton(
-        style: TextButton.styleFrom(
-          tapTargetSize: MaterialTapTargetSize.shrinkWrap,
-          padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 8),
-        ),
         onPressed: () {
           Navigator.of(Get.overlayContext!).pop(false);
           onCancel?.call();
         },
+        style: TextButton.styleFrom(
+          tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+          padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 8),
+        ),
         child: Text(
           textCancel ?? 'System_Cancel'.tr,
           style: TextStyle(color: cancelTextColor),
@@ -62,14 +63,14 @@ class Dialoger {
 
     if (confirm == null && showConfirmButton == true) {
       confirm = TextButton(
-        style: TextButton.styleFrom(
-          tapTargetSize: MaterialTapTargetSize.shrinkWrap,
-          padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 8),
-        ),
         onPressed: () {
           Navigator.of(Get.overlayContext!).pop(true);
           onConfirm?.call();
         },
+        style: TextButton.styleFrom(
+          tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+          padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 8),
+        ),
         child: Text(
           textConfirm ?? 'System_Confirm'.tr,
           style: TextStyle(color: confirmTextColor),
@@ -84,20 +85,21 @@ class Dialoger {
       ];
     }
 
-    messageStyle ??= const TextStyle(
+    messageStyle ??= TextStyle(
       color: Colors.black,
       fontWeight: FontWeight.w400,
-      fontSize: 14,
+      fontSize: 14.fp,
     );
 
-    titleStyle ??= const TextStyle(
+    titleStyle ??= TextStyle(
       color: Colors.black,
       fontWeight: FontWeight.w600,
-      fontSize: 16,
+      fontSize: 16.fp,
     );
 
     final mediaQueryController = Get.find<MediaQueryController>();
     final mediaQueryWidth = mediaQueryController.width.value;
+
     final alertDialog = AlertDialog(
       title: Text(
         title ?? 'System_Prompt'.tr,

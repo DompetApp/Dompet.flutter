@@ -18,8 +18,8 @@ class PageLogger extends GetView<PageLoggerController> {
       final mediaTopBar = controller.mediaTopBar;
       final isShadow = controller.isShadow;
 
-      final height = max(640.wmax * 40.sr, mediaTopBar.value);
-      final offset = max(mediaPadding.value.top, 640.wmax * 20.sr);
+      final height = max(40.vp, mediaTopBar.value);
+      final offset = max(mediaPadding.value.top, 20.vp);
 
       return Scaffold(
         body: Stack(
@@ -113,7 +113,7 @@ class PageLogger extends GetView<PageLoggerController> {
   Widget buildBack(BuildContext context) {
     final mediaTopBar = controller.mediaTopBar.value;
     final mediaPadding = controller.mediaPadding.value;
-    final height = max(640.wmax * 40.sr, mediaTopBar);
+    final height = max(40.vp, mediaTopBar);
 
     return Positioned(
       top: 0,
@@ -125,12 +125,12 @@ class PageLogger extends GetView<PageLoggerController> {
           width: 680.wmax,
           height: height,
           margin: EdgeInsets.only(
-            top: max(mediaPadding.top, 640.wmax * 20.sr),
-            left: 640.wmax * 20.sr,
+            top: max(mediaPadding.top, 20.vp),
+            left: 20.vp,
           ),
           padding: EdgeInsets.only(
-            top: (height - 640.wmax * 36.sr) / 2,
-            bottom: (height - 640.wmax * 36.sr) / 2,
+            top: (height - 36.vp) / 2,
+            bottom: (height - 36.vp) / 2,
           ),
           child: Row(
             children: [
@@ -139,8 +139,8 @@ class PageLogger extends GetView<PageLoggerController> {
                 onTap: () => GetNavigate.back(),
                 child: Image(
                   image: const AssetImage('lib/assets/images/auth/back.png'),
-                  width: 640.wmax * 36.sr,
-                  height: 640.wmax * 36.sr,
+                  width: 36.vp,
+                  height: 36.vp,
                   fit: BoxFit.fill,
                 ),
               ),
@@ -155,14 +155,14 @@ class PageLogger extends GetView<PageLoggerController> {
     return Container(
       alignment: Alignment.center,
       constraints: const BoxConstraints.expand(),
-      padding: EdgeInsets.only(left: 640.wmax * 32.sr, right: 640.wmax * 32.sr),
+      padding: EdgeInsets.only(left: 32.vp, right: 32.vp),
       child: Text(
         'Run Logger'.tr,
         style: TextStyle(
-          fontSize: 640.wmax * 20.sr,
-          fontWeight: FontWeight.bold,
           color: const Color(0xff130138),
+          fontWeight: FontWeight.bold,
           letterSpacing: 3,
+          fontSize: 20.fp,
           height: 1,
         ),
       ),
@@ -175,8 +175,8 @@ class PageLogger extends GetView<PageLoggerController> {
       final mediaTopBar = controller.mediaTopBar;
       final mediaTop = mediaPadding.value.top;
 
-      final header = max(640.wmax * 40.sr, mediaTopBar.value);
-      final offset = max(mediaTop, 640.wmax * 20.sr);
+      final header = max(40.vp, mediaTopBar.value);
+      final offset = max(mediaTop, 20.vp);
       final height = 100.vh - offset - header;
 
       return SizedBox(
@@ -188,10 +188,10 @@ class PageLogger extends GetView<PageLoggerController> {
           constrained: false,
           child: Container(
             padding: EdgeInsets.only(
-              top: 640.wmax * 5.sr,
-              left: 640.wmax * 5.sr,
-              right: 640.wmax * 5.sr,
-              bottom: 640.wmax * 20.sr,
+              top: 5.vp,
+              left: 5.vp,
+              right: 5.vp,
+              bottom: 20.vp,
             ),
             child: TextSelectionTheme(
               data: TextSelectionThemeData(
@@ -201,9 +201,9 @@ class PageLogger extends GetView<PageLoggerController> {
               child: SelectableText(
                 controller.string.value,
                 style: GoogleFonts.robotoMono(
-                  fontWeight: FontWeight.w400,
-                  fontSize: max(640.wmax * 11.sr, 11),
                   color: Color(0xff303133),
+                  fontWeight: FontWeight.w400,
+                  fontSize: 11.fp,
                   height: 1.4,
                 ),
               ),
@@ -237,10 +237,10 @@ class PageLogger extends GetView<PageLoggerController> {
                     child: Text(
                       'Loading logs, please wait...'.tr,
                       style: TextStyle(
-                        fontSize: 14,
+                        color: Color(0xff707177),
                         fontWeight: FontWeight.w600,
                         letterSpacing: 1.5,
-                        color: Color(0xff707177),
+                        fontSize: 14.fp,
                       ),
                     ),
                   ),

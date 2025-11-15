@@ -85,7 +85,7 @@ class PageWebviewPopupState extends State<PageWebviewPopup> with SingleTicker {
       right: 0,
       bottom: 0,
       child: Obx(() {
-        if (mediaHeight.value <= 350.wdp) {
+        if (mediaHeight.value <= 350.vp) {
           return const SizedBox.shrink();
         }
 
@@ -129,11 +129,11 @@ class PageWebviewPopupState extends State<PageWebviewPopup> with SingleTicker {
       bottom: (animation.value - 1) * 420,
       child: Container(
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.all(Radius.circular(640.wmax * 15.sr)),
+          borderRadius: BorderRadius.all(Radius.circular(15.vp)),
           color: const Color(0xffebebeb),
         ),
         child: Padding(
-          padding: EdgeInsets.all(640.wmax * 15.sr),
+          padding: EdgeInsets.all(15.vp),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -143,18 +143,15 @@ class PageWebviewPopupState extends State<PageWebviewPopup> with SingleTicker {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Padding(
-                    padding: EdgeInsets.only(
-                      left: 640.wmax * 8.sr,
-                      right: 640.wmax * 8.sr,
-                    ),
+                    padding: EdgeInsets.only(left: 8.vp, right: 8.vp),
                     child: Text(
                       'Webview_Settings'.tr,
                       style: TextStyle(
                         color: const Color(0xff303133),
-                        letterSpacing: max(640.wmax * 1.2.sr, 1.2),
+                        letterSpacing: max(1.2.vp, 1.2),
                         decoration: TextDecoration.none,
                         fontWeight: FontWeight.bold,
-                        fontSize: 640.wmax * 16.sr,
+                        fontSize: 16.fp,
                       ),
                     ),
                   ),
@@ -162,22 +159,20 @@ class PageWebviewPopupState extends State<PageWebviewPopup> with SingleTicker {
               ),
               Container(
                 height: .5,
-                margin: EdgeInsets.symmetric(vertical: 640.wmax * 15.sr),
+                margin: EdgeInsets.symmetric(vertical: 15.vp),
                 color: const Color(0xffcfcfcf),
               ),
               Container(
-                constraints: BoxConstraints(
-                  minHeight: min(640.wmax * 150.sr, 30.vh),
-                ),
+                constraints: BoxConstraints(minHeight: min(150.vp, 30.vh)),
                 child: GridView.builder(
                   shrinkWrap: true,
                   itemCount: panelList.length,
-                  padding: EdgeInsets.all(640.wmax * 3.sr),
+                  padding: EdgeInsets.all(3.vp),
                   physics: const NeverScrollableScrollPhysics(),
                   gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
-                    maxCrossAxisExtent: 640.wmax * 66.sr,
-                    crossAxisSpacing: 640.wmax * 15.sr,
-                    mainAxisSpacing: 640.wmax * 15.sr,
+                    maxCrossAxisExtent: 66.vp,
+                    crossAxisSpacing: 15.vp,
+                    mainAxisSpacing: 15.vp,
                     childAspectRatio: 0.60,
                   ),
                   itemBuilder: (context, index) {
@@ -187,7 +182,7 @@ class PageWebviewPopupState extends State<PageWebviewPopup> with SingleTicker {
               ),
               Container(
                 height: .5,
-                margin: EdgeInsets.symmetric(vertical: 640.wmax * 15.sr),
+                margin: EdgeInsets.symmetric(vertical: 15.vp),
                 color: const Color(0xffcfcfcf),
               ),
               GestureDetector(
@@ -204,10 +199,10 @@ class PageWebviewPopupState extends State<PageWebviewPopup> with SingleTicker {
                       'System_Cancel'.tr,
                       style: TextStyle(
                         color: const Color(0xff646e93),
-                        letterSpacing: max(640.wmax * 1.2.sr, 1.2),
+                        letterSpacing: max(1.2.vp, 1.2),
                         decoration: TextDecoration.none,
                         fontWeight: FontWeight.bold,
-                        fontSize: 640.wmax * 16.sr,
+                        fontSize: 16.fp,
                       ),
                     ),
                   ),
@@ -265,41 +260,39 @@ class PageWebviewPopupState extends State<PageWebviewPopup> with SingleTicker {
 
     return GestureDetector(
       child: SizedBox(
-        width: 640.wmax * 60.sr,
+        width: 60.vp,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Container(
-              width: 640.wmax * 56.sr,
-              height: 640.wmax * 56.sr,
+              width: 56.vp,
+              height: 56.vp,
               alignment: Alignment.center,
               decoration: BoxDecoration(
-                borderRadius: BorderRadius.all(
-                  Radius.circular(640.wmax * 15.sr),
-                ),
+                borderRadius: BorderRadius.all(Radius.circular(15.vp)),
                 color: const Color(0xffffffff),
               ),
               child: Image(
-                width: 640.wmax * 30.sr,
-                height: 640.wmax * 30.sr,
+                width: 30.vp,
+                height: 30.vp,
                 image: AssetImage(image),
                 fit: BoxFit.fill,
               ),
             ),
             Container(
-              width: 640.wmax * 56.sr,
+              width: 56.vp,
               alignment: Alignment.center,
-              padding: EdgeInsets.only(top: 640.wmax * 9.sr),
+              padding: EdgeInsets.only(top: 9.vp),
               child: Text(
                 title,
                 style: TextStyle(
-                  height: 1.1,
-                  fontSize: 640.wmax * 10.sr,
-                  fontWeight: FontWeight.w600,
+                  color: const Color(0xff606266),
                   overflow: TextOverflow.ellipsis,
                   decoration: TextDecoration.none,
-                  color: const Color(0xff606266),
+                  fontWeight: FontWeight.w600,
+                  fontSize: 10.fp,
+                  height: 1.1,
                 ),
                 textAlign: TextAlign.center,
                 maxLines: 2,

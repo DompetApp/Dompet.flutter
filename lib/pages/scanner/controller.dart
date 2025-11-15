@@ -77,40 +77,37 @@ class PageScannerController extends GetxController with TickerProvider {
       context: Get.context!,
       barrierColor: Color(0xff000000).withValues(alpha: 0.55),
       builder: (context) => Padding(
-        padding: EdgeInsets.only(
-          bottom: 640.wmax * 100.sr,
-          top: 640.wmax * 20.sr,
-        ),
+        padding: EdgeInsets.only(bottom: 100.vp, top: 20.vp),
         child: AlertDialog(
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(25.0),
           ),
           iconPadding: EdgeInsets.all(0),
           buttonPadding: EdgeInsets.only(
-            top: 640.wmax * 10.sr,
-            left: 640.wmax * 5.sr,
-            right: 640.wmax * 5.sr,
-            bottom: 640.wmax * 10.sr,
+            top: 10.vp,
+            left: 5.vp,
+            right: 5.vp,
+            bottom: 10.vp,
           ),
           contentPadding: EdgeInsets.only(
-            top: 640.wmax * 30.sr,
-            left: 640.wmax * 30.sr,
-            right: 640.wmax * 30.sr,
+            top: 30.vp,
+            left: 30.vp,
+            right: 30.vp,
           ),
           actionsPadding: EdgeInsets.only(
-            top: 640.wmax * 14.sr,
-            left: 640.wmax * 20.sr,
-            right: 640.wmax * 20.sr,
-            bottom: 640.wmax * 8.sr,
+            top: 14.vp,
+            left: 20.vp,
+            right: 20.vp,
+            bottom: 8.vp,
           ),
           backgroundColor: Colors.white,
           content: Text(
             message,
             style: TextStyle(
-              fontSize: 640.wmax * 17.6.sr,
-              fontWeight: FontWeight.w600,
               color: Color(0xff303133),
+              fontWeight: FontWeight.w600,
               letterSpacing: 1.2,
+              fontSize: 17.6.fp,
             ),
           ),
           actions: [
@@ -123,10 +120,10 @@ class PageScannerController extends GetxController with TickerProvider {
               child: Text(
                 'System_Cancel'.tr,
                 style: TextStyle(
-                  fontSize: 640.wmax * 15.sr,
-                  fontWeight: FontWeight.w500,
                   color: Color(0xff606266),
+                  fontWeight: FontWeight.w500,
                   letterSpacing: 1.2,
+                  fontSize: 15.fp,
                 ),
               ),
               onPressed: () {
@@ -146,10 +143,10 @@ class PageScannerController extends GetxController with TickerProvider {
               child: Text(
                 'Scanner_Go_to_settings'.tr,
                 style: TextStyle(
-                  fontSize: 640.wmax * 15.sr,
-                  fontWeight: FontWeight.w500,
                   color: Color(0xff303133),
+                  fontWeight: FontWeight.w500,
                   letterSpacing: 1.2,
+                  fontSize: 15.fp,
                 ),
               ),
               onPressed: () {

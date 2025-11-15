@@ -21,7 +21,7 @@ class PageNotification extends GetView<PageNotificationController> {
       final mediaTopBar = controller.mediaTopBar;
       final isShadow = controller.isShadow;
 
-      final top = max(mediaPadding.value.top, 640.wmax * 20.sr);
+      final top = max(mediaPadding.value.top, 20.vp);
 
       return Scaffold(
         body: Stack(
@@ -41,8 +41,8 @@ class PageNotification extends GetView<PageNotificationController> {
                       elevation: 0.0,
                       scrolledUnderElevation: 0.0,
                       automaticallyImplyLeading: false,
-                      collapsedHeight: max(640.wmax * 40.sr, mediaTopBar.value),
-                      expandedHeight: 640.wmax * 152.sr,
+                      collapsedHeight: max(40.vp, mediaTopBar.value),
+                      expandedHeight: 152.vp,
                       flexibleSpace: Obx(() {
                         List<BoxShadow>? boxShadow;
 
@@ -112,7 +112,7 @@ class PageNotification extends GetView<PageNotificationController> {
   Widget buildBack(BuildContext context) {
     final mediaTopBar = controller.mediaTopBar.value;
     final mediaPadding = controller.mediaPadding.value;
-    final height = max(640.wmax * 40.sr, mediaTopBar);
+    final height = max(40.vp, mediaTopBar);
 
     return Positioned(
       top: 0,
@@ -124,12 +124,12 @@ class PageNotification extends GetView<PageNotificationController> {
           width: 680.wmax,
           height: height,
           margin: EdgeInsets.only(
-            top: max(mediaPadding.top, 640.wmax * 20.sr),
-            left: 640.wmax * 20.sr,
+            top: max(mediaPadding.top, 20.vp),
+            left: 20.vp,
           ),
           padding: EdgeInsets.only(
-            top: (height - 640.wmax * 36.sr) / 2,
-            bottom: (height - 640.wmax * 36.sr) / 2,
+            top: (height - 36.vp) / 2,
+            bottom: (height - 36.vp) / 2,
           ),
           child: Row(
             children: [
@@ -138,8 +138,8 @@ class PageNotification extends GetView<PageNotificationController> {
                 onTap: () => GetNavigate.back(),
                 child: Image(
                   image: const AssetImage('lib/assets/images/auth/back.png'),
-                  width: 640.wmax * 36.sr,
-                  height: 640.wmax * 36.sr,
+                  width: 36.vp,
+                  height: 36.vp,
                   fit: BoxFit.fill,
                 ),
               ),
@@ -154,14 +154,14 @@ class PageNotification extends GetView<PageNotificationController> {
     return Container(
       alignment: Alignment.center,
       constraints: const BoxConstraints.expand(),
-      padding: EdgeInsets.only(left: 640.wmax * 32.sr, right: 640.wmax * 32.sr),
+      padding: EdgeInsets.only(left: 32.vp, right: 32.vp),
       child: Text(
         'Notification'.tr,
         style: TextStyle(
-          fontSize: 640.wmax * 20.sr,
-          fontWeight: FontWeight.bold,
           color: const Color(0xff130138),
+          fontWeight: FontWeight.bold,
           letterSpacing: 3,
+          fontSize: 20.fp,
           height: 1,
         ),
       ),
@@ -176,28 +176,28 @@ class PageNotification extends GetView<PageNotificationController> {
       return GestureDetector(
         behavior: HitTestBehavior.opaque,
         child: Container(
-          width: 640.wmax * 312.sr,
-          margin: EdgeInsets.only(bottom: 640.wmax * 10.sr),
+          width: 312.vp,
+          margin: EdgeInsets.only(bottom: 10.vp),
           child: Stack(
             fit: StackFit.loose,
             children: [
               Padding(
-                padding: EdgeInsets.all(640.wmax * 1.sr),
+                padding: EdgeInsets.all(1.vp),
                 child: Container(
-                  width: 640.wmax * 310.sr,
+                  width: 310.vp,
                   padding: EdgeInsets.only(
-                    top: 640.wmax * 10.sr,
-                    left: 640.wmax * 28.sr,
-                    right: 640.wmax * 20.sr,
-                    bottom: 640.wmax * 10.sr,
+                    top: 10.vp,
+                    left: 28.vp,
+                    right: 20.vp,
+                    bottom: 10.vp,
                   ),
                   decoration: BoxDecoration(
                     color: Colors.white,
-                    borderRadius: BorderRadius.circular(640.wmax * 17.sr),
+                    borderRadius: BorderRadius.circular(17.vp),
                     boxShadow: [
                       BoxShadow(
                         color: const Color(0xff000000).withValues(alpha: .058),
-                        offset: Offset(640.wmax * 3.sr, 640.wmax * 3.sr),
+                        offset: Offset(3.vp, 3.vp),
                         spreadRadius: 0,
                         blurRadius: 20,
                       ),
@@ -209,20 +209,20 @@ class PageNotification extends GetView<PageNotificationController> {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       SizedBox(
-                        width: 640.wmax * 220.sr,
+                        width: 220.vp,
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.start,
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Container(
                               alignment: Alignment.centerLeft,
-                              height: 640.wmax * 21.sr,
+                              height: 21.vp,
                               child: Text(
                                 '${message.date.yMMMd()} ${message.date.jm()}',
                                 style: TextStyle(
-                                  fontSize: 640.wmax * 12.4.sr,
-                                  fontWeight: FontWeight.w500,
                                   color: const Color(0xffafafaf),
+                                  fontWeight: FontWeight.w500,
+                                  fontSize: 12.4.fp,
                                 ),
                               ),
                             ),
@@ -231,9 +231,9 @@ class PageNotification extends GetView<PageNotificationController> {
                               child: Text(
                                 message.desc.tr,
                                 style: TextStyle(
-                                  fontSize: 640.wmax * 15.sr,
-                                  fontWeight: FontWeight.w600,
                                   color: const Color(0xff363853),
+                                  fontWeight: FontWeight.w600,
+                                  fontSize: 15.fp,
                                   height: 1.4,
                                 ),
                                 overflow: TextOverflow.ellipsis,
@@ -242,13 +242,13 @@ class PageNotification extends GetView<PageNotificationController> {
                             ),
                             Container(
                               alignment: Alignment.centerLeft,
-                              height: 640.wmax * 21.sr,
+                              height: 21.vp,
                               child: Text(
                                 message.money.usd,
                                 style: TextStyle(
-                                  fontSize: 640.wmax * 12.4.sr,
-                                  fontWeight: FontWeight.w600,
                                   color: const Color(0xff606266),
+                                  fontWeight: FontWeight.w600,
+                                  fontSize: 12.4.fp,
                                 ),
                               ),
                             ),
@@ -259,8 +259,8 @@ class PageNotification extends GetView<PageNotificationController> {
                         message.money > 0.0
                             ? 'lib/assets/images/notification/income.png'
                             : 'lib/assets/images/notification/expenditure.png',
-                        height: 640.wmax * 20.sr,
-                        width: 640.wmax * 20.sr,
+                        height: 20.vp,
+                        width: 20.vp,
                         fit: BoxFit.fill,
                       ),
                     ],
@@ -269,14 +269,14 @@ class PageNotification extends GetView<PageNotificationController> {
               ),
               Positioned(
                 top: 0,
-                right: 640.wmax * 9.sr,
+                right: 9.vp,
                 child: Offstage(
                   offstage: message.isRead != 'N',
                   child: Container(
-                    width: 640.wmax * 7.sr,
-                    height: 640.wmax * 7.sr,
+                    width: 7.vp,
+                    height: 7.vp,
                     decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(640.wmax * 3.5.sr),
+                      borderRadius: BorderRadius.circular(3.5.vp),
                       color: const Color(0xffff3333),
                     ),
                   ),
@@ -303,29 +303,29 @@ class PageNotification extends GetView<PageNotificationController> {
       }
 
       return Container(
-        width: 640.wmax * 312.sr,
-        margin: EdgeInsets.only(bottom: 640.wmax * 20.sr),
-        padding: EdgeInsets.only(bottom: 640.wmax * 1.sr),
+        width: 312.vp,
+        margin: EdgeInsets.only(bottom: 20.vp),
+        padding: EdgeInsets.only(bottom: 1.vp),
         child: Column(
           children: [
             Container(
-              width: 640.wmax * 312.sr,
-              height: 640.wmax * 20.sr,
+              width: 312.vp,
+              height: 20.vp,
               alignment: Alignment.center,
               child: Text(
                 msgYear.tr,
                 style: TextStyle(
-                  fontSize: 640.wmax * 14.8.sr,
-                  fontWeight: FontWeight.w600,
                   color: const Color(0xff363853),
                   letterSpacing: group.year == nowYear ? 3 : 1,
+                  fontWeight: FontWeight.w600,
+                  fontSize: 14.8.fp,
                   height: 1,
                 ),
               ),
             ),
-            SizedBox(width: 640.wmax * 312.sr, height: 640.wmax * 15.sr),
+            SizedBox(width: 312.vp, height: 15.vp),
             SizedBox(
-              width: 640.wmax * 312.sr,
+              width: 312.vp,
               child: Column(
                 children: [
                   ...messages.map((msg) {
@@ -342,7 +342,7 @@ class PageNotification extends GetView<PageNotificationController> {
     return Container(
       color: Colors.white,
       alignment: Alignment.center,
-      padding: EdgeInsets.only(left: 640.wmax * 32.sr, right: 640.wmax * 32.sr),
+      padding: EdgeInsets.only(left: 32.vp, right: 32.vp),
       child: Column(
         children: [
           ...msgGroups.value.map((group) {
@@ -357,9 +357,6 @@ class PageNotification extends GetView<PageNotificationController> {
     final mediaPadding = controller.mediaPadding;
     final mediaBottom = mediaPadding.value.bottom;
 
-    return SizedBox(
-      width: 640.wmax,
-      height: max(mediaBottom - 640.wmax * 20.sr, 640.wmax * 10.sr),
-    );
+    return SizedBox(width: 640.wmax, height: max(mediaBottom - 20.vp, 10.vp));
   }
 }

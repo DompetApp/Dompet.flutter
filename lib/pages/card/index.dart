@@ -46,7 +46,7 @@ class PageCard extends GetView<PageCardController> {
   Widget buildBack(BuildContext context) {
     final mediaTopBar = controller.mediaTopBar.value;
     final mediaPadding = controller.mediaPadding.value;
-    final height = max(640.wmax * 40.sr, mediaTopBar);
+    final height = max(40.vp, mediaTopBar);
 
     return Positioned(
       top: 0,
@@ -58,12 +58,12 @@ class PageCard extends GetView<PageCardController> {
           width: 680.wmax,
           height: height,
           margin: EdgeInsets.only(
-            top: max(mediaPadding.top, 640.wmax * 20.sr),
-            left: 640.wmax * 20.sr,
+            top: max(mediaPadding.top, 20.vp),
+            left: 20.vp,
           ),
           padding: EdgeInsets.only(
-            top: (height - 640.wmax * 36.sr) / 2,
-            bottom: (height - 640.wmax * 36.sr) / 2,
+            top: (height - 36.vp) / 2,
+            bottom: (height - 36.vp) / 2,
           ),
           child: Row(
             children: [
@@ -71,10 +71,10 @@ class PageCard extends GetView<PageCardController> {
                 behavior: HitTestBehavior.opaque,
                 onTap: () => GetNavigate.back(),
                 child: Image(
-                  image: const AssetImage('lib/assets/images/auth/back.png'),
-                  width: 640.wmax * 36.sr,
-                  height: 640.wmax * 36.sr,
                   fit: BoxFit.fill,
+                  image: const AssetImage('lib/assets/images/auth/back.png'),
+                  width: 36.vp,
+                  height: 36.vp,
                 ),
               ),
             ],
@@ -93,22 +93,19 @@ class PageCard extends GetView<PageCardController> {
       duration: duration,
       onEnd: () => isAnimating.value = false,
       margin: EdgeInsets.only(
-        top: isExpand.value ? 640.wmax * 103.sr : 640.wmax * 136.sr,
-        bottom: isExpand.value ? 640.wmax * 6.sr : 640.wmax * 61.sr,
+        top: isExpand.value ? 103.vp : 136.vp,
+        bottom: isExpand.value ? 6.vp : 61.vp,
       ),
       child: Container(
         color: Colors.white,
         alignment: Alignment.center,
-        padding: EdgeInsets.only(
-          left: 640.wmax * 32.sr,
-          right: 640.wmax * 32.sr,
-        ),
+        padding: EdgeInsets.only(left: 32.vp, right: 32.vp),
         child: Text(
           'Bank Card'.tr,
           style: TextStyle(
-            fontSize: 640.wmax * 24.sr,
-            fontWeight: FontWeight.bold,
             color: const Color(0xff130138),
+            fontWeight: FontWeight.bold,
+            fontSize: 24.fp,
             height: 1.2,
           ),
         ),
@@ -124,15 +121,13 @@ class PageCard extends GetView<PageCardController> {
     return AnimatedContainer(
       duration: duration,
       onEnd: () => isAnimating.value = false,
-      margin: EdgeInsets.only(
-        bottom: isExpand.value ? 640.wmax * 56.sr : 640.wmax * 48.sr,
-      ),
+      margin: EdgeInsets.only(bottom: isExpand.value ? 56.vp : 48.vp),
       child: Container(
         color: Colors.white,
         alignment: Alignment.center,
         padding: EdgeInsets.only(
-          left: isExpand.value ? 640.wmax * 32.sr : 640.wmax * 17.sr,
-          right: isExpand.value ? 640.wmax * 32.sr : 640.wmax * 17.sr,
+          left: isExpand.value ? 32.vp : 17.vp,
+          right: isExpand.value ? 32.vp : 17.vp,
         ),
         child: Column(
           children: [buildCardImage(context), buildCardDetail(context)],
@@ -160,12 +155,12 @@ class PageCard extends GetView<PageCardController> {
                     : 1;
 
                 final width = isAnimating.value || isExpand.value
-                    ? 640.wmax * 220.sr * scale
-                    : 640.wmax * 240.sr;
+                    ? 220.vp * scale
+                    : 240.vp;
 
                 final height = isAnimating.value || isExpand.value
-                    ? 640.wmax * 311.sr * scale
-                    : 640.wmax * 340.sr;
+                    ? 311.vp * scale
+                    : 340.vp;
 
                 return Transform.rotate(
                   angle: animationValue.value,
@@ -180,12 +175,12 @@ class PageCard extends GetView<PageCardController> {
                           fit: BoxFit.fill,
                         ),
                         Positioned(
-                          right: 640.wmax * 38.5.sr * scale,
-                          bottom: 640.wmax * 21.sr * scale,
+                          right: 38.5.vp * scale,
+                          bottom: 21.vp * scale,
                           child: Image.asset(
                             'lib/assets/images/card/visa.png',
-                            width: 640.wmax * 29.2.sr * scale,
-                            height: 640.wmax * 44.sr * scale,
+                            width: 29.2.vp * scale,
+                            height: 44.vp * scale,
                             fit: BoxFit.fill,
                           ),
                         ),
@@ -195,24 +190,21 @@ class PageCard extends GetView<PageCardController> {
                 );
               },
             ),
-            SizedBox(
-              width: 640.wmax,
-              height: isExpand.value ? 640.wmax * 13.sr : 640.wmax * 40.sr,
-            ),
+            SizedBox(width: 640.wmax, height: isExpand.value ? 13.vp : 40.vp),
           ],
         ),
         Positioned(
           left: 0,
           right: 0,
-          bottom: isExpand.value ? 640.wmax * 15.sr : 0,
+          bottom: isExpand.value ? 15.vp : 0,
           child: Offstage(
             offstage: isAnimating.value,
             child: Container(
               alignment: Alignment.topCenter,
               child: Image.asset(
                 'lib/assets/images/card/shadow.png',
-                width: 640.wmax * 206.sr,
-                height: 640.wmax * 79.sr,
+                width: 206.vp,
+                height: 79.vp,
                 fit: BoxFit.fill,
               ),
             ),
@@ -229,42 +221,39 @@ class PageCard extends GetView<PageCardController> {
     final bankCard = controller.bankCard;
 
     return AnimatedContainer(
-      duration: duration,
-      onEnd: () => isAnimating.value = false,
+      onEnd: () {
+        isAnimating.value = false;
+      },
       width: 640.wmax,
-      height: isExpand.value ? 640.wmax * 172.sr : 0,
+      height: isExpand.value ? 172.vp : 0,
+      duration: duration,
       child: ListView(
         shrinkWrap: false,
         physics: const NeverScrollableScrollPhysics(),
-        padding: EdgeInsets.only(
-          top: 0,
-          left: 640.wmax * 25.sr,
-          right: 640.wmax * 25.sr,
-          bottom: 0,
-        ),
+        padding: EdgeInsets.only(top: 0, left: 25.vp, right: 25.vp, bottom: 0),
         children: [
           AnimatedOpacity(
             opacity: isExpand.value ? 1.0 : 0.0,
             duration: duration,
             child: SizedBox(
-              height: 640.wmax * 172.sr,
+              height: 172.vp,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Container(
-                    height: 640.wmax * 20.sr,
+                    height: 20.vp,
                     alignment: Alignment.centerLeft,
                     child: Row(
                       children: [
                         SizedBox(
-                          width: 640.wmax * 80.sr,
+                          width: 80.vp,
                           child: Text(
                             'CardNo'.tr,
                             style: TextStyle(
-                              fontSize: 640.wmax * 16.sr,
-                              fontWeight: FontWeight.w500,
                               color: const Color(0xffbdbdbd),
+                              fontWeight: FontWeight.w500,
+                              fontSize: 16.fp,
                               height: 1,
                             ),
                           ),
@@ -272,30 +261,30 @@ class PageCard extends GetView<PageCardController> {
                         Text(
                           bankCard.value.cardNo.tr,
                           style: TextStyle(
-                            fontSize: 640.wmax * 15.sr,
-                            fontWeight: FontWeight.w500,
                             color: const Color(0xff303133),
+                            fontWeight: FontWeight.w500,
                             letterSpacing: 1.2,
+                            fontSize: 15.fp,
                             height: 1,
                           ),
                         ),
                       ],
                     ),
                   ),
-                  SizedBox(width: 640.wmax, height: 640.wmax * 18.sr),
+                  SizedBox(width: 640.wmax, height: 18.vp),
                   Container(
-                    height: 640.wmax * 20.sr,
+                    height: 20.vp,
                     alignment: Alignment.centerLeft,
                     child: Row(
                       children: [
                         SizedBox(
-                          width: 640.wmax * 80.sr,
+                          width: 80.vp,
                           child: Text(
                             'Type'.tr,
                             style: TextStyle(
-                              fontSize: 640.wmax * 16.sr,
-                              fontWeight: FontWeight.w500,
                               color: const Color(0xffbdbdbd),
+                              fontWeight: FontWeight.w500,
+                              fontSize: 16.fp,
                               height: 1,
                             ),
                           ),
@@ -303,29 +292,29 @@ class PageCard extends GetView<PageCardController> {
                         Text(
                           bankCard.value.cardType.tr,
                           style: TextStyle(
-                            fontSize: 640.wmax * 16.sr,
-                            fontWeight: FontWeight.w500,
                             color: const Color(0xff303133),
+                            fontWeight: FontWeight.w500,
+                            fontSize: 16.fp,
                             height: 1,
                           ),
                         ),
                       ],
                     ),
                   ),
-                  SizedBox(width: 640.wmax, height: 640.wmax * 18.sr),
+                  SizedBox(width: 640.wmax, height: 18.vp),
                   Container(
-                    height: 640.wmax * 20.sr,
+                    height: 20.vp,
                     alignment: Alignment.centerLeft,
                     child: Row(
                       children: [
                         SizedBox(
-                          width: 640.wmax * 80.sr,
+                          width: 80.vp,
                           child: Text(
                             'Bank'.tr,
                             style: TextStyle(
-                              fontSize: 640.wmax * 16.sr,
-                              fontWeight: FontWeight.w500,
                               color: const Color(0xffbdbdbd),
+                              fontWeight: FontWeight.w500,
+                              fontSize: 16.fp,
                               height: 1,
                             ),
                           ),
@@ -333,29 +322,29 @@ class PageCard extends GetView<PageCardController> {
                         Text(
                           bankCard.value.bankName.tr,
                           style: TextStyle(
-                            fontSize: 640.wmax * 16.sr,
-                            fontWeight: FontWeight.w500,
                             color: const Color(0xff303133),
+                            fontWeight: FontWeight.w500,
+                            fontSize: 16.fp,
                             height: 1,
                           ),
                         ),
                       ],
                     ),
                   ),
-                  SizedBox(width: 640.wmax, height: 640.wmax * 18.sr),
+                  SizedBox(width: 640.wmax, height: 18.vp),
                   Container(
-                    height: 640.wmax * 20.sr,
+                    height: 20.vp,
                     alignment: Alignment.centerLeft,
                     child: Row(
                       children: [
                         SizedBox(
-                          width: 640.wmax * 80.sr,
+                          width: 80.vp,
                           child: Text(
                             'Status'.tr,
                             style: TextStyle(
-                              fontSize: 640.wmax * 16.sr,
-                              fontWeight: FontWeight.w500,
                               color: const Color(0xffbdbdbd),
+                              fontWeight: FontWeight.w500,
+                              fontSize: 16.fp,
                               height: 1,
                             ),
                           ),
@@ -365,29 +354,29 @@ class PageCard extends GetView<PageCardController> {
                               ? 'Available'.tr
                               : 'Unavailable'.tr,
                           style: TextStyle(
-                            fontSize: 640.wmax * 16.sr,
-                            fontWeight: FontWeight.w500,
                             color: const Color(0xff303133),
+                            fontWeight: FontWeight.w500,
+                            fontSize: 16.fp,
                             height: 1,
                           ),
                         ),
                       ],
                     ),
                   ),
-                  SizedBox(width: 640.wmax, height: 640.wmax * 18.sr),
+                  SizedBox(width: 640.wmax, height: 18.vp),
                   Container(
-                    height: 640.wmax * 20.sr,
+                    height: 20.vp,
                     alignment: Alignment.centerLeft,
                     child: Row(
                       children: [
                         SizedBox(
-                          width: 640.wmax * 80.sr,
+                          width: 80.vp,
                           child: Text(
                             'Valid'.tr,
                             style: TextStyle(
-                              fontSize: 640.wmax * 16.sr,
-                              fontWeight: FontWeight.w500,
                               color: const Color(0xffbdbdbd),
+                              fontWeight: FontWeight.w500,
+                              fontSize: 16.fp,
                               height: 1,
                             ),
                           ),
@@ -395,9 +384,9 @@ class PageCard extends GetView<PageCardController> {
                         Text(
                           bankCard.value.expiryDate.yMMM(),
                           style: TextStyle(
-                            fontSize: 640.wmax * 16.sr,
-                            fontWeight: FontWeight.w500,
                             color: const Color(0xff303133),
+                            fontWeight: FontWeight.w500,
+                            fontSize: 16.fp,
                             height: 1,
                           ),
                         ),
@@ -417,7 +406,7 @@ class PageCard extends GetView<PageCardController> {
     final isExpand = controller.isExpand;
     final isAnimating = controller.isAnimating;
     final mediaPadding = controller.mediaPadding.value;
-    final mediaBottom = max(mediaPadding.bottom, 640.wmax * 30.sr);
+    final mediaBottom = max(mediaPadding.bottom, 30.vp);
 
     Widget withInWell({required Widget child, dynamic onTap}) {
       return Material(
@@ -426,7 +415,7 @@ class PageCard extends GetView<PageCardController> {
           radius: 200.0,
           containedInkWell: true,
           highlightShape: BoxShape.rectangle,
-          borderRadius: BorderRadius.all(Radius.circular(640.wmax * 30.0.sr)),
+          borderRadius: BorderRadius.all(Radius.circular(30.0.vp)),
           highlightColor: const Color(0xff45197d).withValues(alpha: 0.05),
           splashColor: const Color(0xff45197d).withValues(alpha: 0.05),
           focusColor: Colors.transparent,
@@ -440,28 +429,21 @@ class PageCard extends GetView<PageCardController> {
     return Container(
       color: Colors.white,
       alignment: Alignment.center,
-      padding: EdgeInsets.only(
-        left: 640.wmax * 32.sr,
-        right: 640.wmax * 32.sr,
-        bottom: mediaBottom,
-      ),
+      padding: EdgeInsets.only(left: 32.vp, right: 32.vp, bottom: mediaBottom),
       child: IntrinsicWidth(
         child: withInWell(
           child: Container(
             color: Colors.transparent,
             alignment: Alignment.center,
-            constraints: BoxConstraints(minWidth: 640.wmax * 160.sr),
-            padding: EdgeInsets.symmetric(
-              vertical: 640.wmax * 15.sr,
-              horizontal: 640.wmax * 18.sr,
-            ),
+            constraints: BoxConstraints(minWidth: 160.vp),
+            padding: EdgeInsets.symmetric(vertical: 15.vp, horizontal: 18.vp),
             child: Text(
               isExpand.value ? 'Hide'.tr : 'Display'.tr,
               style: TextStyle(
-                fontSize: 640.wmax * 18.sr,
-                fontWeight: FontWeight.bold,
                 color: const Color(0xff5b259f),
+                fontWeight: FontWeight.bold,
                 letterSpacing: 1.2,
+                fontSize: 18.fp,
                 height: 1.2,
               ),
             ),

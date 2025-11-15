@@ -162,11 +162,14 @@ class SafeFileOutput extends LogOutput {
       }
 
       for (final file in files) {
-        final name = basename(file.path);
-        final path = file.path;
-
         formData.files.add(
-          MapEntry('files', MultipartFile.fromFileSync(path, filename: name)),
+          MapEntry(
+            'files',
+            MultipartFile.fromBytes(
+              file.readAsBytesSync(),
+              filename: basename(file.path),
+            ),
+          ),
         );
       }
 
@@ -191,11 +194,14 @@ class SafeFileOutput extends LogOutput {
         return null;
       }
 
-      final name = basename(files.first.path);
-      final path = files.first.path;
-
       formData.files.add(
-        MapEntry('file', MultipartFile.fromFileSync(path, filename: name)),
+        MapEntry(
+          'files',
+          MultipartFile.fromBytes(
+            files.first.readAsBytesSync(),
+            filename: basename(files.first.path),
+          ),
+        ),
       );
 
       return formData;
