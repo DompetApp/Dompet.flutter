@@ -40,7 +40,7 @@ dependencies:
   audioplayers: ^6.5.1
   get_storage: ^2.1.1
   share_plus: ^12.0.1
-  app_links: ^6.4.1
+  app_links: 7.0.0
   fl_chart: ^1.1.1
   signals: ^6.2.0
   sqflite: ^2.4.2
