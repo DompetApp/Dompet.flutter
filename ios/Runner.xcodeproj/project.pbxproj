@@ -11,6 +11,7 @@
 		1DB971517A38369DC9075F7B /* Pods_Runner.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B97B678459B97E3CCDACB441 /* Pods_Runner.framework */; };
 		331C808B294A63AB00263BE5 /* RunnerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 331C807B294A618700263BE5 /* RunnerTests.swift */; };
 		3B3967161E833CAA004F5970 /* AppFrameworkInfo.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3B3967151E833CAA004F5970 /* AppFrameworkInfo.plist */; };
+		476158432EE3225500478AA6 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 476158422EE3225100478AA6 /* SceneDelegate.swift */; };
 		479095812DD5D87500184D65 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4790957F2DD5D87500184D65 /* InfoPlist.strings */; };
 		479095842DD5DD1600184D65 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 479095832DD5DD1600184D65 /* GoogleService-Info.plist */; };
 		47E4DBAF2E1110D000D85544 /* AppChannel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47E4DBAE2E1110D000D85544 /* AppChannel.swift */; };
@@ -54,6 +55,7 @@
 		331C8081294A63A400263BE5 /* RunnerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RunnerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3B3967151E833CAA004F5970 /* AppFrameworkInfo.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = AppFrameworkInfo.plist; path = Flutter/AppFrameworkInfo.plist; sourceTree = "<group>"; };
 		43BA76279162426720D12837 /* Pods_RunnerTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RunnerTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		476158422EE3225100478AA6 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		4790957C2DD5D7E400184D65 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Main.strings"; sourceTree = "<group>"; };
 		4790957D2DD5D7E400184D65 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
 		479095802DD5D87500184D65 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -150,6 +152,7 @@
 		97C146F01CF9000F007C117D /* Runner */ = {
 			isa = PBXGroup;
 			children = (
+				476158422EE3225100478AA6 /* SceneDelegate.swift */,
 				47E4DBB22E1122A100D85544 /* AppStreamer.swift */,
 				47E4DBAE2E1110D000D85544 /* AppChannel.swift */,
 				479095832DD5DD1600184D65 /* GoogleService-Info.plist */,
@@ -412,6 +415,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				476158432EE3225500478AA6 /* SceneDelegate.swift in Sources */,
 				74858FAF1ED2DC5600515810 /* AppDelegate.swift in Sources */,
 				47E4DBAF2E1110D000D85544 /* AppChannel.swift in Sources */,
 				1498D2341E8E89220040F4C2 /* GeneratedPluginRegistrant.m in Sources */,

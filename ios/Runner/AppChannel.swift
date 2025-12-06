@@ -49,8 +49,7 @@ func setEventChannelHandler(eventChannel: FlutterEventChannel) {
 }
 
 func setMethodChannelHandler(methodChannel: FlutterMethodChannel) {
-  methodChannel.setMethodCallHandler {
-    (call, result) in
+  methodChannel.setMethodCallHandler { (call, result) in
     if "invokeNativeMethodChannel" == call.method {
       initialized = true
       result(true)
